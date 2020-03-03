@@ -45,7 +45,7 @@ export default function NavbarComponent() {
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
