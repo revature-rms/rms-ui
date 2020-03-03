@@ -1,6 +1,6 @@
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
-//boilerplate material ui styling for collapsible drawer
+//boilerplate material ui styling for drawer
  const UseStyles = makeStyles((theme: Theme) =>
  createStyles({
    root: {

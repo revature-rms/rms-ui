@@ -15,11 +15,11 @@ import UseStyles from './NavbarStyles';
 
 export default function NavbarComponent() {
 
-    //import boilerplate styles for the collapsible material ui drawer and assigns it to the classes varible.
+    //import boilerplate styles for the material ui drawer and assigns it to the classes varible.
     const classes = UseStyles();
 
     return (
-        //boilerplate material ui Mini variant drawer link: https://material-ui.com/components/drawers/
+        //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <div className={classes.root}>
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
