@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import './App.css';
+import { HomeComponent } from './components/Home-component/HomeComponent';
+import { Provider } from 'react-redux';
+import { store } from './Store';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { EmployeeDetailsComponent } from './components/EmployeeDetails-component/EmployeeDetailsComponent';
+
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div>
+      <Provider store={store}>
+
+        <Router>
+          <Switch>
+            <Route path='/employee-details' component={EmployeeDetailsComponent} />
+            <Route path='/' component={HomeComponent} />
+          </Switch>
+        </Router>
+      </Provider>
     </div>
   );
 }
