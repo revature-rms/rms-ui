@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +17,6 @@ export default function NavbarComponent() {
 
     //import boilerplate styles for the collapsible material ui drawer and assigns it to the classes varible.
     const classes = UseStyles();
-
 
     return (
         //boilerplate material ui Mini variant drawer link: https://material-ui.com/components/drawers/

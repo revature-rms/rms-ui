@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export class SearchComponent extends React.Component<any, any> {
 
     render() {
