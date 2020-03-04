@@ -32,7 +32,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                     <b>Last Name:</b>  {this.props.employee ? this.props.employee.lastName : ''}<br/>
                     <b>Email:</b>  {this.props.employee ? this.props.employee.email : ''}<br/>
                     <b>Title:</b> {this.props.employee ? this.props.employee.title : ''}<br/>
-                    <b>Department:</b>  {this.props.employee ? this.props.employee.department : ''}<br/>
+                    <b>Department:</b>  {this.props.employee ? this.props.employee.department : ''}
                 </div>
                 <div className="half-card">
                     <b>Resource Created By:</b> {this.props.employee ? this.props.employee.resourceMetadata.resourceCreator : ''}<br/>
