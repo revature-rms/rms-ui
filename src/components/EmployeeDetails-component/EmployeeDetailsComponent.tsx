@@ -48,7 +48,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                 <CardActions>
                     <Button size="small" color="primary">
                         Edit
-            </Button>
+                    </Button>
                 </CardActions>
             </Card>
         );
