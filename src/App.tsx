@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { EmployeeDetailsComponent } from './components/EmployeeDetails-component/EmployeeDetailsComponent';
+import { EmployeesComponent } from './components/Employees-component/EmployeesComponent';
 
 
 const App: React.FC = () => {
@@ -26,7 +27,8 @@ const App: React.FC = () => {
 
               <Router>
                 <Switch>
-                  <Route path='/employee-details' component={EmployeeDetailsComponent} />
+                  <Route path='/employees' component={EmployeesComponent} />
+                  <Route path='/employee-details' component={EmployeeDetailsComponent} />               
                   <Route path='/' component={HomeComponent} />
                 </Switch>
               </Router>
