@@ -8,7 +8,7 @@ interface IEmployeesProps {
 }
 
 export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
-    
+
     constructor(props: any) {
         super(props);
     }
@@ -25,6 +25,19 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                         <option value="Another-department">Another department</option>
                     </select>
                 </label>
+            )
+        }
+
+        const tableData =() => {
+            
+            return(
+                <tr>
+                    <td>#</td>
+                    <td>Sample FN</td>
+                    <td>Sample LN</td>
+                    <td>Sample email</td>
+                    <td>Sample department</td>
+                </tr>
             )
         }
 
@@ -46,8 +59,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                                 <th>EMAIL</th>
                                 <th>DEPARTMENT</th>
                             </tr>
-                            <tr>
-                            </tr>
+                            {tableData()}
                         </table>
                     </div>
                 </Card>
