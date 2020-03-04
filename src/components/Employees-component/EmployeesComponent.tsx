@@ -8,6 +8,7 @@ interface IEmployeesProps {
 }
 
 export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
+    
     constructor(props: any) {
         super(props);
     }
