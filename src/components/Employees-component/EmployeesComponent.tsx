@@ -1,6 +1,8 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Card } from '@material-ui/core';
+import { Card} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import {getAllEmployees} from '../../action-mappers/employees-action';
 
 
 interface IEmployeesProps {
@@ -13,6 +15,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         super(props);
     }
 
+getAll = () => {getAllEmployees();}
 
 
     render() {
@@ -41,13 +44,14 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                     <td>Sample LN</td>
                     <td>Sample email</td>
                     <td>Sample department</td>
+                    <td><Link to = "/employee-details" style = {{fontStyle:"italic"}}><small>View details</small></Link></td>
                 </tr>
             )
         }
 
         return (
 
-            <Wrapper title="employees" elements={element()}>
+            <Wrapper title="Employees" elements={element()}>
                 <Card className="full-card">
 
                     <br /> <br />
@@ -62,9 +66,12 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                                 <th>LAST NAME</th>
                                 <th>EMAIL</th>
                                 <th>DEPARTMENT</th>
+                                <th></th>
                             </tr>
                             {tableData()}
                         </table>
+
+                        <button onClick = {this.getAll}>get employees</button>
                     </div>
                 </Card>
             </Wrapper>
