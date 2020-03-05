@@ -31,7 +31,11 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         const tableData =() => {
             
             return(
+
                 <tr>
+                    {
+                        //this will be replaced by the actual API data
+                    }
                     <td>#</td>
                     <td>Sample FN</td>
                     <td>Sample LN</td>
