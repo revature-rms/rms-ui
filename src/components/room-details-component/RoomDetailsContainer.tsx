@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import {IState} from "../../reducers";
 import {RoomDetailsComponent} from "./RoomDetailsComponent";
+import {getTestRoom} from "../../action-mappers/room-details-actions"
 
 const mapStateToProps=(state:IState)=>{
     return {
@@ -8,6 +9,6 @@ const mapStateToProps=(state:IState)=>{
     }
 }
 const mapDispatchToProps={
-    /** The edit function will go here. */
+    getTestRoom
 }
 export default connect(mapStateToProps,mapDispatchToProps)(RoomDetailsComponent);
