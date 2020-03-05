@@ -25,11 +25,11 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, any
                     <br/><br/><br/><br/>
                 </div>
                 <div className="half-card">
-                <b>Resource Created By:</b> {this.props.room ? this.props.room.resourceMetadata.resourceCreator : ''}<br/>
-                    <b>Creation Date:</b> {this.props.room ? this.props.room.resourceMetadata.resourceCreationDateTime : ''}<br/>
-                    <b>Last Modified:</b> {this.props.room ? this.props.room.resourceMetadata.lastModifiedDate : ''}<br/>
-                    <b>Modified By:</b> {this.props.room ? this.props.room.resourceMetadata.lastModifier : ''}<br/>
-                    <b>Resource Owner:</b> {this.props.room ? this.props.room.resourceMetadata.resourceOwner : ''}<br/>
+                <b>Resource Created By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreator : ''}<br/>
+                    <b>Creation Date:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreationDateTime : ''}<br/>
+                    <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDate : ''}<br/>
+                    <b>Modified By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifier : ''}<br/>
+                    <b>Resource Owner:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceOwner : ''}<br/>
                     <button className="btn">
                         Edit
                     </button>
