@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { EmployeeDetailsComponent } from './components/EmployeeDetails-component/EmployeeDetailsComponent';
 import NavbarComponent from './components/navbar-component/NavbarComponent';
 import { EmployeesComponent } from './components/Employees-component/EmployeesComponent';
+import { RoomDetailsComponent } from './components/room-details-component/RoomDetailsComponent';
 
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Switch>
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
+            <Route path='/room-details' component={RoomDetailsComponent}/>
             <Route path='/' component={HomeComponent} />
           </Switch>
         </Router>
