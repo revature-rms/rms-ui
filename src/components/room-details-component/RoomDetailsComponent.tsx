@@ -2,7 +2,8 @@ import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 
 interface IRoomDetailsProps {
-    room: any
+    room: any,
+    getTestRoom: () => void
 }
 interface IRoomDetailsState {
     visible: boolean
@@ -14,6 +15,11 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
         this.state = {
             visible: false
         }
+    }
+    componentDidMount() {
+        console.log("In componentDidMount")
+        console.log("Loading test room.")
+        this.props.getTestRoom()
     }
     notYet = () => {
         console.log("In notYet")
@@ -53,11 +59,11 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
                     <br /><br />
                 </div>
                 <div className="half-card">
-                    <b>Resource Created By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreator : ''}<br />
+                    <b>Resource Created By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreator.username : ''}<br />
                     <b>Creation Date:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreationDateTime : ''}<br />
                     <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDate : ''}<br />
-                    <b>Modified By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifier : ''}<br />
-                    <b>Resource Owner:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceOwner : ''}<br />
+                    <b>Modified By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifier.username : ''}<br />
+                    <b>Resource Owner:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceOwner.username : ''}<br />
                     <button className="btn" onClick={this.notYet}>
                         Edit
                     </button>
