@@ -1,12 +1,13 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Card} from '@material-ui/core';
+import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {getAllEmployees} from '../../action-mappers/employees-action';
 
 
 interface IEmployeesProps {
-    employees: any;
+    employees: any,
+    employeesMessage: string,
+    getAllEmployees: () => void
 }
 
 export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
@@ -15,7 +16,14 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         super(props);
     }
 
-getAll = () => {getAllEmployees();}
+    componentDidMount = () => {
+        if (this.props.employees === null) {
+            this.props.getAllEmployees();
+        }
+    }
+    getAll = () => {
+        this.props.getAllEmployees();
+    }
 
 
     render() {
@@ -31,9 +39,9 @@ getAll = () => {getAllEmployees();}
             )
         }
 
-        const tableData =() => {
-            
-            return(
+        const tableData = () => {
+
+            return (
 
                 <tr>
                     {
@@ -44,7 +52,7 @@ getAll = () => {getAllEmployees();}
                     <td>Sample LN</td>
                     <td>Sample email</td>
                     <td>Sample department</td>
-                    <td><Link to = "/employee-details" style = {{fontStyle:"italic"}}><small>View details</small></Link></td>
+                    <td><Link to="/employee-details" style={{ fontStyle: "italic" }}><small>View details</small></Link></td>
                 </tr>
             )
         }
@@ -70,8 +78,14 @@ getAll = () => {getAllEmployees();}
                             </tr>
                             {tableData()}
                         </table>
-
-                        <button onClick = {this.getAll}>get employees</button>
+                        {
+                            // elements below are still under test
+                        }
+                        <button onClick={this.getAll}>Test - get employees</button>
+                        <br />
+                        <br />
+                        <p>{this.props.employeesMessage}</p>
+                        <p>{this.props.employees ? this.props.employees.length : ''}</p>
                     </div>
                 </Card>
             </Wrapper>

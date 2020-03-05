@@ -11,21 +11,28 @@ export const employeesTypes = {
 
     getAllEmployeesAPI().then(res =>{
         console.log("response found");
-        
-        dispatch({
-            types: employeesTypes.SUCCESS_GETTING_EMPLOYEES,
-            payload: {
-                employees: res
-            }
-        })
+        if(res.status === 200){
+            dispatch({
+                type: employeesTypes.SUCCESS_GETTING_EMPLOYEES,
+                payload: {
+                    employees: res.data
+                }
+            })
+        }else {
+            dispatch({
+                type: employeesTypes.FAIL_GETTING_EMPLOYEES,
+                payload: {
+                    employeesMessage: "Failed to get employees"
+                }
+            })
+        }   
     }).catch(err =>{
         console.log(err);
         dispatch({
-            types: employeesTypes.SUCCESS_GETTING_EMPLOYEES,
+            type: employeesTypes.FAIL_GETTING_EMPLOYEES,
             payload: {
-                getEmployeesMessage: "Failed to get employees"
+                employeesMessage: "Failed to get employees"
             }
         })
-        
-    })
+        })
 }
