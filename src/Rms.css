@@ -7,6 +7,7 @@
     --acc2high: #555c66;
     --acc2dk: #333a44;
     --acc2hlt: #666d77;
+    --acc1lt: #ffc722;
   }
   body {background:#dfdfdf !important;font-family: 'Varela Round', sans-serif !important;}
   body::-webkit-scrollbar{width:10px !important;}
@@ -38,4 +39,7 @@
   tr {border-top:3px solid var(--acc1) !important;border-bottom:1px solid var(--acc1) !important;}
   td {border:2px solid var(--acc2) !important;border-radius:10px !important;padding:5px !important;}
   td b {font-weight:bold !important;color:var(--acc1) !important;text-shadow:var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px !important;font-size:1.2em !important;}
-  b {font-weight:bold !important;color:var(--acc1) !important;text-shadow:var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px !important;font-size:1.2em !important;}
+  b {font-weight:bold !important;color:var(--acc1) !important;text-shadow:var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px !important;font-size:1.1em !important;}
+  h4 {font-weight:bold !important;color:var(--acc2) !important;text-shadow:var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px, var(--acc1) 2px 2px 1px, var(--acc1) 2px 0px 1px, var(--acc1) 2px -2px 1px, var(--acc1) 0px 2px 1px, var(--acc1) 0px -2px 1px, var(--acc1) -2px 2px 1px, var(--acc1) -2px 0px 1px, var(--acc1) -2px -2px 1px !important;font-size:1.5em !important;line-height:50%;margin-top:15px;}
+  .right {float:right;}
+  .unimplemented {visibility:hidden;margin:auto;padding:15px;background:var(--acc1);opacity:.8;color:var(--acc2);text-shadow:var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px;border-radius:15px;display:block;max-width:30%;text-align:center;}
