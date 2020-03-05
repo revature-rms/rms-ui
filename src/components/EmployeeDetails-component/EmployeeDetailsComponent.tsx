@@ -5,6 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Wrapper from '../../utils/div-wrapper/Wrapper';
 
 interface IEmployeeDetailsProps {
     employee: any
@@ -14,17 +15,13 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
 
     constructor(props: any) {
         super(props)
+        this.state = {}
     }
-
 
     render() {
 
         return (
-            <div className="section-box">
-                <div className="section-hdr">
-                    <h1>{this.props.employee ? this.props.employee.firstName : ''} {this.props.employee ? this.props.employee.lastName : ''}</h1>
-                    <div className="subnav"></div>
-                </div>
+            <Wrapper title={this.props.employee ? this.props.employee.firstName + " " + this.props.employee.lastName : ""}>
                 <div className="half-card">
                     <h4>Employee Details</h4>
                     <b>ID:</b> {this.props.employee ? this.props.employee.id : ''}<br/>
@@ -44,7 +41,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                         Edit
                     </button>
                 </div>
-            </div>
+            </Wrapper>
         );
     }
 
