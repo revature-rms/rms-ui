@@ -8,7 +8,7 @@ import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { EmployeeDetailsComponent } from './components/EmployeeDetails-component/EmployeeDetailsComponent';
 import NavbarComponent from './components/navbar-component/NavbarComponent';
-import { EmployeesComponent } from './components/Employees-component/EmployeesComponent';
+import EmployeesComponent  from './components/Employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 
 
