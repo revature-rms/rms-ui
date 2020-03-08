@@ -2,6 +2,8 @@ import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import TableData from "../../utils/tableData-display/tableData";
+import DepartmentDropdown from '../../utils/departments-dropdown';
 
 
 interface IEmployeesProps {
@@ -14,6 +16,9 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            department: 'All departments'
+        }
     }
 
     componentDidMount = () => {
@@ -21,45 +26,25 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
             this.props.getAllEmployees();
         }
     }
-    getAll = () => {
-        this.props.getAllEmployees();
+
+    changeDepartment = (event: any) => {
+        this.setState({
+            ...this.state,
+            department: event.target.value
+        })
     }
 
 
     render() {
-
-        const element = () => {
+        const selectDepartment = () => {
             return (
-                <label htmlFor="employees-options"> Select option to filter:
-                    <select name="" id="employees-options">
-                        <option value="All-departments">All departments</option>
-                        <option value="Another-department">Another department</option>
-                    </select>
-                </label>
-            )
-        }
-
-        const tableData = () => {
-
-            return (
-
-                <tr>
-                    {
-                        //this will be replaced by the actual API data
-                    }
-                    <td>#</td>
-                    <td>Sample FN</td>
-                    <td>Sample LN</td>
-                    <td>Sample email</td>
-                    <td>Sample department</td>
-                    <td><Link to="/employee-details" style={{ fontStyle: "italic" }}><small>View details</small></Link></td>
-                </tr>
+                <DepartmentDropdown change={this.changeDepartment} />
             )
         }
 
         return (
 
-            <Wrapper title="Employees" elements={element()}>
+            <Wrapper title="Employees" elements={selectDepartment()}>
                 <Card className="full-card">
 
                     <br /> <br />
@@ -67,26 +52,10 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                         <div className="tblhdr">
                             Employees
                         </div>
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <th>FIRST NAME</th>
-                                <th>LAST NAME</th>
-                                <th>EMAIL</th>
-                                <th>DEPARTMENT</th>
-                                <th></th>
-                            </tr>
-                            {tableData()}
-                        </table>
-                        {
-                            // elements below are still under test
-                        }
-                        <button onClick={this.getAll}>Test - get employees</button>
-                        <br />
-                        <br />
-                        <p>{this.props.employeesMessage}</p>
-                        <p>{this.props.employees ? this.props.employees.length : ''}</p>
+                        <TableData employees={this.props.employees} title="Employees" selected={this.state.department} />
                     </div>
+                    <br/>
+                    <h5>Selected department: <span style= {{color: "red"}}> {this.state.department}</span></h5>
                 </Card>
             </Wrapper>
         )
