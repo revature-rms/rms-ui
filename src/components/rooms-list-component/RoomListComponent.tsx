@@ -15,7 +15,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, any> {
     }
     mapRooms = () => {
         let rooms = (this.props.building.rooms?this.props.building.rooms:[{}])
-        rooms.map((room: any) => this.makeTable(room))
+        return rooms.map((room: any) => this.makeTable(room))
     }
     makeTable = (room: any) => {
         return (
