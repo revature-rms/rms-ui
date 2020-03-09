@@ -32,7 +32,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, any> {
     }
     render() {
         return (
-            <Wrapper title={this.props.building ? this.props.building.abbrName : "Building Abbreviation Here"} elements={this.props.building ? this.props.building.name : "Building full name here."}>
+            <Wrapper title={this.props.building ? this.props.building.name : "Building Name Here"} elements={this.props.building ? this.props.building.abbrName : "Building abbreviation here."}>
                 <div className="full-card">
                     <div className="tblbox">
                         <div className="tblhdr">Rooms in {this.props.building ? this.props.building.abbrName : "Building"}</div>
