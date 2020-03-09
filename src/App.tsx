@@ -2,13 +2,13 @@
 import React from 'react';
 import './Rms.css';
 import './App.css';
-import { HomeComponent } from './components/Home-component/HomeComponent';
+import { HomeComponent } from './components/home-component/HomeComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { EmployeeDetailsComponent } from './components/EmployeeDetails-component/EmployeeDetailsComponent';
+import { EmployeeDetailsComponent } from './components/employee-details-component/EmployeeDetailsComponent';
 import NavbarComponent from './components/navbar-component/NavbarComponent';
-import EmployeesComponent  from './components/Employees-component/EmployeesContainer';
+import EmployeesComponent  from './components/employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 
 
