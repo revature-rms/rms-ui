@@ -1,5 +1,6 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
+import EditEmpDetails from '../../utils/EditEmpDetailsModel';
 
 interface IEmployeeDetailsProps {
     employee: any
@@ -31,9 +32,9 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                     <b>Last Modified:</b> {this.props.employee ? this.props.employee.resourceMetadata.lastModifiedDate : ''}<br/>
                     <b>Modified By:</b> {this.props.employee ? this.props.employee.resourceMetadata.lastModifier : ''}<br/>
                     <b>Resource Owner:</b> {this.props.employee ? this.props.employee.resourceMetadata.resourceOwner : ''}<br/>
-                    <button className="btn">
-                        Edit
-                    </button>
+                    
+                    <EditEmpDetails/>
+                
                 </div>
             </Wrapper>
         );
