@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { TextField } from 'material-ui';
+import { Link } from 'react-router-dom';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -57,25 +57,38 @@ const EditEmpDetails = (props:any) => {
       >
           
           <div style={modalStyle} className={classes.paper}> 
-          <p style = {{float: "right", fontStyle: "italic", fontFamily: "sans serif"}}  onClick = {handleClose}>.X..</p>      
+          <Link to="employee-details" 
+          style = {{float: "right", 
+          fontStyle: "italic", 
+          fontFamily: "sans serif", 
+          borderStyle: "solid", 
+          borderColor: "black",
+          textDecoration: "none",
+          color: "blue", 
+          borderRadius: "40%"}}  
+          onClick = {handleClose}>
+            X
+          </Link>      
           <h2 id="simple-modal-title">Edit employee details</h2>
           <form>
-            <label htmlFor= "firstName">
-                <span style = {{paddingRight: "3px"}}>First Name </span>  
+            <label htmlFor= "firstName" >
+                <span style = {{}}>First Name </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "firstName"
                 placeholder = "enter first name"
                 name = "fname"
                 value = {props.fname}
-                onChange = {props.handleChange}               
+                onChange = {props.handleChange}
                 />
             </label>
             <br/> <br/>
             <label htmlFor= "lastName">
             <span style = {{paddingRight: "3px"}}>Last Name</span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "lastName"
@@ -89,6 +102,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "email">
             <span style = {{paddingRight: "3px"}}>Email</span> 
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "email" 
                 id = "email"
@@ -102,6 +116,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "title">
             <span style = {{paddingRight: "3px"}}>Title </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "title"
@@ -115,6 +130,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "department">
             <span style = {{paddingRight: "3px"}}>Department </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "department"
