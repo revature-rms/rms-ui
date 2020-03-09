@@ -17,12 +17,9 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
         }
     }
     componentDidMount() {
-        console.log("In componentDidMount")
-        console.log("Loading test room.")
         this.props.getTestRoom()
     }
     notYet = () => {
-        console.log("In notYet")
         let tarItem = document.getElementById("edit");
         console.log(tarItem);
         if (tarItem) {
