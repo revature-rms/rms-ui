@@ -21,9 +21,6 @@ export default function NavbarComponent() {
                 <Link to="/rooms">
                     <a><div className="navitem">Rooms</div></a>
                 </Link>
-                <Link to="/room-details">
-                    <a><div className="navitem">Room Deets (temp)</div></a>
-                </Link>
                 <Link to="/employees">
                     <a><div className="navitem">Employees</div></a>
                 </Link>

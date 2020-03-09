@@ -62,7 +62,7 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
                 <div className="half-card">
                     <b>Resource Created By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreator.username : ''}<br />
                     <b>Creation Date:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreationDateTime : ''}<br />
-                    <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDate : ''}<br />
+                    <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDateTime : ''}<br />
                     <b>Modified By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifier.username : ''}<br />
                     <b>Resource Owner:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceOwner.username : ''}<br />
                     <button className="btn" onClick={this.notYet}>
