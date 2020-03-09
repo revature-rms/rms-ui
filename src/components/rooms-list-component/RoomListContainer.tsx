@@ -5,7 +5,7 @@ import {getAllRooms} from "../../action-mappers/room-list-actions"
 
 const mapStateToProps=(state:IState)=>{
     return {
-        rooms:state.roomsState.rooms
+        rooms:state.roomsState.bldg
     }
 }
 const mapDispatchToProps={
