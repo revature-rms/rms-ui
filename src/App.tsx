@@ -10,12 +10,13 @@ import { EmployeeDetailsComponent } from './components/employee-details-componen
 import NavbarComponent from './components/navbar-component/NavbarComponent';
 import EmployeesComponent  from './components/employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
+import { SearchComponent } from './components/search-component/SearchComponent';
 
 
 const App: React.FC = () => {
   return (
     <>
-      <Provider store={store}>
+      {/* <Provider store={store}>
         <Router>
           <NavbarComponent />
           <Switch>
@@ -25,7 +26,8 @@ const App: React.FC = () => {
             <Route path='/' component={HomeComponent} />
           </Switch>
         </Router>
-      </Provider>
+      </Provider> */}
+      <SearchComponent/>
     </>
   );
 }
