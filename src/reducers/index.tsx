@@ -20,6 +20,7 @@ export interface IRoomState {
 }
 export interface IRoomsState {
     bldg:any,
+    rooms: any
 }
 export const state = combineReducers<IState>({
 
