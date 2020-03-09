@@ -2,7 +2,7 @@ import React from "react";
 import Wrapper from "../../utils/div-wrapper/Wrapper";
 
 interface IRoomListProps {
-    bldg:any,
+    building:any,
     getAllRooms: ()=>void
 }
 
@@ -11,17 +11,33 @@ export class RoomListComponent extends React.Component<IRoomListProps,any> {
         super(props);
     }
     componentDidMount() {
+        console.log("in componentDidMount")
         this.props.getAllRooms();
+        console.log(this.props.building)
+    }
+    mapRooms=()=>{
+        let rooms=this.props.building.rooms;
+        rooms.map((room: any) =>this.makeTable(room))
+    }
+    makeTable=(room:any)=>{
+        return (
+            <tr>
+                <td>{room.roomNumber}</td>
+                <td>{room.maxOccupancy}</td>
+                <td>{room.batch.name}</td>
+                <td>{room.batch.trainer.firstName} {room.batch.trainer.lastName}</td>
+            </tr>
+        )
     }
     render() {
         return(
-            <Wrapper title={/*this.props.bldg ? this.props.bldg.abbrName :*/"Building Abbreviation Here"} elements={/*this.props.bldg.name?this.props.bldg.name:*/"Building full name here."}>
+            <Wrapper title={this.props.building?this.props.building.abbrName :"Building Abbreviation Here"} elements={this.props.building?this.props.building.name:"Building full name here."}>
                 <div className="full-card">
-                <div className="tblbox">
-                        <div className="tblhdr">Current Room Status</div>
+                    <div className="tblbox">
+                        <div className="tblhdr">Rooms in {this.props.building?this.props.building.abbrName:"Building"}</div>
                         <table>
                             <tr><td><b>Room Number:</b></td><td><b>Max Occupancy:</b></td><td><b>Batch:</b></td><td><b>Trainer:</b></td></tr>
-                            {/*this.props.bldg.rooms ? <tr><td>{this.props.bldg.rooms.roomNumber}</td><td>{this.props.bldg.rooms.maxOccupancy}</td><td>{this.props.bldg.rooms.batch.name}</td><td>{this.props.bldg.rooms.batch.trainer.firstName} {this.props.bldg.rooms.batch.trainer.lastName}</td></tr> : */<tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
+                            {this.props.building ? this.mapRooms :<tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
                         </table>
                     </div>
                 </div>
