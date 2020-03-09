@@ -46,21 +46,22 @@ export class SearchComponent extends React.Component<any, any> {
     showResource = (resource: any) => {
         if (resource["name"] === undefined) {
             console.log("Employee")
-            return <h1 className="card" key={`${resource["firstName"]}${resource["lastName"]}${resource["id"]}`}>
+            return <div className="res" key={`${resource["firstName"]}${resource["lastName"]}${resource["id"]}`}>
                 {resource["firstName"]} {resource["lastName"]}
-            </h1>
+            </div>
         }
         else if (resource["firstName"] === undefined) {
             console.log("Building")
-            return <h1 className="card" key={`${resource["name"]}${resource["id"]}`} >
+            return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
                 {resource["name"]}
-            </h1>
+            </div>
         } 
     }
 
     render() {
         return (
-            <div>
+            <span className="mainsearch">
+                <b>Search resources: </b>
                 <input
                     onChange={this.onSearchChange}
                     placeholder="Search for resource"
@@ -70,10 +71,10 @@ export class SearchComponent extends React.Component<any, any> {
                         this.state.resData.map((resource: any) => {
                             return this.showResource(resource);
                         }) :
-                                (this.state.filtering === true) ? <h1>No resource found!</h1>
+                                (this.state.filtering === true) ? <div className="res">No resource found!</div>
                                 : <></>
                 }
-            </div>
+            </span>
         )
     }
 }
