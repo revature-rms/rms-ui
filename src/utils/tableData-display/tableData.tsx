@@ -29,7 +29,7 @@ const TableData = (props: any) => {
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
                                         <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small>View details</small></Link></td>
+                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }} ><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 );
                             }) :
@@ -44,7 +44,7 @@ const TableData = (props: any) => {
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
                                         <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small>View details</small></Link></td>
+                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 )
                             })

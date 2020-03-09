@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home-component/HomeComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { EmployeeDetailsComponent } from './components/employee-details-component/EmployeeDetailsComponent';
+import  EmployeeDetailsComponent  from './components/employee-details-component/EmployeeDetailsContainer';
 import NavbarComponent from './components/navbar-component/NavbarComponent';
 import EmployeesComponent  from './components/employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';

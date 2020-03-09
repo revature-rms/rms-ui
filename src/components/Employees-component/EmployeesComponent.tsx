@@ -8,7 +8,8 @@ import Card from '@material-ui/core/Card';
 interface IEmployeesProps {
     employees: any,
     employeesMessage: string,
-    getAllEmployees: () => void
+    getAllEmployees: () => void,
+    updateId: (id:number)   => void
 }
 
 export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
@@ -17,6 +18,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         super(props);
         this.state = {
             department: 'All departments'
+            
         }
     }
 
@@ -31,6 +33,10 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
             ...this.state,
             department: event.target.value
         })
+    }
+
+    updateId = (event:any) => {   
+            this.props.updateId (parseInt(event.target.id));
     }
 
 
@@ -51,7 +57,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                         <div className="tblhdr">
                             Employees
                         </div>
-                        <TableData employees={this.props.employees} title="Employees" selected={this.state.department} />
+                        <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId= {this.updateId}/>
                     </div>
                     <br/>
                     <h5>Selected department: <span style= {{color: "red"}}> {this.state.department}</span></h5>
