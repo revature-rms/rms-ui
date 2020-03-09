@@ -71,22 +71,24 @@ const EditEmpDetails = (props:any) => {
           </Link>      
           <h2 id="simple-modal-title">Edit employee details</h2>
           <form>
-            <label htmlFor= "firstName">
-                <span style = {{paddingRight: "3px"}}>First Name </span>  
+            <label htmlFor= "firstName" >
+                <span style = {{}}>First Name </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "firstName"
                 placeholder = "enter first name"
                 name = "fname"
                 value = {props.fname}
-                onChange = {props.handleChange}               
+                onChange = {props.handleChange}
                 />
             </label>
             <br/> <br/>
             <label htmlFor= "lastName">
             <span style = {{paddingRight: "3px"}}>Last Name</span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "lastName"
@@ -100,6 +102,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "email">
             <span style = {{paddingRight: "3px"}}>Email</span> 
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "email" 
                 id = "email"
@@ -113,6 +116,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "title">
             <span style = {{paddingRight: "3px"}}>Title </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "title"
@@ -126,6 +130,7 @@ const EditEmpDetails = (props:any) => {
             <label htmlFor= "department">
             <span style = {{paddingRight: "3px"}}>Department </span>  
                 <input
+                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
                 required
                 type= "text" 
                 id = "department"
