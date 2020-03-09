@@ -1,9 +1,8 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Card } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import TableData from "../../utils/tableData-display/tableData";
 import DepartmentDropdown from '../../utils/departments-dropdown';
+import Card from '@material-ui/core/Card';
 
 
 interface IEmployeesProps {

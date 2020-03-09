@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { TextField } from 'material-ui';
+import { Link } from 'react-router-dom';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -57,7 +57,18 @@ const EditEmpDetails = (props:any) => {
       >
           
           <div style={modalStyle} className={classes.paper}> 
-          <p style = {{float: "right", fontStyle: "italic", fontFamily: "sans serif"}}  onClick = {handleClose}>.X..</p>      
+          <Link to="employee-details" 
+          style = {{float: "right", 
+          fontStyle: "italic", 
+          fontFamily: "sans serif", 
+          borderStyle: "solid", 
+          borderColor: "black",
+          textDecoration: "none",
+          color: "blue", 
+          borderRadius: "40%"}}  
+          onClick = {handleClose}>
+            X
+          </Link>      
           <h2 id="simple-modal-title">Edit employee details</h2>
           <form>
             <label htmlFor= "firstName">
