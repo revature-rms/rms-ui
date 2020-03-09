@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SearchComponent } from '../search-component/SearchComponent';
 
 export default function NavbarComponent() {
 
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
-            <div className="top-bar"><a href="homepage"><span className="logo"></span></a><h3>Resource Management System</h3></div>
+            <div className="top-bar"><a href="homepage"><span className="logo"></span></a>
+                <h3>Resource Management System</h3>
+                <SearchComponent />
+            </div>
             <div className="side-nav">
                 <Link to="Sample">
                     <a><div className="navitem">Campuses</div></a>

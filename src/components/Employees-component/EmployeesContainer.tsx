@@ -5,7 +5,7 @@ import {getAllEmployees} from "../../action-mappers/employees-action"
 
 const mapStateToProps = (state:IState) => {
     return {
-        //all of the state that goes to login component goes inside here
+        //states needed for the employees component
         employees: state.employeesState.employees,
         employeesMessage: state.employeesState.employeesMessage
     }
@@ -17,5 +17,5 @@ const mapDispatchToProps = {
     getAllEmployees
 }
 
-// this connect statemengt is building a new component that passes the redux info into the login component
+// connecting the employees component with redux info
 export default connect(mapStateToProps,mapDispatchToProps)(EmployeesComponent)
