@@ -44,7 +44,11 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
             <Wrapper title={this.props.room ? `Room ${this.props.room.roomNumber}` : "Room Number Here"} elements="This will be a secondary navbar eventually">
                 <div className="full-card">
                     <h4>Room {this.props.room ? this.props.room.roomNumber : "Not Found"}</h4>
-                    <b>Max Occupancy:</b> {this.props.room ? this.props.room.maxOccupancy : "Occupancy Unknown"}<br /><br />
+                    <b>Max Occupancy:</b> {this.props.room ? this.props.room.maxOccupancy : "Occupancy Unknown"}<br />
+                    <b>Batch:</b> {this.props.room.batch?this.props.room.batch.name:"Unoccupied"}<br />
+                    <b>Trainer:</b> {this.props.room.batch?`${this.props.room.batch.trainer.firstName} ${this.props.room.batch.trainer.lastName}`:"N/A"}<br />
+                    <b>Co-Trainer:</b> {this.props.room.batch?`${this.props.room.batch.coTrainer.firstName} ${this.props.room.batch.coTrainer.lastName}`:"N/A"}<br />
+                    <br />
                     <div className="tblbox">
                         <div className="tblhdr">Current Room Status</div>
                         <table><tr><td><b>Whiteboard:</b></td><td><b>Chairs:</b></td><td><b>Desks:</b></td><td><b>Verified:</b></td></tr>
