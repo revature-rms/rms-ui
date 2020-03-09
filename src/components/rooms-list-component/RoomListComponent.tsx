@@ -14,16 +14,16 @@ export class RoomListComponent extends React.Component<IRoomListProps, any> {
         this.props.getAllRooms();
     }
     mapRooms = () => {
-        /*let rooms = this.props.building.rooms;
-        rooms.map((room: any) => this.makeTable(room))*/
+        let rooms = (this.props.building.rooms?this.props.building.rooms:[{}])
+        rooms.map((room: any) => this.makeTable(room))
     }
     makeTable = (room: any) => {
         return (
             <tr>
                 <td>{room.roomNumber}</td>
                 <td>{room.maxOccupancy}</td>
-                <td>{room.batch.name}</td>
-                <td>{room.batch.trainer.firstName} {room.batch.trainer.lastName}</td>
+                <td>{room.batch?room.batch.name:""}</td>
+                <td>{room.batch?room.batch.trainer.firstName:""} {room.batch?room.batch.trainer.lastName:""}</td>
             </tr>
         )
     }
