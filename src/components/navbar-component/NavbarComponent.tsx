@@ -15,7 +15,7 @@ export default function NavbarComponent() {
                 <Link to="/campuses">
                     <a><div className="navitem">Campuses</div></a>
                 </Link>
-                <Link to="Bldgs?">
+                <Link to="/buildings">
                     <a><div className="navitem">Buildings</div></a>
                 </Link>
                 <Link to="/rooms">
