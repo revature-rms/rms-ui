@@ -4,7 +4,8 @@ import { employeesTypes } from "../action-mappers/employees-action";
 // defining the initial state from the store
 const initialState: IEmployeesState = {
     employees: null,
-    employeesMessage: ''
+    employeesMessage: '',
+    id: 0
 }
 
 
@@ -24,6 +25,12 @@ export const employeesReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 employeesMessage: action.payload.employeesMessage
+            }
+        }
+        case employeesTypes.SUCCESS_GETTING_EMP_ID: {
+            return {
+                ...state,
+                id: action.payload.id
             }
         }
 

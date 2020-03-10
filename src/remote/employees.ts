@@ -13,10 +13,10 @@ export const getEmployeeByIdAPI = (id:number) => {
 
 // function to create an employee
 export const createEmployeeAPI = (data: any) => {
-    return employeesServiceApi.post(`employees/${data}`);
+    return employeesServiceApi.post('employees', data);
 }
 
 // function to update an existing employee
-export const updateEmployeeAPI = (data: any) => {
-    return employeesServiceApi.put(`employees/${data}`);
+export const updateEmployeeAPI = (id:number, data: any) => {
+    return employeesServiceApi.put(`employees/${id}`, data);
 }

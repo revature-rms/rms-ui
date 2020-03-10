@@ -3,7 +3,8 @@ import { getAllEmployeesAPI } from '../remote/employees';
 
 export const employeesTypes = {
     SUCCESS_GETTING_EMPLOYEES: 'GETTING_EMPLOYEES_SUCCESSFUL',
-    FAIL_GETTING_EMPLOYEES: 'GETTING_EMPLOYEES_FAILED'
+    FAIL_GETTING_EMPLOYEES: 'GETTING_EMPLOYEES_FAILED',
+    SUCCESS_GETTING_EMP_ID: 'GETTING_EMPLOYEE_ID_SUCCESSFUL'
 }
 
  export const getAllEmployees = () => async (dispatch: any) => {
@@ -35,4 +36,13 @@ export const employeesTypes = {
             }
         })
         })
+}
+
+export const updateId =  (id:number) => async (dispatch: any) => {
+    dispatch({
+        type: employeesTypes.SUCCESS_GETTING_EMP_ID,
+        payload: {
+            id: id
+        }
+    })
 }

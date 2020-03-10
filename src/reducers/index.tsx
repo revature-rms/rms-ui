@@ -7,7 +7,8 @@ import {roomsReducer} from "./rooms-reducer";
 
 export interface IEmployeesState {
     employees: any,
-    employeesMessage: string
+    employeesMessage: string,
+    id: number
 }
 
 export interface IState {

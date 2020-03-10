@@ -53,7 +53,7 @@ const EditEmpDetails = (props:any) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
-        onClose={handleClose}
+        //onClose={handleClose}
       >
           
           <div style={modalStyle} className={classes.paper}> 
@@ -62,12 +62,12 @@ const EditEmpDetails = (props:any) => {
           fontStyle: "italic", 
           fontFamily: "sans serif", 
           borderStyle: "solid", 
-          borderColor: "black",
+          borderColor: "red",
           textDecoration: "none",
           color: "blue", 
           borderRadius: "40%"}}  
           onClick = {handleClose}>
-            X
+            close
           </Link>      
           <h2 id="simple-modal-title">Edit employee details</h2>
           <form>
@@ -141,10 +141,12 @@ const EditEmpDetails = (props:any) => {
                 />
             </label>
             <br/> <br/>
-            <button type="button" onClick={props.updateEmppDetails} className = "btn" >Update</button>
+            <button type="button" onClick={props.updateEmpDetails} className = "btn" >Update</button>
         
           </form>
-        </div>
+          <br/>
+        <h3>{props.updateMessage}</h3>
+        </div>        
       </Modal>
     </div>
   );
