@@ -35,12 +35,13 @@ const CampusTable = (props: any) => {
                                         <td key={camp.hrLead.lastName}>{camp.hrLead.firstName + " " + camp.hrLead.lastName}</td>
                                         <td key={"length" + camp.buildings.length}>{camp.buildings.length}</td>
                                         <td key={"EmpLength" + camp.corporateEmployees.length}>{camp.corporateEmployees.length}</td>
-                                        <td key={camp.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={camp.id} onClick = {props.getId}>View details</small></Link></td>
+                                        <td key={camp.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={camp.id} onClick={props.getId}>View details</small></Link></td>
                                     </tr>
                                 );
-                            }) :
-                            props.employees.filter((filtered: any) => {
-                                return filtered.shippingAddress.contains(props.selected)
+                            })
+                            :
+                            props.campuses.filter((filtered: any) => {
+                                return (filtered.shippingAddress.unit_street + " " + filtered.shippingAddress.city + " " + filtered.shippingAddress.state).includes(props.selected)
                             }).map((camp: any) => {
                                 return (
 
@@ -53,7 +54,7 @@ const CampusTable = (props: any) => {
                                         <td key={camp.hrLead.lastName}>{camp.hrLead.firstName + " " + camp.hrLead.lastName}</td>
                                         <td key={"length" + camp.buildings.length}>{camp.buildings.length}</td>
                                         <td key={"EmpLength" + camp.corporateEmployees.length}>{camp.corporateEmployees.length}</td>
-                                        <td key={camp.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={camp.id} onClick = {props.getId}>View details</small></Link></td>
+                                        <td key={camp.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={camp.id} onClick={props.getId}>View details</small></Link></td>
                                     </tr>
                                 )
                             })

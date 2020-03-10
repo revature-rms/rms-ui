@@ -1,7 +1,7 @@
 import React from 'react'
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Card } from 'material-ui';
-import CampusTable from '../../utils/campus-table/CampusDisplay';
+import  Card  from '@material-ui/core/Card';
+import CampusTable from '../../utils/campus-table/campusDisplay';
 
 
 interface ICampusProps {
@@ -13,6 +13,9 @@ interface ICampusProps {
 export class CampusComponent extends React.Component<ICampusProps, any> {
     constructor(props: any) {
         super(props)
+        this.state = {
+            location: 'All locations'
+        }
     }
 
     //get campuses when the component mount
@@ -35,7 +38,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                         <div className="tblhdr">
                             Campuses
                     </div>
-                        <CampusTable campuses = {this.props.campuses} title="Campuses" />
+                        <CampusTable campuses = {this.props.campuses} title="Campuses" selected = {this.state.location} />
 
                     </div>
                     <br />

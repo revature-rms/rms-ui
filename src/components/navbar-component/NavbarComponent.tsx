@@ -12,7 +12,7 @@ export default function NavbarComponent() {
                 <SearchComponent />
             </div>
             <div className="side-nav">
-                <Link to="Sample">
+                <Link to="/campuses">
                     <a><div className="navitem">Campuses</div></a>
                 </Link>
                 <Link to="Bldgs?">
