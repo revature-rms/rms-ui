@@ -12,7 +12,7 @@ import EmployeesComponent  from './components/employees-component/EmployeesConta
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
 import CampusComponent  from './components/campus-component/CampusContainer';
-import { BuildingListComponent } from './components/building-list-component/BuildingListComponent';
+import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 
 
 const App: React.FC = () => {

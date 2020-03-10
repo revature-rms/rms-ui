@@ -12,20 +12,16 @@ export class BuildingListComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            campus: "",
-            activeCampus: "",
             searchTerm: ""
         }
     }
 
     async componentDidMount() {
-        let campusData: any = await getCampuses();
-        let campus = campusData["campus"];
-        this.setState({
-            ...this.state,
-            campus: campus,
-            activeCampus: campus[0]
-        })
+        // let campusData: any = await getCampuses();
+        if (this.props.campuses === null) {
+            await this.props.getAllCampuses();
+        }
+        console.log(this.props.campuses);
     }
 
     componentDidUpdate() {
@@ -36,12 +32,12 @@ export class BuildingListComponent extends React.Component<any, any> {
 
     mapBuildings = () => {
         if (this.state.searchTerm.length < 1) {
-            return this.state.activeCampus.buildings.map((building: any) => this.makeTable(building))
+            return this.props.campuses[0].buildings.map((building: any) => this.makeTable(building))
         }
-        if (filterBuildingsFunction(this.state.activeCampus, this.state.searchTerm).length === 0) {
+        if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
-        return filterBuildingsFunction(this.state.activeCampus, this.state.searchTerm).map((building: any) => this.makeTable(building));
+        return filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) => this.makeTable(building));
     }
 
     onSearchChange = (e: any) => {
@@ -53,7 +49,7 @@ export class BuildingListComponent extends React.Component<any, any> {
     subHeader = () => {
         return (
             <>
-                {this.state.activeCampus.abbrName}
+                {this.props.campuses[0].abbrName}
                 <input
                     type="text"
                     placeholder="Type building name or Lead trainer"
@@ -76,15 +72,15 @@ export class BuildingListComponent extends React.Component<any, any> {
     render() {
         return (
             <>
-                <Wrapper title={this.state.activeCampus ? this.state.activeCampus.name : "Campus Name Here"} elements={this.state.activeCampus ? this.subHeader()
+                <Wrapper title={this.props.campuses ? this.props.campuses[0].name : "Campus Name Here"} elements={this.props.campuses ? this.subHeader()
                     : "Campus abbreviation here."}>
                     <div className="full-card">
                         <div className="tblbox">
-                            <div className="tblhdr">Buildings in {this.state.activeCampus ? this.state.activeCampus.abbrName : "Building"}</div>
+                            <div className="tblhdr">Buildings in {this.props.campuses ? this.props.campuses[0].abbrName : "Building"}</div>
                             <table>
                                 <tbody>
                                     <tr><td><b>Building Name:</b></td><td><b>Address:</b></td><td><b>Training Lead:</b></td></tr>
-                                    {this.state.activeCampus ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
+                                    {this.props.campuses ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
                                 </tbody>
                             </table>
                         </div>
