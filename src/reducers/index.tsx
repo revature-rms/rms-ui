@@ -15,7 +15,8 @@ export interface IEmployeesState {
 export interface ICampusState {
     campuses: any,
     campus: any,
-    campusMessage: string
+    campusMessage: string,
+    id: number
 }
 
 export interface IState {

@@ -6,7 +6,8 @@ import {campusTypes} from "../action-mappers/campus-action"
 const initialState: ICampusState = {
     campuses: null,
     campus: null,
-    campusMessage: ''
+    campusMessage: '',
+    id: 0
 }
 
 
