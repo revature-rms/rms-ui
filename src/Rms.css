@@ -401,6 +401,12 @@
     float:right;
   }
 /*
+  Or capitalized...
+*/
+  .caps {
+    text-transform: capitalize;
+  }
+/*
   When everything is fully implemented and operational, this can be removed.  In the mean time, here is the styling for the unimplemented notification.
 */
   .unimplemented {

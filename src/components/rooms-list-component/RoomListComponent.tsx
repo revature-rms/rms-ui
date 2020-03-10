@@ -34,6 +34,15 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
             </tr>
         )
     }
+    mapAmenities=()=> {
+        let amenities=(this.props.building.amenities?this.props.building.amenities:[{}])
+        return amenities.map((amenity:any)=>this.makeList(amenity))
+    }
+    makeList=(amenity:any)=>{
+        return (
+            <><b>{amenity.type}:</b> <span className="caps">{amenity.status}</span></>
+        )
+    }
     notYet = () => {
         let tarItem = document.getElementById("edit");
         console.log(tarItem);
@@ -71,14 +80,19 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
                     <span className="unimplemented" id="edit">I'm not implemented yet!  Sorry!</span>
                 </div>
                 <div className="half-card">
+                    <h4>Building Amenities</h4>
+                    {this.props.building?this.mapAmenities():<><b>Amenities Found:</b> None</>}
+                    <br/>
+                    <button className="btn" onClick={this.notYet}>
+                        Edit
+                    </button>
+                </div>
+                <div className="half-card">
                     <b>Resource Created By:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceCreator.username : ''}<br />
                     <b>Creation Date:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceCreationDateTime : ''}<br />
                     <b>Last Modified:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.lastModifiedDateTime : ''}<br />
                     <b>Modified By:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.lastModifier.username : ''}<br />
                     <b>Resource Owner:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceOwner.username : ''}<br />
-                    <button className="btn" onClick={this.notYet}>
-                        Edit
-                    </button>
                 </div>
             </Wrapper>
         )
