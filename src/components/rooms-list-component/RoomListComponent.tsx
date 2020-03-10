@@ -27,7 +27,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     makeTable = (room: any) => {
         return (
             <tr>
-                <td><Link to={`/room-details/${room.roomNumber}`}><span className="colourMe">{room.roomNumber}</span></Link></td>
+                <td><Link to={`/room-details/${room.roomNumber}`}><span className="colour-me">{room.roomNumber}</span></Link></td>
                 <td>{room.maxOccupancy}</td>
                 <td>{room.batch?room.batch.name:""}</td>
                 <td>{room.batch?room.batch.trainer.firstName:""} {room.batch?room.batch.trainer.lastName:""}</td>

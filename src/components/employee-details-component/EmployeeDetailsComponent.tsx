@@ -87,10 +87,9 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
             console.log(employee);
 
             return (
-                <Wrapper title={employee.firstName + " " + employee.lastName}>
+                <Wrapper title={employee.firstName + " " + employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
                     <div className="full-card">
                         <h4>Employee Details</h4>
-                        <Link to="/employees" style={{float: "right"}}>Back to all employees</Link>
                         <b>ID:</b> {employee.id}<br />
                         <b>First Name:</b>  {employee.firstName}<br />
                         <b>Last Name:</b>  {employee.lastName}<br />
