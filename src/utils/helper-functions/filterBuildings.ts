@@ -12,7 +12,7 @@ export const filterBuildingsFunction = (mainData:any, searchTerm:any) => {
             });
         } 
         else {
-            return [];
+            return filteredResources;
         }
         console.log(filteredResources);
         return filteredResources;

@@ -1,29 +1,60 @@
 import React from "react";
 import Wrapper from "../../utils/div-wrapper/Wrapper";
 import {Link} from "react-router-dom";
+import { filterRoomsFunction } from "../../utils/helper-functions/filterRooms";
 
 interface IRoomListProps {
     building: any,
     getAllRooms: () => void
 }
 interface IRoomListState {
-    visible:boolean;
+    visible:boolean,
+    searchTerm:string
 }
 
 export class RoomListComponent extends React.Component<IRoomListProps, IRoomListState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            visible:false
+            visible:false,
+            searchTerm: ""
         }
     }
     componentDidMount() {
         this.props.getAllRooms();
+        console.log(this.props.building);
     }
     mapRooms = () => {
-        let rooms = (this.props.building.rooms?this.props.building.rooms:[{}])
-        return rooms.map((room: any) => this.makeTable(room))
+        if (this.state.searchTerm.length < 1) {
+            let rooms = (this.props.building.rooms?this.props.building.rooms:[{}])
+            return rooms.map((room: any) => this.makeTable(room))
+        }
+        if (filterRoomsFunction(this.props.building, this.state.searchTerm).length === 0) {
+            return <h4>No Rooms Found!</h4>
+        }
+        return filterRoomsFunction(this.props.building, this.state.searchTerm).map((room: any) => this.makeTable(room));
     }
+
+    onSearchChange = (e: any) => {
+        this.setState({
+            ...this.state,
+            searchTerm: e.target.value
+        })
+    }
+
+    subHeader = () => {
+        return (
+            <>
+                {this.props.building.abbrName}
+                <input
+                    type="text"
+                    placeholder="Type room number, trainer or batch number"
+                    onChange={this.onSearchChange}
+                />
+            </>
+        )
+    }
+
     makeTable = (room: any) => {
         return (
             <tr>
@@ -65,7 +96,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     }
     render() {
         return (
-            <Wrapper title={this.props.building ? this.props.building.name : "Building Name Here"} elements={this.props.building ? this.props.building.abbrName : "Building abbreviation here."}>
+            <Wrapper title={this.props.building ? this.props.building.name : "Building Name Here"} elements={this.props.building ? this.subHeader() : "Building abbreviation here."}>
                 <div className="full-card">
                     <div className="tblbox">
                         <div className="tblhdr">Rooms in {this.props.building ? this.props.building.abbrName : "Building"}</div>
