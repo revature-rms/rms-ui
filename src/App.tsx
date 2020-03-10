@@ -11,6 +11,7 @@ import NavbarComponent from './components/navbar-component/NavbarComponent';
 import EmployeesComponent  from './components/employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
+import { BuildingListComponent } from './components/building-list-component/BuildingListComponent';
 
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Router>
           <NavbarComponent />
           <Switch>
+            <Route path='/buildings' component={BuildingListComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
             <Route path='/room-details' component={RoomDetailsComponent}/>

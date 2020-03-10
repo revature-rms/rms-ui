@@ -50,12 +50,18 @@ export class SearchComponent extends React.Component<any, any> {
                 {resource["firstName"]} {resource["lastName"]}
             </div>
         }
-        else if (resource["firstName"] === undefined) {
+        else if (resource["firstName"] === undefined && resource["hrLead"] === undefined) {
             console.log("Building")
             return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
                 {resource["name"]}
             </div>
         } 
+        else if(resource["amenities"] === undefined && resource["firstName"] === undefined){
+            console.log("campus");
+            return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
+                {resource["name"]}
+            </div>
+        }
     }
 
     render() {
