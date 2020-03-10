@@ -9,8 +9,7 @@ const Wrapper = (props:any) => {
                     {props.elements}
                 </div>
             </div>
-            <br/>
-            <br/>
+
             {props.children}
             
         </div>
