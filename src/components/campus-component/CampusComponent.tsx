@@ -1,6 +1,7 @@
 import React from 'react'
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Card } from 'material-ui';
+import CampusTable from '../../utils/campus-table/CampusDisplay';
 
 
 interface ICampusProps {
@@ -34,7 +35,8 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                         <div className="tblhdr">
                             Campuses
                     </div>
-                        
+                        <CampusTable campuses = {this.props.campuses} title="Campuses" />
+
                     </div>
                     <br />
                 </Card>
