@@ -66,7 +66,7 @@ export class BuildingListComponent extends React.Component<any, any> {
         console.log(building.rooms);
         return (
             <tr>
-                <td><Link to={`/room-details/${building.name}`}><span className="colour-me">{building.name}</span></Link></td>
+                <td><Link to={`/rooms/${building.name}`}><span className="colour-me">{building.name}</span></Link></td>
                 <td>{building.physicalAddress.unit_street}. {building.physicalAddress.city}, {building.physicalAddress.state}</td>
                 <td>{building.trainingLead.firstName} {building.trainingLead.lastName}</td>
             </tr>
