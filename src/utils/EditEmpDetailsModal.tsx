@@ -145,6 +145,8 @@ const EditEmpDetails = (props:any) => {
         
           </form>
         </div>
+        <br/>
+        <h3>{props.updateMessage}</h3>
       </Modal>
     </div>
   );
