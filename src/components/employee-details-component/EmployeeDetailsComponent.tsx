@@ -72,8 +72,9 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
             this.setState({updateInfo: 'Employee successfully updated!'});
             console.log(res);   
         }).catch(err => {
-            console.log(err);
             this.setState({updateInfo:'Failed to update employee. Try again'})
+            console.log(err);
+            
         })
         
     }
@@ -106,7 +107,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                         department = {this.state.department}
                         handleChange= {this.handleChange}
                         updateEmpDetails = {this.handleUpdate}
-                        updateInfo = {this.state.updateInfo}                       
+                        updateMessage = {this.state.updateInfo}                       
                         />
                     </div>
                     <div className="half-card">
