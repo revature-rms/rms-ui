@@ -1,12 +1,7 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import TableData from "../../utils/tableData-display/tableData";
-import Card from '@material-ui/core/Card';
 import { Link } from "react-router-dom";
 import { filterBuildingsFunction } from '../../utils/helper-functions/filterBuildings';
-
-import { getCampuses } from '../../remote/getCampus';
-import { type } from 'os';
 
 export class BuildingListComponent extends React.Component<any, any> {
     constructor(props: any) {
