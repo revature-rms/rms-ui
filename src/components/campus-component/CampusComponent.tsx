@@ -25,9 +25,6 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         }
     }
 
-
-
-
     render() {
         return (
             <Wrapper title="Campuses">
