@@ -144,9 +144,9 @@ const EditEmpDetails = (props:any) => {
             <button type="button" onClick={props.updateEmpDetails} className = "btn" >Update</button>
         
           </form>
-        </div>
-        <br/>
+          <br/>
         <h3>{props.updateMessage}</h3>
+        </div>        
       </Modal>
     </div>
   );
