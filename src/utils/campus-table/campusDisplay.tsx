@@ -6,45 +6,48 @@ import { Link } from "react-router-dom";
 const CampusTable = (props: any) => {
 
     return (
-        props.employees != null ?
+        props.campuses != null ?
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>FIRST NAME</th>
-                        <th>LAST NAME</th>
-                        <th>EMAIL</th>
-                        <th>DEPARTMENT</th>
+                        <th>NAME</th>
+                        <th>LOCATION</th>
+                        <th>TRAINING MANAGER</th>
+                        <th>STAGING MANAGER</th>
+                        <th>HR LEAD</th>
+                        <th># OF BUILDINGS</th>
+                        <th># OF EMPLOYEES</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        props.selected === "All departments" ?
-                            props.employees.map((emp: any) => {
+                        props.selected === "All locations" ?
+                            props.campuses.map((camp: any) => {
                                 return (
-                                    <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}>{emp.id}</td>
-                                        <td key={emp.firstName}>{emp.firstName}</td>
-                                        <td key={emp.lastName}>{emp.lastName}</td>
-                                        <td key={emp.email}>{emp.email}</td>
-                                        <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }} ><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
+                                    <tr key={camp.id ? camp.id.toString() : 0}>
+                                        <td key={camp.id + "" + camp.name}>{camp.id}</td>
+                                        <td key={camp.name}>{camp.name}</td>
+                                        <td key={camp.shippingAddress.unit_street}>{camp.shippingAddress.unit_street}</td>
+                                        <td key={camp.email}>{camp.email}</td>
+                                        <td key={camp.department}>{camp.department}</td>
+                                        <td key={camp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }} ><small id={camp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 );
                             }) :
                             props.employees.filter((filtered: any) => {
                                 return filtered.department === props.selected
-                            }).map((emp: any) => {
+                            }).map((camp: any) => {
                                 return (
 
-                                    <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}>{emp.id}</td>
-                                        <td key={emp.firstName}>{emp.firstName}</td>
-                                        <td key={emp.lastName}>{emp.lastName}</td>
-                                        <td key={emp.email}>{emp.email}</td>
-                                        <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
+                                    <tr key={camp.id ? camp.id.toString() : 0}>
+                                        <td key={camp.id + "" + camp.firstName}>{camp.id}</td>
+                                        <td key={camp.firstName}>{camp.firstName}</td>
+                                        <td key={camp.lastName}>{camp.lastName}</td>
+                                        <td key={camp.email}>{camp.email}</td>
+                                        <td key={camp.department}>{camp.department}</td>
+                                        <td key={camp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small id={camp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 )
                             })
