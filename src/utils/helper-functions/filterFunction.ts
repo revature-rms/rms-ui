@@ -3,7 +3,7 @@ export const filterFunction = (mainData:any, searchTerm:any) => {
         let employees = mainData["Employee"];
         let buildings = [mainData["building"]];
         let campuses = mainData["campus"];
-        console.log(campuses);
+        // console.log(campuses);
         let filteredResources;
         if (searchTerm.length > 0) {
             filteredResources = employees.filter((employee: any) => {

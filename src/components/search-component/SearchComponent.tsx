@@ -14,12 +14,12 @@ export class SearchComponent extends React.Component<any, any> {
 
     componentDidUpdate() {
         console.log(this.state.resData);
-        console.log(this.state.filtering);
+        // console.log(this.state.filtering);
     }
 
     async componentDidMount() {
         this.resources = await this.gatherData();
-        console.log(this.resources);
+        // console.log(this.resources);
     }
     gatherData = async () => {
         let apiData = await allData();
@@ -45,19 +45,19 @@ export class SearchComponent extends React.Component<any, any> {
 
     showResource = (resource: any) => {
         if (resource["name"] === undefined) {
-            console.log("Employee")
+            // console.log("Employee")
             return <div className="res" key={`${resource["firstName"]}${resource["lastName"]}${resource["id"]}`}>
                 {resource["firstName"]} {resource["lastName"]}
             </div>
         }
         else if (resource["firstName"] === undefined && resource["hrLead"] === undefined) {
-            console.log("Building")
+            // console.log("Building")
             return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
                 {resource["name"]}
             </div>
         } 
         else if(resource["amenities"] === undefined && resource["firstName"] === undefined){
-            console.log("campus");
+            // console.log("campus");
             return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
                 {resource["name"]}
             </div>
