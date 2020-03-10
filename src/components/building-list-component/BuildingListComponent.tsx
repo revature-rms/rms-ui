@@ -56,6 +56,7 @@ export class BuildingListComponent extends React.Component<any, any> {
                 {this.state.activeCampus.abbrName}
                 <input
                     type="text"
+                    placeholder="Type building name or Lead trainer"
                     onChange={this.onSearchChange}
                 />
             </>

@@ -5,7 +5,7 @@ export const filterBuildingsFunction = (mainData:any, searchTerm:any) => {
         console.log(buildings);
         if (searchTerm.length > 0) {
             buildings.filter((building:any) => {
-                if (building["name"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || building["abbrName"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+                if (building["name"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || building["trainingLead"]["firstName"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || building["trainingLead"]["lastName"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
                     filteredResources.push(building);
                     console.log(building);
                 };
