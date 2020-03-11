@@ -198,14 +198,14 @@
     width:90% !important;
     box-shadow:2px 2px 5px var(--acc2dk) !important;
   }
-  .subnav :link {
+  .subnav a {
     text-decoration:none !important;
     color:var(--acc2) !important;
     width:30% !important;
     display:inline-block !important;
     transition:1s !important;
   }
-  .subnav :link :hover {
+  .subnav a:hover {
     color:var(--acc2hlt) !important;
     letter-spacing:1.5px !important;
     transition:1s !important;
