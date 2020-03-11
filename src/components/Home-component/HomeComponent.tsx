@@ -45,7 +45,7 @@ export class HomeComponent extends React.Component<any, any>{
 
     render() {
         return (
-            <Wrapper title={(this.state.currentUser) ? "Welcome, " +  this.state.currentUser["trainingManager"]["firstName"] + ' ' + this.state.currentUser["trainingManager"]["lastName"] : " "} elements="My Resources">
+            <Wrapper title={(this.state.currentUser) ? "Welcome" : " "} elements={(this.state.currentUser) ? this.state.currentUser["trainingManager"]["firstName"] + ' ' + this.state.currentUser["trainingManager"]["lastName"] : " "}>
                 <div className="full-card">
                     <div className="tblbox">
                         {/* {this.props.building ? this.props.building.abbrName : "Building"} */}
