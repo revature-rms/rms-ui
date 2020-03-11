@@ -46,8 +46,10 @@
     --acc2high: #555c66;
     --acc2dk: #333a44;
     --acc2hlt: #666d77;
-    --acc1lt: #ffc722;
+    --acc1lt: #ffd833;
     --ltgry: #dfdfdf;
+    --acc1dk: #dd8300;
+    --acc1dkr: #bb6100;
   }
 /*
   Basic styling for the body of the document.
@@ -451,4 +453,36 @@
   .mainsearch .res :link {
     text-decoration:none;
     color:var(--acc2);
+  }
+/*
+  X/close button.
+*/
+  .x-btn {
+    border-radius:15px;
+    width:25px;
+    height:13px !important;
+    text-align:center;
+    padding: 6px 0px;
+    font-size:12px;
+    color:var(--acc1lt);
+    background:var(--acc1);
+    border-left:solid 1px var(--acc1lt);
+    border-top:solid 1px var(--acc1lt);
+    border-bottom:solid 1px var(--acc1dkr);
+    border-right:solid 1px var(--acc1dkr);
+    box-shadow:inset var(--acc1dk) 0px 0px 10px;
+    text-decoration:none;
+    float:right;
+    text-shadow: -1px -1px 1px var(--wht), 
+      1px 1px 1px var(--acc1dk);
+  }
+  .x-btn:hover {font-weight:bold;}
+/*
+  Modal positioning hacky fix.
+*/
+  .lbl {
+    width: 140px;
+    padding:5px;
+    display:inline-block;
+    text-align:right;
   }

@@ -57,24 +57,22 @@ const EditEmpDetails = (props:any) => {
       >
           
           <div style={modalStyle} className={classes.paper}> 
-          <Link to="employee-details" 
-          style = {{float: "right", 
+          <Link to="employee-details" className="x-btn"
+          /*style = {{float: "right", 
           fontStyle: "italic", 
           fontFamily: "sans serif", 
           borderStyle: "solid", 
           borderColor: "red",
           textDecoration: "none",
           color: "blue", 
-          borderRadius: "40%"}}  
-          onClick = {handleClose}>
-            close
-          </Link>      
-          <h2 id="simple-modal-title">Edit employee details</h2>
+          borderRadius: "40%"}} */ 
+          onClick = {handleClose}>X</Link>      
+          <h4 id="simple-modal-title">Edit Employee Details</h4>
           <form>
             <label htmlFor= "firstName" >
-                <span style = {{}}>First Name </span>  
+                <span className="lbl"><b>First Name</b></span>  
                 <input
-                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
+                style = {{borderStyle: "solid", borderColor: "var(--acc2)", borderRadius: "25px", height: "20px", padding: "5px", width:"200px"}}
                 required
                 type= "text" 
                 id = "firstName"
@@ -86,9 +84,9 @@ const EditEmpDetails = (props:any) => {
             </label>
             <br/> <br/>
             <label htmlFor= "lastName">
-            <span style = {{paddingRight: "3px"}}>Last Name</span>  
+            <span className="lbl"><b>Last Name</b></span>  
                 <input
-                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
+                style = {{borderStyle: "solid", borderColor: "var(--acc2)", borderRadius: "25px", height: "20px", padding: "5px", width:"200px"}}
                 required
                 type= "text" 
                 id = "lastName"
@@ -100,9 +98,9 @@ const EditEmpDetails = (props:any) => {
             </label>
             <br/> <br/>
             <label htmlFor= "email">
-            <span style = {{paddingRight: "3px"}}>Email</span> 
+            <span className="lbl"><b>Email</b></span> 
                 <input
-                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
+                style = {{borderStyle: "solid", borderColor: "var(--acc2)", borderRadius: "25px", height: "20px", padding: "5px", width:"200px"}}
                 required
                 type= "email" 
                 id = "email"
@@ -114,9 +112,9 @@ const EditEmpDetails = (props:any) => {
             </label>
             <br/> <br/>
             <label htmlFor= "title">
-            <span style = {{paddingRight: "3px"}}>Title </span>  
+            <span className="lbl"><b>Title</b></span>  
                 <input
-                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
+                style = {{borderStyle: "solid", borderColor: "var(--acc2)", borderRadius: "25px", height: "20px", padding: "5px", width:"200px"}}
                 required
                 type= "text" 
                 id = "title"
@@ -128,9 +126,9 @@ const EditEmpDetails = (props:any) => {
             </label>
             <br/> <br/>
             <label htmlFor= "department">
-            <span style = {{paddingRight: "3px"}}>Department </span>  
+            <span className="lbl"><b>Department</b></span>  
                 <input
-                style = {{borderStyle: "solid", borderColor: "black", borderRadius: "25px", height: "20px"}}
+                style = {{borderStyle: "solid", borderColor: "var(--acc2)", borderRadius: "25px", height: "20px", padding: "5px", width:"200px"}}
                 required
                 type= "text" 
                 id = "department"
