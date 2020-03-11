@@ -2,7 +2,7 @@
 import React from 'react';
 import './Rms.css';
 import './App.css';
-import { HomeComponent } from './components/home-component/HomeComponent';
+import  HomeComponent  from './components/home-component/HomeContainer';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
