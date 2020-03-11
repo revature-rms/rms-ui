@@ -10,12 +10,11 @@ const TableData = (props: any) => {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>FIRST NAME</th>
-                        <th>LAST NAME</th>
-                        <th>EMAIL</th>
-                        <th>DEPARTMENT</th>
-                        <th></th>
+                        <th><b>ID</b></th>
+                        <th><b>FIRST NAME</b></th>
+                        <th><b>LAST NAME</b></th>
+                        <th><b>EMAIL</b></th>
+                        <th><b>DEPARTMENT</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,12 +23,11 @@ const TableData = (props: any) => {
                             props.employees.map((emp: any) => {
                                 return (
                                     <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}>{emp.id}</td>
+                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details"><span className="colour-me" id={emp.id} onClick = {props.getId}>{emp.id}</span></Link></td>
                                         <td key={emp.firstName}>{emp.firstName}</td>
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
                                         <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }} ><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 );
                             }) :
@@ -39,12 +37,11 @@ const TableData = (props: any) => {
                                 return (
 
                                     <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}>{emp.id}</td>
+                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details"><span className="colour-me" id={emp.id} onClick = {props.getId}>{emp.id}</span></Link></td>
                                         <td key={emp.firstName}>{emp.firstName}</td>
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
                                         <td key={emp.department}>{emp.department}</td>
-                                        <td key={emp.id}><Link to="/employee-details" style={{ fontStyle: "italic" }}><small id={emp.id} onClick = {props.getId}>View details</small></Link></td>
                                     </tr>
                                 )
                             })
