@@ -23,7 +23,7 @@ const TableData = (props: any) => {
                             props.employees.map((emp: any) => {
                                 return (
                                     <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details" onClick = {props.getId}><span className="colour-me">{emp.id}</span></Link></td>
+                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details"><span className="colour-me" id={emp.id} onClick = {props.getId}>{emp.id}</span></Link></td>
                                         <td key={emp.firstName}>{emp.firstName}</td>
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
@@ -37,7 +37,7 @@ const TableData = (props: any) => {
                                 return (
 
                                     <tr key={emp.id ? emp.id.toString() : 0}>
-                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details" onClick = {props.getId}><span className="colour-me">{emp.id}</span></Link></td>
+                                        <td key={emp.id + "" + emp.firstName}><Link to="/employee-details"><span className="colour-me" id={emp.id} onClick = {props.getId}>{emp.id}</span></Link></td>
                                         <td key={emp.firstName}>{emp.firstName}</td>
                                         <td key={emp.lastName}>{emp.lastName}</td>
                                         <td key={emp.email}>{emp.email}</td>
