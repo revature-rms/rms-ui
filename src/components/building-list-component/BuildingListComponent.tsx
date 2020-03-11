@@ -45,6 +45,7 @@ export class BuildingListComponent extends React.Component<any, any> {
         return (
             <>
                 {this.props.campuses[0].abbrName}
+                &nbsp;
                 <input
                     type="text"
                     placeholder="Type building name or Lead trainer"

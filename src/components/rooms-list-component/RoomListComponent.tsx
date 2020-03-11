@@ -45,7 +45,8 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     subHeader = () => {
         return (
             <>
-                {this.props.building.abbrName}
+                {this.props.building.abbrName} 
+                &nbsp;
                 <input
                     type="text"
                     placeholder="Type room number, trainer or batch number"
