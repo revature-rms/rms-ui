@@ -51,8 +51,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
 
             <Wrapper title="Employees" elements={selectDepartment()}>
                 <Card className="full-card">
-
-                    <br /> <br />
+                <b>Selected department:</b> {this.state.department}<br/>
                     <div className="tblbox">
                         <div className="tblhdr">
                             Employees
@@ -60,7 +59,6 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                         <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId= {this.updateId}/>
                     </div>
                     <br/>
-                    <h5>Selected department: <span style= {{color: "red"}}> {this.state.department}</span></h5>
                 </Card>
             </Wrapper>
         )
