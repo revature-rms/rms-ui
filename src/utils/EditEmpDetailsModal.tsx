@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     width: "40%",
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '2px solid var(--acc1)',
     borderRadius: "20px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -143,7 +143,7 @@ const EditEmpDetails = (props:any) => {
         
           </form>
           <br/>
-        <h3>{props.updateMessage}</h3>
+        <h4>{props.updateMessage}</h4>
         </div>        
       </Modal>
     </div>

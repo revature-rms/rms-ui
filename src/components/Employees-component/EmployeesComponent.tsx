@@ -4,6 +4,7 @@ import TableData from "../../utils/tableData-display/tableData";
 import DepartmentDropdown from '../../utils/departments-dropdown';
 import Card from '@material-ui/core/Card';
 import { filterEmployeesFunction } from '../../utils/helper-functions/filterEmployees';
+import {Link} from "react-router-dom";
 
 
 
@@ -74,7 +75,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
     makeTable = (employee: any) => {
         return (
             <tr>
-                <td><span className="colour-me">{employee.id}</span></td>
+                <td><Link to="/employee-details"><span className="colour-me"id={employee.id} onClick = {this.updateId}>{employee.id}</span></Link></td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
                 <td>{employee.email}</td>
