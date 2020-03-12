@@ -2,7 +2,7 @@
 import React from 'react';
 import './Rms.css';
 import './App.css';
-import { HomeComponent } from './components/home-component/HomeComponent';
+import  HomeComponent  from './components/home-component/HomeContainer';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,7 +12,7 @@ import EmployeesComponent  from './components/employees-component/EmployeesConta
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
 import CampusComponent  from './components/campus-component/CampusContainer';
-import { BuildingListComponent } from './components/building-list-component/BuildingListComponent';
+import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 
 
 const App: React.FC = () => {

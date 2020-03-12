@@ -3,13 +3,15 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import TableData from "../../utils/tableData-display/tableData";
 import DepartmentDropdown from '../../utils/departments-dropdown';
 import Card from '@material-ui/core/Card';
+import { filterEmployeesFunction } from '../../utils/helper-functions/filterEmployees';
+
 
 
 interface IEmployeesProps {
     employees: any,
     employeesMessage: string,
     getAllEmployees: () => void,
-    updateId: (id:number)   => void
+    updateId: (id: number) => void
 }
 
 export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
@@ -17,8 +19,8 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
     constructor(props: any) {
         super(props);
         this.state = {
-            department: 'All departments'
-            
+            department: 'All departments',
+            searchTerm: ''
         }
     }
 
@@ -35,30 +37,76 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         })
     }
 
-    updateId = (event:any) => {   
-            this.props.updateId (parseInt(event.target.id));
+    updateId = (event: any) => {
+        this.props.updateId(parseInt(event.target.id));
     }
 
+    onSearchChange = (e: any) => {
+        this.setState({
+            ...this.state,
+            searchTerm: e.target.value
+        })
+    }
 
-    render() {
-        const selectDepartment = () => {
-            return (
-                <DepartmentDropdown change={this.changeDepartment} />
-            )
+    subHeader = () => {
+        return (
+            <>
+                Employee Filter:
+                &nbsp;
+                <input
+                    type="text"
+                    placeholder="Type employee's name"
+                    onChange={this.onSearchChange}
+                />
+            </>
+        )
+    }
+
+    mapEmployees = () => {
+        if (this.state.searchTerm.length < 1) {
+            return this.props.employees.map((employee: any) => this.makeTable(employee))
         }
+        if (filterEmployeesFunction(this.props.employees, this.state.searchTerm).length === 0) {
+            return <h4>No Employees Found!</h4>
+        }
+        return filterEmployeesFunction(this.props.employees, this.state.searchTerm).map((employee: any) => this.makeTable(employee));
+    }
+    makeTable = (employee: any) => {
+        return (
+            <tr>
+                <td><span className="colour-me">{employee.id}</span></td>
+                <td>{employee.firstName}</td>
+                <td>{employee.lastName}</td>
+                <td>{employee.email}</td>
+                <td>{employee.department}</td>
+            </tr>
+        )
+    }
+    render() {
+        // const selectDepartment = () => {
+        //     return (
+        //         <DepartmentDropdown change={this.changeDepartment} />
+        //     )
+        // }
 
         return (
 
-            <Wrapper title="Employees" elements={selectDepartment()}>
+            <Wrapper title="Employees" elements={this.subHeader()}>
                 <Card className="full-card">
-                <b>Selected department:</b> {this.state.department}<br/>
+                    {/* <b>Selected department:</b> {this.state.department}<br /> */}
                     <div className="tblbox">
                         <div className="tblhdr">
                             Employees
                         </div>
-                        <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId= {this.updateId}/>
+                        {/* <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId={this.updateId} /> */}
+                        <table>
+                            <tbody>
+                                <tr><td><b>Employee Id:</b></td><td><b>First Name:</b></td><td><b>Last Name :</b></td><td><b>Email:</b></td><td><b>Department:</b></td></tr>
+                                {this.props.employees ? this.mapEmployees() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
+                            </tbody>
+                        </table>
                     </div>
-                    <br/>
+                    <br />
                 </Card>
             </Wrapper>
         )

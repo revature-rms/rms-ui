@@ -14,7 +14,8 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            location: 'All locations'
+            location: 'All locations',
+            searchTerm: ''
         }
     }
 
@@ -24,10 +25,30 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             this.props.getAllCampuses();
         }
     }
+    onSearchChange = (e: any) => {
+        this.setState({
+            ...this.state,
+            searchTerm: e.target.value
+        })
+    }
+    subHeader = () => {
+        return (
+            <>
+                Campus Filter:
+                &nbsp;
+                <input
+                    type="text"
+                    placeholder="Type campus name or Training manager's name"
+                    onChange={this.onSearchChange}
+                />
+            </>
+        )
+    }
 
     render() {
         return (
-            <Wrapper title="Campuses">
+            <Wrapper title="Campuses" elements={this.props.campuses ? this.subHeader()
+                : "Campus abbreviation here."}>
                 <Card className="full-card">
 
                     <br /> <br />
