@@ -46,7 +46,7 @@ export class LoginComponent extends React.Component<ILoginProps, any>{
                 />
                 <br/>
                 <br/>
-                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="revature.com" target ="_blank">here</a></small>
+                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target ="_blank">here</a></small>
                 </Card>
                 
             </Wrapper>
