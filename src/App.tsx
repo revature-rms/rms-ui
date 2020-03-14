@@ -13,6 +13,7 @@ import RoomDetailsComponent from './components/room-details-component/RoomDetail
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
 import CampusComponent  from './components/campus-component/CampusContainer';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
+import  LoginComponent  from './components/login-component/LoginContainer';
 
 
 const App: React.FC = () => {
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         <Router>
           <NavbarComponent />
           <Switch>
+            <Route path = '/login' component={LoginComponent}/>
             <Route path='/buildings' component={BuildingListComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
