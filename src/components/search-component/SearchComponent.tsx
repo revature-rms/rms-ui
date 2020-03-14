@@ -13,7 +13,6 @@ export class SearchComponent extends React.Component<any, any> {
     }
 
     componentDidUpdate() {
-        console.log(this.state.resData);
         // console.log(this.state.filtering);
     }
 
