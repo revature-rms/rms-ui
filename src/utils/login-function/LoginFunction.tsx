@@ -91,11 +91,11 @@ const LoginFunction = (props:any) => {
             </label>
             <br/> <br/>
          
-            <button type="button" onClick={props.updateEmpDetails} className = "btn" >Sign in</button>
+            <button type="button" onClick={props.handleLogin} className = "btn" >Sign in</button>
         
           </form>
           <br/>
-        <h4>{props.updateMessage}</h4>
+        <h4>{props.loginMessage}</h4>
         </div>        
       </Modal>
     </div>

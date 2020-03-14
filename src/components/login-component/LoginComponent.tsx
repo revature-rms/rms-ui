@@ -13,8 +13,23 @@ interface ILoginProps {
 export class LoginComponent extends React.Component<ILoginProps, any>{
     constructor(props: any) {
         super(props)
+        this.state = {
+            username: '',
+            password: ''
+        }
     }
 
+    handleChange = (event:any) => {
+        const {name, value} = event.target;
+        this.setState({
+            ...this.state,
+            [name]: value
+        })
+    }
+
+    signUserIn = () => {
+        this.props.login(this.state.username, this.state.password);
+    }
 
 
     render() {
@@ -22,8 +37,13 @@ export class LoginComponent extends React.Component<ILoginProps, any>{
             <Wrapper elements = 'REVATURE'>
                 <Card className = 'full-card' style= {{textAlign: 'center'}}>
                 <h1>RESOURCE MANAGEMENT SYSTEM</h1>
-                <LoginFunction/>
-                <p>{this.props.loginMessage}</p>
+                <LoginFunction
+                    username = {this.state.username}
+                    password = {this.state.password}
+                    handleChange = {this.handleChange}
+                    handleLogin = {this.signUserIn}
+                    loginMessage = {this.props.loginMessage}
+                />
                 </Card>
                 
             </Wrapper>
