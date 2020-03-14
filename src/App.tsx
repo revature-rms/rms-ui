@@ -44,7 +44,7 @@ const App: React.FC = () => {
       <Router>
         <Switch>
         <Route path = '/login' component={LoginComponent}/>
-        <Route path = '' component={LoginComponent}/>
+        <Route path = '/' component={LoginComponent}/>
         </Switch>
       </Router>
     )

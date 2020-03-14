@@ -1,5 +1,7 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
+import Card from '@material-ui/core/Card';
+import LoginFunction from '../../utils/login-function/LoginFunction';
 
 interface ILoginProps {
     currentUser: any,
@@ -17,10 +19,13 @@ export class LoginComponent extends React.Component<ILoginProps, any>{
 
     render() {
         return (
-            <Wrapper>
-                <h1>Welcome to RMS</h1>
-                <button className='btn'>Login</button>
+            <Wrapper elements = 'REVATURE'>
+                <Card className = 'full-card' style= {{textAlign: 'center'}}>
+                <h1>RESOURCE MANAGEMENT SYSTEM</h1>
+                <LoginFunction/>
                 <p>{this.props.loginMessage}</p>
+                </Card>
+                
             </Wrapper>
         )
     }
