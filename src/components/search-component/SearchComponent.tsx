@@ -66,9 +66,12 @@ export class SearchComponent extends React.Component<any, any> {
 
     render() {
         return (
-            <span className="mainsearch">
+            <span 
+            data-test="search-component"
+            className="mainsearch">
                 <b>Search resources: </b>
                 <input
+                    data-test="search-component-input"
                     onChange={this.onSearchChange}
                     placeholder="Search for resource"
                     id="search-box" type="text" />
@@ -77,7 +80,7 @@ export class SearchComponent extends React.Component<any, any> {
                         this.state.resData.map((resource: any) => {
                             return this.showResource(resource);
                         }) :
-                                (this.state.filtering === true) ? <div className="res">No resource found!</div>
+                                (this.state.filtering === true) ? <div data-test="search-display" className="res">No resource found!</div>
                                 : <></>
                 }
             </span>
