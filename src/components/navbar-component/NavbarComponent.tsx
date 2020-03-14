@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SearchComponent } from '../search-component/SearchComponent';
+import { logout } from '../../utils/LogoutFunction';
+
 
 export default function NavbarComponent() {
 
@@ -9,7 +11,9 @@ export default function NavbarComponent() {
         <>
             <div className="top-bar"><a href="homepage"><span className="logo"></span></a>
                 <h3>Resource Management System</h3>
+                <Link onClick = {logout} style = {{float:"right", paddingTop:"40px", paddingRight: "30px"}} to=''>Logout</Link>
                 <SearchComponent />
+                
             </div>
             <div className="side-nav">
                 <Link to="/campuses">
