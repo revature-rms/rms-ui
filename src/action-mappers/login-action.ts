@@ -12,6 +12,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
         allUsers = users.data;
         let currentUser;
         allUsers.forEach((user:any) => {
+            console.log("username passed is: " + username + "password: " + password);
             if(user.username === username && user.password === password){
                 currentUser = user;
                 console.log(currentUser);
