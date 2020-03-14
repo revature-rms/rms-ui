@@ -7,11 +7,11 @@ export default function NavbarComponent() {
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
-            <div className="top-bar"><a href="homepage"><span className="logo"></span></a>
+            <div data-test="navbar-top"className="top-bar"><a href="homepage"><span className="logo"></span></a>
                 <h3>Resource Management System</h3>
                 <SearchComponent />
             </div>
-            <div className="side-nav">
+            <div data-test="navbar-side" className="side-nav">
                 <Link to="/campuses">
                     <a><div className="navitem">Campuses</div></a>
                 </Link>
