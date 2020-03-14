@@ -16,13 +16,11 @@ export class BuildingListComponent extends React.Component<any, any> {
         if (this.props.campuses === null) {
             await this.props.getAllCampuses();
         }
-        console.log(this.props.campuses);
     }
 
     componentDidUpdate() {
         // console.log(this.state.campus);
         // console.log(this.state.campus[0]);
-        console.log(this.state.searchTerm);
     }
 
     mapBuildings = () => {
@@ -47,6 +45,7 @@ export class BuildingListComponent extends React.Component<any, any> {
                 {this.props.campuses[0].abbrName}
                 &nbsp;
                 <input
+                    data-test="search"
                     type="text"
                     placeholder="Type building name or Lead trainer"
                     onChange={this.onSearchChange}
@@ -55,7 +54,6 @@ export class BuildingListComponent extends React.Component<any, any> {
         )
     }
     makeTable = (building: any) => {
-        console.log(building.rooms);
         return (
             <tr>
                 <td><Link to={`/rooms/${building.name}`}><span className="colour-me">{building.name}</span></Link></td>
@@ -68,7 +66,7 @@ export class BuildingListComponent extends React.Component<any, any> {
     render() {
         return (
             <>
-                <Wrapper title={this.props.campuses ? this.props.campuses[0].name : "Campus Name Here"} elements={this.props.campuses ? this.subHeader()
+                <Wrapper data-test="main-content" title={this.props.campuses ? this.props.campuses[0].name : "Campus Name Here"} elements={this.props.campuses ? this.subHeader()
                     : "Campus abbreviation here."}>
                     <div className="full-card">
                         <div className="tblbox">
