@@ -41,3 +41,54 @@ test('Should display nothing if user is not filtering', () => {
     const display = FindByTestAttr(wrapper, 'search-display');
     expect(display.length).toBe(0);
 });
+
+test('component did mount',  () => {
+    const instance:any = setup().instance();
+      jest.spyOn(instance, 'gatherData');
+      instance.componentDidMount();
+      expect(instance.gatherData).toHaveBeenCalledTimes(1)
+});
+test('gather data called, should not be null', async () => {
+    const wrapper = setup();
+    let test =  await wrapper.instance().gatherData();
+    expect(test).not.toBeNull();
+});
+
+
+let employeeData = {
+    id: 0,
+    firstName: "test",
+    lastName: "testname"
+}
+
+test('checks show resources employee functionality', () => {
+    const wrapper = setup();
+    let test =  wrapper.instance().showResource(employeeData);
+    expect(test.key).toBe("testtestname0")
+});
+
+let building = {
+    id: 0,
+    name: "test",
+}
+
+test('checks show resources buildings functionality', () => {
+    const wrapper = setup();
+    let test =  wrapper.instance().showResource(building);
+    expect(test.key).toBe("test0")
+});
+
+
+let campus = {
+    id: 0,
+    name: "test",
+    hrLead: "",
+    amenties: undefined
+}
+
+test('checks show resources employee functionality', () => {
+    const wrapper = setup();
+    let test =  wrapper.instance().showResource(campus);
+    expect(test.key).toBe("test0")
+});
+

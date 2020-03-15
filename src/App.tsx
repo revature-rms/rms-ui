@@ -12,8 +12,6 @@ import RoomListComponent from './components/rooms-list-component/RoomListContain
 import CampusComponent from './components/campus-component/CampusContainer';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 import LoginComponent from './components/login-component/LoginContainer';
-import { useSelector } from 'react-redux'
-import { IState } from './reducers';
 
 
 

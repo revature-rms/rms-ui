@@ -12,9 +12,6 @@ export class SearchComponent extends React.Component<any, any> {
         }
     }
 
-    componentDidUpdate() {
-        // console.log(this.state.filtering);
-    }
 
     async componentDidMount() {
         this.resources = await this.gatherData();
