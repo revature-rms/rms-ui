@@ -1,8 +1,8 @@
 import React from 'react'
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import  Card  from '@material-ui/core/Card';
-import CampusTable from '../../utils/campus-table/campusDisplay';
 import { filterCampusFunction } from '../../utils/helper-functions/filterCampus';
+import { Link } from "react-router-dom";
 
 
 interface ICampusProps {
@@ -70,6 +70,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                 <td>{campus.trainingManager.firstName} {campus.trainingManager.lastName}</td>
                 <td>{campus.stagingManager.firstName} {campus.stagingManager.lastName}</td>
                 <td>{campus.hrLead.firstName} {campus.hrLead.lastName}</td>
+                <td key={campus.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={campus.id} onClick={this.props.campuses.id}>View details</small></Link></td>
             </tr>
         )
     }
@@ -87,7 +88,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                     </div>
                     <table>
                             <tbody>
-                                <tr><td><b>Campus Id:</b></td><td><b>Name:</b></td><td><b>Location :</b></td><td><b>Training Manager:</b></td><td><b>Staging Manager:</b></td><td><b>HR Lead:</b></td></tr>
+                                <tr><td><b>Campus Id:</b></td><td><b>Name:</b></td><td><b>Location :</b></td><td><b>Training Manager:</b></td><td><b>Staging Manager:</b></td><td><b>HR Lead:</b></td><td><b>More Details:</b></td></tr>
                                 {this.props.campuses ? this.mapCampuses() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
                             </tbody>
                         </table>
