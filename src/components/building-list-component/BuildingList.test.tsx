@@ -1,5 +1,5 @@
 import {BuildingListComponent} from './BuildingListComponent'
-import enzyme, { shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
 
@@ -51,6 +51,13 @@ test('Test map buildings function',  () => {
 test('Test make table function',  () => {
     const wrapper = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
+    wrapper.instance().render();
+    expect(FakeFun).toHaveBeenCalled();
+});
+
+test('Test sub header',  () => {
+    const wrapper = setup();
+    const FakeFun = jest.spyOn(wrapper.instance(), 'subHeader');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });

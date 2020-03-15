@@ -20,6 +20,9 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
             searchTerm: ""
         }
     }
+
+    count = 0;
+
     componentDidMount() {
         this.props.getAllRooms();
         console.log(this.props.building);
@@ -58,7 +61,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
 
     makeTable = (room: any) => {
         return (
-            <tr>
+            <tr key={`${++this.count}`}>
                 <td><Link to={`/room-details/${room.roomNumber}`}><span className="colour-me">{room.roomNumber}</span></Link></td>
                 <td>{room.maxOccupancy}</td>
                 <td>{room.batch?room.batch.name:""}</td>
@@ -72,7 +75,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     }
     makeList=(amenity:any)=>{
         return (
-            <><b>{amenity.type}:</b> <span className="caps">{amenity.status}</span></>
+            <div key={`${++this.count}`}><b>{amenity.type}:</b> <span className="caps">{amenity.status}</span></div>
         )
     }
     notYet = () => {
@@ -97,7 +100,7 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     }
     render() {
         return (
-            <Wrapper title={this.props.building ? this.props.building.name : "Building Name Here"} elements={this.props.building ? this.subHeader() : "Building abbreviation here."}>
+            <Wrapper data-test="main-content" title={this.props.building ? this.props.building.name : "Building Name Here"} elements={this.props.building ? this.subHeader() : "Building abbreviation here."}>
                 <div className="full-card">
                     <div className="tblbox">
                         <div className="tblhdr">Rooms in {this.props.building ? this.props.building.abbrName : "Building"}</div>
