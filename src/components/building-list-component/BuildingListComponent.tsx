@@ -2,12 +2,13 @@ import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import { filterBuildingsFunction } from '../../utils/helper-functions/filterBuildings';
-
+import { sortBuildingFunction } from '../../utils/helper-functions/sortBuilidingFunction';
 export class BuildingListComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            searchTerm: ""
+            searchTerm: "",
+            sortType: "ascending"
         }
     }
 
@@ -15,6 +16,8 @@ export class BuildingListComponent extends React.Component<any, any> {
 
     async componentDidMount() {
        await this.gatherData();
+       console.log(this.state.sortType);
+
     }
      gatherData = async () => {
         if (this.props.campuses === null) {
@@ -24,18 +27,31 @@ export class BuildingListComponent extends React.Component<any, any> {
 
     mapBuildings = () => {
         if (this.state.searchTerm.length < 1) {
-            return this.props.campuses[0].buildings.map((building: any) => this.makeTable(building))
+            let buildings = this.props.campuses[0].buildings.map((building: any) => building)
+            return sortBuildingFunction(this.state.sortType, buildings).map((building: any) =>  this.makeTable(building))
         }
         if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
-        return filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) => this.makeTable(building));
+        let filteredBuildings = filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) =>  building);
+        return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));
     }
 
     onSearchChange = (e: any) => {
         this.setState({
             ...this.state,
             searchTerm: e.target.value
+        })
+    }
+
+    componentDidUpdate(){
+        console.log(this.state.sortType);
+    }
+
+    sortChanger = (e:any) => {
+        this.setState({
+            ...this.state,
+            sortType: e.target.value
         })
     }
     subHeader = () => {
@@ -49,6 +65,14 @@ export class BuildingListComponent extends React.Component<any, any> {
                     placeholder="Type building name or Lead trainer"
                     onChange={this.onSearchChange}
                 />
+                &nbsp;
+                Sort:
+                <select
+                onChange={this.sortChanger}
+                >
+                    <option value="ascending" selected>ascending</option>
+                    <option value="descending">descending</option>
+                </select>
             </>
         )
     }

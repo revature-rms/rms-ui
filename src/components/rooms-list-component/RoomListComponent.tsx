@@ -1,23 +1,26 @@
 import React from "react";
 import Wrapper from "../../utils/div-wrapper/Wrapper";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { filterRoomsFunction } from "../../utils/helper-functions/filterRooms";
+import { sortRoomFunction } from "../../utils/helper-functions/sortRoomFunction";
 
 interface IRoomListProps {
     building: any,
     getAllRooms: () => void
 }
 interface IRoomListState {
-    visible:boolean,
-    searchTerm:string
+    visible: boolean,
+    searchTerm: string,
+    sortType: string
 }
 
 export class RoomListComponent extends React.Component<IRoomListProps, IRoomListState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            visible:false,
-            searchTerm: ""
+            visible: false,
+            searchTerm: "",
+            sortType: "ascending"
         }
     }
 
@@ -29,13 +32,14 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     }
     mapRooms = () => {
         if (this.state.searchTerm.length < 1) {
-            let rooms = (this.props.building.rooms?this.props.building.rooms:[{}])
-            return rooms.map((room: any) => this.makeTable(room))
+            let rooms = (this.props.building.rooms ? this.props.building.rooms : [{}])
+            return sortRoomFunction(this.state.sortType, rooms).map((room: any) => this.makeTable(room));
         }
         if (filterRoomsFunction(this.props.building, this.state.searchTerm).length === 0) {
             return <h4>No Rooms Found!</h4>
         }
-        return filterRoomsFunction(this.props.building, this.state.searchTerm).map((room: any) => this.makeTable(room));
+        let rooms = filterRoomsFunction(this.props.building, this.state.searchTerm).map((room: any) => room);
+        return sortRoomFunction(this.state.sortType, rooms).map((room: any) => this.makeTable(room));
     }
 
     onSearchChange = (e: any) => {
@@ -44,17 +48,31 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
             searchTerm: e.target.value
         })
     }
+    sortChanger = (e: any) => {
+        this.setState({
+            ...this.state,
+            sortType: e.target.value
+        })
+    }
 
     subHeader = () => {
         return (
             <>
-                {this.props.building.abbrName} 
+                {this.props.building.abbrName}
                 &nbsp;
                 <input
                     type="text"
                     placeholder="Type room number, trainer or batch number"
                     onChange={this.onSearchChange}
                 />
+                &nbsp;
+                Sort:
+                <select
+                    onChange={this.sortChanger}
+                >
+                    <option value="ascending" selected>ascending</option>
+                    <option value="descending">descending</option>
+                </select>
             </>
         )
     }
@@ -64,16 +82,16 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
             <tr key={`${++this.count}`}>
                 <td><Link to={`/room-details/${room.roomNumber}`}><span className="colour-me">{room.roomNumber}</span></Link></td>
                 <td>{room.maxOccupancy}</td>
-                <td>{room.batch?room.batch.name:""}</td>
-                <td>{room.batch?room.batch.trainer.firstName:""} {room.batch?room.batch.trainer.lastName:""}</td>
+                <td>{room.batch ? room.batch.name : ""}</td>
+                <td>{room.batch ? room.batch.trainer.firstName : ""} {room.batch ? room.batch.trainer.lastName : ""}</td>
             </tr>
         )
     }
-    mapAmenities=()=> {
-        let amenities=(this.props.building.amenities?this.props.building.amenities:[{}])
-        return amenities.map((amenity:any)=>this.makeList(amenity))
+    mapAmenities = () => {
+        let amenities = (this.props.building.amenities ? this.props.building.amenities : [{}])
+        return amenities.map((amenity: any) => this.makeList(amenity))
     }
-    makeList=(amenity:any)=>{
+    makeList = (amenity: any) => {
         return (
             <div key={`${++this.count}`}><b>{amenity.type}:</b> <span className="caps">{amenity.status}</span></div>
         )
@@ -111,13 +129,13 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
                             </tbody>
                         </table>
                     </div>
-                    <br/>
+                    <br />
                     <span className="unimplemented" id="edit">I'm not implemented yet!  Sorry!</span>
                 </div>
                 <div className="half-card">
                     <h4>Building Amenities</h4>
-                    {this.props.building?this.mapAmenities():<><b>Amenities Found:</b> None</>}
-                    <br/>
+                    {this.props.building ? this.mapAmenities() : <><b>Amenities Found:</b> None</>}
+                    <br />
                     <button className="btn" onClick={this.notYet}>
                         Edit
                     </button>

@@ -3,6 +3,8 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import  Card  from '@material-ui/core/Card';
 import { filterCampusFunction } from '../../utils/helper-functions/filterCampus';
 import { Link } from "react-router-dom";
+import { sortCampusFunction } from '../../utils/helper-functions/SortCampusesFunction';
+
 
 
 interface ICampusProps {
@@ -16,7 +18,8 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         super(props)
         this.state = {
             location: 'All locations',
-            searchTerm: ''
+            searchTerm: '',
+            sortType: 'ascending'
         }
     }
 
@@ -33,11 +36,14 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             searchTerm: e.target.value
         })
     }
-    componentDidUpdate(){
-        console.log(this.props.campuses);
+
+    sortChanger = (e:any) => {
+        this.setState({
+            ...this.state,
+            sortType: e.target.value
+        })
     }
        
-
     subHeader = () => {
         return (
             <>
@@ -48,22 +54,32 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                     placeholder="Type campus name or Training manager's name"
                     onChange={this.onSearchChange}
                 />
+                &nbsp;
+                Sort:
+                <select
+                onChange={this.sortChanger}
+                >
+                    <option value="ascending" selected>ascending</option>
+                    <option value="descending">descending</option>
+                </select>
             </>
         )
     }
-
+    count=0;
     mapCampuses = () => {
         if (this.state.searchTerm.length < 1) {
-            return this.props.campuses.map((campus: any) => this.makeTable(campus))
+            let campuses =  this.props.campuses.map((campus: any) => campus)
+            return sortCampusFunction(this.state.sortType, campuses).map((campus:any) => this.makeTable(campus)); 
         }
         if (filterCampusFunction(this.props.campuses, this.state.searchTerm).length === 0) {
             return <h4>No Campus Found!</h4>
         }
-        return filterCampusFunction(this.props.campuses, this.state.searchTerm).map((campus: any) => this.makeTable(campus));
+        let campuses =  filterCampusFunction(this.props.campuses, this.state.searchTerm).map((campus: any) => campus);
+        return sortCampusFunction(this.state.sortType, campuses).map((campus:any) => this.makeTable(campus));
     }
     makeTable = (campus: any) => {
         return (
-            <tr>
+            <tr key={this.count++}>
                 <td>{campus.id}</td>
                 <td>{campus.name}</td>
                 <td>{campus.shippingAddress.unit_street}. {campus.shippingAddress.city}, {campus.shippingAddress.state}</td>
@@ -77,7 +93,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
 
     render() {
         return (
-            <Wrapper title="Campuses" elements={this.props.campuses ? this.subHeader()
+            <Wrapper data-test="main-content" title="Campuses" elements={this.props.campuses ? this.subHeader()
                 : "Campus abbreviation here."}>
                 <Card className="full-card">
 

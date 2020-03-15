@@ -2,7 +2,8 @@ import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import { filterEmployeesFunction } from '../../utils/helper-functions/filterEmployees';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { sortEmployeesFunction } from '../../utils/helper-functions/sortEmployeesFunction';
 
 
 
@@ -19,7 +20,8 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         super(props);
         this.state = {
             department: 'All departments',
-            searchTerm: ''
+            searchTerm: '',
+            sortType: 'ascending'
         }
     }
 
@@ -29,12 +31,12 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         }
     }
 
-    changeDepartment = (event: any) => {
-        this.setState({
-            ...this.state,
-            department: event.target.value
-        })
+    componentDidUpdate() {
+        if (this.props.employees)
+            console.log(this.props.employees.Employee || {});
+
     }
+
 
     updateId = (event: any) => {
         this.props.updateId(parseInt(event.target.id));
@@ -46,7 +48,12 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
             searchTerm: e.target.value
         })
     }
-
+    sortChanger = (e: any) => {
+        this.setState({
+            ...this.state,
+            sortType: e.target.value
+        })
+    }
     subHeader = () => {
         return (
             <>
@@ -57,23 +64,34 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
                     placeholder="Type employee's name"
                     onChange={this.onSearchChange}
                 />
+                &nbsp;
+                Sort:
+                <select
+                    onChange={this.sortChanger}
+                >
+                    <option value="ascending" selected>ascending</option>
+                    <option value="descending">descending</option>
+                </select>
             </>
         )
     }
 
     mapEmployees = () => {
-        if (this.state.searchTerm.length < 1) {
-            return this.props.employees.map((employee: any) => this.makeTable(employee))
-        }
-        if (filterEmployeesFunction(this.props.employees, this.state.searchTerm).length === 0) {
-            return <h4>No Employees Found!</h4>
-        }
-        return filterEmployeesFunction(this.props.employees, this.state.searchTerm).map((employee: any) => this.makeTable(employee));
+            if (this.state.searchTerm.length < 1 && this.props.employees.Employee) {
+                return sortEmployeesFunction(this.state.sortType, this.props.employees.Employee).map((emp:any) => this.makeTable(emp));
+            }
+            this.props.employees.Employee.map((em:any) => console.log(em))
+            if (filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm).length === 0) {
+                return <h4>No Employees Found!</h4>
+            }
+            let employees = filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm);
+            return sortEmployeesFunction(this.state.sortType, employees).map((emp:any) => this.makeTable(emp));
     }
+
     makeTable = (employee: any) => {
         return (
             <tr>
-                <td><Link to="/employee-details"><span className="colour-me"id={employee.id} onClick = {this.updateId}>{employee.id}</span></Link></td>
+                <td><Link to="/employee-details"><span className="colour-me" id={employee.id} onClick={this.updateId}>{employee.id}</span></Link></td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
                 <td>{employee.email}</td>
