@@ -11,16 +11,15 @@ export class BuildingListComponent extends React.Component<any, any> {
         }
     }
 
+    count = 0;
+
     async componentDidMount() {
-        // let campusData: any = await getCampuses();
+       await this.gatherData();
+    }
+     gatherData = async () => {
         if (this.props.campuses === null) {
             await this.props.getAllCampuses();
         }
-    }
-
-    componentDidUpdate() {
-        // console.log(this.state.campus);
-        // console.log(this.state.campus[0]);
     }
 
     mapBuildings = () => {
@@ -55,7 +54,7 @@ export class BuildingListComponent extends React.Component<any, any> {
     }
     makeTable = (building: any) => {
         return (
-            <tr>
+            <tr key={`${building.trainingLead.firstName}${this.count++}`}>
                 <td><Link to={`/rooms/${building.name}`}><span className="colour-me">{building.name}</span></Link></td>
                 <td>{building.physicalAddress.unit_street}. {building.physicalAddress.city}, {building.physicalAddress.state}</td>
                 <td>{building.trainingLead.firstName} {building.trainingLead.lastName}</td>

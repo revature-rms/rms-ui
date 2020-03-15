@@ -1,10 +1,10 @@
-import {HomeComponent} from './HomeComponent'
+import { HomeComponent } from './HomeComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
 
 const setup = (props = {
-    getAllCampuses : () => {}
+    getAllCampuses: () => { }
 }, state = 0) => {
     const wrapper = shallow(<HomeComponent {...props} />)
     if (state) wrapper.setState(state);
@@ -16,4 +16,13 @@ test('renders without error', () => {
     //find element with the data-test value
     const appComponent = FindByTestAttr(wrapper, 'main-content');
     expect(appComponent.length).toBe(1);
+});
+
+test('map data functionality, should  return undefined', () => {
+    const wrapper = setup();
+    wrapper.setState({
+        currentUser: null
+    })
+    let test = wrapper.instance().mapData();
+    expect(test).toBeUndefined();
 });
