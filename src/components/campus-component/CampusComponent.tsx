@@ -33,11 +33,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             searchTerm: e.target.value
         })
     }
-    componentDidUpdate(){
-        console.log(this.props.campuses);
-    }
        
-
     subHeader = () => {
         return (
             <>
@@ -51,7 +47,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             </>
         )
     }
-
+    count=0;
     mapCampuses = () => {
         if (this.state.searchTerm.length < 1) {
             return this.props.campuses.map((campus: any) => this.makeTable(campus))
@@ -63,7 +59,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
     }
     makeTable = (campus: any) => {
         return (
-            <tr>
+            <tr key={this.count++}>
                 <td>{campus.id}</td>
                 <td>{campus.name}</td>
                 <td>{campus.shippingAddress.unit_street}. {campus.shippingAddress.city}, {campus.shippingAddress.state}</td>
@@ -77,7 +73,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
 
     render() {
         return (
-            <Wrapper title="Campuses" elements={this.props.campuses ? this.subHeader()
+            <Wrapper data-test="main-content" title="Campuses" elements={this.props.campuses ? this.subHeader()
                 : "Campus abbreviation here."}>
                 <Card className="full-card">
 
