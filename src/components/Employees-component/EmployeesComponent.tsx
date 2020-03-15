@@ -1,7 +1,5 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import TableData from "../../utils/tableData-display/tableData";
-import DepartmentDropdown from '../../utils/departments-dropdown';
 import Card from '@material-ui/core/Card';
 import { filterEmployeesFunction } from '../../utils/helper-functions/filterEmployees';
 import {Link} from "react-router-dom";
