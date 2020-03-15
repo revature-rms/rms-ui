@@ -34,6 +34,7 @@ export class HomeComponent extends React.Component<any, any>{
     }
 
     mapData = () => {
+        if(this.state.currentUser !== null)
         return (
             <tr>
                 <td><span className="colour-me">{this.state.currentUser.buildings[0].name}</span></td>

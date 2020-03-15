@@ -86,7 +86,7 @@ let campus = {
     amenties: undefined
 }
 
-test('checks show resources employee functionality', () => {
+test('checks show resources campus functionality', () => {
     const wrapper = setup();
     let test =  wrapper.instance().showResource(campus);
     expect(test.key).toBe("test0")
