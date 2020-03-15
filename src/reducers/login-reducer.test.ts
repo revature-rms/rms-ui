@@ -1,0 +1,42 @@
+import { loginTypes } from "../action-mappers/login-action";
+import { userState } from './login-reducer';
+
+test('Should return default state', () => {
+    const newState = userState(undefined, {});
+    expect(newState).toEqual({
+        currentUser: null,
+        loggedIn: false,
+        loginMessage: ''
+    });
+});
+
+test('returns state of successful login', () => {
+    const newState = userState(undefined, {
+        type: loginTypes.SUCCESSFULL_LOGIN,
+        payload: {
+            currentUser: {},
+            loggedIn: true,
+            loginMessage: 'Login Successfull. Proceeding ....'
+        }
+    });
+    expect(newState).toEqual({
+        currentUser: undefined,
+        loggedIn: true,
+        loginMessage: 'Login Successfull. Proceeding ....'
+    });
+});
+
+
+test('returns state of failed login', () => {
+    const newState = userState(undefined, {
+        type: loginTypes.FAILED_LOGIN,
+        payload: {
+            loginMessage: 'Login Failed'
+        }
+    });
+    expect(newState).toEqual({
+        currentUser:null,
+        loggedIn:false,
+        loginMessage: 'Login Failed'
+    });
+});
