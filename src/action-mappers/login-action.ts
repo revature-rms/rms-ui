@@ -8,11 +8,10 @@ export const loginTypes = {
 export const login = (username:string, password:string) => (dispatch:any) => {
     let allUsers;
     userLogin().then((users:any) => {
-        console.log(users.data);
+        //console.log(users.data);
         allUsers = users.data;
         let currentUser;
         allUsers.forEach((user:any) => {
-            console.log("username passed is: " + username + "password: " + password);
             if(user.username === username && user.password === password){
                 currentUser = user;
                 console.log(currentUser);
