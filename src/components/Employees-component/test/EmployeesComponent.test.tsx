@@ -97,14 +97,14 @@ const setup = (props: any = propsData, state = 0) => {
 }
 
 test('Test make table function', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Test map employees function', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'mapEmployees');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();

@@ -55,21 +55,21 @@ test('renders without error', () => {
 });
 
 test('Test make table function',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Test sub header',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'subHeader');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Test map campuses function',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'mapCampuses');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
