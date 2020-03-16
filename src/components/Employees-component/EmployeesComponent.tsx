@@ -31,12 +31,6 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         }
     }
 
-    componentDidUpdate() {
-        if (this.props.employees)
-            console.log(this.props.employees.Employee || {});
-
-    }
-
 
     updateId = (event: any) => {
         this.props.updateId(parseInt(event.target.id));
@@ -87,10 +81,10 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
             let employees = filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm);
             return sortEmployeesFunction(this.state.sortType, employees).map((emp:any) => this.makeTable(emp));
     }
-
+    count = 0;
     makeTable = (employee: any) => {
         return (
-            <tr>
+            <tr key={`${this.count++}`}>
                 <td><Link to="/employee-details"><span className="colour-me" id={employee.id} onClick={this.updateId}>{employee.id}</span></Link></td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
@@ -108,7 +102,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
 
         return (
 
-            <Wrapper title="Employees" elements={this.subHeader()}>
+            <Wrapper data-test="main-content" title="Employees" elements={this.subHeader()}>
                 <Card className="full-card">
                     {/* <b>Selected department:</b> {this.state.department}<br /> */}
                     <div className="tblbox">
