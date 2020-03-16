@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
 
-const setup = (props = {}, state = 0) => {
+const setup:any = (props = {}, state = 0) => {
     const wrapper = shallow(<SearchComponent {...props} />)
     if (state) wrapper.setState(state);
     return wrapper;

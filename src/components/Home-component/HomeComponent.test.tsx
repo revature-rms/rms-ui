@@ -19,7 +19,7 @@ test('renders without error', () => {
 });
 
 test('map data functionality, should  return undefined', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     wrapper.setState({
         currentUser: null
     })

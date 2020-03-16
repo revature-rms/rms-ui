@@ -42,21 +42,21 @@ test('component did mount',  () => {
 });
 
 test('Test map buildings function',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'mapBuildings');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Test make table function',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Test sub header',  () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'subHeader');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
