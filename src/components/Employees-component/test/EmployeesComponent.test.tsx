@@ -2,8 +2,6 @@ import React from 'react';
 import {EmployeesComponent} from '../EmployeesComponent';
 import { shallow } from 'enzyme';
 import Wrapper from '../../../utils/div-wrapper/Wrapper';
-import { updateId } from '../../../action-mappers/employees-action';
-import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 /*
 WHAT WE EXPECT THIS COMPONENT TO DO: 
