@@ -6,7 +6,7 @@ import { FindByTestAttr } from './utils/helper-functions/testUtils';
 
 const setup = (props = {
   loggedIn: true
-}, state = 0) => {
+}, state = null) => {
   const wrapper = shallow(
     <App {...props} />
   )
