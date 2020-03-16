@@ -28,7 +28,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
 
     componentDidMount = () => {
         if (this.props.employees != null) {
-            this.props.employees.filter((employee: any) => {
+            this.props.employees.Employee.filter((employee: any) => {
                 return employee.id === this.props.id
             }).map((employee: any) => {
                 this.setState({
