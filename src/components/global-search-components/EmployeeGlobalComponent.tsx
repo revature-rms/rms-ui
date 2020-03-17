@@ -80,7 +80,7 @@ export class EmployeeGlobalComponent extends React.Component<any, any> {
 
     render(){
         return(
-            <Wrapper title={this.state.employee.firstName + " " + this.state.employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
+            <Wrapper data-test="main-content" title={this.state.employee.firstName + " " + this.state.employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
             <div className="full-card">
                 <h4>Employee Details</h4>
                 <b>ID:</b> {this.state.employee.id}<br />
