@@ -2,7 +2,7 @@ import React from 'react';
 import {EmployeesComponent} from '../EmployeesComponent';
 import { shallow } from 'enzyme';
 import Wrapper from '../../../utils/div-wrapper/Wrapper';
-import { updateId } from '../../../action-mappers/employees-action';
+//import { updateId } from '../../../action-mappers/employees-action';
 
 /*
 WHAT WE EXPECT THIS COMPONENT TO DO: 
@@ -61,7 +61,10 @@ describe('EmployeesComponent', () => {
             updateId: (id:number) => {}
         };
 
-        // test whether update id function is called
+        // test whether states changes;
+        const wrapper = shallow(<EmployeesComponent {... newProps}/>);
+        const idRow = wrapper.find('tr').at(1).children().at(0).simulate('click');
+    
         
     })
 })
