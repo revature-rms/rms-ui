@@ -8,7 +8,8 @@ const mapStateToProps = (state:IState) => {
         //states needed for the Campus component
         campuses: state.campusState.campuses,
         campusMessage: state.campusState.campusMessage,
-        id: state.campusState.id
+        id: state.campusState.id,
+        currentUser: state.userState.currentUser
     }
 }
 
