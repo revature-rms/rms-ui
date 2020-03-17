@@ -13,6 +13,7 @@ import CampusComponent from './components/campus-component/CampusContainer';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import { BuildingDetailsComponent } from './components/building-details-component/BuildingDetailsComponent';
+import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent';
 
 
 
@@ -34,6 +35,7 @@ class AppComponent extends React.Component<any, any> {
             <Route path='/building/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
+            <Route path='/employee/:id' component={EmployeeGlobalComponent} />
             <Route path='/campuses' component={CampusComponent} />
             <Route path='/room-details' component={RoomDetailsComponent} />
             <Route path='/rooms' component={RoomListComponent} />

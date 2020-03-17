@@ -29,7 +29,6 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
     setCampus = () => {
         if (this.resources.campus) {
             this.resources.campus.map((campus: any) => {
-                console.log(this.id);
                 if (campus["name"] === this.id) {
                     if(this.state.campus.length === 0 || this.state.campus.name !== this.id)
                     this.setState({
@@ -42,7 +41,7 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
     componentDidUpdate() {
         this.id = this.props.match.params.id;
         this.setCampus()
-        console.log(this.campus);
+        console.log(this.id);
     }
 
     gatherData = async () => {
