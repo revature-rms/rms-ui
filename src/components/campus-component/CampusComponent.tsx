@@ -80,8 +80,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
     makeTable = (campus: any) => {
         return (
             <tr key={this.count++}>
-                <td>{campus.id}</td>
-                <td>{campus.name}</td>
+                <td><Link to="/campus"><span id={campus.id} onClick={this.props.campuses.id}>{campus.name}</span></Link></td>
                 <td>{campus.shippingAddress.unit_street}. {campus.shippingAddress.city}, {campus.shippingAddress.state}</td>
                 <td>{campus.trainingManager.firstName} {campus.trainingManager.lastName}</td>
                 <td>{campus.stagingManager.firstName} {campus.stagingManager.lastName}</td>
@@ -104,7 +103,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                     </div>
                     <table>
                             <tbody>
-                                <tr><td><b>Campus Id:</b></td><td><b>Name:</b></td><td><b>Location :</b></td><td><b>Training Manager:</b></td><td><b>Staging Manager:</b></td><td><b>HR Lead:</b></td><td><b>More Details:</b></td></tr>
+                                <tr><td><b>Name:</b></td><td><b>Location :</b></td><td><b>Training Manager:</b></td><td><b>Staging Manager:</b></td><td><b>HR Lead:</b></td></tr>
                                 {this.props.campuses ? this.mapCampuses() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
                             </tbody>
                         </table>
