@@ -86,7 +86,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
                 <td>{campus.trainingManager.firstName} {campus.trainingManager.lastName}</td>
                 <td>{campus.stagingManager.firstName} {campus.stagingManager.lastName}</td>
                 <td>{campus.hrLead.firstName} {campus.hrLead.lastName}</td>
-                <td key={campus.id}><Link to="/campus" style={{ fontStyle: "italic" }} ><small id={campus.id} onClick={this.props.campuses.id}>View details</small></Link></td>
+                <td key={campus.id}><Link to={`/building/${campus["name"]}`} style={{ fontStyle: "italic" }} ><small id={campus.id} onClick={this.props.campuses.id}>View details</small></Link></td>
             </tr>
         )
     }
