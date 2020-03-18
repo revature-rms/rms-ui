@@ -15,35 +15,40 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
         }
     }
 
-    resources:any = "";
+    resources: any = "";
     id: any
     campus: any;
     count = 0;
 
     async componentDidMount() {
+        //gets data from api
         this.resources = await this.gatherData();
+        //checks the route parameter to populate the page with the right building
         this.id = this.props.match.params.id;
-       this.setCampus();
+        this.setCampus();
     }
 
     setCampus = () => {
         if (this.resources.campus) {
             this.resources.campus.map((campus: any) => {
+                //looks for the campus in the campus object with the same name as the route parameter
                 if (campus["name"] === this.id) {
-                    if(this.state.campus.length === 0 || this.state.campus.name !== this.id)
-                    this.setState({
-                        campus: campus
-                    })
+                    if (this.state.campus.length === 0 || this.state.campus.name !== this.id)
+                    //will set that campus to the state if there is no campus set in state
+                        this.setState({
+                            campus: campus
+                        })
                 }
             })
         }
     }
     componentDidUpdate() {
+        //checks the route parameter to populate the page with the right building
         this.id = this.props.match.params.id;
         this.setCampus()
-        console.log(this.id);
     }
 
+    //makes a request to the api and gets all the data back
     gatherData = async () => {
         let apiData = await allData();
         return apiData;
@@ -52,15 +57,19 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
     mapBuildings = () => {
         if (this.state.searchTerm.length < 1) {
             let buildings = this.state.campus.buildings.map((building: any) => building)
-            return sortBuildingFunction(this.state.sortType, buildings).map((building: any) =>  this.makeTable(building))
+            //returns sorted table row
+            return sortBuildingFunction(this.state.sortType, buildings).map((building: any) => this.makeTable(building))
         }
         if (filterBuildingsFunction(this.state.campus, this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
-        let filteredBuildings = filterBuildingsFunction(this.state.campus, this.state.searchTerm).map((building: any) =>  building);
-        return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));
+        //filters table row
+        let filteredBuildings = filterBuildingsFunction(this.state.campus, this.state.searchTerm).map((building: any) => building);
+        //returns sorted table row
+        return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) => this.makeTable(building));
     }
 
+    //changes search term state
     onSearchChange = (e: any) => {
         this.setState({
             ...this.state,
@@ -68,12 +77,14 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
         })
     }
 
-    sortChanger = (e:any) => {
+    //changes sort type state(sort type will be used in the sort function)
+    sortChanger = (e: any) => {
         this.setState({
             ...this.state,
             sortType: e.target.value
         })
     }
+    //The table's sub-header
     subHeader = () => {
         return (
             <>
@@ -88,7 +99,7 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
                 &nbsp;
                 Sort:
                 <select
-                onChange={this.sortChanger}
+                    onChange={this.sortChanger}
                 >
                     <option value="ascending" selected>ascending</option>
                     <option value="descending">descending</option>
@@ -96,6 +107,7 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
             </>
         )
     }
+    //takes a building and makes a table row
     makeTable = (building: any) => {
         return (
             <tr key={`${building.trainingLead.firstName}${this.count++}`}>
@@ -109,21 +121,22 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
     render() {
         return (
             <>
-            <Wrapper data-test="main-content" title={this.state.campus ? this.state.campus.name : "Campus Name Here"} elements={this.state.campus ? this.subHeader()
-                : "Campus abbreviation here."}>
-                <div className="full-card">
-                    <div className="tblbox">
-                        <div className="tblhdr">Buildings in {this.state.campus ? this.state.campus.abbrName : "Building"}</div>
-                        <table>
-                            <tbody>
-                                <tr><td><b>Building Name:</b></td><td><b>Address:</b></td><td><b>Training Lead:</b></td></tr>
-                                {this.state.campus ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
-                            </tbody>
-                        </table>
+                {/* Wrapper component is imported from utils/div-wrapper */}
+                <Wrapper data-test="main-content" title={this.state.campus ? this.state.campus.name : "Campus Name Here"} elements={this.state.campus ? this.subHeader()
+                    : "Campus abbreviation here."}>
+                    <div className="full-card">
+                        <div className="tblbox">
+                            <div className="tblhdr">Buildings in {this.state.campus ? this.state.campus.abbrName : "Building"}</div>
+                            <table>
+                                <tbody>
+                                    <tr><td><b>Building Name:</b></td><td><b>Address:</b></td><td><b>Training Lead:</b></td></tr>
+                                    {this.state.campus ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </Wrapper>
-        </>
+                </Wrapper>
+            </>
         )
     }
 }
