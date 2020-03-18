@@ -53,19 +53,10 @@ const EditEmpDetails = (props:any) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
-        //onClose={handleClose}
       >
           
           <div style={modalStyle} className={classes.paper}> 
           <Link to="employee-details" className="x-btn"
-          /*style = {{float: "right", 
-          fontStyle: "italic", 
-          fontFamily: "sans serif", 
-          borderStyle: "solid", 
-          borderColor: "red",
-          textDecoration: "none",
-          color: "blue", 
-          borderRadius: "40%"}} */ 
           onClick = {handleClose}>X</Link>      
           <h4 id="simple-modal-title">Edit Employee Details</h4>
           <form>
