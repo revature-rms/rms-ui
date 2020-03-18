@@ -53,7 +53,7 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
                     <div className="tblbox">
                         <div className="tblhdr">Current Room Status</div>
                         <table><tr><td><b>Whiteboard:</b></td><td><b>Chairs:</b></td><td><b>Desks:</b></td><td><b>Verified:</b></td></tr>
-                            {this.props.room.currentStatus ? <tr><td>{this.props.room.currentStatus.whitebooardCleaned ? "Clean" : "Requires Cleaning"}</td><td>{this.props.room.currentStatus.chairsOrdered ? "Ordered" : "Require Ordering"}</td><td>{this.props.room.currentStatus.desksCleaned ? "Clean" : "Require Cleaning"}</td><td>{this.props.room.currentStatus.submittedDateTime}</td></tr> : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}</table>
+                            {this.props.room.currentStatus ? <tr><td>{this.props.room.currentStatus.whitebooardCleaned ? "Clean" : "Requires Cleaning"}</td><td>{this.props.room.currentStatus.chairsOrdered ? "Ordered" : "Require Ordering"}</td><td>{this.props.room.currentStatus.desksCleaned ? "Clean" : "Require Cleaning"}</td><td>{this.props.room.currentStatus.submittedDateTime.substring(0,10)}</td></tr> : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}</table>
                         <button data-test="button"className="btn right" onClick={this.notYet}>Update Room Status</button>
                     </div>
                     <br /><br />
@@ -62,8 +62,8 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
                 </div>
                 <div className="half-card">
                     <b>Resource Created By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreator.username : ''}<br />
-                    <b>Creation Date:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreationDateTime : ''}<br />
-                    <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDateTime : ''}<br />
+                    <b>Creation Date:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceCreationDateTime.substring(0,10) : ''}<br />
+                    <b>Last Modified:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifiedDateTime.substring(0,10) : ''}<br />
                     <b>Modified By:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.lastModifier.username : ''}<br />
                     <b>Resource Owner:</b> {this.props.room.resourceMetadata ? this.props.room.resourceMetadata.resourceOwner.username : ''}<br />
                     <button className="btn" onClick={this.notYet}>

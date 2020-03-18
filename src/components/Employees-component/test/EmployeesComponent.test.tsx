@@ -60,7 +60,10 @@ describe('EmployeesComponent', () => {
             updateId: (id:number) => {}
         };
 
-        // test whether update id function is called
+        // test whether states changes;
+        const wrapper = shallow(<EmployeesComponent {... newProps}/>);
+        const idRow = wrapper.find('tr').at(1).children().at(0).simulate('click');
+    
         
     })
 })
