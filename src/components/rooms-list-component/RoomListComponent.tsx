@@ -32,13 +32,16 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
     }
     mapRooms = () => {
         if (this.state.searchTerm.length < 1) {
+                            //returns sorted table row
             let rooms = (this.props.building.rooms ? this.props.building.rooms : [{}])
             return sortRoomFunction(this.state.sortType, rooms).map((room: any) => this.makeTable(room));
         }
         if (filterRoomsFunction(this.props.building, this.state.searchTerm).length === 0) {
             return <h4>No Rooms Found!</h4>
         }
+                //filters rooms
         let rooms = filterRoomsFunction(this.props.building, this.state.searchTerm).map((room: any) => room);
+                //returns sorted table row
         return sortRoomFunction(this.state.sortType, rooms).map((room: any) => this.makeTable(room));
     }
 

@@ -18,6 +18,7 @@ export class EmployeeGlobalComponent extends React.Component<any, any> {
 
     async componentDidMount() {
         this.resources = await this.gatherData();
+        //gets route parameter
         this.id = this.props.match.params.id;
        this.setEmployee();
        console.log(this.state.employee);
@@ -26,6 +27,7 @@ export class EmployeeGlobalComponent extends React.Component<any, any> {
     setEmployee = () => {
         if (this.resources.Employee) {
             this.resources.Employee.map((employee: any) => {
+                //sees if employee info matches route parameter
                 if (employee["firstName"] + employee["lastName"] + employee["id"] === this.id) {
                     if(this.state.employee.length === 0 || this.state.employee.firstName + this.state.employee.lastName + this.state.employee.id !== this.id)
                     this.setState({
