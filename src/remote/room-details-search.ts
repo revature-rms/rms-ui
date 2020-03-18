@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const testRoom = async () => {
     try {
-        let response = await (axios.get("https://api.myjson.com/bins/taaoq"))
+        let response = await (axios.get("https://api.myjson.com/bins/1bfd9a"))
         return response.data;
     } catch (e) {
         console.log(e);
