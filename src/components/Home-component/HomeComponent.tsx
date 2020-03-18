@@ -1,6 +1,5 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { throws } from 'assert';
 
 
 export class HomeComponent extends React.Component<any, any>{

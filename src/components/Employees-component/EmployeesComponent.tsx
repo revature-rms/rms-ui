@@ -25,6 +25,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         }
     }
 
+    //gets all employees from props
     componentDidMount = () => {
         if (this.props.employees === null) {
             this.props.getAllEmployees();
@@ -36,18 +37,23 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         this.props.updateId(parseInt(event.target.id));
     }
 
+    //changes search term state
     onSearchChange = (e: any) => {
         this.setState({
             ...this.state,
             searchTerm: e.target.value
         })
     }
+
+    //changes sort type state(sort type will be used in the sort function)
     sortChanger = (e: any) => {
         this.setState({
             ...this.state,
             sortType: e.target.value
         })
     }
+
+    //The table's sub-header
     subHeader = () => {
         return (
             <>
@@ -72,16 +78,24 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
 
     mapEmployees = () => {
             if (this.state.searchTerm.length < 1 && this.props.employees.Employee) {
+                //returns sorted table row
                 return sortEmployeesFunction(this.state.sortType, this.props.employees.Employee).map((emp:any) => this.makeTable(emp));
             }
             this.props.employees.Employee.map((em:any) => console.log(em))
             if (filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm).length === 0) {
                 return <h4>No Employees Found!</h4>
             }
+
+            //filters employee
             let employees = filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm);
+            
+            //returns sorted table row
             return sortEmployeesFunction(this.state.sortType, employees).map((emp:any) => this.makeTable(emp));
     }
+
     count = 0;
+
+    //takes a building and makes a table row
     makeTable = (employee: any) => {
         return (
             <tr key={`${this.count++}`}>
@@ -94,22 +108,15 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         )
     }
     render() {
-        // const selectDepartment = () => {
-        //     return (
-        //         <DepartmentDropdown change={this.changeDepartment} />
-        //     )
-        // }
 
         return (
 
             <Wrapper data-test="main-content" title="Employees" elements={this.subHeader()}>
                 <Card className="full-card">
-                    {/* <b>Selected department:</b> {this.state.department}<br /> */}
                     <div className="tblbox">
                         <div className="tblhdr">
                             Employees
                         </div>
-                        {/* <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId={this.updateId} /> */}
                         <table>
                             <tbody>
                                 <tr><td><b>Employee Id:</b></td><td><b>First Name:</b></td><td><b>Last Name :</b></td><td><b>Email:</b></td><td><b>Department:</b></td></tr>
