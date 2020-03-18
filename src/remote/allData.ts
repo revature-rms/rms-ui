@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+//gathers all the data for global search functionality
 export const allData= async () => {
     let appData = ""
     try {

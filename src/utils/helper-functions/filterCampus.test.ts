@@ -1,5 +1,6 @@
 import { filterCampusFunction } from '../../utils/helper-functions/filterCampus';
 
+//mock campus
 let campuses = 
     [
         {

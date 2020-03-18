@@ -30,6 +30,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         }
     }
 
+    //changes search term state
     onSearchChange = (e: any) => {
         this.setState({
             ...this.state,
@@ -37,6 +38,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         })
     }
 
+    //changes sort type state(sort type will be used in the sort function)
     sortChanger = (e:any) => {
         this.setState({
             ...this.state,
@@ -44,6 +46,7 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         })
     }
        
+    //The table's sub-header
     subHeader = () => {
         return (
             <>
@@ -65,18 +68,25 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             </>
         )
     }
+
     count=0;
+
     mapCampuses = () => {
         if (this.state.searchTerm.length < 1) {
             let campuses =  this.props.campuses.map((campus: any) => campus)
+            //returns sorted table row
             return sortCampusFunction(this.state.sortType, campuses).map((campus:any) => this.makeTable(campus)); 
         }
         if (filterCampusFunction(this.props.campuses, this.state.searchTerm).length === 0) {
             return <h4>No Campus Found!</h4>
         }
+        //filters campus
         let campuses =  filterCampusFunction(this.props.campuses, this.state.searchTerm).map((campus: any) => campus);
+        //returns sorted table row
         return sortCampusFunction(this.state.sortType, campuses).map((campus:any) => this.makeTable(campus));
     }
+
+    //takes a building and makes a table row
     makeTable = (campus: any) => {
         return (
             <tr key={this.count++}>
@@ -112,4 +122,3 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
             </Wrapper>
         )
     }
-}

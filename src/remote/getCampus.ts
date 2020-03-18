@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+//gets all campuses from api
 export const getCampuses = async () => {
     let buildingData = ""
     try {

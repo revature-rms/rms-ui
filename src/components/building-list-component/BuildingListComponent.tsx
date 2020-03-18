@@ -16,9 +16,9 @@ export class BuildingListComponent extends React.Component<any, any> {
 
     async componentDidMount() {
        await this.gatherData();
-       console.log(this.state.sortType);
-
     }
+
+     //makes a request to the api and gets all the data back
      gatherData = async () => {
         if (this.props.campuses === null) {
             await this.props.getAllCampuses();
@@ -28,15 +28,19 @@ export class BuildingListComponent extends React.Component<any, any> {
     mapBuildings = () => {
         if (this.state.searchTerm.length < 1) {
             let buildings = this.props.campuses[0].buildings.map((building: any) => building)
+            //returns sorted table row
             return sortBuildingFunction(this.state.sortType, buildings).map((building: any) =>  this.makeTable(building))
         }
         if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
+        //filters buildings
         let filteredBuildings = filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) =>  building);
+        //returns sorted table row
         return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));
     }
 
+    //changes search term state
     onSearchChange = (e: any) => {
         this.setState({
             ...this.state,
@@ -44,16 +48,15 @@ export class BuildingListComponent extends React.Component<any, any> {
         })
     }
 
-    componentDidUpdate(){
-        console.log(this.state.sortType);
-    }
-
+    //changes sort type state(sort type will be used in the sort function)
     sortChanger = (e:any) => {
         this.setState({
             ...this.state,
             sortType: e.target.value
         })
     }
+
+    //The table's sub-header
     subHeader = () => {
         return (
             <>
@@ -76,6 +79,8 @@ export class BuildingListComponent extends React.Component<any, any> {
             </>
         )
     }
+    
+    //takes a building and makes a table row
     makeTable = (building: any) => {
         return (
             <tr key={`${building.trainingLead.firstName}${this.count++}`}>
