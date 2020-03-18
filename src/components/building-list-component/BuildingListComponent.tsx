@@ -17,7 +17,7 @@ export class BuildingListComponent extends React.Component<any, any> {
     async componentDidMount() {
        await this.gatherData();
     }
-    
+
      //makes a request to the api and gets all the data back
      gatherData = async () => {
         if (this.props.campuses === null) {
@@ -34,7 +34,7 @@ export class BuildingListComponent extends React.Component<any, any> {
         if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
-        //filters table row
+        //filters buildings
         let filteredBuildings = filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) =>  building);
         //returns sorted table row
         return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));

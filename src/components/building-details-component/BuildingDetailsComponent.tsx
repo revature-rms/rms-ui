@@ -63,7 +63,7 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
         if (filterBuildingsFunction(this.state.campus, this.state.searchTerm).length === 0) {
             return <h4>No Building Found!</h4>
         }
-        //filters table row
+        //filters buildings
         let filteredBuildings = filterBuildingsFunction(this.state.campus, this.state.searchTerm).map((building: any) => building);
         //returns sorted table row
         return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) => this.makeTable(building));
