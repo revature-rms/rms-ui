@@ -1,4 +1,3 @@
-import { apiClient } from ".";
 import axios from "axios";
 
 export const testRoom = async () => {

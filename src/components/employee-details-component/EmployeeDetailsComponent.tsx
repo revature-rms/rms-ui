@@ -78,8 +78,6 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
         
     }
 
-
-
     render() {
         if (this.state.employee != null) {
             const employee = this.state.employee;

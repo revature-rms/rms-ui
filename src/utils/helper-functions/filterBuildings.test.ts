@@ -1,6 +1,6 @@
 import { filterBuildingsFunction } from '../../utils/helper-functions/filterBuildings';
 
-
+//mock building
 let buildings = {
     buildings: [
         {
