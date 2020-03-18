@@ -67,14 +67,3 @@ test('component did update',  () => {
     wrapper.instance().componentDidUpdate();
     expect(FakeFun).toHaveBeenCalled();
 });
-
-
-
-
-
-
-
-
-
-
-
