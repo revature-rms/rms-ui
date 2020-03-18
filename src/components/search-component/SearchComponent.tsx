@@ -1,6 +1,7 @@
 import React from 'react';
 import { filterFunction } from '../../utils/helper-functions/filterFunction';
 import { allData } from '../../remote/allData';
+import { Link } from "react-router-dom";
 
 export class SearchComponent extends React.Component<any, any> {
     resources: any;
@@ -43,19 +44,20 @@ export class SearchComponent extends React.Component<any, any> {
         if (resource["name"] === undefined) {
             // console.log("Employee")
             return <div className="res" key={`${resource["firstName"]}${resource["lastName"]}${resource["id"]}`}>
-                {resource["firstName"]} {resource["lastName"]}
+                <Link to={`/employee/${resource["firstName"]}${resource["lastName"]}${resource["id"]}`}> {resource["firstName"]} {resource["lastName"]}</Link>
             </div>
         }
-        else if (resource["firstName"] === undefined && resource["hrLead"] === undefined) {
-            // console.log("Building")
-            return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
-                {resource["name"]}
-            </div>
-        } 
+        // else if (resource["firstName"] === undefined && resource["hrLead"] === undefined) {
+        //     // console.log("Building")
+        //     return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
+        //     <Link to="/room">{resource["name"]}</Link>
+                
+        //     </div>
+        // } 
         else if(resource["amenities"] === undefined && resource["firstName"] === undefined){
             // console.log("campus");
             return <div className="res" key={`${resource["name"]}${resource["id"]}`} >
-                {resource["name"]}
+            <Link to={`/building/${resource["name"]}`}>{resource["name"]}</Link>
             </div>
         }
     }

@@ -1,12 +1,10 @@
-import { HomeComponent } from './HomeComponent'
+import {LoginComponent} from './LoginComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
 
-const setup = (props = {
-    getAllCampuses: () => { }
-}, state = 0) => {
-    const wrapper = shallow(<HomeComponent {...props} />)
+const setup = (props:any = {login: () => {return "test"}}, state = 0) => {
+    const wrapper:any = shallow(<LoginComponent {...props} />)
     if (state) wrapper.setState(state);
     return wrapper;
 }
@@ -18,11 +16,8 @@ test('renders without error', () => {
     expect(appComponent.length).toBe(1);
 });
 
-test('map data functionality, should  return undefined', () => {
+test('component did update',  () => {
     const wrapper:any = setup();
-    wrapper.setState({
-        currentUser: null
-    })
-    let test = wrapper.instance().mapData();
-    expect(test).toBeUndefined();
+     wrapper.instance().signUserIn()
 });
+

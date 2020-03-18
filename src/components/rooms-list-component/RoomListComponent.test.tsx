@@ -36,28 +36,28 @@ test('renders room without error', () => {
 });
 
 test('map rooms', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'mapRooms');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('map rooms', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('map amenities', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'mapAmenities');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
 test('Make lists', () => {
-    const wrapper = setup();
+    const wrapper:any = setup();
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeList');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();

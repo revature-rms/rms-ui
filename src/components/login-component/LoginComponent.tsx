@@ -34,7 +34,7 @@ export class LoginComponent extends React.Component<ILoginProps, any>{
 
     render() {
         return (
-            <Wrapper elements = 'REVATURE'>
+            <Wrapper data-test="main-content" elements = 'REVATURE'>
                 <Card className = 'full-card' style= {{textAlign: 'center'}}>
                 <h1>RESOURCE MANAGEMENT SYSTEM</h1>
                 <LoginFunction

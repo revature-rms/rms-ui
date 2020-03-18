@@ -2,7 +2,6 @@ import React from 'react';
 import {EmployeesComponent} from '../EmployeesComponent';
 import { shallow } from 'enzyme';
 import Wrapper from '../../../utils/div-wrapper/Wrapper';
-//import { updateId } from '../../../action-mappers/employees-action';
 
 /*
 WHAT WE EXPECT THIS COMPONENT TO DO: 
@@ -68,3 +67,49 @@ describe('EmployeesComponent', () => {
         
     })
 })
+
+
+let propsData = {
+    employees: {
+        Employee: [
+            {
+                firstName: '',
+                lastName: '',
+                email: '',
+                department: ''
+            },
+            {
+                firstName: '',
+                lastName: '',
+                email: '',
+                department: ''
+            },
+            {
+                firstName: '',
+                lastName: '',
+                email: '',
+                department: ''
+            }
+        ]
+    }
+};
+const setup = (props: any = propsData, state = 0) => {
+    const wrapper = shallow(<EmployeesComponent {...props} />)
+    if (state) wrapper.setState(state);
+    return wrapper;
+}
+
+test('Test make table function', () => {
+    const wrapper:any = setup();
+    const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
+    wrapper.instance().render();
+    expect(FakeFun).toHaveBeenCalled();
+});
+
+test('Test map employees function', () => {
+    const wrapper:any = setup();
+    const FakeFun = jest.spyOn(wrapper.instance(), 'mapEmployees');
+    wrapper.instance().render();
+    expect(FakeFun).toHaveBeenCalled();
+});
+

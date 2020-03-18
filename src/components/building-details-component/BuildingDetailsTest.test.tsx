@@ -1,11 +1,15 @@
-import { CampusComponent } from './CampusComponent'
+import { BuildingDetailsComponent } from './BuildingDetailsComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
 
-
 let propsData = {
-    campuses: [{
+    match: {
+        params: {
+            name: "test"
+        }
+    },
+    campus: [{
         name: "test",
         abbr: "test",
         shippingAddress: {
@@ -40,9 +44,10 @@ let propsData = {
             }
         ]
     }]
-};
-const setup = (props: any = propsData, state = 0) => {
-    const wrapper = shallow(<CampusComponent {...props} />)
+}
+
+const setup = (props: any = propsData, state = {visible: false}) => {
+    const wrapper = shallow(<BuildingDetailsComponent {...props} />)
     if (state) wrapper.setState(state);
     return wrapper;
 }
@@ -54,23 +59,69 @@ test('renders without error', () => {
     expect(appComponent.length).toBe(1);
 });
 
+test('component did mount',  () => {
+    const instance:any = setup().instance();
+      jest.spyOn(instance, 'gatherData');
+      instance.componentDidMount();
+      expect(instance.gatherData).toHaveBeenCalledTimes(1)
+});
+
+test('check return value of gather data',  async () => {
+    const instance:any = setup().instance();
+       let data = await instance.gatherData()
+      expect(data).toBeDefined();
+});
+
+test('component did update',  () => {
+    const wrapper:any = setup();
+    wrapper.setState({
+        campus: propsData["campus"][0]
+    })
+    const FakeFun = jest.spyOn(wrapper.instance(), 'setCampus');
+    wrapper.instance().componentDidUpdate();
+    expect(FakeFun).toHaveBeenCalled();
+});
+
 test('Test make table function',  () => {
     const wrapper:any = setup();
+    wrapper.setState({
+        campus: propsData["campus"][0]
+    })
     const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
+
+
 test('Test sub header',  () => {
     const wrapper:any = setup();
+    wrapper.setState({
+        campus: propsData["campus"][0]
+    })
     const FakeFun = jest.spyOn(wrapper.instance(), 'subHeader');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });
 
-test('Test map campuses function',  () => {
+test('Test map buildings function with search term of z',  () => {
     const wrapper:any = setup();
-    const FakeFun = jest.spyOn(wrapper.instance(), 'mapCampuses');
+    wrapper.setState({
+        campus: propsData["campus"][0],
+        searchTerm: "z"
+    })
+    const FakeFun = jest.spyOn(wrapper.instance(), 'mapBuildings');
+    wrapper.instance().render();
+    expect(FakeFun).toHaveBeenCalled();
+});
+
+test('Test map buildings function with search term of t',  () => {
+    const wrapper:any = setup();
+    wrapper.setState({
+        campus: propsData["campus"][0],
+        searchTerm: "t"
+    })
+    const FakeFun = jest.spyOn(wrapper.instance(), 'mapBuildings');
     wrapper.instance().render();
     expect(FakeFun).toHaveBeenCalled();
 });

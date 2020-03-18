@@ -87,7 +87,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
             console.log(employee);
 
             return (
-                <Wrapper title={employee.firstName + " " + employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
+                <Wrapper data-test="main-content" title={employee.firstName + " " + employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
                     <div className="full-card">
                         <h4>Employee Details</h4>
                         <b>ID:</b> {employee.id}<br />

@@ -6,7 +6,7 @@ import { FindByTestAttr } from './utils/helper-functions/testUtils';
 
 const setup = (props = {
   loggedIn: true
-}, state = 0) => {
+}, state = null) => {
   const wrapper = shallow(
     <App {...props} />
   )
@@ -20,7 +20,7 @@ test('renders main content without error', () => {
   expect(appComponent.length).toBe(1);
 });
 
-test('renders login content without error', () => {
+test('renders login content without error when user is not logged in', () => {
   const wrapper = (props={
     loggedIn: false
   }, state=null) => {

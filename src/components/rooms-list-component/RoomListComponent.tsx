@@ -142,8 +142,8 @@ export class RoomListComponent extends React.Component<IRoomListProps, IRoomList
                 </div>
                 <div className="half-card">
                     <b>Resource Created By:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceCreator.username : ''}<br />
-                    <b>Creation Date:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceCreationDateTime : ''}<br />
-                    <b>Last Modified:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.lastModifiedDateTime : ''}<br />
+                    <b>Creation Date:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceCreationDateTime.substring(0,10) : ''}<br />
+                    <b>Last Modified:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.lastModifiedDateTime.substring(0,10) : ''}<br />
                     <b>Modified By:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.lastModifier.username : ''}<br />
                     <b>Resource Owner:</b> {this.props.building.resourceMetadata ? this.props.building.resourceMetadata.resourceOwner.username : ''}<br />
                 </div>
