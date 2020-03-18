@@ -17,9 +17,11 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
             visible: false
         }
     }
+    //gets roon
     componentDidMount() {
         this.props.getTestRoom()
     }
+    //shows not implemented message
     notYet = () => {
         let tarItem = document.getElementById("edit");
         console.log(tarItem);
