@@ -94,22 +94,15 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
         )
     }
     render() {
-        // const selectDepartment = () => {
-        //     return (
-        //         <DepartmentDropdown change={this.changeDepartment} />
-        //     )
-        // }
 
         return (
 
             <Wrapper data-test="main-content" title="Employees" elements={this.subHeader()}>
                 <Card className="full-card">
-                    {/* <b>Selected department:</b> {this.state.department}<br /> */}
                     <div className="tblbox">
                         <div className="tblhdr">
                             Employees
                         </div>
-                        {/* <TableData employees={this.props.employees} title="Employees" selected={this.state.department} getId={this.updateId} /> */}
                         <table>
                             <tbody>
                                 <tr><td><b>Employee Id:</b></td><td><b>First Name:</b></td><td><b>Last Name :</b></td><td><b>Email:</b></td><td><b>Department:</b></td></tr>

@@ -113,7 +113,3 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
         )
     }
 }
-
-//ID	NAME	LOCATION	TRAINING MANAGER	STAGING MANAGER	HR LEAD
-
-//1	Revature at University of South Florida	3220 Banyan Circle, Tampa, Florida	Willow Jackson	Willow Jackson	Willow Jackson	3	1
