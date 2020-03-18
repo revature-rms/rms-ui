@@ -113,6 +113,7 @@ export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
 
             <Wrapper data-test="main-content" title="Employees" elements={this.subHeader()}>
                 <Card className="full-card">
+                  
                     <div className="tblbox">
                         <div className="tblhdr">
                             Employees

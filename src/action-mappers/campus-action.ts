@@ -7,7 +7,6 @@ export const campusTypes = {
 }
 
  export const getAllCampuses = () => async (dispatch: any) => {
-    // export const getAllcampus = async () => {
 
     getAllcampusAPI().then(res =>{
         console.log("response found");
@@ -37,6 +36,7 @@ export const campusTypes = {
         })
 }
 
+// updating campus reducers with campus id selected. 
 export const updateId =  (id:number) => async (dispatch: any) => {
     dispatch({
         type: campusTypes.SUCCESS_GETTING_CAMPUS_ID,

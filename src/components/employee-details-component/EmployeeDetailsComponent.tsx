@@ -42,7 +42,6 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                     updateInfo: ''
                 })
             })
-            console.log(this.state.employee);
         }
     }
 
@@ -82,9 +81,9 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
     render() {
         if (this.state.employee != null) {
             const employee = this.state.employee;
-            console.log(employee);
 
             return (
+                // content wrapped in imported wrapper function in order to enforce same styling logic for all components.
                 <Wrapper data-test="main-content" title={employee.firstName + " " + employee.lastName} elements={<Link to="/employees">&lt; Back</Link>}>
                     <div className="full-card">
                         <h4>Employee Details</h4>
@@ -96,7 +95,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                         <b>Department:</b>  {employee.department}
 
                         <br/>
-                        <EditEmpDetails 
+                        <EditEmpDetails  // this imports a modal that receive props needed to update the details of an employee selected.
                         fname = {this.state.fname}
                         lname = {this.state.lname}
                         email = {this.state.email}
@@ -118,7 +117,7 @@ export class EmployeeDetailsComponent extends React.Component<IEmployeeDetailsPr
                 </Wrapper>
             );
         } else {
-            return (
+            return ( // if no id selected, nothing is returned.
                 <Wrapper>
                     <h3>Select an employee to view the details. <Link to="/employees">Go back to employees table</Link> </h3>
                 </Wrapper>
