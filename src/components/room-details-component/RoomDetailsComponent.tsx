@@ -42,7 +42,7 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
     }
     render() {
         return (
-        <Wrapper data-test="main-content" title={this.props.room ? `Room ${this.props.room.roomNumber}` : "Room Number Here"} elements={<><Link to="/rooms"> Back </Link> {this.props.room?<a href={`/room-details/${this.props.room.id}`}>Room Overview</a>:""} {this.props.room?<span onClick={this.notYet}>Work Orders</span>:""}</>}>
+        <Wrapper data-test="main-content" title={this.props.room ? `Room ${this.props.room.roomNumber}` : "Room Number Here"} elements={<><Link to="/rooms"> Back </Link> {this.props.room?<a>Room Overview</a>:""} {this.props.room?<span onClick={this.notYet}>Work Orders</span>:""}</>}>
                 <div className="full-card">
                     <h4>Room {this.props.room ? this.props.room.roomNumber : "Not Found"}</h4>
                     <b>Max Occupancy:</b> {this.props.room ? this.props.room.maxOccupancy : "Occupancy Unknown"}<br />
