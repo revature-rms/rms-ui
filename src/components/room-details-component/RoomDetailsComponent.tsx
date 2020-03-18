@@ -53,7 +53,7 @@ export class RoomDetailsComponent extends React.Component<IRoomDetailsProps, IRo
                     <div className="tblbox">
                         <div className="tblhdr">Current Room Status</div>
                         <table><tr><td><b>Whiteboard:</b></td><td><b>Chairs:</b></td><td><b>Desks:</b></td><td><b>Verified:</b></td></tr>
-                            {this.props.room.currentStatus ? <tr><td>{this.props.room.currentStatus.whitebooardCleaned ? "Clean" : "Requires Cleaning"}</td><td>{this.props.room.currentStatus.chairsOrdered ? "Ordered" : "Require Ordering"}</td><td>{this.props.room.currentStatus.desksCleaned ? "Clean" : "Require Cleaning"}</td><td>{this.props.room.currentStatus.submittedDateTime.substring(0,10)}</td></tr> : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}</table>
+                            {this.props.room.currentStatus ? <tr><td>{this.props.room.currentStatus.whiteboardCleaned ? "Clean" : "Requires Cleaning"}</td><td>{this.props.room.currentStatus.chairsOrdered ? "Ordered" : "Require Ordering"}</td><td>{this.props.room.currentStatus.desksCleaned ? "Clean" : "Require Cleaning"}</td><td>{this.props.room.currentStatus.submittedDateTime.substring(0,10)}</td></tr> : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}</table>
                         <button data-test="button"className="btn right" onClick={this.notYet}>Update Room Status</button>
                     </div>
                     <br /><br />
