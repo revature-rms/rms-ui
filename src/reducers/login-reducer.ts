@@ -5,7 +5,7 @@ import { loginTypes } from "../action-mappers/login-action";
 
 const initialState: ILoginState = {
     currentUser: null,
-    loggedIn: true,
+    loggedIn: false,
     loginMessage: ''
 
 }
