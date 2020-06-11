@@ -1,114 +1,102 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
-import { filterBuildingsFunction } from '../../utils/helper-functions/filterBuildings';
-import { sortBuildingFunction } from '../../utils/helper-functions/sortBuilidingFunction';
-export class BuildingListComponent extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            searchTerm: "",
-            sortType: "ascending"
-        }
-    }
+import {getAllCampusAPI} from '../../remote/campus'
+import MaterialTable from 'material-table';
 
-    count = 0;
 
-    async componentDidMount() {
-       await this.gatherData();
-    }
-
-     //makes a request to the api and gets all the data back
-     gatherData = async () => {
-        if (this.props.campuses === null) {
-            await this.props.getAllCampuses();
-        }
-    }
-
-    mapBuildings = () => {
-        if (this.state.searchTerm.length < 1) {
-            let buildings = this.props.campuses[0].buildings.map((building: any) => building)
-            //returns sorted table row
-            return sortBuildingFunction(this.state.sortType, buildings).map((building: any) =>  this.makeTable(building))
-        }
-        if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
-            return <h4>No Building Found!</h4>
-        }
-        //filters buildings
-        let filteredBuildings = filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) =>  building);
-        //returns sorted table row
-        return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));
-    }
-
-    //changes search term state
-    onSearchChange = (e: any) => {
-        this.setState({
-            ...this.state,
-            searchTerm: e.target.value
-        })
-    }
-
-    //changes sort type state(sort type will be used in the sort function)
-    sortChanger = (e:any) => {
-        this.setState({
-            ...this.state,
-            sortType: e.target.value
-        })
-    }
-
-    //The table's sub-header
-    subHeader = () => {
-        return (
-            <>
-                {this.props.campuses[0].abbrName}
-                &nbsp;
-                <input
-                    data-test="search"
-                    type="text"
-                    placeholder="Type building name or Lead trainer"
-                    onChange={this.onSearchChange}
-                />
-                &nbsp;
-                Sort:
-                <select
-                onChange={this.sortChanger}
-                >
-                    <option value="ascending" selected>ascending</option>
-                    <option value="descending">descending</option>
-                </select>
-            </>
-        )
-    }
-    
-    //takes a building and makes a table row
-    makeTable = (building: any) => {
-        return (
-            <tr key={`${building.trainingLead.firstName}${this.count++}`}>
-                <td><Link to={`/rooms/${building.id}`}><span className="colour-me">{building.name}</span></Link></td>
-                <td>{building.physicalAddress.unit_street}. {building.physicalAddress.city}, {building.physicalAddress.state}</td>
-                <td>{building.trainingLead.firstName} {building.trainingLead.lastName}</td>
-            </tr>
-        )
-    }
-
-    render() {
-        return (
-            <>
-                <Wrapper data-test="main-content" title={this.props.campuses ? this.props.campuses[0].name : "Campus Name Here"} elements={this.props.campuses ? this.subHeader()
-                    : "Campus abbreviation here."}>
-                    <div className="full-card">
-                        <div className="tblbox">
-                            <div className="tblhdr">Buildings in {this.props.campuses ? this.props.campuses[0].abbrName : "Building"}</div>
-                            <table>
-                                <tbody>
-                                    <tr><td><b>Building Name:</b></td><td><b>Address:</b></td><td><b>Training Lead:</b></td></tr>
-                                    {this.props.campuses ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </Wrapper>
-            </>
-        )
-    }
+export interface IBuildingListProps {
+    authUser: any
 }
+
+function BuildingListComponent() {
+
+    //building array
+    const[buildings, setBuildings] = useState([])
+
+    //makes a request to the api and gets all campus data. Extracts building data to insert into local buildings state
+    useEffect(() => {
+        let campuses: Array<any> = [];
+        let tempBuildings: Array<any> = [];
+
+        const getCampuses = async() => {
+            //@ts-ignore
+            campuses = await getAllCampusAPI();
+        }
+
+        const getBuildings = async () => {
+            // await getCampuses();
+
+            campuses = [{id: 1,
+                name: "Campus A",
+                abbrName: "CA",
+                buildings: [{id: 1, 
+                            name: "Muma College of Business",
+                            physicalAddress: "456 N Main st",
+                            trainingLead: "Bob"
+                            },
+                            {id: 2, 
+                            name: "Benson Building",
+                            physicalAddress: "2626 W State st",
+                            trainingLead: "Bill"
+                            }]
+                        },
+                        {id: 2,
+                            name: "Campus B",
+                            abbrName: "CB",
+                            buildings: [{id: 3, 
+                                        name: "Eyering Science Center",
+                                        physicalAddress: "333 N 750 W",
+                                        trainingLead: "Suzy"
+                                        },
+                                        {id: 4, 
+                                        name: "Wilkinson Student Center",
+                                        physicalAddress: "100 W 600 N",
+                                        trainingLead: "Sean"
+                                        }]
+
+                        }]
+
+            console.log("campuses", campuses)
+            campuses.forEach(campus => {
+                //@ts-ignore
+                campus.buildings.forEach(building => {
+                    tempBuildings.push(building)
+                })
+            })
+            //@ts-ignore
+            setBuildings(tempBuildings)
+        }
+
+        getBuildings();
+
+        
+
+    }, []);
+    
+
+    return (
+        <>
+            <Wrapper data-test="main-content" title={"Campus Name Here"} elements={"Campus abbreviation here."}>
+                <div className="full-card">
+                    <div className="tblbox">
+                        < MaterialTable
+                            columns = {[
+                                { title: 'Id', field: 'id'},
+                                { title: 'Name', field: 'name' },
+                                { title: 'Address', field: 'physicalAddress'},
+                                { title: "Building Manager", field: "trainingLead"}                                
+                            ]}
+                            data = {buildings}
+                            title = "Buildings"
+                            
+                        />
+                    </div>
+                </div>
+            </Wrapper>
+        </>
+    )
+
+}
+
+export default BuildingListComponent

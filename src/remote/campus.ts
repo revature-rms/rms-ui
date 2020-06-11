@@ -1,7 +1,7 @@
 import {campusServiceApi} from '../utils/APIs/campusServiceApis'
 
 // function to get all campus from campus microservice. 
-export const getAllcampusAPI = () => {
+export const getAllCampusAPI = () => {
     return campusServiceApi.get("");
 }
 
