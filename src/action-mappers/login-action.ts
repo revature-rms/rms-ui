@@ -6,15 +6,15 @@ export const loginTypes = {
 }
 
 export const login = (username:string, password:string) => (dispatch:any) => {
-    let allUsers;
-    userLogin().then((users:any) => {
+    // let allUsers;
+    // userLogin().then((users:any) => {
         
-        allUsers = users.data;
-        let currentUser;
-        allUsers.forEach((user:any) => {
-            if(user.username === username && user.password === password){
-                currentUser = user;
-                console.log(currentUser);
+    //     allUsers = users.data;
+           let currentUser = true;
+    //     allUsers.forEach((user:any) => {
+    //         if(user.username === username && user.password === password){
+    //             currentUser = user;
+    //             console.log(currentUser);
                 
                 dispatch({
                     type: loginTypes.SUCCESSFULL_LOGIN,
@@ -22,23 +22,23 @@ export const login = (username:string, password:string) => (dispatch:any) => {
                         user: currentUser
                     }
                 })
-            } else {
-                dispatch ({
-                    type: loginTypes.FAILED_LOGIN,
-                    payload: {
-                        loginMessage: 'Username or password mismatch. Try again!'
-                    }
-                })
-            }
-        });
-    }).catch((e:any) => {
-        console.log(e);
-        dispatch({
-            type: loginTypes.FAILED_LOGIN,
-            payload: {
-                loginMessage: 'Sorry, failed to retrieve data. Try again later'
-            }
-        })
+    //         } else {
+    //             dispatch ({
+    //                 type: loginTypes.FAILED_LOGIN,
+    //                 payload: {
+    //                     loginMessage: 'Username or password mismatch. Try again!'
+    //                 }
+    //             })
+    //         }
+    //     });
+    // }).catch((e:any) => {
+    //     console.log(e);
+    //     dispatch({
+    //         type: loginTypes.FAILED_LOGIN,
+    //         payload: {
+    //             loginMessage: 'Sorry, failed to retrieve data. Try again later'
+    //         }
+    //     })
         
-    })
+    // })
 }

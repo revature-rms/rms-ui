@@ -1,7 +1,7 @@
-import NavbarComponent from './NavbarComponent'
+import NavbarComponent from '../NavbarComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 const setup = (props = {}, state = 0) => {
     const wrapper = shallow(<NavbarComponent {...props} />)
