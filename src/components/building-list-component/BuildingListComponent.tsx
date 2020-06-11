@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import {getAllCampusAPI} from '../../remote/campus'
+import MaterialTable from 'material-table';
 
 
 export interface IBuildingListProps {
-    
+    authUser: any
 }
 
 function BuildingListComponent() {
@@ -23,36 +24,78 @@ function BuildingListComponent() {
         }
 
         const getBuildings = async () => {
-            await getCampuses();
-            campuses.forEach(campus => tempBuildings.push(campus.buildings));
+            // await getCampuses();
+
+            campuses = [{id: 1,
+                name: "Campus A",
+                abbrName: "CA",
+                buildings: [{id: 1, 
+                            name: "Muma College of Business",
+                            physicalAddress: "456 N Main st",
+                            trainingLead: "Bob"
+                            },
+                            {id: 2, 
+                            name: "Benson Building",
+                            physicalAddress: "2626 W State st",
+                            trainingLead: "Bill"
+                            }]
+                        },
+                        {id: 2,
+                            name: "Campus B",
+                            abbrName: "CB",
+                            buildings: [{id: 3, 
+                                        name: "Eyering Science Center",
+                                        physicalAddress: "333 N 750 W",
+                                        trainingLead: "Suzy"
+                                        },
+                                        {id: 4, 
+                                        name: "Wilkinson Student Center",
+                                        physicalAddress: "100 W 600 N",
+                                        trainingLead: "Sean"
+                                        }]
+
+                        }]
+
+            console.log("campuses", campuses)
+            campuses.forEach(campus => {
+                //@ts-ignore
+                campus.buildings.forEach(building => {
+                    tempBuildings.push(building)
+                })
+            })
             //@ts-ignore
             setBuildings(tempBuildings)
         }
 
         getBuildings();
+
         
 
-    }, [buildings]);
+    }, []);
     
 
-    render() {
-        return (
-            <>
-                <Wrapper data-test="main-content" title={this.props.campuses ? this.props.campuses[0].name : "Campus Name Here"} elements={this.props.campuses ? this.subHeader()
-                    : "Campus abbreviation here."}>
-                    <div className="full-card">
-                        <div className="tblbox">
-                            <div className="tblhdr">Buildings in {this.props.campuses ? this.props.campuses[0].abbrName : "Building"}</div>
-                            <table>
-                                <tbody>
-                                    <tr><td><b>Building Name:</b></td><td><b>Address:</b></td><td><b>Training Lead:</b></td></tr>
-                                    {this.props.campuses ? this.mapBuildings() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
-                                </tbody>
-                            </table>
-                        </div>
+    return (
+        <>
+            <Wrapper data-test="main-content" title={"Campus Name Here"} elements={"Campus abbreviation here."}>
+                <div className="full-card">
+                    <div className="tblbox">
+                        < MaterialTable
+                            columns = {[
+                                { title: 'Id', field: 'id'},
+                                { title: 'Name', field: 'name' },
+                                { title: 'Address', field: 'physicalAddress'},
+                                { title: "Building Manager", field: "trainingLead"}                                
+                            ]}
+                            data = {buildings}
+                            title = "Buildings"
+                            
+                        />
                     </div>
-                </Wrapper>
-            </>
-        )
-    }
+                </div>
+            </Wrapper>
+        </>
+    )
+
 }
+
+export default BuildingListComponent
