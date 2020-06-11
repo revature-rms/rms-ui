@@ -1,95 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
-import { filterBuildingsFunction } from '../../utils/helper-functions/filterBuildings';
-import { sortBuildingFunction } from '../../utils/helper-functions/sortBuilidingFunction';
-export class BuildingListComponent extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            searchTerm: "",
-            sortType: "ascending"
-        }
-    }
+import {getAllCampusAPI} from '../../remote/campus'
 
-    count = 0;
 
-    async componentDidMount() {
-       await this.gatherData();
-    }
-
-     //makes a request to the api and gets all the data back
-     gatherData = async () => {
-        if (this.props.campuses === null) {
-            await this.props.getAllCampuses();
-        }
-    }
-
-    mapBuildings = () => {
-        if (this.state.searchTerm.length < 1) {
-            let buildings = this.props.campuses[0].buildings.map((building: any) => building)
-            //returns sorted table row
-            return sortBuildingFunction(this.state.sortType, buildings).map((building: any) =>  this.makeTable(building))
-        }
-        if (filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).length === 0) {
-            return <h4>No Building Found!</h4>
-        }
-        //filters buildings
-        let filteredBuildings = filterBuildingsFunction(this.props.campuses[0], this.state.searchTerm).map((building: any) =>  building);
-        //returns sorted table row
-        return sortBuildingFunction(this.state.sortType, filteredBuildings).map((building: any) =>  this.makeTable(building));
-    }
-
-    //changes search term state
-    onSearchChange = (e: any) => {
-        this.setState({
-            ...this.state,
-            searchTerm: e.target.value
-        })
-    }
-
-    //changes sort type state(sort type will be used in the sort function)
-    sortChanger = (e:any) => {
-        this.setState({
-            ...this.state,
-            sortType: e.target.value
-        })
-    }
-
-    //The table's sub-header
-    subHeader = () => {
-        return (
-            <>
-                {this.props.campuses[0].abbrName}
-                &nbsp;
-                <input
-                    data-test="search"
-                    type="text"
-                    placeholder="Type building name or Lead trainer"
-                    onChange={this.onSearchChange}
-                />
-                &nbsp;
-                Sort:
-                <select
-                onChange={this.sortChanger}
-                >
-                    <option value="ascending" selected>ascending</option>
-                    <option value="descending">descending</option>
-                </select>
-            </>
-        )
-    }
+export interface IBuildingListProps {
     
-    //takes a building and makes a table row
-    makeTable = (building: any) => {
-        return (
-            <tr key={`${building.trainingLead.firstName}${this.count++}`}>
-                <td><Link to={`/rooms/${building.id}`}><span className="colour-me">{building.name}</span></Link></td>
-                <td>{building.physicalAddress.unit_street}. {building.physicalAddress.city}, {building.physicalAddress.state}</td>
-                <td>{building.trainingLead.firstName} {building.trainingLead.lastName}</td>
-            </tr>
-        )
-    }
+}
+
+function BuildingListComponent() {
+
+    //building array
+    const[buildings, setBuildings] = useState([])
+
+    //makes a request to the api and gets all campus data. Extracts building data to insert into local buildings state
+    useEffect(() => {
+        let campuses: Array<any> = [];
+        let tempBuildings: Array<any> = [];
+
+        const getCampuses = async() => {
+            campuses = await getAllCampusAPI();
+        }
+
+        const getBuildings = async () => {
+            await getCampuses();
+            campuses.forEach(campus => tempBuildings.push(campus.buildings));
+            //@ts-ignore
+            setBuildings(tempBuildings)
+        }
+
+        getBuildings();
+        
+
+    }, [buildings]);
+    
 
     render() {
         return (
