@@ -10,7 +10,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
     userLogin().then((users:any) => {
         
         allUsers = users.data;
-           let currentUser = true;
+        let currentUser;
         allUsers.forEach((user:any) => {
             if(user.username === username && user.password === password){
                 currentUser = user;
