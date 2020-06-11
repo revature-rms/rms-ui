@@ -56,7 +56,9 @@ function BuildingDetailsComponent(){
                         abbrName: abbrNameState,
                         physicalAddress: addressState,
                         trainingLead: bManagerState
-                     })
+                     })       
+
+            setEdditing(false);
         }
 
         const cancel = () => {
@@ -67,12 +69,16 @@ function BuildingDetailsComponent(){
             switch(event.target.id){
                 case "name":
                     setName(event.target.value);
+                    break;
                 case "abbrName":
                     setAbbrName(event.target.value);
+                    break;
                 case "address":
                     setAddress(event.target.value);
+                    break;
                 case "bManager":
                     setBManager(event.target.value);
+                    break;
             }
         }
         
@@ -87,22 +93,33 @@ function BuildingDetailsComponent(){
                             <div id="building-form">
                                 <FormControl>
                                     <InputLabel>Building Name: </InputLabel>
-                                    <Input id="name" value={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />
+                                    {editting?
+                                    <Input id="name" defaultValue={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="name" value={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                 </FormControl>
                                 <br/>
                                 <FormControl>
                                     <InputLabel>Abbreviated Name: </InputLabel>
-                                    <Input id="abbrName" value={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    {editting?
+                                    <Input id="abbrName" value={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="abbrName" defaultValue={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    }
                                 </FormControl>
                                 <br/>
                                 <FormControl>
                                     <InputLabel>Address: </InputLabel>
-                                    <Input id="address" value={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    {editting?
+                                    <Input id="address" value={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="address" defaultValue={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    }          
                                 </FormControl>
                                 <br/>
                                 <FormControl>
                                     <InputLabel>Building Manager: </InputLabel>
-                                    <Input id="bManager" value={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    {editting?
+                                    <Input id="bManager" value={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="bManager" defaultValue={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    }
                                 </FormControl>
                             </div>
                             <br/>
