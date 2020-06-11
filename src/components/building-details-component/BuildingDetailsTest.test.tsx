@@ -1,4 +1,4 @@
-import { BuildingDetailsComponent } from './BuildingDetailsComponent'
+import BuildingDetailsComponent from './BuildingDetailsComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
