@@ -4,6 +4,7 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 import { userInfo } from 'os';
 import { userState } from '../../reducers/login-reducer';
+import MaterialTable from 'material-table';
 
 export interface IBuildingDetailsProps {
     thisBuilding: any
@@ -16,13 +17,13 @@ function BuildingDetailsComponent(){
                             abbrName: "MCB",
                             physicalAddress: "456 N Main st",
                             trainingLead: "Bob",
-                            ameneties: [{ type: "coffee",
+                            amenities: [{ type: "coffee",
                                         status: "low"
                                         },
                                         { type: "whiteboard",
                                         status: "clean"
                                         }],
-                            room: [{ roomNumber: "2035",
+                            rooms: [{ roomNumber: "2035",
                                     maxOccupancy: 30,
                                     isActive: false
                                     },
@@ -139,15 +140,42 @@ function BuildingDetailsComponent(){
                         </Grid>
 
                         <Grid item xs={8}>
+                            <Card className="full-card">
+                                < MaterialTable
 
+                                    columns = {[
+                                        { title: 'Room Number', field: 'roomNumber'},
+                                        { title: 'Max Occupancy', field: 'maxOccupancy' },
+                                        { title: 'Active', field: 'isActive'} 
+                                        
+
+                                    ]}
+                                    data = {mockBuilding.rooms}
+                                    title = "Rooms"
+                                    
+                                />
+                            </Card>
                         </Grid>
 
                         <Grid item xs={4}>
-
+                            <Card className="full-card">
+                                < MaterialTable
+                                
+                                    columns = {[
+                                        { title: 'Type', field: 'type'},
+                                        { title: 'Status', field: 'status' },                           
+                                    ]}
+                                    data = {mockBuilding.amenities}
+                                    title = "Amenities"
+                                    
+                                />
+                            </Card>
                         </Grid>
 
                         <Grid item xs={12}>
-                            
+                            <Card className="full-card">
+                                
+                            </Card>  
                         </Grid>
 
                     </Grid>
