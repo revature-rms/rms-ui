@@ -1,7 +1,7 @@
-import { SearchComponent } from './SearchComponent';
+import { SearchComponent } from '../SearchComponent';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 const setup:any = (props = {}, state = 0) => {
     const wrapper = shallow(<SearchComponent {...props} />)
