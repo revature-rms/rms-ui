@@ -21,7 +21,6 @@ class AppComponent extends React.Component<any, any> {
   
   // this check if a user is logged in
   // const login = useSelector((state: IState) => state.userState.loggedIn)
-
   // if loggen, we return most details for the application
   render(){
   // if (this.props.loggedIn) {

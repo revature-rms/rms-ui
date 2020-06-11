@@ -1,7 +1,7 @@
-import { CampusComponent } from './CampusComponent'
+import { CampusComponent } from '../CampusComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 
 let propsData = {

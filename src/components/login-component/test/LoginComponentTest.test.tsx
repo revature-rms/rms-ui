@@ -1,7 +1,7 @@
-import {LoginComponent} from './LoginComponent'
+import {LoginComponent} from '../LoginComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 const setup = (props:any = {login: () => {return "test"}}, state = 0) => {
     const wrapper:any = shallow(<LoginComponent {...props} />)
