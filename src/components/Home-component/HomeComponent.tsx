@@ -1,42 +1,37 @@
 import React from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
+import { Link } from "react-router-dom";
+
+export interface IHomeProps {
+    //Change any to appUser model later
+    appUser: any;
+}
+function HomeComponent(){
 
 
-export class HomeComponent extends React.Component<any, any>{
-    constructor(props: any) {
-        super(props)
-        this.state = {
-            currentUser: "",
-            building: "",
-            update: false
-        }
-    }
+    // componentDidMount() {
+    //     this.props.getAllCampuses();
+    //     console.log(this.props.currentUser);
 
-    propsUpdated: boolean = false;
-
-    componentDidMount() {
-        this.props.getAllCampuses();
-        console.log(this.props.currentUser);
-
-    }
-    componentDidUpdate() {
-        if (this.props.campuses && this.propsUpdated === false) {
-            if (this.props.currentUser.role === 'admin') {
-                this.setState({
-                    ...this.state,
-                    currentUser: this.props.campuses
-                });
-            }
-            else {
-                    this.setState({
-                        ...this.state,
-                        currentUser: this.props.campuses[0]
-                    });
-            }
-            this.propsUpdated = true;
-        }
-        console.log(this.state.currentUser);
-    }
+    // }
+    // componentDidUpdate() {
+    //     if (this.props.campuses && this.propsUpdated === false) {
+    //         if (this.props.currentUser.role === 'admin') {
+    //             this.setState({
+    //                 ...this.state,
+    //                 currentUser: this.props.campuses
+    //             });
+    //         }
+    //         else {
+    //                 this.setState({
+    //                     ...this.state,
+    //                     currentUser: this.props.campuses[0]
+    //                 });
+    //         }
+    //         this.propsUpdated = true;
+    //     }
+    //     console.log(this.state.currentUser);
+    // }
 
     mapData = () => {
         if (this.state.currentUser !== null) {
@@ -76,7 +71,11 @@ export class HomeComponent extends React.Component<any, any>{
                         <div className="tblhdr">{(this.state.currentUser) ? this.props.currentUser.username + '\'s resources' : " "}</div>
                         <table>
                             <tbody>
-                                <tr><td><b>Campus Name:</b></td><td><b>Training Manager:</b></td><td><b>Number of Buildings:</b></td></tr>
+                                <tr>
+                                    <td><b>Campus Name:</b></td>
+                                    <td><b>Training Manager:</b></td>
+                                    <td><b>Number of Buildings:</b></td>
+                                </tr>
                                 {this.state.currentUser ? this.mapData() : <tr><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
                             </tbody>
                         </table>
