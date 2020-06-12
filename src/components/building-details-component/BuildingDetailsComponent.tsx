@@ -90,6 +90,11 @@ function BuildingDetailsComponent(){
                 <Wrapper data-test="main-content" title={"Campus Name Here"} elements={"Campus abbreviation here."}>
                     <Grid container>
                         <Grid item xs={12}>
+                            {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
+                             of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
+                                - need to persist data upon save
+                                - need to save editting authUser for metadata
+                             */}
                             <Card className="full-card">
                             <div id="building-form">
                                 <FormControl>
@@ -140,6 +145,7 @@ function BuildingDetailsComponent(){
                         </Grid>
 
                         <Grid item xs={8}>
+                            {/*Material table for room data, room number should be a clickable link to take to room details page */}
                             <Card className="full-card">
                                 < MaterialTable
 
@@ -158,6 +164,7 @@ function BuildingDetailsComponent(){
                         </Grid>
 
                         <Grid item xs={4}>
+                            {/*Material table for amenitites data, status should be edittable with a drop down*/}
                             <Card className="full-card">
                                 < MaterialTable
                                 
@@ -173,6 +180,7 @@ function BuildingDetailsComponent(){
                         </Grid>
 
                         <Grid item xs={12}>
+                            {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
                             <Card className="full-card">
                                 
                             </Card>  
