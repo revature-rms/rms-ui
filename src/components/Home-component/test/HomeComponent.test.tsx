@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/components/Home-component/HomeComponent.test.tsx
-import { HomeComponent } from  './HomeComponent'
-=======
 import { HomeComponent } from '../HomeComponent';
->>>>>>> 76a33b65efa83749da27fecc48ea48ac24d8ed1d:src/components/Home-component/test/HomeComponent.test.tsx
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
