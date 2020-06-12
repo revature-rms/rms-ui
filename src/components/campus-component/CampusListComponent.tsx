@@ -80,11 +80,8 @@ function CampusListComponent() {
 
     return (
         <Wrapper data-test="main-content" title="Campuses">
-            <Card className="full-card">
-
-                <br /> <br />
-                <div className="full-card">
-                    <div className="tblbox">
+            <Card className="">
+                    <div className="table-wrapper">
                         < MaterialTable
                             columns={[
                                 // link to buildings page of each campus
@@ -99,7 +96,6 @@ function CampusListComponent() {
                             title="Campuses"
                         />
                     </div>
-                </div>
                 <br />
             </Card>
         </Wrapper>

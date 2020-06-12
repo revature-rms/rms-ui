@@ -1,0 +1,13 @@
+@import "./main.scss";
+.navbar-top {
+    width: 100% !important;
+    height: fit-content(0px) !important;
+    background: rgb(255, 0, 0) !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    border-bottom: 10px solid !important;
+    border-color: var(--acc1) !important;
+    text-transform: uppercase !important;
+    box-shadow: 2px 2px 5px var(--dkgry) !important;
+}

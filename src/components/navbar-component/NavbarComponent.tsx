@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { SearchComponent } from '../search-component/SearchComponent';
 import { logout } from '../../utils/LogoutFunction';
 
+import "../../styles/campus.scss";
 
 export default function NavbarComponent() {
 
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
-            <div data-test="navbar-top"className="top-bar"><Link to="/"><span className="logo"></span></Link>
+            <div data-test="navbar-top" className="navbar-top">
+                <Link to="/"><span className="logo"></span></Link>
                 <h3>Resource Management System</h3>
                 <Link onClick = {logout} style = {{float:"right", paddingTop:"40px", paddingRight: "30px"}} to=''>Logout</Link>
                 <SearchComponent />
