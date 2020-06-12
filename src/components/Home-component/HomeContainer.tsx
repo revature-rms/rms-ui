@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import {IState} from "../../reducers";
 import {HomeComponent} from "./HomeComponent";
 import {getAllCampuses} from "../../action-mappers/campus-action";
+import { AppUser } from "../../dtos/appUser";
 
 const mapStateToProps = (state:IState) => {
     return {
@@ -9,7 +10,7 @@ const mapStateToProps = (state:IState) => {
         // campuses: state.campusState.campuses,
         // campusMessage: state.campusState.campusMessage,
         // id: state.campusState.id,
-        currentUser: state.userState.currentUser
+        authUser: state.userState.currentUser
     }
 }
 
