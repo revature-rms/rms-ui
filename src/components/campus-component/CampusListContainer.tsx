@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
-import CampusComponent from "./CampusComponent";
+import CampusListComponent from "./CampusListComponent";
 import {getAllCampuses} from "../../action-mappers/campus-action";
 import {updateId} from "../../action-mappers/campus-action"
 
@@ -21,4 +21,4 @@ const mapDispatchToProps = {
 }
 
 // connecting the Campus component with redux info
-export default connect(mapStateToProps,mapDispatchToProps)(CampusComponent)
+export default connect(mapStateToProps,mapDispatchToProps)(CampusListComponent)

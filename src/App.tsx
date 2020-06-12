@@ -30,7 +30,7 @@ class AppComponent extends React.Component<any, any> {
           <NavbarComponent />
           <Switch>
             <Route path='/login' component={LoginComponent} />
-            <Route path='/buildings' component={BuildingListComponent} />
+            <Route path='/campus' component={BuildingListComponent} />
             <Route path='/building/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
