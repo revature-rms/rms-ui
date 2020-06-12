@@ -5,9 +5,9 @@ import MaterialTable from 'material-table';
 import {getAllcampusAPI} from '../../remote/campus'
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
+import { roomList } from '../../remote/room-list-search';
 
 export interface IHomeProps {
-    //Change any to appUser model later
     authUser: AppUser;
 }
 
@@ -20,67 +20,42 @@ export interface IHomeProps {
  */
 export function HomeComponent(props: IHomeProps) {
 
-    const [campus, setCampus] = useState ([])
+    const [campus, setCampus] = useState([]);
+    const [associates, setAssociates] = useState([]);
+    const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        getBuildings();
+        if (props.authUser.role == "Admin") getBuildings();
+        if (props.authUser.role == "Trainer") getAssociates();
+        if (props.authUser.role == "Building Manager") getRooms();
     }, []);
     
     const getBuildings = async () => {
         // await getCampuses();
-        let campuses: Array<any> = [];
+        let campuses;
         // mock data
-        campuses = [
-            {
-                id: 1,
-                name: "Campus A",
-                abbrName: "CA",
-                trainer: "Trainer1",
-                buildings: [
-                    {
-                        id: 1, 
-                        name: "Muma College of Business",
-                        physicalAddress: "456 N Main st",
-                        trainingLead: "Bob"
-                    },
-                    {
-                        id: 2, 
-                        name: "Benson Building",
-                        physicalAddress: "2626 W State st",
-                        trainingLead: "Bill"
-                    },
-                    {
-                        id: 3, 
-                        name: "Spaghetti Building",
-                        physicalAddress: "2626 W State st",
-                        trainingLead: "Bill"
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: "Campus B",
-                abbrName: "CB",
-                trainer: "Trainer2",
-                buildings: [
-                    {
-                        id: 3, 
-                        name: "Eyering Science Center",
-                        physicalAddress: "333 N 750 W",
-                        trainingLead: "Suzy"
-                    },
-                    {
-                        id: 4, 
-                        name: "Wilkinson Student Center",
-                        physicalAddress: "100 W 600 N",
-                        trainingLead: "Sean"
-                    }]
-
-            }]
+        campuses = (await getAllcampusAPI()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
         setCampus(campuses)
+    }
+
+    const getRooms = async () => {
+
+        let rooms = await roomList();
+        setRooms(rooms)
+    }
+
+    const getAssociates = () => {
+        let associates = [
+                {name: 'a'},
+                {name: 'b'},
+                {name: 'c'}
+            ]
+        console.log(associates)
+        //@ts-ignore
+        setAssociates(associates);
     }
 
     //Home page rendering for an admin user.
@@ -93,7 +68,7 @@ export function HomeComponent(props: IHomeProps) {
                         < MaterialTable
                             columns = {[
                                 { title: 'Campus Name', field: 'name'},
-                                { title: 'Training Manager', field: 'trainer' },
+                                { title: 'Training Manager', field: 'trainingManagerId' },
                                 { title: 'Number of Buildings', field: 'buildings.length'}
                             ]}
                             data = {campus}
@@ -103,11 +78,43 @@ export function HomeComponent(props: IHomeProps) {
                     </div>
                 </div>
             </Wrapper>
-            : props.authUser?.role == 'Trainer' ? <></>
-            : props.authUser?.role == 'Building Manager' ? <></>
+            : props.authUser?.role == 'Trainer' ? 
+            <Wrapper data-test="main-content" title={"Batch Name"} elements={"Room Number"}>
+                <div className="full-card">
+                    <div className="tblbox">
+                        < MaterialTable
+                            columns = {[
+                                { title: 'Associate Name', field: 'name'}
+                            ]}
+                            data = {associates}
+                            title = "Associates"
+
+                        />
+                    </div>
+                </div>
+            </Wrapper>
+            : props.authUser?.role == 'Building Manager' ? 
+            <Wrapper data-test="main-content" title={"Building Name"} elements={"Building ID"}>
+                <div className="full-card">
+                    <div className="tblbox">
+                        < MaterialTable
+                            columns = {[
+                                { title: 'Room Number', field: 'roomNumber' },
+                                { title: 'Room Occupancy', field: 'maxOccupancy' }
+                            ]}
+                            data = {rooms}
+                            title = "Rooms"
+
+                        />
+                    </div>
+                </div>
+            </Wrapper>
             : props.authUser?.role == 'Training Site Manager' ? <></> 
             : <></>
             }
         </>
     )
 }
+//Trainer --> room, batch
+//Site Manager --> Campus, building
+//Building Manager --> building, room 
