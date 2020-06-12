@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
 import { Employee } from "../../dtos/employee"
 
@@ -19,10 +19,12 @@ function CampusListComponent() {
 
     //campuses array
     //@ts-ignore
-    const [campuses, setCampuses] = useState(null as Campus[])
+    const [campusList, setCampusList] = useState(null as Campus[])
+
+    const history = useHistory();
 
     useEffect(() => {
-        let campusesList: Array<Campus> = [];
+        let campuses: Array<Campus> = [];
 
         const getCampuses = async () => {
             //campusesList = await getAllCampusAPI();
@@ -35,7 +37,6 @@ function CampusListComponent() {
                 "test dept",
                 //@ts-ignore
                 null as ResourceMetadata
-
             )
             let mockCampuses = [
                 new Campus(
@@ -68,9 +69,9 @@ function CampusListComponent() {
                 )
 
             ]
-            campusesList = mockCampuses;
+            campuses = mockCampuses;
             //@ts-ignore
-            setCampuses(campusesList)
+            setCampusList(campuses)
         }
 
         getCampuses();
@@ -86,12 +87,15 @@ function CampusListComponent() {
                     <div className="tblbox">
                         < MaterialTable
                             columns={[
+                                // link to buildings page of each campus
                                 { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
                                 { title: 'Training Manager', field: 'trainingManager.firstName' },
                                 { title: "Staging Manager", field: "stagingManager.firstName" },
                                 { title: "HR Lead", field: "hrLead.firstName" }
                             ]}
-                            data={campuses}
+                            //@ts-ignore
+                            onRowClick={(event, rowData) => history.push('/campus/' + rowData.id)}
+                            data={campusList}
                             title="Campuses"
                         />
                     </div>
