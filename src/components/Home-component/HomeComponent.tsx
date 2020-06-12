@@ -3,10 +3,12 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import MaterialTable from 'material-table';
 import {getAllcampusAPI} from '../../remote/campus'
+import { AppUser } from '../../dtos/appUser';
+import { prependOnceListener } from 'process';
 
 export interface IHomeProps {
     //Change any to appUser model later
-    currentUser: any;
+    authUser: AppUser;
 }
 
 /**
@@ -16,7 +18,7 @@ export interface IHomeProps {
  * TODO: currently, this component only renders for an admin. Conditional rendering will need
  *       to be added as well as the actual rendering for those additional roles.
  */
-export function HomeComponent(){
+export function HomeComponent(props: IHomeProps) {
 
     const [campus, setCampus] = useState ([])
 
@@ -27,6 +29,7 @@ export function HomeComponent(){
     const getBuildings = async () => {
         // await getCampuses();
         let campuses: Array<any> = [];
+        // mock data
         campuses = [
             {
                 id: 1,
@@ -83,7 +86,7 @@ export function HomeComponent(){
     //Home page rendering for an admin user.
     return (
         <>
-            {}
+            {props.authUser?.role == 'Admin' ? 
             <Wrapper data-test="main-content" title={"Current User"} elements={"Campus abbreviation here."}>
                 <div className="full-card">
                     <div className="tblbox">
@@ -100,6 +103,11 @@ export function HomeComponent(){
                     </div>
                 </div>
             </Wrapper>
+            : props.authUser?.role == 'Trainer' ? <></>
+            : props.authUser?.role == 'Building Manager' ? <></>
+            : props.authUser?.role == 'Training Site Manager' ? <></> 
+            : <></>
+            }
         </>
     )
 }
