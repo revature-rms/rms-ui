@@ -17,7 +17,7 @@ export const campusTypes = {
                     campus: res.data
                 }
             })
-        }else {
+        } else {
             dispatch({
                 type: campusTypes.FAIL_GETTING_CAMPUS,
                 payload: {
