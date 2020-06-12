@@ -90,11 +90,11 @@ export class CampusComponent extends React.Component<ICampusProps, any> {
     makeTable = (campus: any) => {
         return (
             <tr key={this.count++}>
-                <td><Link to={`/building/${campus["name"]}`}><span id={campus.id} onClick={this.props.campuses.id}>{campus.name}</span></Link></td>
-                <td>{campus.shippingAddress.unit_street}. {campus.shippingAddress.city}, {campus.shippingAddress.state}</td>
-                <td>{campus.trainingManager.firstName} {campus.trainingManager.lastName}</td>
-                <td>{campus.stagingManager.firstName} {campus.stagingManager.lastName}</td>
-                <td>{campus.hrLead.firstName} {campus.hrLead.lastName}</td>
+                <td><Link to={`/building/${campus["name"]}`}><span id={campus.id} onClick={this.props.campuses?.id}>{campus.name}</span></Link></td>
+                <td>{campus.shippingAddress?.unit_street}. {campus.shippingAddress?.city}, {campus.shippingAddress?.state}</td>
+                <td>{campus.trainingManager?.firstName} {campus.trainingManager?.lastName}</td>
+                <td>{campus.stagingManager?.firstName} {campus.stagingManager?.lastName}</td>
+                <td>{campus.hrLead?.firstName} {campus.hrLead?.lastName}</td>
             </tr>
         )
     }
