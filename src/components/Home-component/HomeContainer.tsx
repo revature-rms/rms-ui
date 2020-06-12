@@ -6,9 +6,9 @@ import {getAllCampuses} from "../../action-mappers/campus-action";
 const mapStateToProps = (state:IState) => {
     return {
         //states needed for the Campus component
-        campuses: state.campusState.campuses,
-        campusMessage: state.campusState.campusMessage,
-        id: state.campusState.id,
+        // campuses: state.campusState.campuses,
+        // campusMessage: state.campusState.campusMessage,
+        // id: state.campusState.id,
         currentUser: state.userState.currentUser
     }
 }
