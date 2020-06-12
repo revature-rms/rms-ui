@@ -1,3 +1,6 @@
+/**Action to change the state of campuses to all of the known campuses*/
+//Going to need a method to get only specific campuses when neccessary
+//Not sure if update method at the bottom is neccessary when useEffct/useState should run getAll again and display all of the new data.
 import { getAllcampusAPI } from '../remote/campus';
 
 export const campusTypes = {

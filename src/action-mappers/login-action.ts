@@ -1,3 +1,4 @@
+/**Action to change the state of the current logged in user*/
 import { userLogin } from "../remote/login";
 
 export const loginTypes = {
