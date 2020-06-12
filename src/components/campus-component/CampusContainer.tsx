@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
-import {CampusComponent} from "./CampusComponent";
+import CampusComponent from "./CampusComponent";
 import {getAllCampuses} from "../../action-mappers/campus-action";
 import {updateId} from "../../action-mappers/campus-action"
 
