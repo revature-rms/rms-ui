@@ -31,14 +31,14 @@ class AppComponent extends React.Component<any, any> {
           <NavbarComponent />
           <Switch>
             <Route path='/login' component={LoginComponent} />
-            <Route exact path='/buildings' component={BuildingListComponent} />
-            <Route path='/building/1' component={BuildingDetailsComponent} />
+            <Route exact path='/campuses/:id' component={BuildingListComponent} />
+            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
             <Route path='/employee/:id' component={EmployeeGlobalComponent} />
             <Route path='/campuses' component={CampusComponent} />
-            <Route path='/room-details' component={RoomDetailsComponent} />
-            <Route path='/rooms' component={RoomListComponent} />
+            <Route path='/rooms/:id' component={RoomDetailsComponent} />
+            <Route exact path='/rooms' component={RoomListComponent} />
             <Route path='/' component={HomeComponent} />
           </Switch>
         </Router>

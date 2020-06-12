@@ -12,7 +12,8 @@ export interface IBuildingListProps {
 function BuildingListComponent() {
 
     //building array
-    const[buildings, setBuildings] = useState([])
+    const[buildings, setBuildings] = useState([]);
+    const[campus, setCampus] = useState(null);
 
     //makes a request to the api and gets all campus data. Extracts building data to insert into local buildings state
     useEffect(() => {
@@ -42,48 +43,60 @@ function BuildingListComponent() {
                             }]
                         },
                         {id: 2,
-                            name: "Campus B",
-                            abbrName: "CB",
-                            buildings: [{id: 3, 
-                                        name: "Eyering Science Center",
-                                        physicalAddress: "333 N 750 W",
-                                        trainingLead: "Suzy"
-                                        },
-                                        {id: 4, 
-                                        name: "Wilkinson Student Center",
-                                        physicalAddress: "100 W 600 N",
-                                        trainingLead: "Sean"
-                                        }]
+                name: "Campus B",
+                abbrName: "CB",
+                buildings: [{id: 3, 
+                            name: "Eyering Science Center",
+                            physicalAddress: "333 N 750 W",
+                            trainingLead: "Suzy"
+                            },
+                            {id: 4, 
+                            name: "Wilkinson Student Center",
+                            physicalAddress: "100 W 600 N",
+                            trainingLead: "Sean"
+                            }]
 
                         }]
 
-            console.log("campuses", campuses)
-            campuses.forEach(campus => {
-                //@ts-ignore
-                campus.buildings.forEach(building => {
-                    tempBuildings.push(building)
-                })
-            })
+            //logic for mock data            
+            setCampus(campuses[1]) 
+            //@ts-ignore
+            campus.buildings.forEach(building => {
+                tempBuildings.push(building)
+            }) 
+            
+            //TODO logic with axios request
+            // campuses.forEach(item => {
+
+            //     if(item.resourceMetadata.resourceOwner.username === props.authUser.username){
+            //         setCampus(item)
+            //         
+            //     } else {
+            //         throw new Error ('409: You do not have proper credentials for this page')
+            //     }
+            //     campus.buildings.forEach(building => {
+                //     tempBuildings.push(building)
+                // })
+
+            // })
             //@ts-ignore
             setBuildings(tempBuildings)
         }
 
         getBuildings();
 
-        
-
     }, []);
     
 
     return (
         <>
-            <Wrapper data-test="main-content" title={"Campus Name Here"} elements={"Campus abbreviation here."}>
+            <Wrapper data-test="main-content" title={campus.name} elements={campus.abbrName}>
                 <div className="full-card">
                     <div className="tblbox">
                         < MaterialTable
                             columns = {[
-                                { title: 'Id', field: 'id'},
-                                { title: 'Name', field: 'name' },
+                                //@ts-ignore
+                                { title: 'Name', field: 'name', render:rowData=><Link to={`/buildings/${rowData.id}`}>{rowData.name}</Link> },
                                 { title: 'Address', field: 'physicalAddress'},
                                 { title: "Building Manager", field: "trainingLead"}                                
                             ]}

@@ -23,11 +23,13 @@ function BuildingDetailsComponent(){
                                         { type: "whiteboard",
                                         status: "clean"
                                         }],
-                            rooms: [{ roomNumber: "2035",
+                            rooms: [{ id: 1,
+                                    roomNumber: "2035",
                                     maxOccupancy: 30,
                                     isActive: false
                                     },
-                                    {roomNumber: "1005",
+                                    {id: 2,
+                                    roomNumber: "1005",
                                     maxOccupancy: 15,
                                     isActive: true
                                     }],
@@ -158,7 +160,7 @@ function BuildingDetailsComponent(){
                                 < MaterialTable
 
                                     columns = {[
-                                    { title: 'Room Number', field: 'roomNumber', render: rowData=><Link to={'/buildings'}>{rowData.roomNumber}</Link>},
+                                    { title: 'Room Number', field: 'roomNumber', render:rowData=><Link to={`/rooms/${rowData.id}`}>{rowData.roomNumber}</Link>},
                                         { title: 'Max Occupancy', field: 'maxOccupancy' },
                                         { title: 'Active', field: 'isActive'} 
                                         
