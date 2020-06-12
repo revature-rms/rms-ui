@@ -15,8 +15,11 @@ export interface IHomeProps {
  * This component is the home page for all users. It will provide some default information to the
  * user depending on their role.
  * 
- * TODO: currently, this component only renders for an admin. Conditional rendering will need
- *       to be added as well as the actual rendering for those additional roles.
+ * TODO: currently, this component does not render for TSM's. Conditional rendering will need
+ *       to be added for this user as well as the actual rendering for those additional roles.
+ *       The dashboard implementations are 'drafts' and are recommended for change.
+ * 
+ * @param props
  */
 export function HomeComponent(props: IHomeProps) {
 

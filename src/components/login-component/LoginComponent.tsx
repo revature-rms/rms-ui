@@ -10,12 +10,23 @@ export interface ILoginProps {
     login: (u: string, p: string) => void // login method that will be passed to login action through container
 }
 
+/**
+ * This function finds a user from an external API and passes their credentials as props
+ * to be used by other components.
+ * 
+ * Note: This component has been refactored from a class component. Refactoring is (most likely) still
+ *        in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
+ * 
+ * @param props 
+ */
+
 export function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
 
+    //Set props
     const setInfo = (event: any) => {
         switch(event.target.id){
             case "username":
