@@ -8,6 +8,14 @@ export interface IHomeProps {
     //Change any to appUser model later
     currentUser: any;
 }
+
+/**
+ * This component is the home page for all users. It will provide some default information to the
+ * user depending on their role.
+ * 
+ * TODO: currently, this component only renders for an admin. Conditional rendering will need
+ *       to be added as well as the actual rendering for those additional roles.
+ */
 export function HomeComponent(){
 
     const [campus, setCampus] = useState ([])
@@ -15,7 +23,7 @@ export function HomeComponent(){
     useEffect(() => {
         getBuildings();
     }, []);
-
+    
     const getBuildings = async () => {
         // await getCampuses();
         let campuses: Array<any> = [];
@@ -37,6 +45,12 @@ export function HomeComponent(){
                         name: "Benson Building",
                         physicalAddress: "2626 W State st",
                         trainingLead: "Bill"
+                    },
+                    {
+                        id: 3, 
+                        name: "Spaghetti Building",
+                        physicalAddress: "2626 W State st",
+                        trainingLead: "Bill"
                     }
                 ]
             },
@@ -44,6 +58,7 @@ export function HomeComponent(){
                 id: 2,
                 name: "Campus B",
                 abbrName: "CB",
+                trainer: "Trainer2",
                 buildings: [
                     {
                         id: 3, 
@@ -65,16 +80,18 @@ export function HomeComponent(){
         setCampus(campuses)
     }
 
+    //Home page rendering for an admin user.
     return (
         <>
+            {}
             <Wrapper data-test="main-content" title={"Current User"} elements={"Campus abbreviation here."}>
                 <div className="full-card">
                     <div className="tblbox">
                         < MaterialTable
                             columns = {[
-                                { title: 'Campus Name', field: 'campuses'},
-                                { title: 'Training Manager', field: 'trainingLead' },
-                                { title: 'Number of Buildings', field: 'buildings'},
+                                { title: 'Campus Name', field: 'name'},
+                                { title: 'Training Manager', field: 'trainer' },
+                                { title: 'Number of Buildings', field: 'buildings.length'}
                             ]}
                             data = {campus}
                             title = "Campus"
