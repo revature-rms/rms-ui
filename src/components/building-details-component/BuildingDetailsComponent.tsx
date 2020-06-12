@@ -87,8 +87,8 @@ function BuildingDetailsComponent(){
         return (
             <>
                 {/* Wrapper component is imported from utils/div-wrapper */}
-                <Wrapper data-test="main-content" title={"Campus Name Here"} elements={"Campus abbreviation here."}>
-                    <Grid container>
+                <Wrapper data-test="main-content" title={mockBuilding.name} elements={mockBuilding.abbrName}>
+                    <Grid container spacing={1}>
                         <Grid item xs={12}>
                             {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
                              of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
@@ -97,44 +97,52 @@ function BuildingDetailsComponent(){
                              */}
                             <Card className="full-card">
                             <div id="building-form">
+
+                                <div style={{marginBottom: 5}}>
+                                <InputLabel>Building Name: </InputLabel>
                                 <FormControl>
-                                    <InputLabel>Building Name: </InputLabel>
                                     {editting?
                                     <Input id="name" defaultValue={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="name" value={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                 </FormControl>
-                                <br/>
+                                </div>
+
+                                <div style={{marginBottom: 5}}>
+                                <InputLabel>Abbreviated Name: </InputLabel>
                                 <FormControl>
-                                    <InputLabel>Abbreviated Name: </InputLabel>
                                     {editting?
                                     <Input id="abbrName" value={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="abbrName" defaultValue={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
-                                <br/>
+                                </div>
+
+                                <div style={{marginBottom: 5}}>
+                                <InputLabel>Address: </InputLabel>
                                 <FormControl>
-                                    <InputLabel>Address: </InputLabel>
                                     {editting?
                                     <Input id="address" value={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="address" defaultValue={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
-                                <br/>
+                                </div>
+                                
+                                <div style={{marginBottom: 5}}>
+                                <InputLabel>Building Manager: </InputLabel>
                                 <FormControl>
-                                    <InputLabel>Building Manager: </InputLabel>
                                     {editting?
                                     <Input id="bManager" value={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="bManager" defaultValue={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
+                                </div>
                             </div>
                             <br/>
                             {editting?
                             <>
-                            <FormControl>
                                 <Button onClick={save}>Save</Button>
                                 <Button onClick={cancel}>Cancel</Button>
-                            </FormControl>
+
                             </>
                             :
                             <FormControl>
@@ -144,17 +152,16 @@ function BuildingDetailsComponent(){
                             </Card>
                         </Grid>
 
-                        <Grid item xs={8}>
+                        <Grid item xs={6}>
                             {/*Material table for room data, room number should be a clickable link to take to room details page */}
                             <Card className="full-card">
                                 < MaterialTable
 
                                     columns = {[
-                                        { title: 'Room Number', field: 'roomNumber'},
+                                    { title: 'Room Number', field: 'roomNumber', render: rowData=><Link to={'/buildings'}>{rowData.roomNumber}</Link>},
                                         { title: 'Max Occupancy', field: 'maxOccupancy' },
                                         { title: 'Active', field: 'isActive'} 
                                         
-
                                     ]}
                                     data = {mockBuilding.rooms}
                                     title = "Rooms"
@@ -163,14 +170,24 @@ function BuildingDetailsComponent(){
                             </Card>
                         </Grid>
 
-                        <Grid item xs={4}>
+                        <Grid item xs={5}>
                             {/*Material table for amenitites data, status should be edittable with a drop down*/}
                             <Card className="full-card">
                                 < MaterialTable
+                                    options={{
+                                        
+                                    }}
                                 
                                     columns = {[
                                         { title: 'Type', field: 'type'},
-                                        { title: 'Status', field: 'status' },                           
+                                        { title: 'Status', field: 'status', render: rowData=> (<>
+                                        <select>
+                                            <option>Select a value</option>
+                                            <option>OK</option>
+                                            <option>LOW</option>
+                                            <option>OUT</option>
+                                        </select>
+                                        </>) },                           
                                     ]}
                                     data = {mockBuilding.amenities}
                                     title = "Amenities"
@@ -182,7 +199,36 @@ function BuildingDetailsComponent(){
                         <Grid item xs={12}>
                             {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
                             <Card className="full-card">
-                                
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Resource Creator: </InputLabel>
+                                    <Input value={mockBuilding.resourceMetadata.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Time Created: </InputLabel>
+                                    <Input value={mockBuilding.resourceMetadata.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Last Modifier: </InputLabel>
+                                    <Input value={mockBuilding.resourceMetadata.lastModifer} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Time Modified: </InputLabel>
+                                    <Input value={mockBuilding.resourceMetadata.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Resource Owner: </InputLabel>
+                                    <Input value={mockBuilding.resourceMetadata.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
                             </Card>  
                         </Grid>
 
