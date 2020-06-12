@@ -1,7 +1,7 @@
-import BuildingDetailsComponent from './BuildingDetailsComponent'
+import BuildingDetailsComponent from '../BuildingDetailsComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 let propsData = {
     match: {

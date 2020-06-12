@@ -1,7 +1,7 @@
-import { RoomListComponent } from './RoomListComponent'
+import { RoomListComponent } from '../RoomListComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 let propsData = {
     getAllProps: () => { },

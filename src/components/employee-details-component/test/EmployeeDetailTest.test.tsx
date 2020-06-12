@@ -1,7 +1,7 @@
-import { EmployeeDetailsComponent } from './EmployeeDetailsComponent'
+import { EmployeeDetailsComponent } from '../EmployeeDetailsComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 let propsData = {
     employees: {

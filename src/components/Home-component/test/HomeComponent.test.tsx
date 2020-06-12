@@ -1,7 +1,7 @@
-import { HomeComponent } from  './HomeComponent'
+import { HomeComponent } from '../HomeComponent';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FindByTestAttr } from '../../utils/helper-functions/testUtils';
+import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 const setup = (props = {
     getAllCampuses: () => { }
@@ -25,4 +25,4 @@ test('map data functionality, should  return undefined', () => {
     })
     let test = wrapper.instance().mapData();
     expect(test).toBeUndefined();
-});
+})
