@@ -79,26 +79,24 @@ function CampusListComponent() {
     }, []);
 
     return (
-        <Wrapper data-test="main-content" title="Campuses">
             <Card className="">
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                // link to buildings page of each campus
-                                { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
-                                { title: 'Training Manager', field: 'trainingManager.firstName' },
-                                { title: "Staging Manager", field: "stagingManager.firstName" },
-                                { title: "HR Lead", field: "hrLead.firstName" }
-                            ]}
-                            //@ts-ignore
-                            onRowClick={(event, rowData) => history.push('/campus/' + rowData.id)}
-                            data={campusList}
-                            title="Campuses"
-                        />
-                    </div>
+                <div className="table-wrapper">
+                    < MaterialTable
+                        columns={[
+                            // link to buildings page of each campus
+                            { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
+                            { title: 'Training Manager', field: 'trainingManager.firstName' },
+                            { title: "Staging Manager", field: "stagingManager.firstName" },
+                            { title: "HR Lead", field: "hrLead.firstName" }
+                        ]}
+                        //@ts-ignore
+                        onRowClick={(event, rowData) => history.push('/campus/' + rowData.id)}
+                        data={campusList}
+                        title="Campuses"
+                    />
+                </div>
                 <br />
             </Card>
-        </Wrapper>
     )
 
 }

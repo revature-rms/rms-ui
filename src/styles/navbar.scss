@@ -42,11 +42,11 @@
 .navbar-side-btn {
     display: block;
     padding: 2vw;
-    width: 15vw !important;
+    width: 10vw !important;
     background: $grey !important;
     color: $light-green !important;
     border-bottom: 1px solid var(--acc2dk) !important;
-    border-top: 1px solid var(--acc2high) !important;
+    border-top: 0.5px solid var(--acc2high) !important;
     transition: all 0.5s !important;
 }
 
@@ -82,7 +82,7 @@
     }
 }
 
-@media only screen and (max-width: 510px) {
+@media only screen and (max-width: 515px) {
     /* For general iphone layouts */
     .navbar-top-title {
         display: inline-block;

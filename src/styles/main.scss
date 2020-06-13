@@ -9,3 +9,28 @@ $dark-brown: rgb(56, 2, 2);
 a {
     text-decoration: none !important;
 }
+
+.table-wrapper {
+    background-color: red;
+    position: absolute;
+    top: 110px;
+    left: 14vw;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 180px;
+        left: 0;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    /* For general iphone layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 0;
+    }
+}
