@@ -11,27 +11,24 @@ export default function NavbarComponent() {
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
             <div data-test="navbar-top" className="navbar-top">
-                <div className="navbar-top-sub">
-                    <Link to="/"><div className="logo"></div></Link>
-                    <div className="navbar-top-title">Resource Management System</div>
-                </div>
-                <div className="navbar-top-sub">
-                    {/* <Link onClick={logout} to=''>Logout</Link> */}
-                    {/* <SearchComponent /> */}
-                </div>
+                <Link to="/"><span className="logo"></span></Link>
+                <h3>Resource Management System</h3>
+                <Link onClick = {logout} style = {{float:"right", paddingTop:"40px", paddingRight: "30px"}} to=''>Logout</Link>
+                <SearchComponent />
+                
             </div>
-            <div data-test="navbar-side" className="navbar-side">
+            <div data-test="navbar-side" className="side-nav">
                 <Link to="/campuses">
-                    <a><div className="navbar-side-btn">Campuses</div></a>
+                    <a><div className="navitem">Campuses</div></a>
                 </Link>
                 <Link to="/buildings">
-                    <a><div className="navbar-side-btn">Buildings</div></a>
+                    <a><div className="navitem">Buildings</div></a>
                 </Link>
                 <Link to="/rooms">
-                    <a><div className="navbar-side-btn">Rooms</div></a>
+                    <a><div className="navitem">Rooms</div></a>
                 </Link>
                 <Link to="/employees">
-                    <a><div className="navbar-side-btn">Employees</div></a>
+                    <a><div className="navitem">Employees</div></a>
                 </Link>
             </div>
         </>
