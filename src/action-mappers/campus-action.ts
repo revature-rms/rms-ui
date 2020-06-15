@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import { getAllCampusAPI } from '../remote/campus';
-=======
 /**Action to change the state of campuses to all of the known campuses*/
 //Going to need a method to get only specific campuses when neccessary
 //Not sure if update method at the bottom is neccessary when useEffct/useState should run getAll again and display all of the new data.
-import { getAllcampusAPI } from '../remote/campus';
->>>>>>> 62082928f6a8536c0ebfd34a84c23971e36a930c
+import { getAllCampusAPI } from '../remote/campus';
 
 export const campusTypes = {
     SUCCESS_GETTING_CAMPUS: 'GETTING_CAMPUS_SUCCESSFUL',
