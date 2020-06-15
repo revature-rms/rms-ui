@@ -18,6 +18,12 @@ export interface IHomeProps {
  * TODO: currently, this component does not render for TSM's. Conditional rendering will need
  *       to be added for this user as well as the actual rendering for those additional roles.
  *       The dashboard implementations are 'drafts' and are recommended for change.
+ * 
+ * Notes:
+ * (At the time of implementation, out login does not supply a role)
+ * To get this page to render, a role must be supplied. You can create a fake user in the login-action
+ * by assigning the currentUser to a new AppUser with a role of Admin, Trainer, Building Manager, or 
+ * Training Site Manager
  * To get this page to render, a role must be supplied. You can create a fake user in the login-action
  * by 
  * 
