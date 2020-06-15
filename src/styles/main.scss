@@ -1,0 +1,87 @@
+$orange:rgb(242, 106, 37);
+$light-green:rgb(196, 203, 126);
+$green: rgb(148, 150, 40);
+$light-grey: rgb(214, 194, 173);
+$grey: rgb(42, 48, 48);
+$yellow: rgb(250, 135, 8);
+$light-yellow:rgb(226, 171, 81);
+$dark-brown: rgb(56, 2, 2);
+a {
+    text-decoration: none !important;
+}
+
+a:visited {
+    color: $grey;
+}
+
+.table-wrapper {
+    position: absolute;
+    top: 110px;
+    left: 14vw;
+    width: 80vw;
+    margin: 4vh 2vw;
+}
+
+.MuiToolbar-regular {
+    background-color: $light-green !important;
+}
+
+table {
+    width: 100% !important;
+    margin: auto !important;
+    background-color: $light-grey !important;
+}
+
+th {
+    background-color: $light-yellow !important;
+}
+
+td {
+    background-color: $light-grey !important;
+}
+
+// td :link {
+//     text-decoration: none !important;
+//     transition: 1s;
+//     font-weight: bold;
+// }
+tr:hover td {
+    transition: 0.5s;
+    color: $light-grey !important;
+    background-color: $grey !important;
+}
+
+tr:hover td a {
+    transition: 0.5s;
+    color: $light-grey !important;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 180px;
+        left: 0;
+        width: 96vw;
+        margin: 3vh 2vw;
+    }
+    th {
+        padding: 1vw !important;
+        background-color: $light-yellow !important;
+    }
+    td {
+        padding: 2vw !important;
+        background-color: $light-grey !important;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    /* For general iphone layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 0;
+        width: 96vw;
+        margin: 2vh 2vw;
+    }
+}
