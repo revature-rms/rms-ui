@@ -5,7 +5,6 @@ export const getAllcampusAPI = async () => {
     return await campusServiceApi.get("");
 }
 
-
 // function to get campus by id
 export const getcampusByIdAPI = (id:number) => {
     return campusServiceApi.get(`campus/${id}`);
