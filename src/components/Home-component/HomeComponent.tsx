@@ -18,6 +18,8 @@ export interface IHomeProps {
  * TODO: currently, this component does not render for TSM's. Conditional rendering will need
  *       to be added for this user as well as the actual rendering for those additional roles.
  *       The dashboard implementations are 'drafts' and are recommended for change.
+ * To get this page to render, a role must be supplied. You can create a fake user in the login-action
+ * by 
  * 
  * @param props
  */
@@ -28,9 +30,9 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        if (props.authUser.role == "Admin") getBuildings();
-        if (props.authUser.role == "Trainer") getAssociates();
-        if (props.authUser.role == "Building Manager") getRooms();
+        if (props.authUser?.role == "Admin") getBuildings();
+        if (props.authUser?.role == "Trainer") getAssociates();
+        if (props.authUser?.role == "Building Manager") getRooms();
     }, []);
     
     const getBuildings = async () => {
