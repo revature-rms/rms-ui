@@ -1,11 +1,9 @@
 import {campusServiceApi} from '../utils/APIs/campusServiceApis'
 
 // function to get all campus from campus microservice. 
-export const getAllCampusAPI = () => {
-    return campusServiceApi.get("");
+export const getAllCampusAPI = async () => {
+    return await campusServiceApi.get("https://dd4c2be1-ba13-4fc5-8018-354abe9979ea.mock.pstmn.io/campus");
 }
-
-
 // function to get campus by id
 export const getcampusByIdAPI = (id:number) => {
     return campusServiceApi.get(`campus/${id}`);

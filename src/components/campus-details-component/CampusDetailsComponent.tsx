@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link, useHistory } from "react-router-dom";
-import {getAllCampusAPI} from '../../remote/campus'
+import { getAllCampusAPI } from '../../remote/campus'
 import MaterialTable from 'material-table';
 import {Campus} from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
@@ -12,11 +12,11 @@ import { Employee } from '../../dtos/employee';
 import { ResourceMetadata } from '../../dtos/resourceMetaData';
 
 
-export interface IBuildingListProps {
+export interface ICampusDetailsProps {
     authUser: AppUser
 }
 
-function BuildingListComponent() {
+function CampusDetailsComponent() {
 
     //@ts-ignore
     const[campus, setCampus] = useState<Campus>(null as Campus);
@@ -110,25 +110,34 @@ function BuildingListComponent() {
         const getCampuses = async() => {
             //@ts-ignore
             campuses = await getAllCampusAPI();
+            return campuses;
         }
 
         //extracts buildings from the users assigned campus
         const getBuildings = async () => {
-            await getCampuses(); 
+            let campuses = await getCampuses(); 
             
-            campuses.forEach(item => {
+            // campuses.forEach(item => {
 
-                if(item.resourceMetadata.resourceOwner.username === props.authUser.username){
-                    setCampus(item)
+            //     if(item.resourceMetadata.resourceOwner.username === props.authUser.username){
+            //         setCampus(item)
                     
-                } else {
-                    throw new Error ('409: You do not have proper credentials for this page')
-                }
-                campus.buildings.forEach(building => {
-                    tempBuildings.push(building)
-                })
+            //     } else {
+            //         throw new Error ('409: You do not have proper credentials for this page')
+            //     }
+            //     campus.buildings.forEach(building => {
+            //         tempBuildings.push(building)
+            //     })
 
+            // })
+
+            //MOCK WORKAROUND
+            
+            let campus = campuses[0]
+            campus.buildings.forEach(building => {
+                tempBuildings.push(building)
             })
+
             //@ts-ignore
             setBuildings(tempBuildings)
         }
@@ -320,4 +329,4 @@ function BuildingListComponent() {
 
 }
 
-export default BuildingListComponent
+export default CampusDetailsComponent

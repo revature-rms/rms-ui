@@ -10,7 +10,7 @@ import EmployeesComponent from './components/Employees-component/EmployeesContai
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
 import CampusComponent from './components/campus-component/CampusContainer';
-import BuildingListComponent from './components/building-list-component/BuildingListContainer';
+import CampusDetailsComponent from './components/campus-details-component/CampusDetailsContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
 import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent';
@@ -30,7 +30,7 @@ class AppComponent extends React.Component<any, any> {
           <NavbarComponent />
           <Switch>
             <Route path='/login' component={LoginComponent} />
-            <Route exact path='/campuses/:id' component={BuildingListComponent} />
+            <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
             <Route path='/buildings/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />

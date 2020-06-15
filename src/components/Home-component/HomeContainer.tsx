@@ -2,14 +2,15 @@ import {connect} from "react-redux";
 import {IState} from "../../reducers";
 import {HomeComponent} from "./HomeComponent"
 import {getAllCampuses} from "../../action-mappers/campus-action";
+import { AppUser } from "../../dtos/appUser";
 
 const mapStateToProps = (state:IState) => {
     return {
         //states needed for the Campus component
-        campuses: state.campusState.campuses,
-        campusMessage: state.campusState.campusMessage,
-        id: state.campusState.id,
-        currentUser: state.userState.currentUser
+        // campuses: state.campusState.campuses,
+        // campusMessage: state.campusState.campusMessage,
+        // id: state.campusState.id,
+        authUser: state.userState.currentUser
     }
 }
 

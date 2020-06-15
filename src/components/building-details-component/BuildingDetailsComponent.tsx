@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 import { userInfo } from 'os';
-import { userState } from '../../reducers/login-reducer';
 import MaterialTable from 'material-table';
 
 export interface IBuildingDetailsProps {
