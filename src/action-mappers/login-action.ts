@@ -1,5 +1,6 @@
 /**Action to change the state of the current logged in user*/
 import { userLogin } from "../remote/login";
+import { AppUser } from "../dtos/appUser";
 
 export const loginTypes = {
     SUCCESSFULL_LOGIN: 'SUCCESSFULLY_LOGGED_IN',
@@ -12,6 +13,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
         
         allUsers = users.data;
         let currentUser;
+        // let currentUser = new AppUser(1, "test", "password", 1, "Admin");
         allUsers.forEach((user:any) => {
             if(user.username === username && user.password === password){
                 currentUser = user;
@@ -20,7 +22,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
                 dispatch({
                     type: loginTypes.SUCCESSFULL_LOGIN,
                     payload: {
-                        user: currentUser
+                        currentUser: currentUser
                     }
                 })
             } else {
