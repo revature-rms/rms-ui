@@ -24,7 +24,7 @@ export default function NavbarComponent() {
                 <Link to="/campuses">
                     <a><div className="navbar-side-btn">Campuses</div></a>
                 </Link>
-                <Link to="/buildings">
+                <Link to="/building">
                     <a><div className="navbar-side-btn">Buildings</div></a>
                 </Link>
                 <Link to="/rooms">
