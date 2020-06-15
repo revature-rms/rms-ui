@@ -15,7 +15,12 @@ export interface IEmployeesProps {
     getAllEmployees: () => void,
     updateId: (id: number) => void
 }
-
+/**
+ * displays a table that will show all employees inside database. 
+ * TODO: 
+ * Axios request is needed to complete the table. 
+ * details button still needs to be added.
+ */
 function EmployeesComponent (){
 
     const [employeeList, setEmployees] = useState([]);

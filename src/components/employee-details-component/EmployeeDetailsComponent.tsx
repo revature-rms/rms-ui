@@ -7,7 +7,6 @@ import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 
 
-
 export interface IEmployeeDetailsProps {
     id: any,
     employees: any

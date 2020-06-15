@@ -1,22 +1,24 @@
 import { ILoginState } from ".";
 import { loginTypes } from "../action-mappers/login-action";
+import { AppUser } from "../dtos/appUser";
 
 
 
 const initialState: ILoginState = {
-    currentUser: null,
+    // @ts-ignore
+    currentUser: null as AppUser,
     loggedIn: false,
     loginMessage: ''
 
 }
 
-export const userState = (state = initialState, action: any) => {
+export const userReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case loginTypes.SUCCESSFULL_LOGIN:
             return {
                 ...state,
-                currentUser: action.payload.user,
+                currentUser: action.payload.currentUser,
                 loggedIn: true,
                 loginMessage: 'Login Successfull. Proceeding ....'
             }
