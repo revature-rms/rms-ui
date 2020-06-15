@@ -91,7 +91,6 @@ export function EmployeeDetailsComponent(){
 
     return (
         <>
-            <Wrapper data-test="main-content" title={employee.firstName} elements = {"Campus Name Here"}>
                 <Grid container> 
                     <Grid item xs={12}>
                         <Card className = "full-card">
@@ -181,7 +180,6 @@ export function EmployeeDetailsComponent(){
                             </Card>  
                         </Grid>
                 </Grid>
-            </Wrapper>
         </>
     )
 
