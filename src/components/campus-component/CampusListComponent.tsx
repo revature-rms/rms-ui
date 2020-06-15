@@ -79,7 +79,7 @@ function CampusListComponent() {
     }, []);
 
     return (
-            <Card className="">
+            <Card>
                 <div className="table-wrapper">
                     < MaterialTable
                         columns={[
