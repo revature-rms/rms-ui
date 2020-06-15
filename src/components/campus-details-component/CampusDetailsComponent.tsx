@@ -82,7 +82,7 @@ function CampusDetailsComponent() {
                 break;
             case "street":
                 setAddressState({...addressState,
-                                unit_street: event.target.value})
+                                unitStreet: event.target.value})
                 break;
             case "city":
                 setAddressState({...addressState,
@@ -178,8 +178,8 @@ function CampusDetailsComponent() {
                                 <span style={{marginBottom: 10}}>
                                 <FormControl>
                                     {editing?
-                                    <Input id="street" value={campus?.shippingAddress.unit_street} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="street" defaultValue={campus?.shippingAddress.unit_street} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="street" value={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="street" defaultValue={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
@@ -268,7 +268,7 @@ function CampusDetailsComponent() {
                                 columns = {[
                                     //@ts-ignore
                                     { title: 'Name', field: 'name', render:rowData=><Link to={`/buildings/${rowData.id}`}>{rowData.name}</Link> },
-                                    { title: 'Street', field: 'physicalAddress.unit_street'},
+                                    { title: 'Street', field: 'physicalAddress.unitStreet'},
                                     // { title: 'City', field: 'physicalAddress.city'},
                                     // { title: 'State', field: 'physicalAddress.state'},
                                     // { title: 'Zip', field: 'physicalAddress.zip'},
