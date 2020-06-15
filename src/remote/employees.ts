@@ -1,22 +1,24 @@
-import {employeesServiceApi} from '../utils/APIs/employeesServiceApis';
+import { apiClient } from ".";
+
+// Double check these endpoints!
 
 // function to get all employees from employees microservice. 
 export const getAllEmployeesAPI = () => {
-    return employeesServiceApi.get("");
+    return apiClient.get("employee/employee/employees");
 }
 
 
 // function to get employee by id
 export const getEmployeeByIdAPI = (id:number) => {
-    return employeesServiceApi.get(`employees/${id}`);
+    return apiClient.get(`employee/employee/employees/${id}`);
 }
 
 // function to create an employee
 export const createEmployeeAPI = (data: any) => {
-    return employeesServiceApi.post('employees', data);
+    return apiClient.post('employee/employee/employees', data);
 }
 
 // function to update an existing employee
 export const updateEmployeeAPI = (id:number, data: any) => {
-    return employeesServiceApi.put(`employees/${id}`, data);
+    return apiClient.put(`employee/employee/employees/${id}`, data);
 }
