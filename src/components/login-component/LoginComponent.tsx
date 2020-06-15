@@ -46,6 +46,7 @@ export function LoginComponent(props: ILoginProps) {
 
 
     return (
+        <Wrapper data-test="main-content" elements = 'REVATURE'>
             <Card className = 'full-card' style= {{textAlign: 'center'}}>
             <h1>RESOURCE MANAGEMENT SYSTEM</h1>
             <LoginFunction
@@ -60,6 +61,7 @@ export function LoginComponent(props: ILoginProps) {
             <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target ="_blank">here</a></small>
             </Card>
             
+        </Wrapper>
     )
     
 }
