@@ -65,6 +65,14 @@ tr:hover td a {
         width: 96vw;
         margin: 3vh 2vw;
     }
+    th {
+        padding: 1vw !important;
+        background-color: $light-yellow !important;
+    }
+    td {
+        padding: 2vw !important;
+        background-color: $light-grey !important;
+    }
 }
 
 @media only screen and (max-width: 510px) {
