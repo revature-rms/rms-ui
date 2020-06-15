@@ -1,4 +1,4 @@
-import { getAllCampusAPI } from '../remote/campus';
+import { getAllcampusAPI } from '../remote/campus';
 
 export const campusTypes = {
     SUCCESS_GETTING_CAMPUS: 'GETTING_CAMPUS_SUCCESSFUL',
@@ -8,7 +8,7 @@ export const campusTypes = {
 
  export const getAllCampuses = () => async (dispatch: any) => {
 
-    getAllCampusAPI().then(res =>{
+    getAllcampusAPI().then(res =>{
         console.log("response found");
         if(res.status === 200){
             dispatch({

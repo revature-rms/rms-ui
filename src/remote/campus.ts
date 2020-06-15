@@ -1,9 +1,8 @@
 import {campusServiceApi} from '../utils/APIs/campusServiceApis'
 
 // function to get all campus from campus microservice. 
-export async function getAllCampusAPI(){
-    let response = await campusServiceApi.get("");
-    return response.data;
+export const getAllcampusAPI = async () => {
+    return await campusServiceApi.get("");
 }
 
 
