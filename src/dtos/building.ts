@@ -2,7 +2,7 @@ import { Address } from "./address";
 import { Employee } from "./employee";
 import { Amenity } from "./amenity";
 import { Room } from "./room";
-import { ResourceMetadata } from "./resourceMetadata";
+import { ResourceMetadata } from "./resourceMetaData";
 
 export class Building {
     id: number;
