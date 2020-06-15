@@ -1,4 +1,7 @@
 @import "./main.scss";
+
+/*navbar title*/
+
 .navbar-top {
     width: 100% !important;
     height: fit-content(0px) !important;
@@ -9,6 +12,9 @@
     text-transform: uppercase !important;
     box-shadow: 2px 2px 5px $grey !important;
 }
+
+
+/*navbar title subtitle*/
 
 .navbar-top-sub {
     display: inline-block;
@@ -25,9 +31,15 @@
     color: $grey;
 }
 
+
+/*revature picture*/
+
 .logo {
     display: inline-block;
 }
+
+
+/*navbar side bar*/
 
 .navbar-side {
     position: fixed !important;
@@ -38,6 +50,9 @@
     background: $grey !important;
     box-shadow: 2px 2px 5px $grey !important;
 }
+
+
+/*navbar side bar btn*/
 
 .navbar-side-btn {
     display: block;
@@ -50,6 +65,9 @@
     border-top: 1px solid var(--acc2high) !important;
     transition: all 0.5s !important;
 }
+
+
+/*navbar side bar btn on hover*/
 
 .navbar-side-btn:hover {
     background: $light-green !important;

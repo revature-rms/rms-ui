@@ -15,6 +15,7 @@ export default function NavbarComponent() {
                     <Link to="/"><div className="logo"></div></Link>
                     <div className="navbar-top-title">Resource Management System</div>
                 </div>
+                {/* temp remove search functions */}
                 <div className="navbar-top-sub">
                     {/* <Link onClick={logout} to=''>Logout</Link> */}
                     {/* <SearchComponent /> */}
@@ -24,7 +25,7 @@ export default function NavbarComponent() {
                 <Link to="/campuses">
                     <a><div className="navbar-side-btn">Campuses</div></a>
                 </Link>
-                <Link to="/buildings">
+                <Link to="/campus">
                     <a><div className="navbar-side-btn">Buildings</div></a>
                 </Link>
                 <Link to="/rooms">
