@@ -342,39 +342,6 @@ h1:first-letter {
   Table styling to keep table appearances in line with the rest of the project.
 */
 
-table {
-    border: 3px solid var(--acc1) !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
-    color: var(--acc2) !important;
-    width: 100% !important;
-    margin: auto !important;
-}
-
-tr {
-    border-top: 3px solid var(--acc1) !important;
-    border-bottom: 1px solid var(--acc1) !important;
-}
-
-td {
-    border: 2px solid var(--acc2) !important;
-    border-radius: 10px !important;
-    padding: 5px !important;
-}
-
-td :link {
-    color: var(--acc2high) !important;
-    text-decoration: none !important;
-    transition: 1s;
-    font-weight: bold;
-}
-
-td :link :hover {
-    color: var(--acc2hlt);
-    transition: 1s;
-    letter-spacing: 1px;
-}
-
 
 /*
   Part of the table styling, "colour me" is used on links within tds via span tags in order to ensure they actually conform to the recolouring
