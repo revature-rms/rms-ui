@@ -24,6 +24,8 @@ export interface IHomeProps {
  * To get this page to render, a role must be supplied. You can create a fake user in the login-action
  * by assigning the currentUser to a new AppUser with a role of Admin, Trainer, Building Manager, or 
  * Training Site Manager
+ * To get this page to render, a role must be supplied. You can create a fake user in the login-action
+ * by 
  * 
  * @param props
  */
