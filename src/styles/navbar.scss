@@ -1,104 +1,108 @@
-    @import "./main.scss";
-    .navbar-top {
-        width: 100% !important;
-        height: fit-content(0px) !important;
-        background: rgb(255, 0, 0) !important;
-        position: fixed !important;
-        top: 0px !important;
-        left: 0px !important;
-        border-bottom: 10px solid !important;
-        border-color: var(--acc1) !important;
-        text-transform: uppercase !important;
-        box-shadow: 2px 2px 5px $grey !important;
-    }
-    
-    .navbar-top-sub {
-        display: inline-block;
-        height: fit-content(0px) !important;
-        user-select: none;
-        vertical-align: top;
-    }
-    
+@import "./main.scss";
+.navbar-top {
+    width: 100% !important;
+    height: fit-content(0px) !important;
+    background: rgb(255, 0, 0) !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    border-bottom: 10px solid !important;
+    border-color: var(--acc1) !important;
+    text-transform: uppercase !important;
+<<<<<<< HEAD
+    box-shadow: 2px 2px 5px $grey !important;
+}
+
+.navbar-top-sub {
+    display: inline-block;
+    height: fit-content(0px) !important;
+    user-select: none;
+    vertical-align: top;
+}
+
+.navbar-top-title {
+    display: inline-block;
+    height: 100px;
+    font-size: 1.8rem;
+    line-height: 110px;
+    color: $grey;
+}
+
+.logo {
+    display: inline-block;
+}
+
+.navbar-side {
+    position: fixed !important;
+    left: 0px !important;
+    top: 110px !important;
+    height: 100% !important;
+    width: fit-content(0px) !important;
+    background: $grey !important;
+    box-shadow: 2px 2px 5px $grey !important;
+}
+
+.navbar-side-btn {
+    display: block;
+    padding: 2vw;
+    width: 10vw !important;
+    background: $grey !important;
+    color: $light-green !important;
+    border-bottom: 1px solid var(--acc2dk) !important;
+    border-top: 0.5px solid var(--acc2high) !important;
+    transition: all 0.5s !important;
+}
+
+.navbar-side-btn:hover {
+    background: $light-green !important;
+    color: $grey !important;
+    transition: all 0.5s !important;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
     .navbar-top-title {
         display: inline-block;
         height: 100px;
-        font-size: 1.8rem;
+        font-size: 1rem;
         line-height: 110px;
         color: $grey;
     }
-    
-    .logo {
-        display: inline-block;
-    }
-    
     .navbar-side {
         position: fixed !important;
         left: 0px !important;
         top: 110px !important;
-        height: 100% !important;
-        width: fit-content(0px) !important;
-        background: $grey !important;
-        box-shadow: 2px 2px 5px $grey !important;
+        width: 100vw !important;
+        height: 7vh !important;
     }
-    
     .navbar-side-btn {
-        display: block;
-        padding: 2vw;
-        width: 10vw !important;
+        display: inline-block;
+        width: 20vw !important;
+        height: 3vh !important;
         background: $grey !important;
         color: $light-green !important;
-        border-bottom: 1px solid var(--acc2dk) !important;
-        border-top: 0.5px solid var(--acc2high) !important;
         transition: all 0.5s !important;
     }
-    
-    .navbar-side-btn:hover {
-        background: $light-green !important;
-        color: $grey !important;
-        transition: all 0.5s !important;
+}
+
+@media only screen and (max-width: 515px) {
+    /* For general iphone layouts */
+    .navbar-top-title {
+        display: inline-block;
+        padding-left: 4.5vw;
+        height: 50px;
+        font-size: 1rem;
+        line-height: 50px;
+        color: $grey;
     }
-    
-    @media only screen and (max-width: 768px) {
-        /* For general iPad layouts */
-        .navbar-top-title {
-            display: inline-block;
-            height: 100px;
-            font-size: 1rem;
-            line-height: 110px;
-            color: $grey;
-        }
-        .navbar-side {
-            position: fixed !important;
-            left: 0px !important;
-            top: 110px !important;
-            width: 100vw !important;
-            height: 7vh !important;
-        }
-        .navbar-side-btn {
-            display: inline-block;
-            width: 20vw !important;
-            height: 3vh !important;
-            background: $grey !important;
-            color: $light-green !important;
-            transition: all 0.5s !important;
-        }
+    .navbar-side {
+        position: fixed !important;
+        left: 0px !important;
+        top: 145px !important;
+        width: 100vw !important;
+        height: 7vh !important;
     }
-    
-    @media only screen and (max-width: 515px) {
-        /* For general iphone layouts */
-        .navbar-top-title {
-            display: inline-block;
-            padding-left: 4.5vw;
-            height: 50px;
-            font-size: 1rem;
-            line-height: 50px;
-            color: $grey;
-        }
-        .navbar-side {
-            position: fixed !important;
-            left: 0px !important;
-            top: 145px !important;
-            width: 100vw !important;
-            height: 7vh !important;
-        }
-    }
+=======
+    box-shadow: 2px 2px 5px var(--dkgry) !important;
+>>>>>>> parent of 823fe70... navbar responsive
+}
