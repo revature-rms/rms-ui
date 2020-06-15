@@ -13,7 +13,20 @@ export interface IEmployeeDetailsProps {
     employees: any
 
 }
-
+/**
+ * Employee Details component will render an employees first name, last name, email, title, and department.
+ * Employees details are not editable until EDIT button is clicked. 
+ * Once employee details are finished being updated click save to commit the changes.
+ * Click Cancel button to cancel any changes made to employee details.
+ * 
+ * 
+ * TODO: Currently this component has values hard coded into the component. Will need to remove mockEmployee and change up mockEmployee values
+ * with different values once we can make axios request to the MSA. 
+ * Resource meta data table at the bottom styling is off and all the values are squished together. 
+ * Input value for each Form Control is commented out to get the page to render. Will need to uncomment out the values when we receive receive resource meta data
+ * that is not null. 
+ * 
+ */
 export function EmployeeDetailsComponent(){
 
     let mockEmployee = new Employee(
@@ -33,7 +46,6 @@ export function EmployeeDetailsComponent(){
     const [emailState, setEmail] = useState(mockEmployee.email);
     const [titleState, setTitle] = useState(mockEmployee.title);
     const [deptState, setDept] = useState(mockEmployee.department);
-    const [ResourceState, setResource] = useState(mockEmployee.resourceMetaData);
     const [employee, setEmployee] = useState(mockEmployee);
 
 
@@ -119,9 +131,55 @@ export function EmployeeDetailsComponent(){
                                     <Input id = "department" value={employee.department} disabled={!editing} onChange = {setInfo} inputProps={{'aria-label':'description'}} />}
                                 </FormControl>
                             </div>
-
+                            <br></br>
+                            {editing ?
+                            <>
+                            <FormControl>
+                                <Button onClick = {save}>Save</Button>
+                                <Button onClick = {cancel}>Cancel</Button>
+                            </FormControl>
+                            </>
+                            :
+                            <FormControl>
+                                <Button onClick = {enableEdit}>Edit</Button>
+                            </FormControl>}
                         </Card>
                     </Grid>
+                    <Grid item xs={12}>
+                            {/*Card contains metadata for the building that is not editable (resourceCreator, resourceCreationDateTime, lastModifier, lastModifiedDateTime, resourceOwner) */}
+                            <Card className="full-card">
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Resource Creator: </InputLabel>
+                                    {/* <Input value={mockEmployee.resourceMetaData.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Time Created: </InputLabel>
+                                    {/* <Input value={mockEmployee.resourceMetaData.resourceCreationTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Last Modifier: </InputLabel>
+                                    {/* <Input value={mockEmployee.resourceMetaData.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Time Modified: </InputLabel>
+                                    {/* <Input value={mockEmployee.resourceMetaData.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel>Resource Owner: </InputLabel>
+                                    {/* <Input value={mockEmployee.resourceMetaData.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                </FormControl>
+                                </span>
+                            </Card>  
+                        </Grid>
                 </Grid>
             </Wrapper>
         </>
