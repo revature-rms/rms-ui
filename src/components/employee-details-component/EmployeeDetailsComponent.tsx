@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
 import { Link } from 'react-router-dom';
-import { updateEmployeeAPI } from '../../remote/employees';
+import { updateEmployeeAPI } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 
