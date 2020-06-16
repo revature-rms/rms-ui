@@ -1,11 +1,19 @@
-$orange:rgb(242, 106, 37);
+/* Define color pallets */
+
+$orange:rgb(255, 96, 0);
 $light-green:rgb(196, 203, 126);
 $green: rgb(148, 150, 40);
 $light-grey: rgb(214, 194, 173);
-$grey: rgb(42, 48, 48);
+$grey: rgb(71, 76, 85);
+$light-grey: rgb(114, 116, 119);
+$dark-grey: rgb(46, 50, 59);
 $yellow: rgb(250, 135, 8);
 $light-yellow:rgb(226, 171, 81);
 $dark-brown: rgb(56, 2, 2);
+$white: rgb(255, 255, 255);
+
+/* Define hyperlink style */
+
 a {
     text-decoration: none !important;
 }
