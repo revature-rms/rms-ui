@@ -6,7 +6,6 @@ import { logout } from '../../utils/LogoutFunction';
 import "../../styles/campus.scss";
 
 export default function NavbarComponent() {
-
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
@@ -22,15 +21,19 @@ export default function NavbarComponent() {
                 </div>
             </div>
             <div data-test="navbar-side" className="navbar-side">
+                {/*link to campus list*/}
                 <Link to="/campuses">
                     <a><div className="navbar-side-btn">Campuses</div></a>
                 </Link>
+                {/*link to building list in a campus*/}
                 <Link to="/campus">
                     <a><div className="navbar-side-btn">Buildings</div></a>
                 </Link>
+                {/*link to rooms list in a building*/}
                 <Link to="/rooms">
                     <a><div className="navbar-side-btn">Rooms</div></a>
                 </Link>
+                {/*link to employee list*/}
                 <Link to="/employees">
                     <a><div className="navbar-side-btn">Employees</div></a>
                 </Link>
