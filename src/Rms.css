@@ -24,10 +24,13 @@
       tannilen.reagan@gmail.com.  Please include the code snippet you have questions about!
 */
 
+
 /*
   Font style import.
 */
+
 @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+
 /*
   Variables to control consistent colour scheme throughout the rest of the application. 
 
@@ -38,6 +41,7 @@
   ~*  **  ~*  **  *~*  ** *~  **  *~
 
 */
+
 :root {
     --acc1: #ffa500;
     --acc2: #444B55;
@@ -50,439 +54,431 @@
     --ltgry: #dfdfdf;
     --acc1dk: #dd8300;
     --acc1dkr: #bb6100;
-  }
+}
+
+
 /*
   Basic styling for the body of the document.
 */
-  body {
+
+body {
     background: var(--ltgry) !important;
     font-family: 'Varela Round', sans-serif !important;
-  }
+}
+
+
 /*
   Provide custom scroll-bars as needed.
 */
-  body::-webkit-scrollbar {
-    width:10px !important;
-  }
-  body::-webkit-scrollbar-track {
-    background:rgba(68, 75, 85,.8) !important;
-    box-shadow:inset 0px 0px 5px #000 !important;
-  }
-  body::-webkit-scrollbar-thumb {
+
+body::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(68, 75, 85, .8) !important;
+    box-shadow: inset 0px 0px 5px #000 !important;
+}
+
+body::-webkit-scrollbar-thumb {
     background: var(--acc1) !important;
-    box-shadow:inset 0px 0px 5px #5c2600 !important;
-    border-radius:25px !important;
-  }
+    box-shadow: inset 0px 0px 5px #5c2600 !important;
+    border-radius: 25px !important;
+}
+
+
 /*
   Justify any long blocks of text for visual uniformity.
 */
-  p {
-    text-align:justify !important;
-  }
+
+p {
+    text-align: justify !important;
+}
+
+
 /*
   Styling for the header/top bar of the application.  Please note that the h3 has been converted to display as an inline block, NOT a block.
 */
-  .top-bar {
-    width:100% !important;
-    height:100px !important;
-    background:var(--wht) !important;
-    position:fixed !important;
-    top:0px !important;
-    left:0px !important;
-    border-bottom:10px solid !important;
-    border-color:var(--acc1) !important;
-    text-transform:uppercase !important;
-    box-shadow:2px 2px 5px var(--dkgry) !important;
-  }
-  .top-bar h3 {
-    margin-top:50px !important;
-    font-size:1.3em !important;
-    color:var(--acc2) !important;
-    letter-spacing:2px !important;
-    display:inline-block;
-  }
+
+.top-bar {
+    width: 100% !important;
+    height: 100px !important;
+    background: var(--wht) !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    border-bottom: 10px solid !important;
+    border-color: var(--acc1) !important;
+    text-transform: uppercase !important;
+    box-shadow: 2px 2px 5px var(--dkgry) !important;
+}
+
+.top-bar h3 {
+    margin-top: 50px !important;
+    font-size: 1.3em !important;
+    color: var(--acc2) !important;
+    letter-spacing: 2px !important;
+    display: inline-block;
+}
+
+
 /*
   Navigation styling.  Use of the a-tag may be substituted or adjusted to be more technically correct, but this is not a priority, as functionality is not impaired by this.
 */
-  .side-nav {
-    position:fixed !important;
-    left:0px !important;
-    top:110px !important;
-    height:100% !important;
-    width:250px !important;
-    background:var(--acc2) !important;
-    box-shadow:2px 2px 5px var(--dkgry) !important;
-  }
-  .side-nav .navitem {
-    width:200px !important;
-    padding:25px !important;
-    border-bottom:1px solid var(--acc2dk) !important;
-    border-top:1px solid var(--acc2high) !important;
-    transition:1s !important;
-  }
-  .side-nav a {
-    text-decoration:none !important;
-    color:var(--wht) !important;
-  }
-  .side-nav .navitem:hover {
-    font-weight:bold !important;
-    letter-spacing:1px !important;
-    background:var(--acc2high) !important;
-    border-top:1px solid var(--acc2hlt) !important;
+
+.side-nav {
+    position: fixed !important;
+    left: 0px !important;
+    top: 110px !important;
+    height: 100% !important;
+    width: 250px !important;
+    background: var(--acc2) !important;
+    box-shadow: 2px 2px 5px var(--dkgry) !important;
+}
+
+.side-nav .navitem {
+    width: 200px !important;
+    padding: 25px !important;
+    border-bottom: 1px solid var(--acc2dk) !important;
+    border-top: 1px solid var(--acc2high) !important;
     transition: 1s !important;
-  }
+}
+
+.side-nav a {
+    text-decoration: none !important;
+    color: var(--wht) !important;
+}
+
+.side-nav .navitem:hover {
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    background: var(--acc2high) !important;
+    border-top: 1px solid var(--acc2hlt) !important;
+    transition: 1s !important;
+}
+
+
 /*
   All main content must be enclosed in the section box!  Section box ensures that the content exists in an internal div space so that it is not overridden by the 
   navigation or top bar.  This is handled by the Wrapper component.
 */
-  .section-box {
-    padding:100px !important;
-    display:block !important;
-    padding-left:250px !important;
-  }
+
+.section-box {
+    padding: 100px !important;
+    display: block !important;
+    padding-left: 250px !important;
+}
+
+
 /*
   Section header (hdr) separates the header information and the subnav (subtitle or secondary navigation) from the main content and keeps everything stacked tidily
   and playing nicely.  This is also handled by the Wrapper compnent.
 */
-  .section-hdr {
-    margin-top:50px !important;
-    margin-left:50px !important;
-  }
-  h1 {
-    font-size:3em !important;
-    color:var(--acc1) !important;
-    line-height:80% !important;
-    text-shadow:var(--dkgry) 1px 1px 1px, 
-      var(--dkgry) 1px 0px 1px, 
-      var(--dkgry) 1px -1px 1px, 
-      var(--dkgry) 0px 1px 1px, 
-      var(--dkgry) 0px -1px 1px, 
-      var(--dkgry) -1px 1px 1px, 
-      var(--dkgry) -1px 0px 1px, 
-      var(--dkgry) -1px -1px 1px, 
-      var(--acc2dk) 2px 2px 5px !important;
-    text-transform:uppercase !important;
-  }
-  h1:first-letter {
-    font-size:1.3em !important;
-  }
-  .section-hdr b {
-    font-weight:bold !important;
-    color:var(--acc1) !important;
-    text-shadow:var(--dkgry) 1px 1px 1px, 
-      var(--dkgry) 1px 0px 1px, 
-      var(--dkgry) 1px -1px 1px, 
-      var(--dkgry) 0px 1px 1px, 
-      var(--dkgry) 0px -1px 1px, 
-      var(--dkgry) -1px 1px 1px, 
-      var(--dkgry) -1px 0px 1px, 
-      var(--dkgry) -1px -1px 1px !important;
-    font-size:1.2em !important;
-  }
-  .subnav {
-    font-size:1.3em !important;
-    color:var(--acc2) !important;
-    background:var(--acc1) !important;
-    text-shadow:var(--wht) 1px 1px 1px, 
-      var(--wht) 1px 0px 1px, 
-      var(--wht) 1px -1px 1px, 
-      var(--wht) 0px 1px 1px, 
-      var(--wht) 0px -1px 1px, 
-      var(--wht) -1px 1px 1px, 
-      var(--wht) -1px 0px 1px, 
-      var(--wht) -1px -1px 1px; 
-    border-radius:10px !important;
-    padding:15px !important;
-    border:2px solid var(--wht) !important;
-    font-weight:bold !important;
-    width:90% !important;
-    box-shadow:2px 2px 5px var(--acc2dk) !important;
-  }
-  .subnav a {
-    text-decoration:none !important;
-    color:var(--acc2) !important;
-    width:30% !important;
-    display:inline-block !important;
-    transition:1s !important;
-  }
-  .subnav a:hover {
-    color:var(--acc2hlt) !important;
-    letter-spacing:1.5px !important;
-    transition:1s !important;
-  }
+
+.section-hdr {
+    margin-top: 50px !important;
+    margin-left: 50px !important;
+}
+
+h1 {
+    font-size: 3em !important;
+    color: var(--acc1) !important;
+    line-height: 80% !important;
+    text-shadow: var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px, var(--acc2dk) 2px 2px 5px !important;
+    text-transform: uppercase !important;
+}
+
+h1:first-letter {
+    font-size: 1.3em !important;
+}
+
+.section-hdr b {
+    font-weight: bold !important;
+    color: var(--acc1) !important;
+    text-shadow: var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px !important;
+    font-size: 1.2em !important;
+}
+
+.subnav {
+    font-size: 1.3em !important;
+    color: var(--acc2) !important;
+    background: var(--acc1) !important;
+    text-shadow: var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    border: 2px solid var(--wht) !important;
+    font-weight: bold !important;
+    width: 90% !important;
+    box-shadow: 2px 2px 5px var(--acc2dk) !important;
+}
+
+.subnav a {
+    text-decoration: none !important;
+    color: var(--acc2) !important;
+    width: 30% !important;
+    display: inline-block !important;
+    transition: 1s !important;
+}
+
+.subnav a:hover {
+    color: var(--acc2hlt) !important;
+    letter-spacing: 1.5px !important;
+    transition: 1s !important;
+}
+
+
 /*
   Logo appears in the left corner of the top bar and links back to the main page for ease-of-navigation.  Image is the official Revature logo.
 */
-  .logo {
-    background:url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
-    margin:15px 25px !important;
-    width:180px !important;
-    height:56px !important;
-    float:left !important;
-  }
+
+.logo {
+    background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
+    margin: 15px 25px !important;
+    width: 180px !important;
+    height: 56px !important;
+    float: left !important;
+}
+
+
 /*
   Half-cards are used for divs/content cards meant to be approximately 1/2 of the available space, less padding.
 */
-  .half-card {
-    width:40.6% !important; 
-    margin-top:25px !important;
-    border-radius:10px !important;
-    background:var(--wht) !important;
-    border:2px solid var(--acc1) !important;
-    margin-left:50px !important; 
-    padding:15px !important;
-    color:var(--acc2) !important;
-    display:inline-block !important;
-    box-shadow:2px 2px 5px var(--acc2dk) !important;
-    vertical-align:top;
-    line-height:1.5;
-  }
+
+.half-card {
+    width: 40.6% !important;
+    margin-top: 25px !important;
+    border-radius: 10px !important;
+    background: var(--wht) !important;
+    border: 2px solid var(--acc1) !important;
+    margin-left: 50px !important;
+    padding: 15px !important;
+    color: var(--acc2) !important;
+    display: inline-block !important;
+    box-shadow: 2px 2px 5px var(--acc2dk) !important;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+
 /*
   Full-cards are used for divs/content cards meant to be approximately the full widht of available space, less padding.
 */
-  .full-card {
-    width:87.2% !important; 
-    margin-top:25px !important;
-    border-radius:10px !important;
-    background:var(--wht) !important;
-    border:2px solid var(--acc1) !important;
-    margin-left:50px !important; 
-    padding:15px !important;
-    color:var(--acc2) !important;
-    box-shadow:2px 2px 5px var(--acc2dk) !important;
-    line-height:1.5;
-  }
+
+.full-card {
+    width: 87.2% !important;
+    margin-top: 25px !important;
+    border-radius: 10px !important;
+    background: var(--wht) !important;
+    border: 2px solid var(--acc1) !important;
+    margin-left: 50px !important;
+    padding: 15px !important;
+    color: var(--acc2) !important;
+    box-shadow: 2px 2px 5px var(--acc2dk) !important;
+    line-height: 1.5;
+}
+
+
 /*
   Please ensure that all buttons are of the .btn class, as this provides uniformity of appearance to buttons.
 */
-  .btn {
-    font-size:1.1em !important;
-    color:var(--acc2) !important;
-    background:var(--acc1) !important;
-    text-shadow:var(--wht) 1px 1px 1px, 
-      var(--wht) 1px 0px 1px, 
-      var(--wht) 1px -1px 1px, 
-      var(--wht) 0px 1px 1px, 
-      var(--wht) 0px -1px 1px, 
-      var(--wht) -1px 1px 1px, 
-      var(--wht) -1px 0px 1px, 
-      var(--wht) -1px -1px 1px; 
-    border-radius:10px !important;
-    padding:15px !important;
-    border:2px solid var(--dkgry) !important;
-    font-weight:bold !important;
-    transition:1s !important;
-    margin:15px !important;
-    text-transform:uppercase !important;
-    box-shadow:2px 2px 5px var(--acc2dk) !important;
-  }
-  .btn:hover {
-    color:var(--acc2hlt) !important;
-    transition:1s !important;
-    border:2px solid var(--acc2hlt) !important;
-  }
+
+.btn {
+    font-size: 1.1em !important;
+    color: var(--acc2) !important;
+    background: var(--acc1) !important;
+    text-shadow: var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    border: 2px solid var(--dkgry) !important;
+    font-weight: bold !important;
+    transition: 1s !important;
+    margin: 15px !important;
+    text-transform: uppercase !important;
+    box-shadow: 2px 2px 5px var(--acc2dk) !important;
+}
+
+.btn:hover {
+    color: var(--acc2hlt) !important;
+    transition: 1s !important;
+    border: 2px solid var(--acc2hlt) !important;
+}
+
+
 /*
   The table box (tblbox) is used to hold the table and the table header (a topper element applied to the table, not a literal table header)
   together and ensure that their shadows play nicely together.  Please remember to enclose tables within a table box.
 */
-  .tblbox {
-    box-shadow:2px 2px 5px var(--acc2dk) !important;
-    width:85% !important;
-    border-radius:10px !important;
-    margin:auto !important;
-  }
+
+.tblbox {
+    box-shadow: 2px 2px 5px var(--acc2dk) !important;
+    width: 85% !important;
+    border-radius: 10px !important;
+    margin: auto !important;
+}
+
+
 /*
   The table header (as previously stated, not a literal table header, but a topper element applied to a table for stylistic purposes) will
   align itself with the main table and create a uniform overall appearance.
 */
-  .tblhdr {
-    width:100% !important;
-    background:var(--acc1) !important;
-    color:var(--wht) !important;
-    font-weight:bold !important;
-    font-size:1.5em !important;
-    text-align:center !important;
-    text-transform:uppercase !important;
-    padding-top:10px !important;
-    padding-bottom:10px !important;
-    border-top-left-radius:10px !important;
-    border-top-right-radius:10px !important;
-    text-shadow:var(--dkgry) 1px 1px 1px, 
-      var(--dkgry) 1px 0px 1px, 
-      var(--dkgry) 1px -1px 1px, 
-      var(--dkgry) 0px 1px 1px, 
-      var(--dkgry) 0px -1px 1px, 
-      var(--dkgry) -1px 1px 1px, 
-      var(--dkgry) -1px 0px 1px, 
-      var(--dkgry) -1px -1px 1px !important;
-  }
+
+.tblhdr {
+    width: 100% !important;
+    background: var(--acc1) !important;
+    color: var(--wht) !important;
+    font-weight: bold !important;
+    font-size: 1.5em !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    text-shadow: var(--dkgry) 1px 1px 1px, var(--dkgry) 1px 0px 1px, var(--dkgry) 1px -1px 1px, var(--dkgry) 0px 1px 1px, var(--dkgry) 0px -1px 1px, var(--dkgry) -1px 1px 1px, var(--dkgry) -1px 0px 1px, var(--dkgry) -1px -1px 1px !important;
+}
+
+
 /*
   Table styling to keep table appearances in line with the rest of the project.
 */
-  table {
-    border:3px solid var(--acc1) !important;
-    border-bottom-left-radius:10px !important;
-    border-bottom-right-radius:10px !important;
-    color:var(--acc2) !important;
-    width:100% !important;
-    margin:auto !important;
-  }
-  tr {
-    border-top:3px solid var(--acc1) !important;
-    border-bottom:1px solid var(--acc1) !important;
-  }
-  td {
-    border:2px solid var(--acc2) !important;
-    border-radius:10px !important;
-    padding:5px !important;
-  }
-  td :link {
-    color:var(--acc2high) !important;
-    text-decoration:none !important;
-    transition:1s;
-    font-weight:bold;
-  }
-  td :link :hover {
-    color:var(--acc2hlt);
-    transition:1s;
-    letter-spacing:1px;
-  }
+
+
 /*
   Part of the table styling, "colour me" is used on links within tds via span tags in order to ensure they actually conform to the recolouring
   expectations, as it aggressively refuses to allow the colour to be modified otherwise.
 */
-  .colour-me {
-    color:var(--acc2hlt);
-  }
+
+.colour-me {
+    color: var(--acc2hlt);
+}
+
+
 /*
   Bolding text anywhere in the document will create a uniform grey, slightly enlarged content format with a pale grey outline.
 */
-  b {
-    font-weight:bold !important;
-    color:var(--acc2) !important;
-    text-shadow:var(--ltgry) 1px 1px 1px, 
-      var(--ltgry) 1px 0px 1px, 
-      var(--ltgry) 1px -1px 1px, 
-      var(--ltgry) 0px 1px 1px, 
-      var(--ltgry) 0px -1px 1px, 
-      var(--ltgry) -1px 1px 1px, 
-      var(--ltgry) -1px 0px 1px, 
-      var(--ltgry) -1px -1px 1px !important;
-    font-size:1.1em !important;
-  }
+
+b {
+    font-weight: bold !important;
+    color: var(--acc2) !important;
+    text-shadow: var(--ltgry) 1px 1px 1px, var(--ltgry) 1px 0px 1px, var(--ltgry) 1px -1px 1px, var(--ltgry) 0px 1px 1px, var(--ltgry) 0px -1px 1px, var(--ltgry) -1px 1px 1px, var(--ltgry) -1px 0px 1px, var(--ltgry) -1px -1px 1px !important;
+    font-size: 1.1em !important;
+}
+
+
 /*
   h4 can be used as a subheader format anywhere.
 */
-  h4 {
-    font-weight:bold !important;
-    color:var(--acc2) !important;
-    text-shadow:var(--wht) 1px 1px 1px, 
-      var(--wht) 1px 0px 1px, 
-      var(--wht) 1px -1px 1px, 
-      var(--wht) 0px 1px 1px, 
-      var(--wht) 0px -1px 1px, 
-      var(--wht) -1px 1px 1px, 
-      var(--wht) -1px 0px 1px, 
-      var(--wht) -1px -1px 1px, 
-      var(--acc1) 2px 2px 1px, 
-      var(--acc1) 2px 0px 1px, 
-      var(--acc1) 2px -2px 1px, 
-      var(--acc1) 0px 2px 1px, 
-      var(--acc1) 0px -2px 1px, 
-      var(--acc1) -2px 2px 1px, 
-      var(--acc1) -2px 0px 1px, 
-      var(--acc1) -2px -2px 1px !important;
-    font-size:1.5em !important;
-    line-height:50%;
-    margin-top:15px;
-  }
+
+h4 {
+    font-weight: bold !important;
+    color: var(--acc2) !important;
+    text-shadow: var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px, var(--acc1) 2px 2px 1px, var(--acc1) 2px 0px 1px, var(--acc1) 2px -2px 1px, var(--acc1) 0px 2px 1px, var(--acc1) 0px -2px 1px, var(--acc1) -2px 2px 1px, var(--acc1) -2px 0px 1px, var(--acc1) -2px -2px 1px !important;
+    font-size: 1.5em !important;
+    line-height: 50%;
+    margin-top: 15px;
+}
+
+
 /*
   If you really need something to sit off to the right...
 */
-  .right {
-    float:right;
-  }
+
+.right {
+    float: right;
+}
+
+
 /*
   Or capitalized...
 */
-  .caps {
+
+.caps {
     text-transform: capitalize;
-  }
+}
+
+
 /*
   When everything is fully implemented and operational, this can be removed.  In the mean time, here is the styling for the unimplemented notification.
 */
-  .unimplemented {
-    visibility:hidden;
-    margin:auto;
-    padding:15px;
-    background:var(--acc1);
-    opacity:.8;
-    color:var(--acc2);
-    text-shadow:var(--wht) 1px 1px 1px, 
-      var(--wht) 1px 0px 1px, 
-      var(--wht) 1px -1px 1px, 
-      var(--wht) 0px 1px 1px, 
-      var(--wht) 0px -1px 1px, 
-      var(--wht) -1px 1px 1px, 
-      var(--wht) -1px 0px 1px, 
-      var(--wht) -1px -1px 1px;
-    border-radius:15px;
-    display:block;
-    max-width:30%;
-    text-align:center;
-  }
+
+.unimplemented {
+    visibility: hidden;
+    margin: auto;
+    padding: 15px;
+    background: var(--acc1);
+    opacity: .8;
+    color: var(--acc2);
+    text-shadow: var(--wht) 1px 1px 1px, var(--wht) 1px 0px 1px, var(--wht) 1px -1px 1px, var(--wht) 0px 1px 1px, var(--wht) 0px -1px 1px, var(--wht) -1px 1px 1px, var(--wht) -1px 0px 1px, var(--wht) -1px -1px 1px;
+    border-radius: 15px;
+    display: block;
+    max-width: 30%;
+    text-align: center;
+}
+
+
 /*
   Styling for the global resource search.
 */
-  .mainsearch {
-    float:right;
-    margin:50px;
-    min-width:250px;
-    border-radius:5px;
-  }
-  .mainsearch .res {
-    background:var(--ltgry);
-    color:var(--acc2);
-    border-radius:5px;
-    border-bottom:solid 1px var(--acc2high);
-    border-top:solid 1px var(--wht);
-    border-left:solid 1px var(--wht);
-    border-right:solid 1px var(--acc2);
-    padding:5px;
-  }
-  .mainsearch .res :link {
-    text-decoration:none;
-    color:var(--acc2);
-  }
+
+.mainsearch {
+    float: right;
+    margin: 50px;
+    min-width: 250px;
+    border-radius: 5px;
+}
+
+.mainsearch .res {
+    background: var(--ltgry);
+    color: var(--acc2);
+    border-radius: 5px;
+    border-bottom: solid 1px var(--acc2high);
+    border-top: solid 1px var(--wht);
+    border-left: solid 1px var(--wht);
+    border-right: solid 1px var(--acc2);
+    padding: 5px;
+}
+
+.mainsearch .res :link {
+    text-decoration: none;
+    color: var(--acc2);
+}
+
+
 /*
   X/close button.
 */
-  .x-btn {
-    border-radius:15px;
-    width:25px;
-    height:13px !important;
-    text-align:center;
+
+.x-btn {
+    border-radius: 15px;
+    width: 25px;
+    height: 13px !important;
+    text-align: center;
     padding: 6px 0px;
-    font-size:12px;
-    color:var(--acc1lt);
-    background:var(--acc1);
-    border-left:solid 1px var(--acc1lt);
-    border-top:solid 1px var(--acc1lt);
-    border-bottom:solid 1px var(--acc1dkr);
-    border-right:solid 1px var(--acc1dkr);
-    box-shadow:inset var(--acc1dk) 0px 0px 10px;
-    text-decoration:none;
-    float:right;
-    text-shadow: -1px -1px 1px var(--wht), 
-      1px 1px 1px var(--acc1dk);
-  }
-  .x-btn:hover {font-weight:bold;}
+    font-size: 12px;
+    color: var(--acc1lt);
+    background: var(--acc1);
+    border-left: solid 1px var(--acc1lt);
+    border-top: solid 1px var(--acc1lt);
+    border-bottom: solid 1px var(--acc1dkr);
+    border-right: solid 1px var(--acc1dkr);
+    box-shadow: inset var(--acc1dk) 0px 0px 10px;
+    text-decoration: none;
+    float: right;
+    text-shadow: -1px -1px 1px var(--wht), 1px 1px 1px var(--acc1dk);
+}
+
+.x-btn:hover {
+    font-weight: bold;
+}
+
+
 /*
   Modal positioning hacky fix.
 */
-  .lbl {
+
+.lbl {
     width: 140px;
-    padding:5px;
-    display:inline-block;
-    text-align:right;
-  }
+    padding: 5px;
+    display: inline-block;
+    text-align: right;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import MaterialTable from 'material-table';
-import {getAllcampusAPI} from '../../remote/campus'
+import {getAllCampusAPI} from '../../remote/campus'
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
@@ -45,7 +45,7 @@ export function HomeComponent(props: IHomeProps) {
         // await getCampuses();
         let campuses;
         // mock data
-        campuses = (await getAllcampusAPI()).data;
+        campuses = (await getAllCampusAPI()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
