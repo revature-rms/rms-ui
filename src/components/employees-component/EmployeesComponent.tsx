@@ -1,133 +1,84 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
-import { filterEmployeesFunction } from '../../utils/helper-functions/filterEmployees';
 import { Link } from "react-router-dom";
-import { sortEmployeesFunction } from '../../utils/helper-functions/sortEmployeesFunction';
+import MaterialTable from 'material-table';
+import { getAllEmployeesAPI } from '../../remote/employees';
+import {Employee} from '../../dtos/employee';
 
 
 
-interface IEmployeesProps {
+
+export interface IEmployeesProps {
     employees: any,
     employeesMessage: string,
     getAllEmployees: () => void,
     updateId: (id: number) => void
 }
+/**
+ * displays a table that will show all employees inside database. 
+ * TODO: 
+ * Axios request is needed to complete the table. 
+ * details button still needs to be added.
+ */
+function EmployeesComponent (){
 
-export class EmployeesComponent extends React.Component<IEmployeesProps, any>{
+    const [employeeList, setEmployees] = useState([]);
+    useEffect(() =>{
+        let employees: Array<any> = [];
+        let tempEmployees: Array<any> = [];
+        
+        // axios request needs to be made to get all employees
+        // const getEmployees = async()=>{
+        //     employees = await getAllEmployeesAPI();
+        // }
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            department: 'All departments',
-            searchTerm: '',
-            sortType: 'ascending'
+        const getEmployees = async()=>{ 
+            //await getEmployees
+
+            employees = [{id: 1,
+                        firstName: 'firstTest',
+                        lastName: 'lastTest',
+                        email: 'emailtest@getMaxListeners.com',
+                        title: "Manger of Technology",
+                        department: "TRAINING",
+                        resourceMetadata:null
+                        },
+                        {id: 2,
+                            firstName: 'firstTest2',
+                            lastName: 'lastTest2',
+                            email: 'emailtest2@getMaxListeners.com',
+                            title: "Lead Trainer",
+                            department: "TRAINING",
+                            resourceMetadata:null
+                            }]
+                 //@ts-ignore
+                setEmployees(employees)
         }
-    }
-
-    //gets all employees from props
-    componentDidMount = () => {
-        if (this.props.employees === null) {
-            this.props.getAllEmployees();
-        }
-    }
-
-
-    updateId = (event: any) => {
-        this.props.updateId(parseInt(event.target.id));
-    }
-
-    //changes search term state
-    onSearchChange = (e: any) => {
-        this.setState({
-            ...this.state,
-            searchTerm: e.target.value
-        })
-    }
-
-    //changes sort type state(sort type will be used in the sort function)
-    sortChanger = (e: any) => {
-        this.setState({
-            ...this.state,
-            sortType: e.target.value
-        })
-    }
-
-    //The table's sub-header
-    subHeader = () => {
-        return (
-            <>
-                Employee Filter:
-                &nbsp;
-                <input
-                    type="text"
-                    placeholder="Type employee's name"
-                    onChange={this.onSearchChange}
-                />
-                &nbsp;
-                Sort:
-                <select
-                    onChange={this.sortChanger}
-                >
-                    <option value="ascending" selected>ascending</option>
-                    <option value="descending">descending</option>
-                </select>
-            </>
-        )
-    }
-
-    mapEmployees = () => {
-            if (this.state.searchTerm.length < 1 && this.props.employees.Employee) {
-                //returns sorted table row
-                return sortEmployeesFunction(this.state.sortType, this.props.employees.Employee).map((emp:any) => this.makeTable(emp));
-            }
-            this.props.employees.Employee.map((em:any) => console.log(em))
-            if (filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm).length === 0) {
-                return <h4>No Employees Found!</h4>
-            }
-
-            //filters employee
-            let employees = filterEmployeesFunction(this.props.employees.Employee, this.state.searchTerm);
-            
-            //returns sorted table row
-            return sortEmployeesFunction(this.state.sortType, employees).map((emp:any) => this.makeTable(emp));
-    }
-
-    count = 0;
-
-    //takes a building and makes a table row
-    makeTable = (employee: any) => {
-        return (
-            <tr key={`${this.count++}`}>
-                <td><Link to="/employee-details"><span className="colour-me" id={employee.id} onClick={this.updateId}>{employee.id}</span></Link></td>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.email}</td>
-                <td>{employee.department}</td>
-            </tr>
-        )
-    }
-    render() {
-
-        return (
-
-            <Wrapper data-test="main-content" title="Employees" elements={this.subHeader()}>
-                <Card className="full-card">
-                  
-                    <div className="tblbox">
-                        <div className="tblhdr">
-                            Employees
-                        </div>
-                        <table>
-                            <tbody>
-                                <tr><td><b>Employee Id:</b></td><td><b>First Name:</b></td><td><b>Last Name :</b></td><td><b>Email:</b></td><td><b>Department:</b></td></tr>
-                                {this.props.employees ? this.mapEmployees() : <tr><td>No data available</td><td>No data available</td><td>No data available</td><td>No data available</td></tr>}
-                            </tbody>
-                        </table>
+        getEmployees();
+    },[]);
+    return (
+        <>
+            <Wrapper data-test = "main-content" title = {"Employees Whoop Whoop"} elements = {"More Employees Whoop"}>
+                <div className = "full-card">
+                    <div className = "tblbox">
+                        <MaterialTable
+                            columns = {[
+                                {title: 'Id', field: 'id'},
+                                {title: 'First Name', field: 'firstName'},
+                                {title: 'Last Name', field: 'lastName'},
+                                {title: 'Email', field: 'email'},
+                                {title: 'Title', field: 'title'},
+                                {title: 'Department', field: 'department'},
+                            ]}
+                            data = {employeeList}
+                            title = "Employees"
+                            />
                     </div>
-                    <br />
-                </Card>
+                </div>
             </Wrapper>
-        )
-    }
+        </>
+    )
 }
+
+export default EmployeesComponent;

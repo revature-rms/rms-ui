@@ -1,4 +1,4 @@
-import { CampusComponent } from '../CampusComponent'
+import { CampusListComponent } from '../CampusListComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';

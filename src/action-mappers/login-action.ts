@@ -12,12 +12,12 @@ export const login = (username:string, password:string) => (dispatch:any) => {
     // userLogin().then((users:any) => {
         
     //     allUsers = users.data;
-        //let currentUser;
+        // let currentUser;
         let currentUser = new AppUser(1, "test", "password", 1, "Admin");
-    //     allUsers.forEach((user:any) => {
-    //         if(user.username === username && user.password === password){
-    //             currentUser = user;
-    //             console.log(currentUser);
+        // allUsers.forEach((user:any) => {
+        //     if(user.username === username && user.password === password){
+        //         currentUser = user;
+        //         console.log(currentUser);
                 
                 dispatch({
                     type: loginTypes.SUCCESSFULL_LOGIN,
