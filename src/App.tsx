@@ -38,7 +38,7 @@ class AppComponent extends React.Component<any, any> {
             <Route path='/campuses' component={CampusComponent} />
             <Route path='/room-details' component={RoomDetailsComponent} />
             <Route path='/rooms' component={RoomListComponent} />
-            <Route path='/' component={HomeComponent} />
+            <Route exact path='/' component={HomeComponent} />
           </Switch>
         </Router>
       </div>

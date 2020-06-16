@@ -36,11 +36,10 @@ export function LoginComponent(props: ILoginProps) {
                 setPassword(event.target.value);
                 break;
         }
-
-        console.log(username, password);
     }
 
     const signUserIn = () => {
+        console.log('clicked');
         props.login(username, password);
     }
 
