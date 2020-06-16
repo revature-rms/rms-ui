@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { getAllCampusAPI } from '../../remote/campus'
+import { getAllCampusAPI } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import "../../styles/building.scss"
 import Card from '@material-ui/core/Card';
@@ -20,7 +20,7 @@ function BuildingListComponent() {
         let tempBuildings: Array<any> = [];
 
         const getCampuses = async () => {
-            campuses = await getAllCampusAPI();
+            campuses = (await getAllCampusAPI()).data;
         }
 
         const getBuildings = async () => {
