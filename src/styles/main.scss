@@ -16,10 +16,11 @@ $white: rgb(255, 255, 255);
 
 a {
     text-decoration: none !important;
+    color: $dark-grey !important;
 }
 
 a:visited {
-    color: $grey;
+    color: $dark-grey !important;
 }
 
 .table-wrapper {
@@ -31,7 +32,7 @@ a:visited {
 }
 
 .MuiToolbar-regular {
-    background-color: $light-green !important;
+    background-color: $yellow !important;
 }
 
 table {
@@ -41,11 +42,12 @@ table {
 }
 
 th {
-    background-color: $light-yellow !important;
+    background-color: $light-grey !important;
 }
 
 td {
-    background-color: $light-grey !important;
+    background-color: $white !important;
+    color: $dark-grey !important;
 }
 
 // td :link {
@@ -55,13 +57,18 @@ td {
 // }
 tr:hover td {
     transition: 0.5s;
-    color: $light-grey !important;
+    color: $white !important;
     background-color: $grey !important;
 }
 
 tr:hover td a {
     transition: 0.5s;
-    color: $light-grey !important;
+    color: $white !important;
+}
+
+tr:hover td a:visited {
+    transition: 0.5s;
+    color: $white !important;
 }
 
 @media only screen and (max-width: 768px) {
