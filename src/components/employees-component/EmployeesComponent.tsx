@@ -1,10 +1,12 @@
 import React, { useEffect,useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import Card from '@material-ui/core/Card';
-import { Link } from "react-router-dom";
+import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
 import { getAllEmployeesAPI } from '../../remote/employees';
 import {Employee} from '../../dtos/employee';
+import { AppUser } from '../../dtos/appUser';
+
 
 
 
@@ -23,6 +25,7 @@ export interface IEmployeesProps {
  */
 function EmployeesComponent (){
 
+    const history = useHistory();
     const [employeeList, setEmployees] = useState([]);
     useEffect(() =>{
         let employees: Array<any> = [];
@@ -71,6 +74,8 @@ function EmployeesComponent (){
                                 {title: 'Title', field: 'title'},
                                 {title: 'Department', field: 'department'},
                             ]}
+                            //@ts-ignore
+                            onRowClick={(event, rowData)=> history.push(`/employees-details`)}
                             data = {employeeList}
                             title = "Employees"
                             />

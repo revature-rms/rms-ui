@@ -90,6 +90,7 @@ export function EmployeeDetailsComponent(){
 
     return (
         <>
+            <Wrapper data-test = "main-content" title = {"Employees Whoop Whoop"} elements = {"More Employees Whoop"}>
                 <Grid container> 
                     <Grid item xs={12}>
                         <Card className = "full-card">
@@ -179,6 +180,7 @@ export function EmployeeDetailsComponent(){
                             </Card>  
                         </Grid>
                 </Grid>
+            </Wrapper>
         </>
     )
 
