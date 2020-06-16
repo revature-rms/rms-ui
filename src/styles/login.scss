@@ -1,6 +1,46 @@
 @import "./main.scss";
 .login-ribbon {
-    height: 50vh;
-    margin-top: 20vh;
-    background-color: $green !important;
+    height: 80vh;
+    margin-top: 10vh;
+    background-color: $white !important;
+    color: $orange;
+    text-align: center;
+    font-size: 4rem;
+    line-height: 20vh;
+}
+
+.login-form-holder {
+    background-color: $grey;
+    margin: auto;
+    width: 30vw;
+    padding: 2vh 1vw;
+}
+
+.login-form-holder input {
+    background-color: $grey;
+    color: $white;
+}
+
+.login-label {
+    text-align: left;
+    display: block;
+    margin: auto;
+    font-size: 1.9rem;
+    line-height: 3vh;
+    height: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+}
+
+.login-btn {
+    display: block;
+    font-size: 1.9rem;
+    line-height: 3vh;
+    height: 5vh;
+    padding: 1vh 1vw 4vh;
+    margin-top: 5vh;
+    margin-left: 20vw;
+    color: $grey;
+    background-color: $orange;
 }

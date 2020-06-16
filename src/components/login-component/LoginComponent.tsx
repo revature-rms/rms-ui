@@ -24,7 +24,7 @@ export function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const [ready, setReady] = useState(false);
 
     //Set props
     const setInfo = (event: any) => {
@@ -44,20 +44,47 @@ export function LoginComponent(props: ILoginProps) {
         props.login(username, password);
     }
 
+    const displayLogin = () => {
+        setReady(true)
+    }
 
     return (
-            <div className="login-ribbon">
+        <>
+            <div className="login-ribbon" onClick={displayLogin}>
+                RESOURCE MANAGEMENT SYSTEM
+
                 <div className="login-holder">
-                <div>RESOURCE MANAGEMENT SYSTEM</div>
-                <LoginFunction
-                    username={username}
-                    password={password}
-                    handleChange={setInfo}
-                    handleLogin={signUserIn}
-                    loginMessage={props.loginMessage}
-                />
-                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>
+                    {ready ?
+                        <form className="login-form-holder">
+                            <div className="login-label unselect">Username</div>
+                            <input
+                                className="login-label"
+                                required
+                                type="text"
+                                id="username"
+                                placeholder="Username"
+                                name="username"
+                                value={username}
+                                onChange={setInfo}
+                            />
+                            <div className="login-label unselect">Password</div>
+                            <input
+                                className="login-label"
+                                required
+                                type="password"
+                                id="password"
+                                placeholder="enter password"
+                                name="password"
+                                value={password}
+                                onChange={setInfo}
+                            />
+                            <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+
+                        </form>
+                        : null}
                 </div>
             </div>
+            <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>
+        </>
     )
 }
