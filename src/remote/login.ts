@@ -1,5 +1,5 @@
-import { loginAPI } from "../utils/APIs/loginApi";
+import { apiClient } from ".";
 
 export const userLogin = () => {
-    return loginAPI.get("");
+    return apiClient.get("");
 }
