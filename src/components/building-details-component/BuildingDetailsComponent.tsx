@@ -29,11 +29,11 @@ export class BuildingDetailsComponent extends React.Component<any, any> {
     }
 
     setCampus = () => {
-        if (this.resources.campus) {
-            this.resources.campus.map((campus: any) => {
+        if (this.resources?.campus) {
+            this.resources?.campus.map((campus: any) => {
                 //looks for the campus in the campus object with the same name as the route parameter
                 if (campus["name"] === this.id) {
-                    if (this.state.campus.length === 0 || this.state.campus.name !== this.id)
+                    if (this.state.campus?.length === 0 || this.state.campus?.name !== this.id)
                     //will set that campus to the state if there is no campus set in state
                         this.setState({
                             campus: campus
