@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { SearchComponent } from '../search-component/SearchComponent';
 import { logout } from '../../utils/LogoutFunction';
 
-import "../../styles/campus.scss";
+import "../../styles/navbar.scss";
 
 export default function NavbarComponent() {
 
