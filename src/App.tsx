@@ -29,13 +29,8 @@ class AppComponent extends React.Component<any, any> {
         <Router>
           <NavbarComponent />
           <Switch>
-<<<<<<< HEAD
             {/* <Route path='/login' component={LoginComponent} /> */}
-            <Route path='/buildings' component={BuildingListComponent} />
-=======
-            <Route path='/login' component={LoginComponent} />
             <Route path='/campus' component={BuildingListComponent} />
->>>>>>> origin/building-list-refactor
             <Route path='/building/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
