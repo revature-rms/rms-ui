@@ -20,7 +20,7 @@ function BuildingListComponent() {
         let tempBuildings: Array<any> = [];
 
         const getCampuses = async() => {
-            campuses = await getAllCampusAPI();
+            campuses = (await getAllCampusAPI()).data;
         }
 
         const getBuildings = async () => {

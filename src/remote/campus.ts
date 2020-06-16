@@ -1,7 +1,7 @@
 import { apiClient } from '.';
 
 // function to get all campus from campus microservice. 
-export const getAllcampusAPI = async () => {
+export const getAllCampusAPI = async () => {
     return await apiClient.get(`campus/v2/campus`);
 }
 
