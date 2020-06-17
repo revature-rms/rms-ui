@@ -101,4 +101,4 @@ function BuildingListComponent() {
 
 }
 
-export default BuildingListComponent
+export default BuildingListComponent;
