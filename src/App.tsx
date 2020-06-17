@@ -1,12 +1,12 @@
 
 import React from 'react';
-import './Rms.css';
+//import './Rms.css';
 import './App.css';
-import HomeComponent from './components/home-component/HomeContainer';
+import HomeComponent from './components/Home-component/HomeContainer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmployeeDetailsComponent from './components/employee-details-component/EmployeeDetailsContainer';
 import NavbarComponent from './components/navbar-component/NavbarComponent';
-import EmployeesComponent from './components/employees-component/EmployeesContainer';
+import EmployeesComponent from './components/Employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
 import CampusListComponent from './components/campus-component/CampusListContainer';
