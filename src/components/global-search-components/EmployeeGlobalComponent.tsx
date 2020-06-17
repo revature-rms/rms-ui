@@ -2,7 +2,7 @@ import React from 'react';
 import { allData } from '../../remote/allData';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
-import { updateEmployeeAPI } from '../../remote/employees';
+import { updateEmployeeAPI } from '../../remote/employee-service';
 import { Link } from 'react-router-dom';
 
 

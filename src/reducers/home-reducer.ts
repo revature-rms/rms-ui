@@ -29,4 +29,4 @@ export const homeReducer = (state = initialState, action: any) => {
         default:
             return state;
     }
-}
+} 

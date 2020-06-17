@@ -1,4 +1,4 @@
-import { ResourceMetadata } from "./resourceMetaData";
+import { ResourceMetadata } from "./resourceMetadata";
 import { Employee } from "./employee";
 
 export class Batch {

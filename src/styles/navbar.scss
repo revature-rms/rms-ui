@@ -1,0 +1,125 @@
+@import "./main.scss";
+
+/*navbar title*/
+
+.navbar-top {
+    width: 100% !important;
+    height: fit-content(0px) !important;
+    background: $white !important;
+    position: fixed !important;
+    border-bottom: 10px solid !important;
+    border-color: $yellow !important;
+    text-transform: uppercase !important;
+    box-shadow: 2px 2px 5px $grey !important;
+}
+
+
+/*navbar title subtitle*/
+
+.navbar-top-sub {
+    display: inline-block;
+    height: fit-content(0px) !important;
+    user-select: none;
+    vertical-align: top;
+}
+
+.navbar-top-title {
+    display: inline-block;
+    height: 100px;
+    font-size: 1.8rem;
+    line-height: 110px;
+    color: $grey;
+}
+
+
+/*revature picture*/
+
+.logo {
+    background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
+    margin: 15px 25px !important;
+    width: 180px !important;
+    height: 56px !important;
+    float: left !important;
+}
+
+
+/*navbar side bar*/
+
+.navbar-side {
+    position: fixed !important;
+    left: 0px !important;
+    top: 110px !important;
+    height: 100% !important;
+    width: fit-content(0px) !important;
+    background: $grey !important;
+    box-shadow: 2px 2px 5px $grey !important;
+}
+
+
+/*navbar side bar btn*/
+
+.navbar-side-btn {
+    display: block;
+    padding: 1.5vw;
+    font-size: 1rem;
+    width: 10vw !important;
+    background: $grey !important;
+    color: $yellow !important;
+    border-bottom: 1px solid $light-grey !important;
+    border-top: 1px solid $dark-grey !important;
+    transition: all 0.5s !important;
+}
+
+
+/*navbar side bar btn on hover*/
+
+.navbar-side-btn:hover {
+    background: $light-grey !important;
+    color: $white !important;
+    transition: all 0.5s !important;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
+    .navbar-top-title {
+        display: inline-block;
+        height: 100px;
+        font-size: 1rem;
+        line-height: 110px;
+        color: $grey;
+    }
+    .navbar-side {
+        position: fixed !important;
+        left: 0px !important;
+        top: 110px !important;
+        width: 100vw !important;
+        height: 7vh !important;
+    }
+    .navbar-side-btn {
+        display: inline-block;
+        width: 20vw !important;
+        height: 3vh !important;
+        background: $grey !important;
+        color: $yellow !important;
+        transition: all 0.5s !important;
+    }
+}
+
+@media only screen and (max-width: 515px) {
+    /* For general iphone layouts */
+    .navbar-top-title {
+        display: inline-block;
+        padding-left: 4.5vw;
+        height: 50px;
+        font-size: 1rem;
+        line-height: 50px;
+        color: $grey;
+    }
+    .navbar-side {
+        position: fixed !important;
+        left: 0px !important;
+        top: 145px !important;
+        width: 100vw !important;
+        height: 7vh !important;
+    }
+}

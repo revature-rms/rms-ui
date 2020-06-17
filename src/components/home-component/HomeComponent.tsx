@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import MaterialTable from 'material-table';
-import {getAllcampusAPI} from '../../remote/campus'
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
+import Card from '@material-ui/core/Card';
+import { getAllCampusAPI } from '../../remote/campus-service';
 
 export interface IHomeProps {
     authUser: AppUser;
@@ -18,8 +19,6 @@ export interface IHomeProps {
  * TODO: currently, this component does not render for TSM's. Conditional rendering will need
  *       to be added for this user as well as the actual rendering for those additional roles.
  *       The dashboard implementations are 'drafts' and are recommended for change.
- * To get this page to render, a role must be supplied. You can create a fake user in the login-action
- * by 
  * 
  * @param props
  */
@@ -30,16 +29,16 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        if (props.authUser?.role == "Admin") getBuildings();
-        if (props.authUser?.role == "Trainer") getAssociates();
-        if (props.authUser?.role == "Building Manager") getRooms();
+        if (props.authUser.role == "Admin") getBuildings();
+        if (props.authUser.role == "Trainer") getAssociates();
+        if (props.authUser.role == "Building Manager") getRooms();
     }, []);
-    
+
     const getBuildings = async () => {
         // await getCampuses();
         let campuses;
         // mock data
-        campuses = (await getAllcampusAPI()).data;
+        campuses = (await getAllCampusAPI()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
@@ -54,10 +53,10 @@ export function HomeComponent(props: IHomeProps) {
 
     const getAssociates = () => {
         let associates = [
-                {name: 'a'},
-                {name: 'b'},
-                {name: 'c'}
-            ]
+            { name: 'a' },
+            { name: 'b' },
+            { name: 'c' }
+        ]
         console.log(associates)
         //@ts-ignore
         setAssociates(associates);
@@ -66,56 +65,49 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
-            {props.authUser?.role == 'Admin' ? 
-            <Wrapper data-test="main-content" title={"Current User"} elements={"Campus abbreviation here."}>
-                <div className="full-card">
-                    <div className="tblbox">
+            {props.authUser?.role == 'Admin' ?
+                <Card>
+                    <div className="table-wrapper">
                         < MaterialTable
-                            columns = {[
-                                { title: 'Campus Name', field: 'name'},
+                            columns={[
+                                { title: 'Campus Name', field: 'name' },
                                 { title: 'Training Manager', field: 'trainingManagerId' },
-                                { title: 'Number of Buildings', field: 'buildings.length'}
+                                { title: 'Number of Buildings', field: 'buildings.length' }
                             ]}
-                            data = {campus}
-                            title = "Campus"
-
+                            data={campus}
+                            title="Campus"
                         />
                     </div>
-                </div>
-            </Wrapper>
-            : props.authUser?.role == 'Trainer' ? 
-            <Wrapper data-test="main-content" title={"Batch Name"} elements={"Room Number"}>
-                <div className="full-card">
-                    <div className="tblbox">
-                        < MaterialTable
-                            columns = {[
-                                { title: 'Associate Name', field: 'name'}
-                            ]}
-                            data = {associates}
-                            title = "Associates"
+                </Card>
+                : props.authUser?.role == 'Trainer' ?
+                    <Card>
+                        <div className="table-wrapper">
+                            < MaterialTable
+                                columns={[
+                                    { title: 'Associate Name', field: 'name' }
+                                ]}
+                                data={associates}
+                                title="Associates"
 
-                        />
-                    </div>
-                </div>
-            </Wrapper>
-            : props.authUser?.role == 'Building Manager' ? 
-            <Wrapper data-test="main-content" title={"Building Name"} elements={"Building ID"}>
-                <div className="full-card">
-                    <div className="tblbox">
-                        < MaterialTable
-                            columns = {[
-                                { title: 'Room Number', field: 'roomNumber' },
-                                { title: 'Room Occupancy', field: 'maxOccupancy' }
-                            ]}
-                            data = {rooms}
-                            title = "Rooms"
+                            />
+                        </div>
+                    </Card>
+                    : props.authUser?.role == 'Building Manager' ?
+                        <Card>
+                            <div className="table-wrapper">
+                                < MaterialTable
+                                    columns={[
+                                        { title: 'Room Number', field: 'roomNumber' },
+                                        { title: 'Room Occupancy', field: 'maxOccupancy' }
+                                    ]}
+                                    data={rooms}
+                                    title="Rooms"
 
-                        />
-                    </div>
-                </div>
-            </Wrapper>
-            : props.authUser?.role == 'Training Site Manager' ? <></> 
-            : <></>
+                                />
+                            </div>
+                        </Card>
+                        : props.authUser?.role == 'Training Site Manager' ? <></>
+                            : <></>
             }
         </>
     )
