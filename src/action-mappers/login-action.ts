@@ -1,5 +1,5 @@
 /**Action to change the state of the current logged in user*/
-import { userLogin } from "../remote/login";
+//import { userLogin } from "../remote/auth-service";
 import { AppUser } from "../dtos/appUser";
 
 export const loginTypes = {
@@ -8,31 +8,23 @@ export const loginTypes = {
 }
 
 export const login = (username:string, password:string) => (dispatch:any) => {
-    console.log("login")
-    let currentUser = new AppUser(1, "test", "password", 1, "Trainer");
-    console.log(currentUser)
-    dispatch({
-        type: loginTypes.SUCCESSFULL_LOGIN,
-        payload: {
-            currentUser: currentUser
-        }
-    })
-    let allUsers;
-    userLogin().then((users:any) => {
+    // let allUsers;
+    // userLogin().then((users:any) => {
         
-        //allUsers = users.data;
-        //let currentUser;
-    //     allUsers.forEach((user:any) => {
-    //         if(user.username === username && user.password === password){
-    //             currentUser = user;
-    //             console.log(currentUser);
+    //     allUsers = users.data;
+        // let currentUser;
+        let currentUser = new AppUser(1, "test", "password", 1, "Admin");
+        // allUsers.forEach((user:any) => {
+        //     if(user.username === username && user.password === password){
+        //         currentUser = user;
+        //         console.log(currentUser);
                 
-    //             dispatch({
-    //                 type: loginTypes.SUCCESSFULL_LOGIN,
-    //                 payload: {
-    //                     currentUser: currentUser
-    //                 }
-    //             })
+                dispatch({
+                    type: loginTypes.SUCCESSFULL_LOGIN,
+                    payload: {
+                        currentUser: currentUser
+                    }
+                })
     //         } else {
     //             dispatch ({
     //                 type: loginTypes.FAILED_LOGIN,
@@ -41,8 +33,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
     //                 }
     //             })
     //         }
-    //     }
-    //     );
+    //     });
     // }).catch((e:any) => {
     //     console.log(e);
     //     dispatch({
@@ -52,6 +43,5 @@ export const login = (username:string, password:string) => (dispatch:any) => {
     //         }
     //     })
         
-    }
-    )
+    // })
 }

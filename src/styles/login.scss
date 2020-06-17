@@ -5,7 +5,7 @@
     background-color: $white !important;
     color: $orange;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.9rem;
     line-height: 20vh;
 }
 
@@ -46,6 +46,7 @@
     margin-top: 5vh;
     margin-left: 1vw;
     color: $grey;
+    font-weight: 600;
     background-color: $orange;
 }
 
@@ -72,9 +73,9 @@
         height: 80vh;
         margin-top: 10vh;
         background-color: $white !important;
+        font-size: 1.5rem;
         color: $orange;
         text-align: center;
-        font-size: 1.5rem;
         line-height: 20vh;
     }
 }
