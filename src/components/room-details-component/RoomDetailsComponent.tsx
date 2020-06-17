@@ -197,8 +197,8 @@ function RoomDetailsComponent() {
                             <FormControlLabel
                                 control={
                                 <Checkbox
-                                    defaultChecked={room.currentStatus.whiteboardCleaned}
-                                    onChange={checkedBoxes}
+                                    //defaultChecked={room.currentStatus.whiteboardCleaned}
+                                    // onChange={checkedBoxes}
                                     name="whiteboardCleaned"
                                     color="primary"
                                 />
@@ -210,8 +210,8 @@ function RoomDetailsComponent() {
                             <FormControlLabel
                                 control={
                                 <Checkbox
-                                    defaultChecked={room.currentStatus.chairsOrdered}
-                                    onChange={checkedBoxes}
+                                    // defaultChecked={room.currentStatus.chairsOrdered}
+                                    // onChange={checkedBoxes}
                                     name="chairsOrdered"
                                     color="primary"
                                 />
@@ -223,8 +223,8 @@ function RoomDetailsComponent() {
                             <FormControlLabel
                                 control={
                                 <Checkbox
-                                    defaultChecked={room.currentStatus.desksCleaned}
-                                    onChange={checkedBoxes}
+                                    // defaultChecked={room.currentStatus.desksCleaned}
+                                    // onChange={checkedBoxes}
                                     name="desksCleaned"
                                     color="primary"
                                 />
