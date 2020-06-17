@@ -75,7 +75,7 @@ function EmployeesComponent (){
                                 {title: 'Department', field: 'department'},
                             ]}
                             //@ts-ignore
-                            onRowClick={(event, rowData)=> history.push(`/employees-details`)}
+                            onRowClick={(event, rowData)=> history.push(`/employee-details`)}
                             data = {employeeList}
                             title = "Employees"
                             />
