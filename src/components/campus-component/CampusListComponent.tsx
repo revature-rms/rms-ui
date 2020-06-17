@@ -8,7 +8,7 @@ import { Employee } from "../../dtos/employee"
 
 
 // for testing, will delete
-import { ResourceMetadata } from '../../dtos/resourceMetaData';
+import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Address } from '../../dtos/address';
 
 export interface ICampusProps {
