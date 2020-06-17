@@ -1,7 +1,7 @@
 import { Address } from "./address";
 import { Employee } from "./employee";
 import { Building } from "./building";
-import { ResourceMetadata } from "./resourceMetaData";
+import { ResourceMetadata } from "./resourceMetadata";
 
 export class Campus {
     id: number;
