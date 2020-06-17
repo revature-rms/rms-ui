@@ -3,7 +3,7 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllEmployeesAPI } from '../../remote/employees';
+import { getAllEmployeesAPI } from '../../remote/employee-service';
 import {Employee} from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 
