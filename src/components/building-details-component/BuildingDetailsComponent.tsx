@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 import { userInfo } from 'os';
@@ -46,7 +46,8 @@ function BuildingDetailsComponent(){
         const [abbrNameState, setAbbrName] = useState(mockBuilding.abbrName);
         const [addressState, setAddress] = useState(mockBuilding.physicalAddress);
         const [bManagerState, setBManager] = useState(mockBuilding.trainingLead);
-        const [building, setBuilding] = useState(mockBuilding)
+        const [building, setBuilding] = useState(mockBuilding);
+        const history = useHistory();
            
         const enableEdit = () => {
             setEdditing(true);
@@ -159,11 +160,12 @@ function BuildingDetailsComponent(){
                                 < MaterialTable
 
                                     columns = {[
-                                    { title: 'Room Number', field: 'roomNumber', render:rowData=><Link to={`/rooms/${rowData.id}`}>{rowData.roomNumber}</Link>},
+                                        { title: 'Room Number', field: 'roomNumber'},
                                         { title: 'Max Occupancy', field: 'maxOccupancy' },
                                         { title: 'Active', field: 'isActive'} 
                                         
                                     ]}
+                                    onRowClick={(event, rowData)=> history.push(`/room-details`)}
                                     data = {mockBuilding.rooms}
                                     title = "Rooms"
                                     
