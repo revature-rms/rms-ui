@@ -6,6 +6,7 @@ import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
 import Card from '@material-ui/core/Card';
+import { getAllCampusAPI } from '../../remote/campus-service';
 
 export interface IHomeProps {
     authUser: AppUser;
@@ -37,7 +38,7 @@ export function HomeComponent(props: IHomeProps) {
         // await getCampuses();
         let campuses;
         // mock data
-        campuses = (await getAllcampusAPI()).data;
+        campuses = (await getAllCampusAPI()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
