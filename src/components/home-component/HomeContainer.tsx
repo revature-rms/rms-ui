@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {IState} from "../../reducers";
-import {HomeComponent} from "./HomeComponent"
+import {HomeComponent} from "./HomeComponent";
 import {getAllCampuses} from "../../action-mappers/campus-action";
 import { AppUser } from "../../dtos/appUser";
 
