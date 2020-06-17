@@ -267,7 +267,7 @@ function CampusDetailsComponent() {
                             < MaterialTable
                                 columns = {[
                                     //@ts-ignore
-                                    { title: 'Name', field: 'name', render:rowData=><Link to={`/buildings/${rowData.id}`}>{rowData.name}</Link> },
+                                    { title: 'Name', field: 'name'},
                                     { title: 'Street', field: 'physicalAddress.unitStreet'},
                                     // { title: 'City', field: 'physicalAddress.city'},
                                     // { title: 'State', field: 'physicalAddress.state'},
