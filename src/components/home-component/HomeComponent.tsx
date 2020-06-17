@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllcampusAPI } from '../../remote/campus'
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
