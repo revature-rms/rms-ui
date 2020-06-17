@@ -78,39 +78,34 @@ export function HomeComponent(props: IHomeProps) {
                             title="Campus"
                         />
                     </div>
-                    <br />
                 </Card>
                 : props.authUser?.role == 'Trainer' ?
-                    <Wrapper data-test="main-content" title={"Batch Name"} elements={"Room Number"}>
-                        <div className="full-card">
-                            <div className="tblbox">
+                    <Card>
+                        <div className="table-wrapper">
+                            < MaterialTable
+                                columns={[
+                                    { title: 'Associate Name', field: 'name' }
+                                ]}
+                                data={associates}
+                                title="Associates"
+
+                            />
+                        </div>
+                    </Card>
+                    : props.authUser?.role == 'Building Manager' ?
+                        <Card>
+                            <div className="table-wrapper">
                                 < MaterialTable
                                     columns={[
-                                        { title: 'Associate Name', field: 'name' }
+                                        { title: 'Room Number', field: 'roomNumber' },
+                                        { title: 'Room Occupancy', field: 'maxOccupancy' }
                                     ]}
-                                    data={associates}
-                                    title="Associates"
+                                    data={rooms}
+                                    title="Rooms"
 
                                 />
                             </div>
-                        </div>
-                    </Wrapper>
-                    : props.authUser?.role == 'Building Manager' ?
-                        <Wrapper data-test="main-content" title={"Building Name"} elements={"Building ID"}>
-                            <div className="full-card">
-                                <div className="tblbox">
-                                    < MaterialTable
-                                        columns={[
-                                            { title: 'Room Number', field: 'roomNumber' },
-                                            { title: 'Room Occupancy', field: 'maxOccupancy' }
-                                        ]}
-                                        data={rooms}
-                                        title="Rooms"
-
-                                    />
-                                </div>
-                            </div>
-                        </Wrapper>
+                        </Card>
                         : props.authUser?.role == 'Training Site Manager' ? <></>
                             : <></>
             }

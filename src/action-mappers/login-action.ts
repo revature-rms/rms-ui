@@ -13,7 +13,7 @@ export const login = (username:string, password:string) => (dispatch:any) => {
         
     //     allUsers = users.data;
         // let currentUser;
-        let currentUser = new AppUser(1, "test", "password", 1, "Admin");
+        let currentUser = new AppUser(1, "test", "password", 1, "Trainer");
         // allUsers.forEach((user:any) => {
         //     if(user.username === username && user.password === password){
         //         currentUser = user;
