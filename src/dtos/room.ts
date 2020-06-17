@@ -1,7 +1,7 @@
 import { RoomStatus } from "./roomStatus";
 import { Batch } from "./batch";
 import { WorkOrder } from "./workOrder";
-import { ResourceMetadata } from "./resourceMetaData";
+import { ResourceMetadata } from "./resourceMetadata";
 
 export class Room {
     id: number;

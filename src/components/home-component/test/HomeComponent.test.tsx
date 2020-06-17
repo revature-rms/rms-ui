@@ -25,4 +25,4 @@ test('map data functionality, should  return undefined', () => {
     })
     let test = wrapper.instance().mapData();
     expect(test).toBeUndefined();
-});
+})

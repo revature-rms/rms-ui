@@ -1,5 +1,5 @@
 /**Action to change the state of the current logged in user*/
-//import { userLogin } from "../remote/auth-service";
+import { userLogin } from "../remote/auth-service";
 import { AppUser } from "../dtos/appUser";
 
 export const loginTypes = {

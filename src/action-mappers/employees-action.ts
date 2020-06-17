@@ -1,5 +1,7 @@
+/**Action to change the state of the employees to all of the known employees */
+//Not sure if update method at the bottom is neccessary when useEffct/useState should run getAll again and display all of the new data.
 import React from 'react';
-import { getAllEmployeesAPI } from '../remote/employees';
+import { getAllEmployeesAPI } from '../remote/employee-service';
 
 export const employeesTypes = {
     SUCCESS_GETTING_EMPLOYEES: 'GETTING_EMPLOYEES_SUCCESSFUL',
