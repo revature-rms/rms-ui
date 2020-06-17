@@ -90,7 +90,7 @@ function CampusListComponent() {
                             { title: "HR Lead", field: "hrLead.firstName" }
                         ]}
                         //@ts-ignore
-                        onRowClick={(event, rowData) => history.push('/campus/' + rowData.id)}
+                        onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
                         data={campusList}
                         title="Campuses"
                     />
