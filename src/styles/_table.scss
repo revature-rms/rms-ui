@@ -5,6 +5,8 @@
     left: 14vw;
     width: 80vw;
     margin: 4vh 2vw;
+    border-radius: 1vh;
+    overflow: hidden;
 }
 
 .MuiToolbar-regular {
@@ -16,7 +18,10 @@ table {
     margin: auto !important;
     background-color: $light-grey !important;
     th {
-        background-color: $light-grey !important;
+        background-color: $white !important;
+        .MuiButtonBase-root {
+            font-weight: 600;
+        }
     }
     td {
         background-color: $white !important;
