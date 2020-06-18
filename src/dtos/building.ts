@@ -4,6 +4,7 @@ import { Amenity } from "./amenity";
 import { Room } from "./room";
 import { ResourceMetadata } from "./resourceMetadata";
 
+
 export class Building {
     id: number;
     name: string;

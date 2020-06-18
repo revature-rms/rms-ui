@@ -1,0 +1,19 @@
+@import "./navbar";
+@import "./login";
+@import "./color";
+@import "./table";
+
+/* Define hyperlink style */
+
+a {
+    text-decoration: none !important;
+    color: $dark-grey !important;
+}
+
+a:visited {
+    color: $dark-grey !important;
+}
+
+.unselect {
+    user-select: none;
+}
