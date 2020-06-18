@@ -34,12 +34,14 @@ function RoomDetailsComponent() {
     const[isActive, setIsActive] = useState<boolean>(false);
 
 
-    //toggles between editing and non-editing mode
+    /**
+     * Toggles between editing and non-editing mode
+     */
     const enableEdit = () => {
         setEditing(true);
     }   
 
-    //saves states upon clicking save button ... NEEDS TO PERSIST
+    //saves states upon clicking save button ... ***NEEDS TO PERSIST***
     const save = () => {
         setRoom({...room,
                     
@@ -95,11 +97,9 @@ function RoomDetailsComponent() {
         //Work order logic needed
     }
 
-    //makes a request to the API for all campuses and selects user assigned campus
-    // const getRoom = async() => {
+    const getRoom = async() => {
         
-    // }
-
+    }
 
     useEffect(() => {
         //@ts-ignore
@@ -219,7 +219,7 @@ function RoomDetailsComponent() {
                                     <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
                                 </Card>   
                             </Grid>
-                            
+                            <br/>
                             {/* Contains Room Status Form, ***NONFUNCTIONAL */}
                             <Grid item xs={4}>
                                 <Card className="full-card">
@@ -312,7 +312,7 @@ function RoomDetailsComponent() {
                             <span style={{margin: 5}}>
                             <FormControl>
                                 <InputLabel>Resource Owner: </InputLabel>
-                                <Input value={"room?.resourceMetadata.resourceOwner"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                <Input value={"room?.resourceMetadata.resourceOwnsdknfklsdnflknsdlknflksdnlfknsder"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                             </FormControl>
                             </span>
                         </Card>
