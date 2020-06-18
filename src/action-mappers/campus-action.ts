@@ -1,7 +1,7 @@
 /**Action to change the state of campuses to all of the known campuses*/
 //Going to need a method to get only specific campuses when neccessary
 //Not sure if update method at the bottom is neccessary when useEffct/useState should run getAll again and display all of the new data.
-import { getAllcampusAPI } from '../remote/campus';
+import { getAllCampusAPI } from '../remote/campus-service';
 
 export const campusTypes = {
     SUCCESS_GETTING_CAMPUS: 'GETTING_CAMPUS_SUCCESSFUL',
@@ -11,7 +11,7 @@ export const campusTypes = {
 
  export const getAllCampuses = () => async (dispatch: any) => {
 
-    getAllcampusAPI().then(res =>{
+    getAllCampusAPI().then(res =>{
         console.log("response found");
         if(res.status === 200){
             dispatch({
@@ -20,7 +20,7 @@ export const campusTypes = {
                     campus: res.data
                 }
             })
-        }else {
+        } else {
             dispatch({
                 type: campusTypes.FAIL_GETTING_CAMPUS,
                 payload: {
