@@ -148,7 +148,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                         { title: 'Active', field: 'isActive'} 
                                         
                                     ]}
-                                    onRowClick={(event, rowData)=> history.push(`/room-details`)}
+                                    //@ts-ignore
+                                    onRowClick={(event, rowData)=> history.push(`/rooms/` + rowData.id)}
                                     data = {building?.rooms}
                                     title = "Rooms"
                                     
