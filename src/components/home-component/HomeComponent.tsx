@@ -5,7 +5,7 @@ import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
-import { Card } from '@material-ui/core';
+import { Card, Grid } from '@material-ui/core';
 import { getAllCampus, getBuildingById } from '../../remote/campus-service';
 
 export interface IHomeProps {
@@ -29,7 +29,8 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        if (props.authUser?.role?.includes("Admin" || "Training Site Manager")) getBuildings();
+        if (props.authUser?.role?.includes("Admin")) getBuildings();
+        if (props.authUser?.role?.includes("Training Site Manager")) getBuildings();
         if (props.authUser?.role?.includes("Trainer")) getAssociates();
         if (props.authUser?.role?.includes("Building Manager")) getRooms();
     }, []);
@@ -47,6 +48,7 @@ export function HomeComponent(props: IHomeProps) {
 
     const getRooms = async () => {
         let rooms = (await getBuildingById(1)).data.rooms;
+        console.log(rooms)
         setRooms(rooms)
     }
 
@@ -64,22 +66,26 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
+            <Grid container spacing = {2}>
             {props.authUser?.role?.includes('Admin') ?
-                <Card>
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                { title: 'Campus Name', field: 'name' },
-                                { title: 'Training Manager', field: 'trainingManagerId' },
-                                { title: 'Number of Buildings', field: 'buildings.length' }
-                            ]}
-                            data={campus}
-                            title="Campus"
-                        />
-                    </div>
-                </Card>
+                <Grid item xs = {12}>
+                    <Card>
+                        <div className="table-wrapper">
+                            < MaterialTable
+                                columns={[
+                                    { title: 'Campus Name', field: 'name' },
+                                    { title: 'Training Manager', field: 'trainingManagerId' },
+                                    { title: 'Number of Buildings', field: 'buildings.length' }
+                                ]}
+                                data={campus}
+                                title="Campus"
+                            />
+                        </div>
+                    </Card>
+                </Grid>
             : <></> }
             {props.authUser?.role?.includes('Trainer') ?
+                <Grid item xs = {12}>
                 <Card>
                     <div className="table-wrapper">
                         < MaterialTable
@@ -92,8 +98,10 @@ export function HomeComponent(props: IHomeProps) {
                         />
                     </div>
                 </Card>
+                </Grid>
             : <></> }
             {props.authUser?.role?.includes('Building Manager') ?
+                <Grid item xs = {12}>
                 <Card>
                     <div className="table-wrapper">
                         < MaterialTable
@@ -107,8 +115,10 @@ export function HomeComponent(props: IHomeProps) {
                         />
                     </div>
                 </Card>
+                </Grid>
             : <></> }
             {props.authUser?.role?.includes('Training Site Manager') ?
+                <Grid item xs = {12}>
                 <Card>
                     <div className="table-wrapper">
                         < MaterialTable
@@ -122,7 +132,9 @@ export function HomeComponent(props: IHomeProps) {
                         />
                     </div>
                 </Card>
+                </Grid>
             : <></> }
+            </Grid>
         </>
     )
 }
