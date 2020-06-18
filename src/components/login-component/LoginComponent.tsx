@@ -3,7 +3,8 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import LoginFunction from '../../utils/login-function/LoginFunction';
 import { AppUser } from '../../dtos/appUser';
-import "../../styles/login.scss";
+
+
 export interface ILoginProps {
     authUser: AppUser,
     loginMessage: string,
@@ -49,7 +50,7 @@ export function LoginComponent(props: ILoginProps) {
 
     return (
         <>
-            <div className="login-ribbon" onClick={displayLogin}>
+            <div className="login-ribbon unselect" onClick={displayLogin}>
                 RESOURCE MANAGEMENT SYSTEM
 
                 <div className="login-holder">
@@ -72,7 +73,7 @@ export function LoginComponent(props: ILoginProps) {
                                 required
                                 type="password"
                                 id="password"
-                                placeholder="enter password"
+                                placeholder="Enter Password"
                                 name="password"
                                 value={password}
                                 onChange={setInfo}

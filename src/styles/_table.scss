@@ -1,0 +1,60 @@
+@import "./color";
+.table-wrapper {
+    position: absolute;
+    top: 110px;
+    left: 14vw;
+    width: 80vw;
+    margin: 4vh 2vw;
+}
+
+.MuiToolbar-regular {
+    background-color: $yellow !important;
+}
+
+table {
+    width: 100% !important;
+    margin: auto !important;
+    background-color: $light-grey !important;
+    th {
+        background-color: $light-grey !important;
+    }
+    td {
+        background-color: $white !important;
+        color: $dark-grey !important;
+    }
+    tr:hover td {
+        transition: 0.5s;
+        color: $white !important;
+        background-color: $grey !important;
+    }
+    tr:hover td a {
+        transition: 0.5s;
+        color: $white !important;
+    }
+    tr:hover td a:visited {
+        transition: 0.5s;
+        color: $white !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 180px;
+        left: 0;
+        width: 96vw;
+        margin: 3vh 2vw;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    /* For general iphone layouts */
+    .table-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 0;
+        width: 96vw;
+        margin: 2vh 2vw;
+    }
+}
