@@ -25,7 +25,6 @@ export function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [ready, setReady] = useState(false);
 
     //Set props
     const setInfo = (event: any) => {
@@ -44,17 +43,15 @@ export function LoginComponent(props: ILoginProps) {
         props.login(username, password);
     }
 
-    const displayLogin = () => {
-        setReady(true)
-    }
+
 
     return (
         <>
-            <div className="login-ribbon unselect" onClick={displayLogin}>
+            <div className="login-ribbon unselect">
                 RESOURCE MANAGEMENT SYSTEM
 
                 <div className="login-holder">
-                    {ready ?
+
                         <form className="login-form-holder">
                             <div className="login-label unselect">Username</div>
                             <input
@@ -81,7 +78,6 @@ export function LoginComponent(props: ILoginProps) {
                             <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
 
                         </form>
-                        : null}
                 </div>
             </div>
             <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>

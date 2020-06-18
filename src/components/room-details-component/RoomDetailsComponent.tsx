@@ -112,6 +112,7 @@ function RoomDetailsComponent() {
 
     return (
         <>
+            <div className="display-wrapper">
             <div className="table-wrapper">
                 <Grid container spacing={2}>
 
@@ -322,6 +323,7 @@ function RoomDetailsComponent() {
                     <span style={{margin: 5}}> 
                     </span>                             
                 </Grid>
+            </div>
             </div>
         </>
     )

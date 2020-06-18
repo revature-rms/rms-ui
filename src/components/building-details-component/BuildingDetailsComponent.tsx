@@ -68,6 +68,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
         
         return (
             <>
+            <div className="display-wrapper">
                 <Card>
                 <div className="table-wrapper">
                     <Grid container spacing={1}>
@@ -222,6 +223,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                     </Grid>
                 </div>    
                 </Card>
+                </div>
             </>
         )
 }

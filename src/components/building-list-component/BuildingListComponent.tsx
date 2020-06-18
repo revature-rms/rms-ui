@@ -84,6 +84,7 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     return (
         <>
+            <div className="display-wrapper">
             <Card>
                 <div className="table-wrapper">
                     < MaterialTable
@@ -103,6 +104,7 @@ function BuildingListComponent(props: IBuildingListProps) {
                     />
                 </div>
             </Card>
+            </div>
         </>
     )
 
