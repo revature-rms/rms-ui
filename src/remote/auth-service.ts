@@ -7,6 +7,6 @@ export const userLogout = () => {
 }
 
 export async function userLogin(username: string, password: string) {
-    let response = await apiClient.post('/auth', { username, password });
+    let response = await apiClient.post('/auth/', { username, password });
     return await response.data;
 }

@@ -29,9 +29,9 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        // if (props.authUser.role == "Admin") getBuildings();
-        // if (props.authUser.role == "Trainer") getAssociates();
-        // if (props.authUser.role == "Building Manager") getRooms();
+        if (props.authUser?.role == "Admin") getBuildings();
+        if (props.authUser?.role == "Trainer") getAssociates();
+        if (props.authUser?.role == "Building Manager") getRooms();
     }, []);
 
     const getBuildings = async () => {
@@ -107,7 +107,19 @@ export function HomeComponent(props: IHomeProps) {
                             </div>
                         </Card>
                         : props.authUser?.role == 'Training Site Manager' ? <></>
-                            : <></>
+                            : <Card>
+                            <div className="table-wrapper">
+                                < MaterialTable
+                                    columns={[
+                                        { title: 'Room Number', field: 'roomNumber' },
+                                        { title: 'Room Occupancy', field: 'maxOccupancy' }
+                                    ]}
+                                    data={rooms}
+                                    title="Rooms"
+
+                                />
+                            </div>
+                        </Card>
             }
         </>
     )

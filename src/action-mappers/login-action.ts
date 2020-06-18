@@ -10,7 +10,7 @@ export const loginTypes = {
     SUCCESSFUL_LOGOUT: 'TRAVEL_APP_SUCCEFUL_LOGOUT'
 }
 
-export const login = async(username:string, password:string) => async (dispatch:any) => {
+export const login = (username:string, password:string) => async (dispatch:any) => {
     
     try {
         
