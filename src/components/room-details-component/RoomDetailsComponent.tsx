@@ -276,15 +276,13 @@ function RoomDetailsComponent() {
                         </Grid>
                     </Grid>
 
-
-                    {/*Contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
+                    {/*Contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}                        
                     <Grid item xs={12}>
-                        <Card className="full-card">
-
+                        <Card>
                             <span style={{margin: 5}}> 
                             <FormControl>
                                 <InputLabel>Resource Creator: </InputLabel>
-                                <Input value={"room?.resourceMetadata.resourceCreator"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                <Input value={"room?.resourceMetadata.resourceCreator"} disabled={true}/>
                             </FormControl>
                             </span>
 
@@ -315,8 +313,12 @@ function RoomDetailsComponent() {
                                 <Input value={"room?.resourceMetadata.resourceOwnsdknfklsdnflknsdlknflksdnlfknsder"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                             </FormControl>
                             </span>
+
                         </Card>
-                    </Grid>
+                    </Grid>  
+                    {/*This Span is required to make the last reousrce metadata card full length... not sure why but I cant get it to work any other way */}  
+                    <span style={{margin: 5}}> 
+                    </span>                             
                 </Grid>
             </div>
         </>
