@@ -9,7 +9,7 @@ import { Building } from '../../dtos/building';
 import { Grid, Card, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 import { Address } from '../../dtos/address';
 import { Employee } from '../../dtos/employee';
-import { ResourceMetadata } from '../../dtos/resourceMetaData';
+import { ResourceMetadata } from '../../dtos/resourceMetadata';
 
 
 export interface ICampusDetailsProps {
