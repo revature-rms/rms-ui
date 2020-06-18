@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { AppUser } from '../../dtos/appUser';
-import { Grid, Card, FormControl, InputLabel, Input, Button, Switch, Select, FormHelperText, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Grid, Card, FormControl, InputLabel, Input, Button, Switch, Select, FormHelperText, FormControlLabel, Checkbox, Typography, Breadcrumbs } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { Room } from '../../dtos/room';
 import { RoomStatus } from '../../dtos/roomStatus';
@@ -9,6 +9,7 @@ import { Batch } from '../../dtos/batch';
 import { WorkOrder } from '../../dtos/workOrder';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Employee } from '../../dtos/employee';
+import { Link } from 'react-router-dom';
 
 
 
@@ -103,21 +104,37 @@ function RoomDetailsComponent() {
 
     return (
         <>
-        <Card>
             <div className="table-wrapper">
-                <Grid container>
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
+                            <Typography variant="h2">Room #: {room?.roomNumber}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Breadcrumbs>
+                        <Link to="">
+                        Campus
+                        </Link>
+                        <Link to="">
+                        Building 
+                        </Link>
+                        <Typography>{room?.roomNumber}</Typography>
+                        </Breadcrumbs>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        
                         {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
                              of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
                                 - need to persist data upon save
                                 - need to save editting authUser for metadata
                              */}
                             <Card className="full-card">
+                            <Typography>Room Details</Typography>
                             <div id="room-form">
 
                                 <span style={{margin: 5}}>
                                 <InputLabel>Room Number: </InputLabel>
-                                <FormControl>
+                                <FormControl style={{ margin: 8 }} >
                                     {editing?
                                     <Input id="roomNumber" defaultValue={room?.roomNumber} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="roomNumber" value={room?.roomNumber} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
@@ -126,7 +143,7 @@ function RoomDetailsComponent() {
 
                                 <span style={{margin: 5}}>
                                 <InputLabel>Max Occupancy: </InputLabel>
-                                <FormControl>
+                                <FormControl style={{ margin: 8 }} >
                                     {editing?
                                     <Input id="maxOccupancy" value={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="maxOccupancy" defaultValue={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
@@ -138,153 +155,151 @@ function RoomDetailsComponent() {
                             <br/>
                             {editing?
                             <>
-                                <Button onClick={save}>Save</Button>
-                                <Button onClick={cancel}>Cancel</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
 
                             </>
                             :
                             <FormControl>
-                                <Button onClick={enableEdit}>Edit</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
                             </FormControl>}
 
                             </Card>
                     </Grid>
-                    <Grid item xs={7}>
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <div className="full-card">
-                                    <div style={{marginBottom: 20}}>
-                                    <InputLabel>Work Order</InputLabel>
-                                    </div>
-                                    <div style={{marginRight: 20}}>
-                                    <FormControl>
-                                        <Input id="contactEmail" value={"Contact Email"} inputProps={{ 'aria-label': 'description' }} />
-                                        {/* <Input id="contactEmail" defaultValue={props.authUser?.email} disabled={!editing} inputProps={{ 'aria-label': 'description' }} /> */}
-                                        <Select native onChange={createWorkOrder} name="Category">
-                                            <option aria-label="None" value="" />
+
+                    <Grid item xs={12}>
+                        <Grid container spacing={2}>        
+                            <Grid item xs={8}>
+                                <Card className="full-card">
+                                    <Typography>Work Order</Typography>
+                                        
+                                    <FormControl style={{ margin: 8 }}>
+                                        <TextField id="standard-basic" label="Contact Email"/>
+                                    </FormControl>
+                                    <br/>
+
+                                    <FormControl style={{ margin: 8 }}>
+                                        <InputLabel>Category</InputLabel>
+                                        <Select native onChange={createWorkOrder} name="Category" label="Category">
+                                            <option aria-label="None" value=""/>
                                             <option>Lighting</option>
                                             <option>Air Conditionong</option>
                                             <option>Doors</option>
                                             <option>Projector</option>
                                             <option>Other</option>
                                         </Select>
-                                        <FormHelperText>Required</FormHelperText>
                                     </FormControl>
-                                    </div>
-                                    <div style={{marginBottom: 5}}>
-                                    <FormControl>
-                                        <TextField id="description" label="Description" multiline rows={8} defaultValue="Default Value" variant="outlined" />    
-                                    </FormControl>
-                                    </div>
-                                    <div>
-                                    <FormControl>
-                                        <Button onClick={createWorkOrder}>Submit</Button>
-                                    </FormControl>
-                                    </div>
-                                </div>
+                                    <br/>
+
+                                    <TextField style={{ margin: 8 }} label="Description" multiline fullWidth/>    
+                                    <br/>
+
+                                    <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
+                                </Card>
+
+                                <Card className="full-card">
+                                    <Typography>Room Transfer</Typography> 
+                                    <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
+                                </Card>   
                             </Grid>
-                            <Grid item xs={12}>
-                            <div className="full-card">
-                                <InputLabel>Room Transfer</InputLabel>    
-                            </div>    
+
+                            <Grid item xs={4}>
+                                <Card className="full-card">
+                                    <Typography>Room Status</Typography>
+
+                                    <FormControl>
+                                        <FormControlLabel
+                                            control={
+                                            <Checkbox
+                                                //defaultChecked={room.currentStatus.whiteboardCleaned}
+                                                // onChange={checkedBoxes}
+                                                name="whiteboardCleaned"
+                                                color="primary"
+                                                style={{ margin: 8 }} 
+                                            />
+                                            }
+                                            label="Whiteboard Cleaned"
+                                        />
+
+                                        <FormControlLabel
+                                            control={
+                                            <Checkbox
+                                                // defaultChecked={room.currentStatus.chairsOrdered}
+                                                // onChange={checkedBoxes}
+                                                name="chairsOrdered"
+                                                color="primary"
+                                                style={{ margin: 8 }} 
+                                            />
+                                            }
+                                            label="Chairs Ordered"
+                                        />
+
+                                        <FormControlLabel
+                                            control={
+                                            <Checkbox
+                                                // defaultChecked={room.currentStatus.desksCleaned}
+                                                // onChange={checkedBoxes}
+                                                name="desksCleaned"
+                                                color="primary"
+                                                style={{ margin: 8 }} 
+                                            />
+                                            }
+                                            label="Desks Cleaned"
+                                        />
+                                    </FormControl>
+
+                                    <div style={{ margin: 8}} >
+                                        <TextField label="Notes" multiline fullWidth/>
+                                    </div>
+
+                                    <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
+                                </Card>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <div className="full-card">
-                        <InputLabel>Room Status</InputLabel>
-                        <FormControl>
-                            <div>
-                            <FormControlLabel
-                                control={
-                                <Checkbox
-                                    //defaultChecked={room.currentStatus.whiteboardCleaned}
-                                    // onChange={checkedBoxes}
-                                    name="whiteboardCleaned"
-                                    color="primary"
-                                />
-                                }
-                                label="Whiteboard Cleaned"
-                            />
-                            </div>
-                            <div>
-                            <FormControlLabel
-                                control={
-                                <Checkbox
-                                    // defaultChecked={room.currentStatus.chairsOrdered}
-                                    // onChange={checkedBoxes}
-                                    name="chairsOrdered"
-                                    color="primary"
-                                />
-                                }
-                                label="Chairs Ordered"
-                            />
-                            </div>
-                            <div>
-                            <FormControlLabel
-                                control={
-                                <Checkbox
-                                    // defaultChecked={room.currentStatus.desksCleaned}
-                                    // onChange={checkedBoxes}
-                                    name="desksCleaned"
-                                    color="primary"
-                                />
-                                }
-                                label="Desks Cleaned"
-                            />
-                            </div>
-                            <div>
-                            <FormControl>
-                                <TextField id="otherNotes" label="Other Notes" multiline rows={8} defaultValue="Any Notes?" variant="outlined" />    
-                            </FormControl>
-                            </div>
-                            <div>
-                            <FormControl>
-                                <Button onClick={createWorkOrder} >Submit</Button>
-                            </FormControl>
-                            </div>
-                        </FormControl>
-                        </div>
                     </Grid>
 
                     <Grid item xs={12}>
-                                {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
-                                <Card className="full-card">
-                                    <span style={{margin: 5}}> 
-                                    <FormControl>
-                                        <InputLabel>Resource Creator: </InputLabel>
-                                        <Input value={"room?.resourceMetadata.resourceCreator"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
-                                    </span>
-                                    <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Time Created: </InputLabel>
-                                        <Input value={"room?.resourceMetadata.resourceCreationTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
-                                    </span>
-                                    <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Last Modifier: </InputLabel>
-                                        <Input value={"room?.resourceMetadata.lastModifier"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
-                                    </span>
-                                    <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Time Modified: </InputLabel>
-                                        <Input value={"room?.resourceMetadata.lastModifiedDateTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
-                                    </span>
-                                    <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Resource Owner: </InputLabel>
-                                        <Input value={"room?.resourceMetadata.resourceOwner"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
-                                    </span>
-                                </Card>  
-                            </Grid>
-                        </Grid>
+                        {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
+                        <Card className="full-card">
+
+                            <span style={{margin: 5}}> 
+                            <FormControl>
+                                <InputLabel>Resource Creator: </InputLabel>
+                                <Input value={"room?.resourceMetadata.resourceCreator"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                            </FormControl>
+                            </span>
+
+                            <span style={{margin: 5}}>
+                            <FormControl>
+                                <InputLabel>Time Created: </InputLabel>
+                                <Input value={"room?.resourceMetadata.resourceCreationTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                            </FormControl>
+                            </span>
+
+                            <span style={{margin: 5}}>
+                            <FormControl>
+                                <InputLabel>Last Modifier: </InputLabel>
+                                <Input value={"room?.resourceMetadata.lastModifier"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                            </FormControl>
+                            </span>
+
+                            <span style={{margin: 5}}>
+                            <FormControl>
+                                <InputLabel>Time Modified: </InputLabel>
+                                <Input value={"room?.resourceMetadata.lastModifiedDateTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                            </FormControl>
+                            </span>
+                            
+                            <span style={{margin: 5}}>
+                            <FormControl>
+                                <InputLabel>Resource Owner: </InputLabel>
+                                <Input value={"room?.resourceMetadata.resourceOwner"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                            </FormControl>
+                            </span>
+                        </Card>
+                    </Grid>
+                </Grid>
             </div>
-            </Card>
         </>
     )
 
