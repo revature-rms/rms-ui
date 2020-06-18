@@ -13,10 +13,10 @@ import { ResourceMetadata } from '../../dtos/resourceMetadata';
 
 
 export interface ICampusDetailsProps {
-    authUser: AppUser
+    setThisBuilding: ((thisBuilding: Building) => void)
 }
 
-function CampusDetailsComponent() {
+function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     //@ts-ignore
     const[campus, setCampus] = useState<Campus>(null as Campus);
@@ -280,8 +280,11 @@ function CampusDetailsComponent() {
                                     { title: "Building Manager", field: "trainingLead"}                                
                                 ]}
 
-                                //@ts-ignore
-                                onRowClick={(event, rowData)=> history.push(`/buildings/${rowData.id}`)}
+                                onRowClick={(event, rowData)=> {
+                                    //@ts-ignore
+                                    props.setThisBuilding(rowData)
+                                    history.push(`/buildings/${rowData?.id}`)
+                                }}
                                 data = {buildings}
                                 title = "Buildings"
                                 
