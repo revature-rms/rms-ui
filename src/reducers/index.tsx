@@ -7,6 +7,8 @@ import { campusReducer } from './campus-reducer';
 import { userReducer } from './login-reducer';
 import { homeReducer } from './home-reducer';
 import { AppUser } from '../dtos/appUser';
+import { Building } from '../dtos/building';
+import {buildingReducer } from './building-list-reducer';
 
 
 export interface IEmployeesState {
@@ -20,6 +22,10 @@ export interface ICampusState {
     campus: any,
     campusMessage: string,
     id: number
+}
+
+export interface IBuildingState {
+    thisBuilding: Building
 }
 
 export interface IHomeState {
@@ -38,7 +44,8 @@ export interface IState {
     roomsState:IRoomsState,
     campusState: ICampusState,
     userState: ILoginState,
-    homeState: IHomeState
+    homeState: IHomeState,
+    thisBuildingState: IBuildingState
 }
 
 export interface IRoomState {
@@ -55,5 +62,6 @@ export const state = combineReducers<IState>({
     roomsState: roomsReducer,
     campusState: campusReducer,
     userState: userReducer,
-    homeState: homeReducer
+    homeState: homeReducer,
+    thisBuildingState: buildingReducer 
 })

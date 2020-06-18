@@ -6,6 +6,7 @@ export class ResourceMetadata {
     lastModifier: AppUser;
     lastModifiedDateTime: Date;
     resourceOwner: AppUser;
+    resourceCreationDateTime: unknown;
 
     constructor(resourceCreator: AppUser, resourceCreationTime: Date, lastModifier: AppUser, lastModifiedDateTime: Date, resourceOwner: AppUser) {
         this.resourceCreator = resourceCreator;

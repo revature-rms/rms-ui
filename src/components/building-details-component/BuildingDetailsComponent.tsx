@@ -1,52 +1,21 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
-import Wrapper from '../../utils/div-wrapper/Wrapper';
+import { useHistory } from "react-router-dom";
 import { Grid, FormControl, InputLabel, Input, Card, Button, Typography} from '@material-ui/core';
-import { userInfo } from 'os';
 import MaterialTable from 'material-table';
+import { Building } from '../../dtos/building';
 
 export interface IBuildingDetailsProps {
-    thisBuilding: any
+    thisBuilding: Building
 }
 
-function BuildingDetailsComponent(){
-
-        const mockBuilding =  {id: 1, 
-                            name: "Muma College of Business",
-                            abbrName: "MCB",
-                            physicalAddress: "456 N Main st",
-                            trainingLead: "Bob",
-                            amenities: [{ type: "coffee",
-                                        status: "low"
-                                        },
-                                        { type: "whiteboard",
-                                        status: "clean"
-                                        }],
-                            rooms: [{ id: 1,
-                                    roomNumber: "2035",
-                                    maxOccupancy: 30,
-                                    isActive: false
-                                    },
-                                    {id: 2,
-                                    roomNumber: "1005",
-                                    maxOccupancy: 15,
-                                    isActive: true
-                                    }],
-                            resourceMetadata: {resourceCreator: "John",
-                                                resourceCreationDateTime: "2020-03-03T13:22:31+00.00",
-                                                lastModifer: "Jeremy",
-                                                lastModifiedDateTime: "2020-03-05T10:21:35+00.00",
-                                                resourceOwner: "Abe"
-
-                                                }
-        }
+function BuildingDetailsComponent(props: IBuildingDetailsProps){
 
         const [editting, setEdditing] = useState(false);
-        const [nameState, setName] = useState(mockBuilding.name);
-        const [abbrNameState, setAbbrName] = useState(mockBuilding.abbrName);
-        const [addressState, setAddress] = useState(mockBuilding.physicalAddress);
-        const [bManagerState, setBManager] = useState(mockBuilding.trainingLead);
-        const [building, setBuilding] = useState(mockBuilding);
+        const [building, setBuilding] = useState(props.thisBuilding);
+        const [nameState, setName] = useState(props.thisBuilding?.name);
+        const [abbrNameState, setAbbrName] = useState(props.thisBuilding?.abbrName);
+        const [addressState, setAddress] = useState(props.thisBuilding?.physicalAddress);
+        const [bManagerState, setBManager] = useState(props.thisBuilding?.trainingLead);
         const history = useHistory();
            
         const enableEdit = () => {
@@ -54,7 +23,7 @@ function BuildingDetailsComponent(){
         }   
 
         const save = () => {
-            setBuilding({...mockBuilding,
+            setBuilding({...props.thisBuilding,
                         name: nameState,
                         abbrName: abbrNameState,
                         physicalAddress: addressState,
@@ -169,7 +138,7 @@ function BuildingDetailsComponent(){
                                         
                                     ]}
                                     onRowClick={(event, rowData)=> history.push(`/room-details`)}
-                                    data = {mockBuilding.rooms}
+                                    data = {props.thisBuilding?.rooms}
                                     title = "Rooms"
                                     
                                 />
@@ -195,7 +164,7 @@ function BuildingDetailsComponent(){
                                         </select>
                                         </>) },                           
                                     ]}
-                                    data = {mockBuilding.amenities}
+                                    data = {props.thisBuilding?.amenities}
                                     title = "Amenities"
                                     
                                 />
@@ -208,31 +177,31 @@ function BuildingDetailsComponent(){
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Resource Creator: </InputLabel>
-                                    <Input value={mockBuilding.resourceMetadata.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Time Created: </InputLabel>
-                                    <Input value={mockBuilding.resourceMetadata.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Last Modifier: </InputLabel>
-                                    <Input value={mockBuilding.resourceMetadata.lastModifer} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={props.thisBuilding?.resourceMetadata?.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Time Modified: </InputLabel>
-                                    <Input value={mockBuilding.resourceMetadata.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={props.thisBuilding?.resourceMetadata?.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Resource Owner: </InputLabel>
-                                    <Input value={mockBuilding.resourceMetadata.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                             </Card>  
