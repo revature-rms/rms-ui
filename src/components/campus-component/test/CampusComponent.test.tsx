@@ -1,7 +1,7 @@
-import { CampusComponent } from '../CampusComponent'
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
+import CampusListComponent from '../CampusListComponent';
 
 
 let propsData = {
@@ -42,7 +42,7 @@ let propsData = {
     }]
 };
 const setup = (props: any = propsData, state = 0) => {
-    const wrapper = shallow(<CampusComponent {...props} />)
+    const wrapper = shallow(<CampusListComponent {...props} />)
     if (state) wrapper.setState(state);
     return wrapper;
 }
