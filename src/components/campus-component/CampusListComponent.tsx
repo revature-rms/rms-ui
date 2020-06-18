@@ -8,7 +8,7 @@ import { Employee } from "../../dtos/employee"
 
 
 // for testing, will delete
-import { ResourceMetadata } from '../../dtos/resourceMetaData';
+import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Address } from '../../dtos/address';
 
 export interface ICampusProps {
@@ -90,7 +90,7 @@ function CampusListComponent() {
                             { title: "HR Lead", field: "hrLead.firstName" }
                         ]}
                         //@ts-ignore
-                        onRowClick={(event, rowData) => history.push('/campus/' + rowData.id)}
+                        onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
                         data={campusList}
                         title="Campuses"
                     />

@@ -5,7 +5,7 @@ import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
-import Card from '@material-ui/core/Card';
+import { Card } from '@material-ui/core';
 import { getAllCampusAPI } from '../../remote/campus-service';
 
 export interface IHomeProps {
@@ -29,9 +29,9 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        if (props.authUser.role == "Admin") getBuildings();
-        if (props.authUser.role == "Trainer") getAssociates();
-        if (props.authUser.role == "Building Manager") getRooms();
+        // if (props.authUser.role == "Admin") getBuildings();
+        // if (props.authUser.role == "Trainer") getAssociates();
+        // if (props.authUser.role == "Building Manager") getRooms();
     }, []);
 
     const getBuildings = async () => {

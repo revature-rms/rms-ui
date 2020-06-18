@@ -2,11 +2,13 @@ import { HomeComponent } from '../HomeComponent';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
+import { AppUser } from '../../../dtos/appUser';
 
 const setup = (props = {
-    getAllCampuses: () => { }
+    //@ts-ignore
+    authUser: null as AppUser,
 }, state = 0) => {
-    const wrapper = shallow(<HomeComponent {...props} />)
+    const wrapper = shallow(<HomeComponent {...props}/>)
     if (state) wrapper.setState(state);
     return wrapper;
 }
