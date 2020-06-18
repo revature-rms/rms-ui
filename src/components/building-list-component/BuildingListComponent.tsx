@@ -4,11 +4,10 @@ import { getAllCampusAPI } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
+import { setThisBuilding } from '../../action-mappers/building-action';
 
 
 export interface IBuildingListProps {
-    authUser: any
-    setThisBuilding: ((thisBuilding: Building) => void)
 }
 
 function BuildingListComponent(props: IBuildingListProps) {
@@ -34,7 +33,7 @@ function BuildingListComponent(props: IBuildingListProps) {
                 name: "Campus A",
                 abbrName: "CA",
                 buildings: [{
-                    id: 1,
+                    id: 12,
                     name: "Muma College of Business",
                     physicalAddress: "456 N Main st",
                     trainingLead: "Bob"
@@ -96,8 +95,6 @@ function BuildingListComponent(props: IBuildingListProps) {
                         ]}
                         
                         onRowClick={(event, rowData) => {
-                            //@ts-ignore
-                            props.setThisBuilding(rowData)
                             //@ts-ignore
                             history.push('/buildings/' + rowData.id)
                         }}

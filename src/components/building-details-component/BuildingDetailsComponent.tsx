@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Grid, FormControl, InputLabel, Input, Card, Button, Typography} from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
+import { getBuildingByIdAPI } from '../../remote/building-service';
 
 export interface IBuildingDetailsProps {
-    thisBuilding: Building
 }
 
 function BuildingDetailsComponent(props: IBuildingDetailsProps){
 
         const [editting, setEdditing] = useState(false);
-        const [building, setBuilding] = useState(props.thisBuilding);
-        const [nameState, setName] = useState(props.thisBuilding?.name);
-        const [abbrNameState, setAbbrName] = useState(props.thisBuilding?.abbrName);
-        const [addressState, setAddress] = useState(props.thisBuilding?.physicalAddress);
-        const [bManagerState, setBManager] = useState(props.thisBuilding?.trainingLead);
+        //@ts-ignore
+        const [building, setBuilding] = useState(null as Building);
+        const [nameState, setName] = useState(building?.name);
+        const [abbrNameState, setAbbrName] = useState(building?.abbrName);
+        const [addressState, setAddress] = useState(building?.physicalAddress);
+        const [bManagerState, setBManager] = useState(building?.trainingLead);
         const history = useHistory();
            
         const enableEdit = () => {
@@ -23,7 +24,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
         }   
 
         const save = () => {
-            setBuilding({...props.thisBuilding,
+            setBuilding({...building,
                         name: nameState,
                         abbrName: abbrNameState,
                         physicalAddress: addressState,
@@ -53,7 +54,17 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                     break;
             }
         }
+
+        const getBuilding = async (id: number) => {
+            let thisBuilding = (await getBuildingByIdAPI(id)).data;
+            setBuilding(thisBuilding);
+        }
         
+        useEffect(()=> {
+            let buildingId = window.location?.pathname?.match(/\d+/)?.pop();
+            //@ts-ignore
+            getBuilding(+buildingId);
+        }, [])
         
         return (
             <>
@@ -61,7 +72,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                 <div className="table-wrapper">
                     <Grid container spacing={1}>
                         <Grid item xs={12}>
-                            <Typography variant="h2">{building.name}</Typography>
+                            <Typography variant="h2">{building?.name}</Typography>
                         </Grid>
                         <Grid item xs={12}>
                             {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
@@ -76,8 +87,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <InputLabel>Building Name: </InputLabel>
                                 <FormControl>
                                     {editting?
-                                    <Input id="name" defaultValue={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="name" value={building.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                    <Input id="name" defaultValue={building?.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="name" value={building?.name} disabled={!editting} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                 </FormControl>
                                 </div>
 
@@ -85,8 +96,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <InputLabel>Abbreviated Name: </InputLabel>
                                 <FormControl>
                                     {editting?
-                                    <Input id="abbrName" value={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="abbrName" defaultValue={building.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="abbrName" value={building?.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="abbrName" defaultValue={building?.abbrName} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
                                 </div>
@@ -95,8 +106,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <InputLabel>Address: </InputLabel>
                                 <FormControl>
                                     {editting?
-                                    <Input id="address" value={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="address" defaultValue={building.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="address" value={building?.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="address" defaultValue={building?.physicalAddress} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </div>
@@ -105,8 +116,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <InputLabel>Building Manager: </InputLabel>
                                 <FormControl>
                                     {editting?
-                                    <Input id="bManager" value={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="bManager" defaultValue={building.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="bManager" value={building?.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="bManager" defaultValue={building?.trainingLead} disabled={!editting} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
                                 </div>
@@ -138,7 +149,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                         
                                     ]}
                                     onRowClick={(event, rowData)=> history.push(`/room-details`)}
-                                    data = {props.thisBuilding?.rooms}
+                                    data = {building?.rooms}
                                     title = "Rooms"
                                     
                                 />
@@ -164,7 +175,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                         </select>
                                         </>) },                           
                                     ]}
-                                    data = {props.thisBuilding?.amenities}
+                                    data = {building?.amenities}
                                     title = "Amenities"
                                     
                                 />
@@ -177,31 +188,31 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Resource Creator: </InputLabel>
-                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Time Created: </InputLabel>
-                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Last Modifier: </InputLabel>
-                                    <Input value={props.thisBuilding?.resourceMetadata?.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Time Modified: </InputLabel>
-                                    <Input value={props.thisBuilding?.resourceMetadata?.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel>Resource Owner: </InputLabel>
-                                    <Input value={props.thisBuilding?.resourceMetadata?.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                             </Card>  
