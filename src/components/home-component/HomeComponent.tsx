@@ -66,75 +66,77 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
-            <Grid container spacing = {2}>
-            {props.authUser?.role?.includes('Admin') ?
-                <Grid item xs = {12}>
-                    <Card>
-                        <div className="table-wrapper">
-                            < MaterialTable
-                                columns={[
-                                    { title: 'Campus Name', field: 'name' },
-                                    { title: 'Training Manager', field: 'trainingManagerId' },
-                                    { title: 'Number of Buildings', field: 'buildings.length' }
-                                ]}
-                                data={campus}
-                                title="Campus"
-                            />
-                        </div>
-                    </Card>
-                </Grid>
-            : <></> }
-            {props.authUser?.role?.includes('Trainer') ?
-                <Grid item xs = {12}>
-                <Card>
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                { title: 'Associate Name', field: 'name' }
-                            ]}
-                            data={associates}
-                            title="Associates"
+            <div className="display-wrapper">
+                <Grid container spacing={2}>
+                    {props.authUser?.role?.includes('Admin') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Campus Name', field: 'name' },
+                                            { title: 'Training Manager', field: 'trainingManagerId' },
+                                            { title: 'Number of Buildings', field: 'buildings.length' }
+                                        ]}
+                                        data={campus}
+                                        title="Campus"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Trainer') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Associate Name', field: 'name' }
+                                        ]}
+                                        data={associates}
+                                        title="Associates"
 
-                        />
-                    </div>
-                </Card>
-                </Grid>
-            : <></> }
-            {props.authUser?.role?.includes('Building Manager') ?
-                <Grid item xs = {12}>
-                <Card>
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                { title: 'Room Number', field: 'roomNumber' },
-                                { title: 'Room Occupancy', field: 'maxOccupancy' }
-                            ]}
-                            data={rooms}
-                            title="Rooms"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Building Manager') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Room Number', field: 'roomNumber' },
+                                            { title: 'Room Occupancy', field: 'maxOccupancy' }
+                                        ]}
+                                        data={rooms}
+                                        title="Rooms"
 
-                        />
-                    </div>
-                </Card>
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Training Site Manager') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Campus Name', field: 'name' },
+                                            { title: 'Training Manager', field: 'trainingManagerId' },
+                                            { title: 'Number of Buildings', field: 'buildings.length' }
+                                        ]}
+                                        data={campus}
+                                        title="Placeholder table -- same as admin view"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
                 </Grid>
-            : <></> }
-            {props.authUser?.role?.includes('Training Site Manager') ?
-                <Grid item xs = {12}>
-                <Card>
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                { title: 'Campus Name', field: 'name' },
-                                { title: 'Training Manager', field: 'trainingManagerId' },
-                                { title: 'Number of Buildings', field: 'buildings.length' }
-                            ]}
-                            data={campus}
-                            title="Placeholder table -- same as admin view"
-                        />
-                    </div>
-                </Card>
-                </Grid>
-            : <></> }
-            </Grid>
+            </div>
         </>
     )
 }
