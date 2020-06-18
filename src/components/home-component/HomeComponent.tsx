@@ -5,8 +5,8 @@ import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
 import { prependOnceListener } from 'process';
 import { roomList } from '../../remote/room-list-search';
-import { Card } from '@material-ui/core';
-import { getAllCampusAPI } from '../../remote/campus-service';
+import { Card, Grid } from '@material-ui/core';
+import { getAllCampus, getBuildingById } from '../../remote/campus-service';
 
 export interface IHomeProps {
     authUser: AppUser;
@@ -29,16 +29,17 @@ export function HomeComponent(props: IHomeProps) {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
-        // if (props.authUser.role == "Admin") getBuildings();
-        // if (props.authUser.role == "Trainer") getAssociates();
-        // if (props.authUser.role == "Building Manager") getRooms();
+        if (props.authUser?.role?.includes("Admin")) getBuildings();
+        if (props.authUser?.role?.includes("Training Site Manager")) getBuildings();
+        if (props.authUser?.role?.includes("Trainer")) getAssociates();
+        if (props.authUser?.role?.includes("Building Manager")) getRooms();
     }, []);
 
     const getBuildings = async () => {
         // await getCampuses();
         let campuses;
         // mock data
-        campuses = (await getAllCampusAPI()).data;
+        campuses = (await getAllCampus()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
@@ -46,16 +47,16 @@ export function HomeComponent(props: IHomeProps) {
     }
 
     const getRooms = async () => {
-
-        let rooms = await roomList();
+        let rooms = (await getBuildingById(1)).data.rooms;
+        console.log(rooms)
         setRooms(rooms)
     }
 
     const getAssociates = () => {
         let associates = [
-            { name: 'a' },
-            { name: 'b' },
-            { name: 'c' }
+            { name: 'Jim Bob' },
+            { name: 'John Doe' },
+            { name: 'Name 3' }
         ]
         console.log(associates)
         //@ts-ignore
@@ -65,52 +66,76 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
-                <div className="display-wrapper">
+            <div className="display-wrapper">
+                <Grid container spacing={2}>
+                    {props.authUser?.role?.includes('Admin') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Campus Name', field: 'name' },
+                                            { title: 'Training Manager', field: 'trainingManagerId' },
+                                            { title: 'Number of Buildings', field: 'buildings.length' }
+                                        ]}
+                                        data={campus}
+                                        title="Campus"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Trainer') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Associate Name', field: 'name' }
+                                        ]}
+                                        data={associates}
+                                        title="Associates"
 
-            {props.authUser?.role == 'Admin' ?
-                <Card>
-                    <div className="table-wrapper">
-                        < MaterialTable
-                            columns={[
-                                { title: 'Campus Name', field: 'name' },
-                                { title: 'Training Manager', field: 'trainingManagerId' },
-                                { title: 'Number of Buildings', field: 'buildings.length' }
-                            ]}
-                            data={campus}
-                            title="Campus"
-                        />
-                    </div>
-                </Card>
-                : props.authUser?.role == 'Trainer' ?
-                    <Card>
-                        <div className="table-wrapper">
-                            < MaterialTable
-                                columns={[
-                                    { title: 'Associate Name', field: 'name' }
-                                ]}
-                                data={associates}
-                                title="Associates"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Building Manager') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Room Number', field: 'roomNumber' },
+                                            { title: 'Room Occupancy', field: 'maxOccupancy' }
+                                        ]}
+                                        data={rooms}
+                                        title="Rooms"
 
-                            />
-                        </div>
-                    </Card>
-                    : props.authUser?.role == 'Building Manager' ?
-                        <Card>
-                            <div className="table-wrapper">
-                                < MaterialTable
-                                    columns={[
-                                        { title: 'Room Number', field: 'roomNumber' },
-                                        { title: 'Room Occupancy', field: 'maxOccupancy' }
-                                    ]}
-                                    data={rooms}
-                                    title="Rooms"
-
-                                />
-                            </div>
-                        </Card>
-                        : props.authUser?.role == 'Training Site Manager' ? <></>
-                            : <></>
-            }
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                    {props.authUser?.role?.includes('Training Site Manager') ?
+                        <Grid item xs={12}>
+                            <Card>
+                                <div className="table-wrapper">
+                                    < MaterialTable
+                                        columns={[
+                                            { title: 'Campus Name', field: 'name' },
+                                            { title: 'Training Manager', field: 'trainingManagerId' },
+                                            { title: 'Number of Buildings', field: 'buildings.length' }
+                                        ]}
+                                        data={campus}
+                                        title="Placeholder table -- same as admin view"
+                                    />
+                                </div>
+                            </Card>
+                        </Grid>
+                        : <></>}
+                </Grid>
             </div>
         </>
     )

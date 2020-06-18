@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link, useHistory } from "react-router-dom";
-import { getAllCampusAPI } from '../../remote/campus-service'
+import { getAllCampus } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';

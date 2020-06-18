@@ -38,7 +38,7 @@ export function LoginComponent(props: ILoginProps) {
         }
     }
 
-    const signUserIn = () => {
+    const signUserIn = async () => {
         console.log('clicked');
         props.login(username, password);
     }
