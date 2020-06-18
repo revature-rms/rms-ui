@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link, useHistory } from "react-router-dom";
-import { getAllCampus } from '../../remote/campus-service'
+import { getCampusById } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import {Campus} from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
@@ -13,10 +13,9 @@ import { ResourceMetadata } from '../../dtos/resourceMetadata';
 
 
 export interface ICampusDetailsProps {
-    authUser: AppUser
 }
 
-function CampusDetailsComponent() {
+function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     //@ts-ignore
     const[campus, setCampus] = useState<Campus>(null as Campus);
@@ -105,40 +104,31 @@ function CampusDetailsComponent() {
     }
 
     //makes a request to the API for all campuses and selects user assigned campus
-    const getCampus = async() => {
+    const getCampus = async(id: number) => {
         //@ts-ignore
-        let campuses = (await getAllCampusAPI()).data;
+        let campus = (await getCampusByIdAPI(id)).data;
 
-        // campuses.forEach(item => {
-
-        //     if(item.resourceMetadata.resourceOwner.username === props.authUser.username){
-        //         setCampus(item)
-                
-        //     } else {
-        //         throw new Error ('409: You do not have proper credentials for this page')
-        //     }
-
-        let mockCampus: Campus = campuses[0]
-
-        setCampus(mockCampus)
+        setCampus(campus)
     }
 
     //extracts buildings from the users assigned campus
-    const getBuildings = async () => {
+    const getBuildings = async (campusId: number) => {
         let tempBuildings: Array<Building> = [];
 
-        await getCampus(); 
+        await getCampus(campusId); 
 
         campus?.buildings.forEach(building => {
-            tempBuildings.push(building)
+            tempBuildings.push(building);
         })
 
         //@ts-ignore
-        setBuildings(tempBuildings)
+        setBuildings(tempBuildings);
     } 
 
     useEffect(() => {
-        getBuildings();
+        let campusId = window.location?.pathname?.match(/\d+/)?.pop();
+        //@ts-ignore
+        getBuildings(+campusId);
     },[campus, buildings])  
 
     return (
@@ -280,8 +270,9 @@ function CampusDetailsComponent() {
                                     { title: "Building Manager", field: "trainingLead"}                                
                                 ]}
 
-                                //@ts-ignore
-                                onRowClick={(event, rowData)=> history.push(`/buildings/${rowData.id}`)}
+                                onRowClick={(event, rowData)=> {
+                                    history.push(`/buildings/${rowData?.id}`)
+                                }}
                                 data = {buildings}
                                 title = "Buildings"
                                 

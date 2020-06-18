@@ -3,12 +3,14 @@ import { Link, useHistory } from "react-router-dom";
 import { getAllCampus } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
+import { Building } from '../../dtos/building';
+import { setThisBuilding } from '../../action-mappers/building-action';
+
 
 export interface IBuildingListProps {
-    authUser: any
 }
 
-function BuildingListComponent() {
+function BuildingListComponent(props: IBuildingListProps) {
 
     //building array
     const [buildings, setBuildings] = useState([])
@@ -31,7 +33,7 @@ function BuildingListComponent() {
                 name: "Campus A",
                 abbrName: "CA",
                 buildings: [{
-                    id: 1,
+                    id: 12,
                     name: "Muma College of Business",
                     physicalAddress: "456 N Main st",
                     trainingLead: "Bob"
@@ -91,8 +93,11 @@ function BuildingListComponent() {
                             { title: 'Address', field: 'physicalAddress' },
                             { title: "Building Manager", field: "trainingLead" }
                         ]}
-                        //@ts-ignore
-                        onRowClick={(event, rowData) => history.push('/buildings/' + rowData.id)}
+                        
+                        onRowClick={(event, rowData) => {
+                            //@ts-ignore
+                            history.push('/buildings/' + rowData.id)
+                        }}
                         data={buildings}
                         title="Buildings"
                     />

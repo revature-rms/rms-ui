@@ -10,6 +10,7 @@ import { WorkOrder } from '../../dtos/workOrder';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Employee } from '../../dtos/employee';
 import { Link } from 'react-router-dom';
+import { getRoomByIdAPI } from '../../remote/room-service';
 
 
 
@@ -91,21 +92,22 @@ function RoomDetailsComponent() {
     }
 
     const newRoomStatus = (event: any) => {
+        //Room Status logic needed
     }
 
     const createWorkOrder = (event: any) => {
         //Work order logic needed
     }
 
-    const getRoom = async() => {
-        
+    const getRoom = async(id: number) => {
+        let thisRoom = (await getRoomByIdAPI(id)).data;
+        setRoom(thisRoom);
     }
 
     useEffect(() => {
+        let roomId = window.location?.pathname?.match(/\d+/)?.pop();
         //@ts-ignore
-        let mockRoom = new Room(1, 123, 67, false, new RoomStatus(1, false, true, false, new Date, null as Employee, "This is a test"), null as Batch, null as WorkOrder, null as ResourceMetadata)
-        setRoom(mockRoom)
-        console.log(room)
+        getRoom(+roomId);
     },[])  
 
     return (
