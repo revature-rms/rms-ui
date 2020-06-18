@@ -117,7 +117,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     //makes a request to the API for all campuses and selects user assigned campus
     const getCampus = async(id: number) => {
         //@ts-ignore
-        let campus = (await getCampusByIdAPI(id)).data;
+        let campus = (await getCampusById(id)).data;
 
         setCampus(campus)
     }
