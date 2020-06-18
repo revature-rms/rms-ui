@@ -25,7 +25,7 @@ class AppComponent extends React.Component<any, any> {
   // const login = useSelector((state: IState) => state.userState.loggedIn)
   // if loggen, we return most details for the application
   render(){
-   if (this.props.loggedIn) {
+  //  if (this.props.loggedIn) {
     return (
       <div data-test="main-content">
         <Router>
@@ -46,19 +46,19 @@ class AppComponent extends React.Component<any, any> {
         </Router>
       </div>
     );
-  } else {
-    // we show only the login page if the user is not logged in
-    return (
-      <div data-test="login-content">
-      <Router>
-        <Switch>
-          <Route path='/login' component={LoginComponent} />
-          <Route path='/' component={LoginComponent} />
-        </Switch>
-      </Router>
-      </div>
-    )
-  }
+  // } else {
+  //   // we show only the login page if the user is not logged in
+  //   return (
+  //     <div data-test="login-content">
+  //     <Router>
+  //       <Switch>
+  //         <Route path='/login' component={LoginComponent} />
+  //         <Route path='/' component={LoginComponent} />
+  //       </Switch>
+  //     </Router>
+  //     </div>
+  //   )
+  // }
   }
 }
 
