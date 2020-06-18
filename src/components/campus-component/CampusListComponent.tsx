@@ -79,7 +79,6 @@ function CampusListComponent() {
     }, []);
 
     return (
-        <div className="display-wrapper">
             <Card>
                 <div className="table-wrapper">
                     < MaterialTable
@@ -96,8 +95,8 @@ function CampusListComponent() {
                         title="Campuses"
                     />
                 </div>
+                <br />
             </Card>
-        </div>
     )
 
 }

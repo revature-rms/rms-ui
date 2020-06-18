@@ -64,7 +64,7 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
-            {props.authUser?.role?.includes("1") ?
+            {props.authUser?.role?.includes('Admin') ?
                 <Card>
                     <div className="table-wrapper">
                         < MaterialTable
