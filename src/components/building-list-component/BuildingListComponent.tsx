@@ -82,22 +82,25 @@ function BuildingListComponent() {
 
     return (
         <>
-            <Card>
-                <div className="table-wrapper">
-                    < MaterialTable
-                        columns={[
-                            { title: 'Id', field: 'id' },
-                            { title: 'Name', field: 'name' },
-                            { title: 'Address', field: 'physicalAddress' },
-                            { title: "Building Manager", field: "trainingLead" }
-                        ]}
-                        //@ts-ignore
-                        onRowClick={(event, rowData) => history.push('/buildings/' + rowData.id)}
-                        data={buildings}
-                        title="Buildings"
-                    />
-                </div>
-            </Card>
+            <div className="display-wrapper">
+
+                <Card>
+                    <div className="table-wrapper">
+                        < MaterialTable
+                            columns={[
+                                { title: 'Id', field: 'id' },
+                                { title: 'Name', field: 'name' },
+                                { title: 'Address', field: 'physicalAddress' },
+                                { title: "Building Manager", field: "trainingLead" }
+                            ]}
+                            //@ts-ignore
+                            onRowClick={(event, rowData) => history.push('/buildings/' + rowData.id)}
+                            data={buildings}
+                            title="Buildings"
+                        />
+                    </div>
+                </Card>
+            </div>
         </>
     )
 

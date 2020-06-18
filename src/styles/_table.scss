@@ -19,7 +19,7 @@
 table {
     width: 100% !important;
     margin: auto !important;
-    background-color: $light-grey !important;
+    background-color: $white !important;
     th {
         background-color: $white !important;
         .MuiButtonBase-root {
@@ -30,18 +30,18 @@ table {
         background-color: $white !important;
         color: $dark-grey !important;
     }
-    tr:hover td {
+    tr:hover td.MuiTableCell-alignLeft {
         transition: 0.5s;
-        color: $white !important;
-        background-color: $grey !important;
+        color: $black !important;
+        background-color: $beige !important;
     }
-    tr:hover td a {
+    tr:hover td.MuiTableCell-alignLeft a {
         transition: 0.5s;
-        color: $white !important;
+        color: $black !important;
     }
-    tr:hover td a:visited {
+    tr:hover td.MuiTableCell-alignLeft a:visited {
         transition: 0.5s;
-        color: $white !important;
+        color: $black !important;
     }
 }
 
