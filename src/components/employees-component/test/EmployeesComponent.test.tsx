@@ -1,5 +1,5 @@
-import React from 'react';
-import {EmployeesComponent} from '../EmployeesComponent';
+import React from 'react'
+import EmployeesComponent from '../EmployeesComponent';
 import { shallow } from 'enzyme';
 import Wrapper from '../../../utils/div-wrapper/Wrapper';
 
@@ -26,17 +26,17 @@ const testProps = {
 // main test
 describe('EmployeesComponent', () => {
     it('should be wrapped in <Wrapper/> with title props named as "Employees" whenever called', () => {
-        const wrapper = shallow(<EmployeesComponent {... testProps}/>);
+        const wrapper = shallow(<EmployeesComponent/>);
         expect(wrapper.find(Wrapper).prop('title')).toBe('Employees');
     });
 
     it('should make a table when passed with employees props', () => {
-        const wrapper = shallow(<EmployeesComponent {... testProps}/>);
+        const wrapper = shallow(<EmployeesComponent/>);
         expect(wrapper.contains('table'));
     });
 
     it('should make a table with one row when employees array is null', () => {
-        const wrapper = shallow(<EmployeesComponent {... testProps}/>);
+        const wrapper = shallow(<EmployeesComponent/>);
         if(!testProps.employees.Employee.length){
             expect(wrapper.find('tr').length).toBe(1);
         }
@@ -61,7 +61,7 @@ describe('EmployeesComponent', () => {
         };
 
         // test whether states changes;
-        const wrapper = shallow(<EmployeesComponent {... newProps}/>);
+        const wrapper = shallow(<EmployeesComponent/>);
         const idRow = wrapper.find('tr').at(1).children().at(0).simulate('click');
     
         
