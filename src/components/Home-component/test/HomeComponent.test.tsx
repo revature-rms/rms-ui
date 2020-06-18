@@ -4,7 +4,7 @@ import React from 'react';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 
 const setup = (props = {
-    getAllCampuses: () => { }
+    getAllCampuses: () => {}
 }, state = 0) => {
     const wrapper = shallow(<HomeComponent {...props} />)
     if (state) wrapper.setState(state);
