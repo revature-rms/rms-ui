@@ -6,7 +6,7 @@ import MaterialTable from 'material-table';
 import {Campus} from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
 import { Building } from '../../dtos/building';
-import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { Grid, Card, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 import { Address } from '../../dtos/address';
 import { Employee } from '../../dtos/employee';
 import { ResourceMetadata } from '../../dtos/resourceMetaData';
@@ -143,8 +143,13 @@ function CampusDetailsComponent() {
 
     return (
         <>
+        <Card>
+            <div className="table-wrapper">
             <Wrapper data-test="main-content" title={campus?.name} elements={campus?.abbrName}>
                 <Grid container>
+                <Grid item xs={12}>
+                            <Typography variant="h2">{campus?.name}</Typography>
+                        </Grid>
                     <Grid item xs={12}>
                         {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
                              of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
@@ -322,6 +327,8 @@ function CampusDetailsComponent() {
                             </Grid>
                         </Grid>
             </Wrapper>
+            </div>
+        </Card>
         </>
     )
 

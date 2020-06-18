@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Input, Card, Button, Typography} from '@material-ui/core';
 import { userInfo } from 'os';
 import MaterialTable from 'material-table';
 
@@ -88,9 +88,12 @@ function BuildingDetailsComponent(){
         
         return (
             <>
-                {/* Wrapper component is imported from utils/div-wrapper */}
-                <Wrapper data-test="main-content" title={mockBuilding.name} elements={mockBuilding.abbrName}>
+                <Card>
+                <div className="table-wrapper">
                     <Grid container spacing={1}>
+                        <Grid item xs={12}>
+                            <Typography variant="h2">{building.name}</Typography>
+                        </Grid>
                         <Grid item xs={12}>
                             {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
                              of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
@@ -154,7 +157,7 @@ function BuildingDetailsComponent(){
                             </Card>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={7}>
                             {/*Material table for room data, room number should be a clickable link to take to room details page */}
                             <Card className="full-card">
                                 < MaterialTable
@@ -236,7 +239,8 @@ function BuildingDetailsComponent(){
                         </Grid>
 
                     </Grid>
-                </Wrapper>
+                </div>    
+                </Card>
             </>
         )
 }

@@ -1,4 +1,4 @@
-@import "./main.scss";
+@import "./color";
 
 /*navbar title*/
 
@@ -64,7 +64,7 @@
     font-size: 1rem;
     width: 10vw !important;
     background: $grey !important;
-    color: $yellow !important;
+    color: $white !important;
     border-bottom: 1px solid $light-grey !important;
     border-top: 1px solid $dark-grey !important;
     transition: all 0.5s !important;
