@@ -6,7 +6,7 @@ import { Room } from '../../dtos/room';
 import { RoomStatus } from '../../dtos/roomStatus';
 import { Batch } from '../../dtos/batch';
 import { WorkOrder } from '../../dtos/workOrder';
-import { ResourceMetadata } from '../../dtos/resourceMetaData';
+import { ResourceMetadata } from '../../dtos/resourceMetadata';
 
 
 
@@ -78,6 +78,8 @@ function RoomDetailsComponent() {
 
     return (
         <>
+        <Card>
+            <div className="table-wrapper">
             <Wrapper data-test="main-content">
                 <Grid container>
                     <Grid item xs={7}>
@@ -176,6 +178,8 @@ function RoomDetailsComponent() {
                             </Grid>
                         </Grid>
             </Wrapper>
+            </div>
+            </Card>
         </>
     )
 
