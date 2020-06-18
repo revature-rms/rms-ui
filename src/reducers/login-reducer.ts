@@ -15,22 +15,30 @@ const initialState: ILoginState = {
 export const userReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
-        case loginTypes.SUCCESSFULL_LOGIN:
+        case loginTypes.SUCCESSFUL_LOGIN:
             return {
                 ...state,
                 currentUser: action.payload.currentUser,
                 loggedIn: true,
                 loginMessage: 'Login Successfull. Proceeding ....'
             }
+        
+        case loginTypes.SUCCESSFUL_LOGOUT:
+            return {
+                ...state,
+                authUser: action.payload
+            } 
 
-        case loginTypes.FAILED_LOGIN:
+        case loginTypes.INVALID_CREDENTIALS:
+        case loginTypes.BAD_REQUEST:
+        case loginTypes.INTERNAL_SERVER_ERROR:
             return {
                 ...state,
                 loginMessage: action.payload.loginMessage
             }
 
         default:
-            return state
+            return state;
 
     }
 }

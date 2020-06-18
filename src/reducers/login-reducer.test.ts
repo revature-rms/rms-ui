@@ -12,7 +12,7 @@ test('Should return default state', () => {
 
 test('returns state of successful login', () => {
     const newState = userReducer(undefined, {
-        type: loginTypes.SUCCESSFULL_LOGIN,
+        type: loginTypes.SUCCESSFUL_LOGIN,
         payload: {
             currentUser: {},
             loggedIn: true,
@@ -29,7 +29,7 @@ test('returns state of successful login', () => {
 
 test('returns state of failed login', () => {
     const newState = userReducer(undefined, {
-        type: loginTypes.FAILED_LOGIN,
+        type: loginTypes.BAD_REQUEST,
         payload: {
             loginMessage: 'Login Failed'
         }
