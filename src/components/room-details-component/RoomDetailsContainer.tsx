@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {IState} from "../../reducers";
-import {RoomDetailsComponent} from "./RoomDetailsComponent";
+import RoomDetailsComponent from "./RoomDetailsComponent";
 import {getTestRoom} from "../../action-mappers/room-details-actions"
 
 const mapStateToProps=(state:IState)=>{

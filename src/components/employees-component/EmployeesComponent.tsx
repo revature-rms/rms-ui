@@ -62,9 +62,8 @@ function EmployeesComponent (){
     },[]);
     return (
         <>
-            <Wrapper data-test = "main-content" title = {"Employees Whoop Whoop"} elements = {"More Employees Whoop"}>
-                <div className = "full-card">
-                    <div className = "tblbox">
+            <Card>
+                <div className="table-wrapper">
                         <MaterialTable
                             columns = {[
                                 {title: 'Id', field: 'id'},
@@ -79,9 +78,8 @@ function EmployeesComponent (){
                             data = {employeeList}
                             title = "Employees"
                             />
-                    </div>
                 </div>
-            </Wrapper>
+            </Card>
         </>
     )
 }
