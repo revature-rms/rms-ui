@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { getAllCampusAPI } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
-import "../../styles/building.scss"
 import Card from '@material-ui/core/Card';
 
 export interface IBuildingListProps {

@@ -2,6 +2,7 @@
 import React from 'react';
 // import './Rms.css';
 // import './App.css';
+import "./styles/main.scss";
 import HomeComponent from './components/home-component/HomeContainer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmployeeDetailsComponent from './components/employee-details-component/EmployeeDetailsContainer';

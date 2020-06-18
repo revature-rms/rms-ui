@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { SearchComponent } from '../search-component/SearchComponent';
 import { logout } from '../../utils/LogoutFunction';
 
-import "../../styles/navbar.scss";
-
 export default function NavbarComponent() {
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
