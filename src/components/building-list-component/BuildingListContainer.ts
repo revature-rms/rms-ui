@@ -1,4 +1,4 @@
-import CampusDetailsComponent from "./CampusDetailsComponent";
+import BuildingListComponent from "./BuildingListComponent";
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
 import {getAllCampuses} from "../../action-mappers/campus-action";
@@ -15,4 +15,4 @@ const mapDispatchToProps = {
 }
 
 // connecting the Campus component with redux info
-export default connect(mapStateToProps,mapDispatchToProps)(CampusDetailsComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(BuildingListComponent);
