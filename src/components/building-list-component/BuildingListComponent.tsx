@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAllCampusAPI } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import "../../styles/building.scss"
@@ -13,6 +13,7 @@ function BuildingListComponent() {
 
     //building array
     const [buildings, setBuildings] = useState([])
+    const history = useHistory();
 
     //makes a request to the api and gets all campus data. Extracts building data to insert into local buildings state
     useEffect(() => {
@@ -91,6 +92,8 @@ function BuildingListComponent() {
                             { title: 'Address', field: 'physicalAddress' },
                             { title: "Building Manager", field: "trainingLead" }
                         ]}
+                        //@ts-ignore
+                        onRowClick={(event, rowData) => history.push('/buildings/' + rowData.id)}
                         data={buildings}
                         title="Buildings"
                     />
