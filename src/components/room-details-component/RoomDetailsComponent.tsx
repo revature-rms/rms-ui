@@ -29,11 +29,10 @@ function RoomDetailsComponent() {
     const[whiteboardStatus, setWhitboardStatus] = useState(false);
     const[desksStatus, setDesksStatus] = useState(false);
     const[chairsdStatus, setChairsStatus] = useState(false);
-
-
     //@ts-ignore
     const[workOrder, setWorkOrder] = useState<WorkOrder>(null as WorkOrder);
     const[isActive, setIsActive] = useState<boolean>(false);
+
 
     //toggles between editing and non-editing mode
     const enableEdit = () => {
@@ -49,12 +48,16 @@ function RoomDetailsComponent() {
         setEditing(false);
     }
 
-    //toggles back to non-editing state upon clicking cancle button
+    /**
+     * toggles back to non-editing state upon clicking cancle button
+     */
     const cancel = () => {
         setEditing(false);
     }
 
-    //sets pieces of info state upon changing in edit mode
+    /**
+     * Sets room details state upon changing in edit mode
+     */
     const setInfo = (event: any) => {
         switch(event.target.id){
             case "roomNumber":
@@ -66,6 +69,9 @@ function RoomDetailsComponent() {
         }
     }
 
+    /**
+     * Changes state for Room Status Form upon selection of checkboxes
+     */
     const checkedBoxes = (event: any) => {
         console.log("Update");
         switch(event.target.id){
@@ -81,12 +87,12 @@ function RoomDetailsComponent() {
                 
         }
     }
-    const roomStatusUpdate = (event: any) => {
-        console.log("Should update room status");
+
+    const newRoomStatus = (event: any) => {
     }
 
     const createWorkOrder = (event: any) => {
-        console.log("Should have logic to create a work order");
+        //Work order logic needed
     }
 
     //makes a request to the API for all campuses and selects user assigned campus
@@ -106,9 +112,15 @@ function RoomDetailsComponent() {
         <>
             <div className="table-wrapper">
                 <Grid container spacing={2}>
+
+                    {/* Title of page renders in format 'Room #: <RoomNumber>'*/}
                     <Grid item xs={12}>
                             <Typography variant="h2">Room #: {room?.roomNumber}</Typography>
                     </Grid>
+
+                    {/* Breadcrumbs for parent building and parent campus
+                    should only render building for building manager and only current room for trainers 
+                    ***NON-FUNCTIONAL*** need to store campus and buildings state in order to render and linnk to correct pages */}
                     <Grid item xs={12}>
                         <Breadcrumbs>
                         <Link to="">
@@ -121,13 +133,14 @@ function RoomDetailsComponent() {
                         </Breadcrumbs>
                     </Grid>
 
+
+                    {/*Contains the edittable room details (name, abbreviated name, address, building manager)
+                        of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
+                        - need to persist data upon save
+                        - need to save editting authUser for metadata
+                    */}
                     <Grid item xs={12}>
                         
-                        {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
-                             of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
-                                - need to persist data upon save
-                                - need to save editting authUser for metadata
-                             */}
                             <Card className="full-card">
                             <Typography>Room Details</Typography>
                             <div id="room-form">
@@ -167,9 +180,12 @@ function RoomDetailsComponent() {
                             </Card>
                     </Grid>
 
+                    {/* Contains Work orders, room status, and room transfer forms */}
                     <Grid item xs={12}>
                         <Grid container spacing={2}>        
                             <Grid item xs={8}>
+
+                                {/* Contains Work order form, ***NONFUNCTIONAL */}
                                 <Card className="full-card">
                                     <Typography>Work Order</Typography>
                                         
@@ -197,12 +213,14 @@ function RoomDetailsComponent() {
                                     <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
                                 </Card>
 
+                                {/* Contains room transfer form, ***NONFUNCTIONAL */}
                                 <Card className="full-card">
                                     <Typography>Room Transfer</Typography> 
                                     <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
                                 </Card>   
                             </Grid>
-
+                            
+                            {/* Contains Room Status Form, ***NONFUNCTIONAL */}
                             <Grid item xs={4}>
                                 <Card className="full-card">
                                     <Typography>Room Status</Typography>
@@ -258,8 +276,9 @@ function RoomDetailsComponent() {
                         </Grid>
                     </Grid>
 
+
+                    {/*Contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
                     <Grid item xs={12}>
-                        {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
                         <Card className="full-card">
 
                             <span style={{margin: 5}}> 
@@ -289,7 +308,7 @@ function RoomDetailsComponent() {
                                 <Input value={"room?.resourceMetadata.lastModifiedDateTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                             </FormControl>
                             </span>
-                            
+
                             <span style={{margin: 5}}>
                             <FormControl>
                                 <InputLabel>Resource Owner: </InputLabel>
