@@ -65,6 +65,8 @@ export function HomeComponent(props: IHomeProps) {
     //Home page rendering for an admin user.
     return (
         <>
+                <div className="display-wrapper">
+
             {props.authUser?.role == 'Admin' ?
                 <Card>
                     <div className="table-wrapper">
@@ -109,6 +111,7 @@ export function HomeComponent(props: IHomeProps) {
                         : props.authUser?.role == 'Training Site Manager' ? <></>
                             : <></>
             }
+            </div>
         </>
     )
 }
