@@ -10,8 +10,14 @@ import { AppUser } from '../../dtos/appUser';
 export interface ICampusProps {
     currentUser: AppUser;
 }
-
+/**
+ * Will provide all the campuses that a user is in charge of (depending on what user is signed in)
+ * Each campus will be rendered with CampusDetailsComponent when it is clicked
+ * Role needed: Training Site Manager
+ * Endpoint: .../campuses
+ */
 function CampusListComponent(props: ICampusProps) {
+
     //@ts-ignore
     const [campusList, setCampusList] = useState<Array<Campus>>([]);
     const [table, setTable] = useState<any>(null);

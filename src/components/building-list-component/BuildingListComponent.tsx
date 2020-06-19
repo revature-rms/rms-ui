@@ -9,7 +9,12 @@ import { setThisBuilding } from '../../action-mappers/building-action';
 
 export interface IBuildingListProps {
 }
-
+/**
+ * Will provide all the buildings that are located on a specific campus (depending on what user is signed in)
+ * Each building will be rendered with BuildingDetailsComponent when it is clicked
+ * Role needed: Admin or Building Manager
+ * Endpoint: .../buildings
+ */
 function BuildingListComponent(props: IBuildingListProps) {
 
     const [buildings, setBuildings] = useState<Array<Building>>([]);

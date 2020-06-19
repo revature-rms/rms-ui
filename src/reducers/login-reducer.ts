@@ -19,7 +19,7 @@ export const userReducer = (state = initialState, action: any) => {
         case loginTypes.SUCCESSFUL_LOGIN:
             return {
                 ...state,
-                currentUser: action.payload,
+                currentUser: action.payload.currentUser,
                 loggedIn: true,
                 loginMessage: 'Login Successfull. Proceeding ....'
             }

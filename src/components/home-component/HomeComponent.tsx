@@ -15,6 +15,8 @@ export interface IHomeProps {
 /**
  * This component is the home page for all users. It will provide some default information to the
  * user depending on their role.
+ * Role needed: ANY, will be different depending on each specific role.
+ * Endpoint: .../
  * 
  * TODO: currently, this component does not render for TSM's. Conditional rendering will need
  *       to be added for this user as well as the actual rendering for those additional roles.

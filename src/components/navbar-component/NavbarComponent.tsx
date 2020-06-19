@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { SearchComponent } from '../search-component/SearchComponent';
 import { logout } from '../../utils/LogoutFunction';
 
+/**
+ * The navigation bar that will show up on the left side of every screen. 
+ * This might look different depending on what role the logged in user has.
+ * Role required: ANY, just will look different for each role.
+ * Endpoint: N/A
+ */
 export default function NavbarComponent() {
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
