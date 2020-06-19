@@ -7,7 +7,11 @@ import { getBuildingByIdAPI } from '../../remote/building-service';
 
 export interface IBuildingDetailsProps {
 }
-
+/**
+ * Will provide all the details for one specific building, including all the attributes associated with that building.
+ * Role needed: Building Manager or Admin
+ * Endpoint: .../buildings/id [id of building]
+ */
 function BuildingDetailsComponent(props: IBuildingDetailsProps) {
 
     const [editting, setEdditing] = useState(false);

@@ -12,15 +12,14 @@ export interface ILoginProps {
 }
 
 /**
- * This function finds a user from an external API and passes their credentials as props
- * to be used by other components.
+ * This is used as a login screen. If correct credentials are used, it will log the user in and redirect to the HomeComponent
+ * Role needed: ANY, no role required to view
+ * Endpoint: .../login
  * 
  * Note: This component has been refactored from a class component. Refactoring is (most likely) still
- *        in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
+ *       in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
  * 
- * @param props 
  */
-
 export function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');

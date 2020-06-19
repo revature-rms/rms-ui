@@ -14,7 +14,12 @@ import { Address } from '../../dtos/address';
 export interface ICampusProps {
 
 }
-
+/**
+ * Will provide all the campuses that a user is in charge of (depending on what user is signed in)
+ * Each campus will be rendered with CampusDetailsComponent when it is clicked
+ * Role needed: Training Site Manager
+ * Endpoint: .../campuses
+ */
 function CampusListComponent() {
 
     //campuses array
