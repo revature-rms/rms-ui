@@ -148,7 +148,6 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
 
                 <Card>
                     <div className="table-wrapper">
-                        <Wrapper data-test="main-content" title={campus?.name} elements={campus?.abbrName}>
                             <Grid container>
                                 <Grid item xs={12}>
                                     <Typography variant="h2">{campus?.name}</Typography>
@@ -330,7 +329,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 </Card>  
                             </Grid>
                         </Grid>
-                        </Wrapper>
+
                     </div>
                 </Card>
             </div>

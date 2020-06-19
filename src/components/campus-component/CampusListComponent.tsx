@@ -18,12 +18,13 @@ export interface ICampusProps {
 
 function CampusListComponent() {
     //@ts-ignore
-    const [campusList, setCampusList] = useState(null as Campus[]);
-
+    const [campusList, setCampusList] = useState<Array<Campus>>([]);
+    const [table, setTable] = useState<any>(null);
     const history = useHistory();
 
     const getCampuses = async () => {
-        let campuses = await getAllCampus();
+        let campuses = (await getAllCampus()).data;
+        console.log(campuses)
         //@ts-ignore
         setCampusList(campuses);
     }
@@ -41,9 +42,9 @@ function CampusListComponent() {
                         < MaterialTable
                             columns={[
                                 { title: 'Name', field: 'name'},
-                                { title: 'Training Manager', field: 'trainingManager.firstName' },
-                                { title: "Staging Manager", field: "stagingManager.firstName" },
-                                { title: "HR Lead", field: "hrLead.firstName" }
+                                { title: 'Training Manager', field: 'trainingManagerId' },
+                                { title: "Staging Manager", field: "stagingManagerId" },
+                                { title: "HR Lead", field: "hrLead" }
                             ]}
                             //@ts-ignore
                             onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
