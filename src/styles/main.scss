@@ -2,8 +2,13 @@
 @import "./login";
 @import "./color";
 @import "./table";
+@import "./login-animation";
 
 /* Define hyperlink style */
+
+body {
+    overflow: hidden;
+}
 
 a {
     text-decoration: none !important;
@@ -16,4 +21,8 @@ a:visited {
 
 .unselect {
     user-select: none;
+}
+
+.hidden {
+    opacity: 0;
 }

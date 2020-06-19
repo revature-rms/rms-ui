@@ -1,0 +1,390 @@
+@import "./color";
+.road {
+    position: absolute;
+    left: -300px;
+    top: 195px;
+    width: 1500px;
+    height: 190px;
+    border: solid $orange 5px;
+    background-color: $white;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    z-index: -5;
+    transform: rotateX(45deg) rotateZ(-45deg);
+}
+
+.road:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(100deg, $orange 0%, $orange 70%, $white 70%, $white 100%);
+    background-size: 120px;
+    animation: road-mark 0.5s linear infinite;
+    @keyframes road-mark {
+        0% {
+            background-position: -120px;
+        }
+        100% {
+            background-position: 0px;
+        }
+    }
+}
+
+.road:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    background-color: $white;
+    bottom: -500px;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+}
+
+.beach {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+    width: 2000px;
+    height: 250px;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    z-index: -1;
+    transform: rotateX(45deg) rotateZ(-45deg);
+    border-top: solid 3px $orange;
+}
+
+.beach:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url("./images/beach.png");
+    background-size: 500px 250px;
+    animation: beach 2.4s linear infinite;
+    @keyframes beach {
+        0% {
+            background-position: -500px;
+        }
+        100% {
+            background-position: 0px;
+        }
+    }
+}
+
+.ocean {
+    position: absolute;
+    left: 600px;
+    top: -50px;
+    width: 2000px;
+    height: 800px;
+    background-color: #2c5068;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    z-index: -1;
+    transform: rotateX(45deg) rotateZ(-45deg);
+}
+
+.ocean:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 800px;
+    background: url("./images/ocean.png");
+    background-size: 500px 800px;
+    animation: beach 2.4s linear infinite;
+    @keyframes ocean {
+        0% {
+            background-position: -500px;
+        }
+        100% {
+            background-position: 0px;
+        }
+    }
+}
+
+.car-holder {
+    position: absolute;
+    left: 200px;
+    top: 240px;
+    z-index: -4;
+    .car {
+        background: url("./images/car.png");
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        animation: car-bump 0.5s ease-in-out infinite;
+        @keyframes car-bump {
+            0% {
+                left: 0px;
+                top: 0px;
+            }
+            50% {
+                left: 0px;
+                top: 10px;
+            }
+            100% {
+                left: 0px;
+                top: 0px;
+            }
+        }
+    }
+}
+
+.building-holder {
+    position: absolute;
+    top: 280px;
+    left: -600px;
+    height: 1200px;
+    width: 200px;
+    z-index: -6;
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    animation: street-move 9s linear infinite;
+    @keyframes street-move {
+        0% {
+            top: 280px;
+            left: -600px;
+        }
+        100% {
+            top: -1070px;
+            left: 1100px;
+        }
+    }
+}
+
+.building-holder-2 {
+    position: absolute;
+    top: 280px;
+    left: -600px;
+    height: 1200px;
+    width: 200px;
+    z-index: -7;
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    animation: street-move-2 9s linear infinite;
+    animation-delay: 4.5s;
+    @keyframes street-move-2 {
+        0% {
+            top: 280px;
+            left: -600px;
+        }
+        100% {
+            top: -1070px;
+            left: 1100px;
+        }
+    }
+}
+
+.building-holder-3 {
+    position: absolute;
+    background: url("./images/building-holder-2.png");
+    top: 570px;
+    left: -600px;
+    height: 1200px;
+    width: 200px;
+    z-index: -2;
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    animation: street-move-3 9s linear infinite;
+    @keyframes street-move-3 {
+        0% {
+            top: 570px;
+            left: -600px;
+        }
+        100% {
+            top: -790px;
+            left: 1340px;
+        }
+    }
+}
+
+.building-holder-4 {
+    position: absolute;
+    background: url("./images/building-holder-2.png");
+    top: 570px;
+    left: -600px;
+    height: 1200px;
+    width: 200px;
+    z-index: -3;
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    animation: street-move-4 9s linear infinite;
+    animation-delay: 4.7s;
+    @keyframes street-move-4 {
+        0% {
+            top: 570px;
+            left: -600px;
+        }
+        100% {
+            top: -790px;
+            left: 1340px;
+        }
+    }
+}
+
+
+/* Right */
+
+.building:before {
+    background: url("./images/building-front.png");
+    transform: rotateY(90deg) translateX(115px) translateY(200px) translateZ(0px);
+    content: '';
+    transform-origin: 100% 0;
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    float: left;
+    height: 200px;
+    position: absolute;
+    width: 400px;
+}
+
+
+/* Top */
+
+.building {
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    content: '';
+    float: left;
+    height: 200px;
+    position: absolute;
+    width: 200px;
+    background: url("./images/building-top.png");
+    position: relative;
+    transform: translateZ(355px);
+    transform-style: preserve-3d;
+    transition: .25s;
+}
+
+
+/* Left */
+
+.building:after {
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    content: '';
+    float: left;
+    height: 600px;
+    position: absolute;
+    width: 200px;
+    background: url("./images/building-side.png");
+    background-repeat: no-repeat;
+    transform: rotateX(-90deg) translateX(0px) translateY(600px) translateZ(-400px);
+    transform-origin: 100% 100%;
+}
+
+
+/* Animation */
+
+@keyframes wave {
+    50% {
+        transform: translateZ(50px);
+    }
+}
+
+.building:nth-child(1) {
+    animation: wave 3s 0.5s ease-in-out infinite;
+}
+
+.building:nth-child(2) {
+    animation: wave 3s 1s ease-in-out infinite;
+}
+
+.building:nth-child(3) {
+    animation: wave 3s 1.5s ease-in-out infinite;
+}
+
+.building:nth-child(4) {
+    animation: wave 3s 2s ease-in-out infinite;
+}
+
+.building:nth-child(5) {
+    animation: wave 3s 2.5s ease-in-out infinite;
+}
+
+.building:nth-child(6) {
+    animation: wave 3s 3s ease-in-out infinite;
+}
+
+
+/* Right */
+
+.building-2:before {
+    background: url("./images/building-front-2.png");
+    transform: rotateY(90deg) translateX(100px) translateY(0px) translateZ(100px);
+    content: '';
+    transform-origin: 100% 0;
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    float: left;
+    height: 200px;
+    position: absolute;
+    width: 100px;
+}
+
+
+/* Top */
+
+.building-2 {
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    content: '';
+    float: left;
+    height: 200px;
+    position: absolute;
+    width: 200px;
+    background: url("./images/building-top-2.png");
+    position: relative;
+    transform: translateZ(10px);
+    transform-style: preserve-3d;
+    transition: .25s;
+}
+
+
+/* Left */
+
+.building-2:after {
+    box-shadow: inset 0 0 0 .25em hsla(0, 0%, 0%, .1);
+    content: '';
+    float: left;
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    background: url("./images/building-side-2.png");
+    transform: rotateX(-90deg) translateX(0px) translateY(100px) translateZ(100px);
+    transform-origin: 100% 100%;
+}
+
+@keyframes wave-2 {
+    50% {
+        transform: translateZ(110px);
+    }
+}
+
+.building-2:nth-child(1) {
+    animation: wave-2 3s 0.5s ease-in-out infinite;
+}
+
+.building-2:nth-child(2) {
+    animation: wave-2 3s 1s ease-in-out infinite;
+}
+
+.building-2:nth-child(3) {
+    animation: wave-2 3s 1.5s ease-in-out infinite;
+}
+
+.building-2:nth-child(4) {
+    animation: wave-2 3s 2s ease-in-out infinite;
+}
+
+.building-2:nth-child(5) {
+    animation: wave-2 3s 2.5s ease-in-out infinite;
+}
+
+.building-2:nth-child(6) {
+    animation: wave-2 3s 3s ease-in-out infinite;
+}
