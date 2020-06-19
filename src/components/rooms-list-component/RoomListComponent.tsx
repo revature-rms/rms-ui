@@ -31,8 +31,9 @@ function RoomListComponent(props: IRoomListProps) {
                 <div className="table-wrapper">
                     < MaterialTable
                         columns={[
-                            { title: 'Id', field: 'id' },
-                            { title: 'Name', field: 'name' },
+                            { title: 'Room Number', field: 'roomNumber'},
+                            { title: 'Max Occupancy', field: 'maxOccupancy'},
+                            { title: 'Active', field: 'isActive'}
                         ]}
                         
                         onRowClick={(event, rowData) => {
