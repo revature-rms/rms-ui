@@ -12,7 +12,7 @@ export const loginTypes = {
 
 export const login = (username: string, password: string) => async (dispatch: any) => {
     
-    //User this commented block to skip login:
+    // Use this commented block to skip login:
 
     // let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
 
