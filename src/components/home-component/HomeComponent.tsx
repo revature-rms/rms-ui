@@ -23,12 +23,17 @@ export interface IHomeProps {
  * @param props
  */
 export function HomeComponent(props: IHomeProps) {
-
     const [campus, setCampus] = useState([]);
     const [associates, setAssociates] = useState([]);
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
+        console.log("authuser")
+        console.log(props.authUser);
+        let user:AppUser = props.authUser;
+        console.log(user.role);
+        let arr = ["Admin"]
+        console.log(arr.includes("Admin"));
         if (props.authUser?.role?.includes("Admin")) getBuildings();
         if (props.authUser?.role?.includes("Training Site Manager")) getBuildings();
         if (props.authUser?.role?.includes("Trainer")) getAssociates();
@@ -36,6 +41,7 @@ export function HomeComponent(props: IHomeProps) {
     }, []);
 
     const getBuildings = async () => {
+
         // await getCampuses();
         let campuses;
         // mock data
