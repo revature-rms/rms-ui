@@ -47,6 +47,8 @@ export function LoginComponent(props: ILoginProps) {
 
     return (
         <>
+
+
             <div className="animation-mask-top"></div>
             <div className="animation-frame">
                 <div className="login-ribbon unselect">
@@ -83,7 +85,11 @@ export function LoginComponent(props: ILoginProps) {
                 <LoginAnimationComponent />
             </div>
             <div className="animation-mask-bottom">
-                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>
+                <div className="revature-text">
+                This application is for authorized personel only. 
+                <br/>
+                For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a>
+                </div>
             </div>
         </>
     )
