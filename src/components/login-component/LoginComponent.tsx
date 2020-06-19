@@ -40,7 +40,7 @@ export function LoginComponent(props: ILoginProps) {
     }
 
     const signUserIn = async () => {
-        console.log('clicked');
+        document.body.style.overflow = "auto";
         props.login(username, password);
     }
 
@@ -48,49 +48,49 @@ export function LoginComponent(props: ILoginProps) {
 
     return (
         <>
-            <div className="animation-mask-top"></div>
-            <div className="animation-frame">
-                <div className="login-ribbon unselect">
-                    <div className="login-logo"></div>
+                <div className="animation-mask-top"></div>
+                <div className="animation-frame">
+                    <div className="login-ribbon unselect">
+                        <div className="login-logo"></div>
                     RESOURCE MANAGEMENT SYSTEM
                 <div className="login-holder">
-                        <form className="login-form-holder">
-                            <div className="login-label unselect">Username</div>
-                            <input
-                                className="login-label"
-                                required
-                                type="text"
-                                id="username"
-                                placeholder="Username"
-                                name="username"
-                                value={username}
-                                onChange={setInfo}
-                            />
-                            <div className="login-label unselect">Password</div>
-                            <input
-                                className="login-label"
-                                required
-                                type="password"
-                                id="password"
-                                placeholder="Enter Password"
-                                name="password"
-                                value={password}
-                                onChange={setInfo}
-                            />
-                            <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
-                        </form>
-                        <div>{props.loginMessage}</div>
+                            <form className="login-form-holder">
+                                <div className="login-label unselect">Username</div>
+                                <input
+                                    className="login-label"
+                                    required
+                                    type="text"
+                                    id="username"
+                                    placeholder="Username"
+                                    name="username"
+                                    value={username}
+                                    onChange={setInfo}
+                                />
+                                <div className="login-label unselect">Password</div>
+                                <input
+                                    className="login-label"
+                                    required
+                                    type="password"
+                                    id="password"
+                                    placeholder="Enter Password"
+                                    name="password"
+                                    value={password}
+                                    onChange={setInfo}
+                                />
+                                <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+                            </form>
+                            <div>{props.loginMessage}</div>
+                        </div>
                     </div>
+                    <LoginAnimationComponent />
                 </div>
-                <LoginAnimationComponent />
-            </div>
-            <div className="animation-mask-bottom">
-                <div className="auth-text">
-                    This application is for authorized personel only.
+                <div className="animation-mask-bottom">
+                    <div className="auth-text">
+                        This application is for authorized personel only.
                 <br />
                 For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a>
+                    </div>
                 </div>
-            </div>
         </>
     )
 }

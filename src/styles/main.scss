@@ -3,13 +3,13 @@
 @import "./color";
 @import "./table";
 @import "./login-animation";
-@import "./employee";
-
-/* Define hyperlink style */
-
+@import "./detail-form";
 body {
     overflow: hidden;
 }
+
+
+/* Define hyperlink style */
 
 a {
     text-decoration: none !important;
@@ -26,4 +26,36 @@ a:visited {
 
 .hidden {
     opacity: 0;
+}
+
+
+/*Scroll bar style*/
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background-color: $light-grey;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background-color: $yellow;
+    border-radius: 5px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background-color: $orange;
 }

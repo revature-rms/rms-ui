@@ -98,7 +98,7 @@ export function EmployeeDetailsComponent() {
                         <Grid container>
                             <Grid item xs={12}>
                                 <Card className="full-card">
-                                    <div id="employee-form" className="employee-form">
+                                    <div id="detail-form" className="detail-form">
                                         <FormControl>
                                             <InputLabel>Employee First Name:</InputLabel>
                                             {editing ?
@@ -138,14 +138,14 @@ export function EmployeeDetailsComponent() {
                                     {editing ?
                                         <>
                                             <div>
-                                                <div className="employee-button" onClick={save}>Save</div>
-                                                <div className="employee-button" onClick={cancel}>Cancel</div>
+                                                <div className="edit-button" onClick={save}>Save</div>
+                                                <div className="edit-button" onClick={cancel}>Cancel</div>
                                             </div>
                                         </>
                                         :
                                         
                                             <div>
-                                                <div className="employee-button" onClick={enableEdit}>Edit</div>
+                                                <div className="edit-button" onClick={enableEdit}>Edit</div>
                                             </div>
                                     
                                     }
