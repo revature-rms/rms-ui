@@ -21,15 +21,15 @@ export default function NavbarComponent() {
             <div data-test="navbar-side" className="navbar-side">
                 {/*link to campus list*/}
                 <Link to="/campuses">
-                    <div className="navbar-side-btn">Campuses</div>
+                    <a><div className="navbar-side-btn">Campuses</div></a>
                 </Link>
                 {/*link to building list in a campus*/}
                 <Link to="/buildings">
-                    <div className="navbar-side-btn">Buildings</div>
+                    <a><div className="navbar-side-btn">Buildings</div></a>
                 </Link>
                 {/*link to employee list*/}
                 <Link to="/employees">
-                    <div className="navbar-side-btn">Employees</div>
+                    <a><div className="navbar-side-btn">Employees</div></a>
                 </Link>
             </div>
         </>
