@@ -98,7 +98,7 @@ export function EmployeeDetailsComponent() {
                         <Grid container>
                             <Grid item xs={12}>
                                 <Card className="full-card">
-                                    <div id="employee-form">
+                                    <div id="employee-form" className="employee-form">
                                         <FormControl>
                                             <InputLabel>Employee First Name:</InputLabel>
                                             {editing ?
@@ -137,15 +137,18 @@ export function EmployeeDetailsComponent() {
                                     <br></br>
                                     {editing ?
                                         <>
-                                            <FormControl>
-                                                <Button onClick={save}>Save</Button>
-                                                <Button onClick={cancel}>Cancel</Button>
-                                            </FormControl>
+                                            <div>
+                                                <div className="employee-button" onClick={save}>Save</div>
+                                                <div className="employee-button" onClick={cancel}>Cancel</div>
+                                            </div>
                                         </>
                                         :
-                                        <FormControl>
-                                            <Button onClick={enableEdit}>Edit</Button>
-                                        </FormControl>}
+                                        
+                                            <div>
+                                                <div className="employee-button" onClick={enableEdit}>Edit</div>
+                                            </div>
+                                    
+                                    }
                                 </Card>
                             </Grid>
                             <Grid item xs={12}>

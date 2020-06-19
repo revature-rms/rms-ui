@@ -1,0 +1,28 @@
+@import "./color";
+.employee-form {
+    label.MuiInputLabel-shrink {
+        color: $black;
+        transform: translate(0) scale(1) !important;
+        transform-origin: top left;
+        margin-top: 3vh;
+    }
+    input {
+        height: 3vh;
+        display: block;
+        margin-top: 3vh !important;
+    }
+    input.MuiInputBase-input {
+        color: $grey !important;
+    }
+    Button {
+        background-color: $orange;
+    }
+}
+
+.employee-button {
+    display: inline-block;
+    background-color: $orange;
+    padding: 1vh 1vw;
+    margin-right: 1vw;
+    border-radius: 0.5vh;
+}
