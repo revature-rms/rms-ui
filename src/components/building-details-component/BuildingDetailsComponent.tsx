@@ -82,6 +82,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 - need to save editting authUser for metadata
                              */}
                             <Card className="full-card">
+                            <Typography>Building Details</Typography>
                             <div id="building-form">
 
                                 <div style={{marginBottom: 5}}>
@@ -126,13 +127,13 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                             <br/>
                             {editting?
                             <>
-                                <Button onClick={save}>Save</Button>
-                                <Button onClick={cancel}>Cancel</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
 
                             </>
                             :
                             <FormControl>
-                                <Button onClick={enableEdit}>Edit</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
                             </FormControl>}
 
                             </Card>
