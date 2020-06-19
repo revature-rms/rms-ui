@@ -12,72 +12,20 @@ export interface IBuildingListProps {
 
 function BuildingListComponent(props: IBuildingListProps) {
 
-    //building array
-    const [buildings, setBuildings] = useState([])
+    const [buildings, setBuildings] = useState<Array<Building>>([]);
     const history = useHistory();
 
-    //makes a request to the api and gets all campus data. Extracts building data to insert into local buildings state
+    const getCampuses = async () => {
+
+    }
+
+    const getBuildings = async () => {
+
+    }
+
     useEffect(() => {
-        let campuses: Array<any> = [];
-        let tempBuildings: Array<any> = [];
-
-        const getCampuses = async () => {
-            campuses = (await getAllCampus()).data;
-        }
-
-        const getBuildings = async () => {
-            // await getCampuses();
-
-            campuses = [{
-                id: 1,
-                name: "Campus A",
-                abbrName: "CA",
-                buildings: [{
-                    id: 12,
-                    name: "Muma College of Business",
-                    physicalAddress: "456 N Main st",
-                    trainingLead: "Bob"
-                },
-                {
-                    id: 2,
-                    name: "Benson Building",
-                    physicalAddress: "2626 W State st",
-                    trainingLead: "Bill"
-                }]
-            },
-            {
-                id: 2,
-                name: "Campus B",
-                abbrName: "CB",
-                buildings: [{
-                    id: 3,
-                    name: "Eyering Science Center",
-                    physicalAddress: "333 N 750 W",
-                    trainingLead: "Suzy"
-                },
-                {
-                    id: 4,
-                    name: "Wilkinson Student Center",
-                    physicalAddress: "100 W 600 N",
-                    trainingLead: "Sean"
-                }]
-
-            }]
-
-            console.log("campuses", campuses)
-            campuses.forEach(campus => {
-                //@ts-ignore
-                campus.buildings.forEach(building => {
-                    tempBuildings.push(building)
-                })
-            })
-            //@ts-ignore
-            setBuildings(tempBuildings)
-        }
 
         getBuildings();
-
-
 
     }, []);
 
