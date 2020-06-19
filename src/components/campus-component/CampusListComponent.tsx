@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
-import { Employee } from "../../dtos/employee"
+import { getCampusByOwnerId} from '../../remote/campus-service';
+import { AppUser } from '../../dtos/appUser';
 
-
-// for testing, will delete
-import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import { Address } from '../../dtos/address';
-import { getAllCampus } from '../../remote/campus-service';
 
 export interface ICampusProps {
-
+    currentUser: AppUser;
 }
 
-function CampusListComponent() {
+function CampusListComponent(props: ICampusProps) {
     //@ts-ignore
     const [campusList, setCampusList] = useState<Array<Campus>>([]);
     const [table, setTable] = useState<any>(null);
     const history = useHistory();
 
     const getCampuses = async () => {
-        let campuses = (await getAllCampus()).data;
-        console.log(campuses)
+        let campuses = (await getCampusByOwnerId(props.currentUser.id)).data;
         //@ts-ignore
         setCampusList(campuses);
     }
