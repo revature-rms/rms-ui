@@ -14,48 +14,48 @@ export const login = (username: string, password: string) => async (dispatch: an
 
     // Use this commented block to skip login:
 
-    // let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
+    let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
 
-    // dispatch({
-    //     type: loginTypes.SUCCESSFUL_LOGIN,
-    // payload: {
-    //     currentUser: currentUser,
-    //     loginMessage: ""
-    // }
-    // })
-
-
-    try {
-
-        let authUser = await userLogin(username, password);
-        console.log(authUser);
-        dispatch({
-            type: loginTypes.SUCCESSFUL_LOGIN,
-            payload: {
-                currentUser: authUser,
-                loginMessage: ""
-            }
-        });
-
-    } catch (e) {
-
-        let status = e.response?.status;
-        if (status === 400) {
-            dispatch({
-                type: loginTypes.BAD_REQUEST,
-                payload: e.response?.data.message
-            });
-        } else if (status === 401) {
-            dispatch({
-                type: loginTypes.INVALID_CREDENTIALS,
-                payload: e.response?.data.message
-            });
-        } else {
-            dispatch({
-                type: loginTypes.INTERNAL_SERVER_ERROR,
-                payload: e.response?.data.message || 'Error: Server could not be reached'
-            });
-        }
+    dispatch({
+        type: loginTypes.SUCCESSFUL_LOGIN,
+    payload: {
+        currentUser: currentUser,
+        loginMessage: ""
     }
+    })
+
+
+    // try {
+
+    //     let authUser = await userLogin(username, password);
+    //     console.log(authUser);
+    //     dispatch({
+    //         type: loginTypes.SUCCESSFUL_LOGIN,
+    //         payload: {
+    //             currentUser: authUser,
+    //             loginMessage: ""
+    //         }
+    //     });
+
+    // } catch (e) {
+
+    //     let status = e.response?.status;
+    //     if (status === 400) {
+    //         dispatch({
+    //             type: loginTypes.BAD_REQUEST,
+    //             payload: e.response?.data.message
+    //         });
+    //     } else if (status === 401) {
+    //         dispatch({
+    //             type: loginTypes.INVALID_CREDENTIALS,
+    //             payload: e.response?.data.message
+    //         });
+    //     } else {
+    //         dispatch({
+    //             type: loginTypes.INTERNAL_SERVER_ERROR,
+    //             payload: e.response?.data.message || 'Error: Server could not be reached'
+    //         });
+    //     }
+    // }
 
 }
