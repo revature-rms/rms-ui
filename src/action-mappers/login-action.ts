@@ -11,16 +11,17 @@ export const loginTypes = {
 }
 
 export const login = (username: string, password: string) => async (dispatch: any) => {
-    
+
     // Use this commented block to skip login:
 
     // let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
 
     // dispatch({
     //     type: loginTypes.SUCCESSFUL_LOGIN,
-    //     payload: {
-    //         currentUser: currentUser
-    //     }
+    // payload: {
+    //     currentUser: currentUser,
+    //     loginMessage: ""
+    // }
     // })
 
 
@@ -30,7 +31,10 @@ export const login = (username: string, password: string) => async (dispatch: an
         console.log(authUser);
         dispatch({
             type: loginTypes.SUCCESSFUL_LOGIN,
-            payload: authUser
+            payload: {
+                currentUser: authUser,
+                loginMessage: ""
+            }
         });
 
     } catch (e) {

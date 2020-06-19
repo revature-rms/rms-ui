@@ -25,6 +25,7 @@ export function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     //Set props
     const setInfo = (event: any) => {
@@ -78,12 +79,17 @@ export function LoginComponent(props: ILoginProps) {
                             />
                             <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
                         </form>
+                        <div>{props.loginMessage}</div>
                     </div>
                 </div>
                 <LoginAnimationComponent />
             </div>
             <div className="animation-mask-bottom">
-                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>
+                <div className="auth-text">
+                    This application is for authorized personel only.
+                <br />
+                For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a>
+                </div>
             </div>
         </>
     )
