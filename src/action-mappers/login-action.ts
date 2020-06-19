@@ -11,6 +11,19 @@ export const loginTypes = {
 }
 
 export const login = (username: string, password: string) => async (dispatch: any) => {
+    
+    // Use this commented block to skip login:
+
+    // let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
+
+    // dispatch({
+    //     type: loginTypes.SUCCESSFUL_LOGIN,
+    //     payload: {
+    //         currentUser: currentUser
+    //     }
+    // })
+
+
     try {
 
         let authUser = await userLogin(username, password);
@@ -41,40 +54,4 @@ export const login = (username: string, password: string) => async (dispatch: an
         }
     }
 
-    // let allUsers;
-    // userLogin(username, password).then((users:any) => {
-
-    //     allUsers = users.data;
-    //     let currentUser;
-    //     // let currentUser = new AppUser(1, "test", "password", 1, "Trainer");
-    //     allUsers.forEach((user:any) => {
-    //         if(user.username === username && user.password === password){
-    //             currentUser = user;
-    //             console.log(currentUser);
-
-    //             dispatch({
-    //                 type: loginTypes.SUCCESSFULL_LOGIN,
-    //                 payload: {
-    //                     currentUser: currentUser
-    //                 }
-    //             })
-    //         } else {
-    //             dispatch ({
-    //                 type: loginTypes.FAILED_LOGIN,
-    //                 payload: {
-    //                     loginMessage: 'Username or password mismatch. Try again!'
-    //                 }
-    //             })
-    //         }
-    //     });
-    // }).catch((e:any) => {
-    //     console.log(e);
-    //     dispatch({
-    //         type: loginTypes.FAILED_LOGIN,
-    //         payload: {
-    //             loginMessage: 'Sorry, failed to retrieve data. Try again later'
-    //         }
-    //     })
-
-    // })
 }
