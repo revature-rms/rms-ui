@@ -1,5 +1,9 @@
 @import "./color";
 $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
+.login-background {
+    background-color: $black;
+}
+
 .login-logo {
     background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
     margin: auto;
@@ -10,13 +14,6 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
 .animation-frame {
     height: 80vh;
     width: 100%;
-}
-
-.revature-text {
-    margin-right: 10%;
-    margin-left: auto;
-    padding-left: 10px;
-    width: 470px;
 }
 
 .animation-mask-top {
