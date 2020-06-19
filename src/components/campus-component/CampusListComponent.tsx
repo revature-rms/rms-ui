@@ -18,7 +18,7 @@ function CampusListComponent(props: ICampusProps) {
     const history = useHistory();
 
     const getCampuses = async () => {
-        let campuses = (await getCampusByOwnerId(props.currentUser.id)).data;
+        let campuses = (await getCampusByOwnerId(props?.currentUser?.id)).data;
         //@ts-ignore
         setCampusList(campuses);
     }

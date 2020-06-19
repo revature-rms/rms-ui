@@ -340,7 +340,6 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 </Card>  
                             </Grid>
                         </Grid>
-
                     </div>
                 </Card>
             </div>
