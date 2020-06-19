@@ -10,72 +10,26 @@ import { Employee } from "../../dtos/employee"
 // for testing, will delete
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Address } from '../../dtos/address';
+import { getAllCampus } from '../../remote/campus-service';
 
 export interface ICampusProps {
 
 }
 
 function CampusListComponent() {
-
-    //campuses array
     //@ts-ignore
-    const [campusList, setCampusList] = useState(null as Campus[])
+    const [campusList, setCampusList] = useState(null as Campus[]);
 
     const history = useHistory();
 
-    useEffect(() => {
-        let campuses: Array<Campus> = [];
+    const getCampuses = async () => {
+        let campuses = await getAllCampus();
+        //@ts-ignore
+        setCampusList(campuses);
+    }
 
-        const getCampuses = async () => {
-            //campusesList = await getAllCampusAPI();
-            let mockEmployee = new Employee(
-                1,
-                "testFN",
-                "test LN",
-                "test@test.com",
-                "test title",
-                "test dept",
-                //@ts-ignore
-                null as ResourceMetadata
-            )
-            let mockCampuses = [
-                new Campus(
-                    1,
-                    "Campus A",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                ),
-                new Campus(
-                    2,
-                    "Campus B",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                )
-
-            ]
-            campuses = mockCampuses;
-            //@ts-ignore
-            setCampusList(campuses)
-        }
-
+    useEffect(() => {  
         getCampuses();
-
     }, []);
 
     return (
@@ -86,8 +40,7 @@ function CampusListComponent() {
                     <div className="table-wrapper">
                         < MaterialTable
                             columns={[
-                                // link to buildings page of each campus
-                                { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
+                                { title: 'Name', field: 'name'},
                                 { title: 'Training Manager', field: 'trainingManager.firstName' },
                                 { title: "Staging Manager", field: "stagingManager.firstName" },
                                 { title: "HR Lead", field: "hrLead.firstName" }
