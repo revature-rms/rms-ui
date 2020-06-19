@@ -25,7 +25,7 @@ class AppComponent extends React.Component<any, any> {
   // const login = useSelector((state: IState) => state.userState.loggedIn)
   // if loggen, we return most details for the application
   render(){
-   if (this.props.loggedIn) {
+  if (this.props.loggedIn) {
     return (
       <div data-test="main-content">
         <Router>
@@ -33,11 +33,11 @@ class AppComponent extends React.Component<any, any> {
           <Switch>
             <Route path='/login' component={LoginComponent} />
             <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
-            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
             <Route path='/employees' component={EmployeesComponent} />
             <Route path='/employee-details' component={EmployeeDetailsComponent} />
             <Route path='/employee/:id' component={EmployeeGlobalComponent} />
             <Route path='/campuses' component={CampusListComponent} />
+            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
             <Route path='/buildings' component={BuildingListComponent} />
             <Route path='/rooms/:id' component={RoomDetailsComponent} />
             <Route exact path='/rooms' component={RoomListComponent} />

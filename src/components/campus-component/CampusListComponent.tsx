@@ -79,24 +79,28 @@ function CampusListComponent() {
     }, []);
 
     return (
-            <Card>
-                <div className="table-wrapper">
-                    < MaterialTable
-                        columns={[
-                            // link to buildings page of each campus
-                            { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
-                            { title: 'Training Manager', field: 'trainingManager.firstName' },
-                            { title: "Staging Manager", field: "stagingManager.firstName" },
-                            { title: "HR Lead", field: "hrLead.firstName" }
-                        ]}
-                        //@ts-ignore
-                        onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
-                        data={campusList}
-                        title="Campuses"
-                    />
-                </div>
-                <br />
-            </Card>
+        <>
+            <div className="display-wrapper">
+
+                <Card>
+                    <div className="table-wrapper">
+                        < MaterialTable
+                            columns={[
+                                // link to buildings page of each campus
+                                { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
+                                { title: 'Training Manager', field: 'trainingManager.firstName' },
+                                { title: "Staging Manager", field: "stagingManager.firstName" },
+                                { title: "HR Lead", field: "hrLead.firstName" }
+                            ]}
+                            //@ts-ignore
+                            onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
+                            data={campusList}
+                            title="Campuses"
+                        />
+                    </div>
+                </Card>
+            </div>
+        </>
     )
 
 }
