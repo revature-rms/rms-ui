@@ -14,6 +14,12 @@ interface IRoomListState {
     sortType: string
 }
 
+/**
+ * Will provide all the rooms that a user is in charge of (depending on what user is signed in)
+ * Each room will be rendered with RoomDetailsComponent when it is clicked
+ * Role needed: Trainer
+ * Endpoint: .../rooms
+ */
 export class RoomListComponent extends React.Component<IRoomListProps, IRoomListState> {
     constructor(props: any) {
         super(props);

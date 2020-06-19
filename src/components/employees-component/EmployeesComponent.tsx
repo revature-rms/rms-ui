@@ -18,7 +18,11 @@ export interface IEmployeesProps {
     updateId: (id: number) => void
 }
 /**
- * displays a table that will show all employees inside database. 
+ * Will provide all the employees that a user is in charge of (depending on what user is signed in)
+ * Each employee will be rendered with EmployeeDetailsComponent when it is clicked
+ * Role needed: Training Site Manager
+ * Endpoint: .../employees
+ * 
  * TODO: 
  * Axios request is needed to complete the table. 
  * details button still needs to be added.

@@ -18,6 +18,11 @@ export interface IRoomDetailsProps {
     authUser: AppUser
 }
 
+/**
+ * Will provide all the details for one specific room, including all the attributes associated with that room.
+ * Role needed: Trainer
+ * Endpoint: .../rooms/id [id of room]
+ */
 function RoomDetailsComponent() {
 
     //@ts-ignore
