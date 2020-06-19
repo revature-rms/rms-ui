@@ -112,7 +112,7 @@
 .car-holder {
     position: absolute;
     left: 200px;
-    top: 250px;
+    top: 240px;
     z-index: -4;
     .car {
         background: url("./images/car.png");
@@ -121,26 +121,14 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        animation: car-bump 1s ease-in-out infinite;
+        animation: car-bump 0.5s ease-in-out infinite;
         @keyframes car-bump {
             0% {
                 left: 0px;
                 top: 0px;
             }
-            14% {
-                left: -2px;
-                top: -3px;
-            }
-            35% {
-                left: 5px;
-                top: -4px;
-            }
             50% {
-                left: -1px;
-                top: 2px;
-            }
-            60% {
-                left: -9px;
+                left: 0px;
                 top: 10px;
             }
             100% {
@@ -213,8 +201,8 @@
             left: -600px;
         }
         100% {
-            top: -710px;
-            left: 1210px;
+            top: -790px;
+            left: 1340px;
         }
     }
 }
@@ -237,8 +225,8 @@
             left: -600px;
         }
         100% {
-            top: -710px;
-            left: 1210px;
+            top: -790px;
+            left: 1340px;
         }
     }
 }
