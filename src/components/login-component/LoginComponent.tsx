@@ -40,7 +40,6 @@ export function LoginComponent(props: ILoginProps) {
     }
 
     const signUserIn = async () => {
-        document.body.style.overflow = "auto";
         props.login(username, password);
     }
 

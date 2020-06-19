@@ -26,6 +26,7 @@ class AppComponent extends React.Component<any, any> {
   // if loggen, we return most details for the application
   render(){
   if (this.props.loggedIn) {
+    document.body.style.overflow = "auto";
     return (
       <div data-test="main-content">
         <Router>
