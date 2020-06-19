@@ -10,41 +10,48 @@ export const loginTypes = {
     SUCCESSFUL_LOGOUT: 'TRAVEL_APP_SUCCEFUL_LOGOUT'
 }
 
-export const login = (username:string, password:string) => async (dispatch:any) => {
-    
-    try {
-        
-        let authUser = await userLogin(username, password);
-        console.log(authUser);
-        dispatch({
-            type: loginTypes.SUCCESSFUL_LOGIN,
-            payload: authUser
-        });
+export const login = (username: string, password: string) => async (dispatch: any) => {
+    let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
 
-    } catch (e) {
-
-        let status = e.response?.status;
-        if (status === 400) {
-            dispatch({
-                type: loginTypes.BAD_REQUEST,
-                payload: e.response?.data.message
-            });
-        } else if (status === 401) {
-            dispatch({
-                type: loginTypes.INVALID_CREDENTIALS,
-                payload: e.response?.data.message
-            });
-        } else {
-            dispatch({
-                type: loginTypes.INTERNAL_SERVER_ERROR,
-                payload: e.response?.data.message || 'Error: Server could not be reached'
-            });
+    dispatch({
+        type: loginTypes.SUCCESSFUL_LOGIN,
+        payload: {
+            currentUser: currentUser
         }
-    }
-    
+    })
+    // try {
+
+    //     let authUser = await userLogin(username, password);
+    //     console.log(authUser);
+    //     dispatch({
+    //         type: loginTypes.SUCCESSFUL_LOGIN,
+    //         payload: authUser
+    //     });
+
+    // } catch (e) {
+
+    //     let status = e.response?.status;
+    //     if (status === 400) {
+    //         dispatch({
+    //             type: loginTypes.BAD_REQUEST,
+    //             payload: e.response?.data.message
+    //         });
+    //     } else if (status === 401) {
+    //         dispatch({
+    //             type: loginTypes.INVALID_CREDENTIALS,
+    //             payload: e.response?.data.message
+    //         });
+    //     } else {
+    //         dispatch({
+    //             type: loginTypes.INTERNAL_SERVER_ERROR,
+    //             payload: e.response?.data.message || 'Error: Server could not be reached'
+    //         });
+    //     }
+    // }
+
     // let allUsers;
     // userLogin(username, password).then((users:any) => {
-        
+
     //     allUsers = users.data;
     //     let currentUser;
     //     // let currentUser = new AppUser(1, "test", "password", 1, "Trainer");
@@ -52,7 +59,7 @@ export const login = (username:string, password:string) => async (dispatch:any) 
     //         if(user.username === username && user.password === password){
     //             currentUser = user;
     //             console.log(currentUser);
-                
+
     //             dispatch({
     //                 type: loginTypes.SUCCESSFULL_LOGIN,
     //                 payload: {
@@ -76,6 +83,6 @@ export const login = (username:string, password:string) => async (dispatch:any) 
     //             loginMessage: 'Sorry, failed to retrieve data. Try again later'
     //         }
     //     })
-        
+
     // })
 }
