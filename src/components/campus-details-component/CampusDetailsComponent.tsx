@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Link, useHistory } from "react-router-dom";
-import { getAllCampusAPI } from '../../remote/campus-service'
+import { getCampusById } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
-import {Campus} from '../../dtos/campus';
+import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
 import { Building } from '../../dtos/building';
 import { Grid, Card, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
@@ -13,43 +13,43 @@ import { ResourceMetadata } from '../../dtos/resourceMetadata';
 
 
 export interface ICampusDetailsProps {
-    authUser: AppUser
 }
 
-function CampusDetailsComponent() {
+function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     //@ts-ignore
-    const[campus, setCampus] = useState<Campus>(null as Campus);
-    const[editing, setEditing] = useState(false);
-    const[buildings, setBuildings] = useState<Building[]>([]);
-    const[nameState, setNameState] = useState<string>('');
-    const[abbrNameState, setAbbrNameState] = useState<string>('');
+    const [campus, setCampus] = useState<Campus>(null as Campus);
+    const [editing, setEditing] = useState(false);
+    const [buildings, setBuildings] = useState<Building[]>([]);
+    const [nameState, setNameState] = useState<string>('');
+    const [abbrNameState, setAbbrNameState] = useState<string>('');
     //@ts-ignore
-    const[tManagerState, setTManagerState] = useState<Employee>(null as Employee);
+    const [tManagerState, setTManagerState] = useState<Employee>(null as Employee);
     //@ts-ignore
-    const[sManagerState, setSManagerState] = useState<Employee>(null as Employee);
+    const [sManagerState, setSManagerState] = useState<Employee>(null as Employee);
     //@ts-ignore
-    const[hrLeadState, setHrLeadState] = useState<Employee>(null as Employee);
+    const [hrLeadState, setHrLeadState] = useState<Employee>(null as Employee);
     //@ts-ignore
-    const[addressState, setAddressState] = useState<Address>(null as Address);
+    const [addressState, setAddressState] = useState<Address>(null as Address);
     const history = useHistory();
 
 
     //toggles between editing and non-editing mode
     const enableEdit = () => {
         setEditing(true);
-    }   
+    }
 
     //saves states upon clicking save button ... NEEDS TO PERSIST
     const save = () => {
-        setCampus({...campus,
-                    name: nameState,
-                    abbrName: abbrNameState,
-                    shippingAddress: addressState,
-                    trainingManager: tManagerState,
-                    stagingManager: sManagerState,
-                    hrLead: hrLeadState
-                 })       
+        setCampus({
+            ...campus,
+            name: nameState,
+            abbrName: abbrNameState,
+            shippingAddress: addressState,
+            trainingManager: tManagerState,
+            stagingManager: sManagerState,
+            hrLead: hrLeadState
+        })
 
         setEditing(false);
     }
@@ -61,7 +61,7 @@ function CampusDetailsComponent() {
 
     //sets pieces of info state upon changing in edit mode
     const setInfo = (event: any) => {
-        switch(event.target.id){
+        switch (event.target.id) {
             case "name":
                 setNameState(event.target.value);
                 break;
@@ -70,88 +70,91 @@ function CampusDetailsComponent() {
                 break;
             case "tManager":
                 //@ts-ignore
-                setTManagerState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata ));
+                setTManagerState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
                 break;
             case "sManager":
                 //@ts-ignore
-                setSManagerState (new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata ));
+                setSManagerState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
                 break;
             case "hrLead":
                 //@ts-ignore
-                setHrLeadState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata ));
+                setHrLeadState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
                 break;
             case "street":
-                setAddressState({...addressState,
-                                unitStreet: event.target.value})
+                setAddressState({
+                    ...addressState,
+                    unitStreet: event.target.value
+                })
                 break;
             case "city":
-                setAddressState({...addressState,
-                                city: event.target.value})
+                setAddressState({
+                    ...addressState,
+                    city: event.target.value
+                })
                 break;
             case "state":
-                setAddressState({...addressState,
-                                state: event.target.value})
+                setAddressState({
+                    ...addressState,
+                    state: event.target.value
+                })
                 break;
             case "zip":
-                setAddressState({...addressState,
-                                zip: event.target.value})
+                setAddressState({
+                    ...addressState,
+                    zip: event.target.value
+                })
                 break;
             case "country":
-                setAddressState({...addressState,
-                                country: event.target.value})
+                setAddressState({
+                    ...addressState,
+                    country: event.target.value
+                })
                 break;
 
         }
     }
 
     //makes a request to the API for all campuses and selects user assigned campus
-    const getCampus = async() => {
+    const getCampus = async(id: number) => {
         //@ts-ignore
-        let campuses = (await getAllCampusAPI()).data;
+        let campus = (await getCampusById(id)).data;
 
-        // campuses.forEach(item => {
-
-        //     if(item.resourceMetadata.resourceOwner.username === props.authUser.username){
-        //         setCampus(item)
-                
-        //     } else {
-        //         throw new Error ('409: You do not have proper credentials for this page')
-        //     }
-
-        let mockCampus: Campus = campuses[0]
-
-        setCampus(mockCampus)
+        setCampus(campus)
     }
 
     //extracts buildings from the users assigned campus
-    const getBuildings = async () => {
+    const getBuildings = async (campusId: number) => {
         let tempBuildings: Array<Building> = [];
 
-        await getCampus(); 
+        await getCampus(campusId); 
 
         campus?.buildings.forEach(building => {
-            tempBuildings.push(building)
+            tempBuildings.push(building);
         })
 
         //@ts-ignore
-        setBuildings(tempBuildings)
+        setBuildings(tempBuildings);
     } 
 
     useEffect(() => {
-        getBuildings();
+        let campusId = window.location?.pathname?.match(/\d+/)?.pop();
+        //@ts-ignore
+        getBuildings(+campusId);
     },[campus, buildings])  
 
     return (
         <>
-        <Card>
-            <div className="table-wrapper">
-            <Wrapper data-test="main-content" title={campus?.name} elements={campus?.abbrName}>
-                <Grid container>
-                <Grid item xs={12}>
-                            <Typography variant="h2">{campus?.name}</Typography>
-                        </Grid>
-                    <Grid item xs={12}>
-                        {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
+            <div className="display-wrapper">
+
+                <Card>
+                    <div className="table-wrapper">
+                        <Wrapper data-test="main-content" title={campus?.name} elements={campus?.abbrName}>
+                            <Grid container>
+                                <Grid item xs={12}>
+                                    <Typography variant="h2">{campus?.name}</Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
                              of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
                                 - need to persist data upon save
                                 - need to save editting authUser for metadata
@@ -280,8 +283,9 @@ function CampusDetailsComponent() {
                                     { title: "Building Manager", field: "trainingLead"}                                
                                 ]}
 
-                                //@ts-ignore
-                                onRowClick={(event, rowData)=> history.push(`/buildings/${rowData.id}`)}
+                                onRowClick={(event, rowData)=> {
+                                    history.push(`/buildings/${rowData?.id}`)
+                                }}
                                 data = {buildings}
                                 title = "Buildings"
                                 
@@ -326,9 +330,10 @@ function CampusDetailsComponent() {
                                 </Card>  
                             </Grid>
                         </Grid>
-            </Wrapper>
+                        </Wrapper>
+                    </div>
+                </Card>
             </div>
-        </Card>
         </>
     )
 

@@ -27,10 +27,6 @@ export default function NavbarComponent() {
                 <Link to="/buildings">
                     <a><div className="navbar-side-btn">Buildings</div></a>
                 </Link>
-                {/*link to rooms list in a building*/}
-                <Link to="/rooms">
-                    <a><div className="navbar-side-btn">Rooms</div></a>
-                </Link>
                 {/*link to employee list*/}
                 <Link to="/employees">
                     <a><div className="navbar-side-btn">Employees</div></a>

@@ -3,6 +3,7 @@
 /*navbar title*/
 
 .navbar-top {
+    z-index: 99;
     width: 100% !important;
     height: fit-content(0px) !important;
     background: $white !important;
