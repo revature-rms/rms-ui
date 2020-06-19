@@ -23,3 +23,8 @@ export const updateCampus = (id:number, data: any) => {
 export const getBuildingById = async (id: number) => {
     return await apiClient.get(`campus/v2/building/${id}`)
 }
+
+/**Function to get campus by owner id */
+export const getCampusByOwnerId = (id:number) => {
+    return apiClient.get(`search/v1/campus/owner/${id}`);
+}
