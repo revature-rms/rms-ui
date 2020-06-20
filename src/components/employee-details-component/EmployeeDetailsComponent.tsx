@@ -18,6 +18,9 @@ export interface IEmployeeDetailsProps {
  * Once employee details are finished being updated click save to commit the changes.
  * Click Cancel button to cancel any changes made to employee details.
  * 
+ * Role needed: Training Site Manager
+ * Endpoint: .../employee/id [id of employee]
+ * 
  * 
  * TODO: Currently this component has values hard coded into the component. Will need to remove mockEmployee and change up mockEmployee values
  * with different values once we can make axios request to the MSA. 
