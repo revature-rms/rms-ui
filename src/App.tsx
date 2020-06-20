@@ -6,7 +6,7 @@ import "./styles/main.scss";
 import HomeComponent from './components/home-component/HomeContainer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmployeeDetailsComponent from './components/employee-details-component/EmployeeDetailsContainer';
-import NavbarComponent from './components/navbar-component/NavbarComponent';
+import NavbarComponent from './components/navbar-component/NavbarContainer';
 import EmployeesComponent from './components/employees-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
@@ -16,6 +16,8 @@ import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
 import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent';
 import BuildingListComponent from './components/building-list-component/BuildingListComponent';
+import { store } from './Store';
+import { Provider } from 'react-redux';
 
 
 
@@ -29,22 +31,24 @@ class AppComponent extends React.Component<any, any> {
     document.body.style.overflow = "auto";
     return (
       <div data-test="main-content">
+        
         <Router>
-          <NavbarComponent />
-          <Switch>
-            <Route path='/login' component={LoginComponent} />
-            <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
-            <Route path='/employees' component={EmployeesComponent} />
-            <Route path='/employee-details' component={EmployeeDetailsComponent} />
-            <Route path='/employee/:id' component={EmployeeGlobalComponent} />
-            <Route path='/campuses' component={CampusListComponent} />
-            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
-            <Route path='/buildings' component={BuildingListComponent} />
-            <Route path='/rooms/:id' component={RoomDetailsComponent} />
-            <Route exact path='/rooms' component={RoomListComponent} />
-            <Route path='/' component={HomeComponent} />
-          </Switch>
+            <NavbarComponent />
+            <Switch>
+              <Route path='/login' component={LoginComponent} />
+              <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
+              <Route path='/employees' component={EmployeesComponent} />
+              <Route path='/employee-details' component={EmployeeDetailsComponent} />
+              <Route path='/employee/:id' component={EmployeeGlobalComponent} />
+              <Route path='/campuses' component={CampusListComponent} />
+              <Route path='/buildings/:id' component={BuildingDetailsComponent} />
+              <Route path='/buildings' component={BuildingListComponent} />
+              <Route path='/rooms/:id' component={RoomDetailsComponent} />
+              <Route exact path='/rooms' component={RoomListComponent} />
+              <Route path='/' component={HomeComponent} />
+            </Switch>
         </Router>
+        
       </div>
     );
   } else {
