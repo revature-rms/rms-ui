@@ -20,6 +20,22 @@ export const updateCampus = (id:number, data: any) => {
     return apiClient.put(`campus/v2/campus/${id}`, data);
 }
 
-export const getBuildingById = async (id: number) => {
-    return await apiClient.get(`campus/v2/building/${id}`)
+/**Function to get a campus by the trainer's ID*/
+export const getCampusByTrainerId = (id:number) => {
+    return apiClient.get(`campus/v2/campus/training/${id}`);
+}
+
+/**Function to get a campus by the Staging Manager's ID*/
+export const getCampusByStagingId = (id:number) => {
+    return apiClient.get(`campus/v2/campus/staging/${id}`);
+}
+
+/**Function to get a campus by the resource owner's ID */
+export const getBuildingByOwnerId = (id:number) => {
+    return apiClient.get(`campus/v2/campus/owner/${id}`);
+}
+
+/**Function to delete a campus by id*/
+export const deleteCampusById = (id:number) => {
+    return apiClient.delete(`campus/v2/campus/${id}`);
 }
