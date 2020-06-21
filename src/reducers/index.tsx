@@ -29,13 +29,13 @@ export interface IBuildingState {
 }
 
 export interface IHomeState {
-    currentUser: any,
+    currentUser: AppUser,
     loggedIn: boolean,
     loginMessage: string
 }
 
 export interface ILoginState {
-    currentUser: any,
+    currentUser: AppUser,
     loggedIn: boolean,
     loginMessage: string
 }
