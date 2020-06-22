@@ -1,31 +1,30 @@
+/**All of the functions from the search-service microservice
+ * these are used to grab data from any of the other microservices
+ * and provide additional information such as the Metadata
+*/
 import { apiClient } from '.';
 
-/**Function to get room by id*/
-export const getRoomByIdAPI = (id:number) => {
-    return apiClient.get(`campus/v2/room/${id}`);
+/**Returns a list of all campuses including all nested objects*/
+export const findAllCampuses = (id:number) => {
+    return apiClient.get(`search/v1/campuses`);
 }
 
-/**Function to get all rooms from campus microservice.*/
-export const getAllRooms = async () => {
-    return await apiClient.get(`campus/v2/room`);
+/**Returns a list of all campuses including all nested objects by the respective training manager ID*/
+export const findAllCampusesByTrainingManagerId = (id:number) => {
+    return apiClient.get(`search/v1/campus/training/${id}`);
 }
 
-/**Function to create a room*/
-export const createRoom = (data: any) => {
-    return apiClient.post('campus/v2/room', data);
+/**Returns a campus by id including all nested object*/
+export const findCampusById = (id:number) => {
+    return apiClient.get(`search/v1/campus/${id}`);
 }
 
-/**Function to update an existing room*/
-export const updateRoom = (data: any) => {
-    return apiClient.put(`campus/v2/room`, data);
+/**Returns a list of campuses owned by a specified app user*/
+export const findAllCampusesByOwner = (id:number) => {
+    return apiClient.get(`search/v1/campus/owner/${id}`);
 }
 
-/**Function to get a room by the resource owner's ID */
-export const getRoomByOwnerId = (id:number) => {
-    return apiClient.get(`campus/v2/room/owner/${id}`);
-}
-
-/**Function to delete a building by the building's ID */
-export const deleteRoomByRoomId = (id:number) => {
-    return apiClient.delete(`campus/v2/room/${id}`);
+/**Returns a building by id including all nested objects*/
+export const findBuildingById = (id:number) => {
+    return apiClient.get(`search/v1/building/${id}`);
 }
