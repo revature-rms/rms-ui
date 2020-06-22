@@ -54,10 +54,8 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     useEffect(()=>{
         if(props.currentUser?.role.includes("Admin")){
             getAllEmployees();
-            console.log(employeeList);
         } else if(props.currentUser?.role.includes("Training Site Manager")){
             getEmployees();
-            console.log(employeeList);
         }
     }, []);
     console.log(employeeList);
