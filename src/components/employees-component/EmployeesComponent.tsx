@@ -3,19 +3,18 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllEmployeesAPI } from '../../remote/employee-service';
+import { getAllEmployeesAPI, getAllEmployeeByIdAPI } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
+import { ResourceMetadata } from '../../dtos/resourceMetadata';
+import CampusListComponent from '../campus-component/CampusListComponent';
 
 
 
 
 
 export interface IEmployeesProps {
-    employees: any,
-    employeesMessage: string,
-    getAllEmployees: () => void,
-    updateId: (id: number) => void
+    currentUser: AppUser;
 }
 /**
  * Will provide all the employees that a user is in charge of (depending on what user is signed in)
@@ -25,51 +24,48 @@ export interface IEmployeesProps {
  * 
  * TODO: 
  * Axios request is needed to complete the table. 
- * details button still needs to be added.
  */
-function EmployeesComponent() {
+function EmployeesComponent(props: IEmployeesProps) {
 
+    //@ts-ignore
+    const [employeeList, setEmployeeList] = useState<Array<Employee>>([]);
+    const [table, setTable] = useState<any>(null);
+    let myEmployees: Array<Employee> = [];
     const history = useHistory();
-    const [employeeList, setEmployees] = useState([]);
-    useEffect(() => {
-        let employees: Array<any> = [];
-        let tempEmployees: Array<any> = [];
 
-        // axios request needs to be made to get all employees
-        // const getEmployees = async()=>{
-        //     employees = await getAllEmployeesAPI();
-        // }
+    const getAllEmployees = async() =>{
+        let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
+        console.log((await getAllEmployeesAPI()).data);
+        
+        employeeList.forEach(employee =>{
+            myEmployees.push(employee)
+        })
+        setEmployeeList(myEmployees);
+    }
 
-        const getEmployees = async () => {
-            //await getEmployees
+    const getEmployees = async ()=> {
+        let employeeList: Array<Employee> = (await getAllEmployeeByIdAPI(props?.currentUser?.id)).data;
+        employeeList.forEach(employee =>{
+            myEmployees.push(employee);
+        })
+        setEmployeeList(myEmployees);
+    }
 
-            employees = [{
-                id: 1,
-                firstName: 'firstTest',
-                lastName: 'lastTest',
-                email: 'emailtest@getMaxListeners.com',
-                title: "Manger of Technology",
-                department: "TRAINING",
-                resourceMetadata: null
-            },
-            {
-                id: 2,
-                firstName: 'firstTest2',
-                lastName: 'lastTest2',
-                email: 'emailtest2@getMaxListeners.com',
-                title: "Lead Trainer",
-                department: "TRAINING",
-                resourceMetadata: null
-            }]
-            //@ts-ignore
-            setEmployees(employees)
+    
+    
+    useEffect(()=>{
+        if(props.currentUser?.role.includes("Admin")){
+            getAllEmployees();
+        } else if(props.currentUser?.role.includes("Training Site Manager")){
+            getEmployees();
         }
-        getEmployees();
     }, []);
+    console.log(employeeList);
+    
     return (
         <>
             <div className="display-wrapper">
-
+    
                 <Card>
                     <div className="table-wrapper">
                         <MaterialTable
@@ -94,3 +90,5 @@ function EmployeesComponent() {
 }
 
 export default EmployeesComponent;
+
+
