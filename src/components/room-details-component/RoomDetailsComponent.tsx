@@ -5,7 +5,7 @@ import { Grid, Card, FormControl, InputLabel, Input, Button, Switch, Select, For
 import TextField from '@material-ui/core/TextField';
 import { Room } from '../../dtos/room';
 import { RoomStatus } from '../../dtos/roomStatus';
-import { Batch } from '../../dtos/batch';
+
 import { WorkOrder } from '../../dtos/workOrder';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Employee } from '../../dtos/employee';
