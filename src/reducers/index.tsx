@@ -8,7 +8,7 @@ import { userReducer } from './login-reducer';
 //import { homeReducer } from './home-reducer.ts.txt';
 import { AppUser } from '../dtos/appUser';
 import { Building } from '../dtos/building';
-import {buildingReducer } from './building-list-reducer';
+import { buildingReducer } from './building-list-reducer';
 
 
 export interface IEmployeesState {
@@ -39,7 +39,11 @@ export interface ILoginState {
     loggedIn: boolean,
     loginMessage: string
 }
-
+export interface ILogoutState {
+    currentUser: AppUser,
+    loggedIn: boolean,
+    loginMessage: string
+}
 export interface IState {
     employeesState: IEmployeesState,
     roomState:IRoomState,
