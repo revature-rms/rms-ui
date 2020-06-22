@@ -4,6 +4,7 @@ import { Grid, FormControl, InputLabel, Input, Card, Button, Typography } from '
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
 import { getBuildingByIdAPI } from '../../remote/building-service';
+import { getBuildingById } from '../../remote/campus-service';
 
 export interface IBuildingDetailsProps {
 }
@@ -44,11 +45,13 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps) {
     }
 
     const setInfo = (event: any) => {
+        console.log(event.target)
         switch (event.target.id) {
             case "name":
                 setName(event.target.value);
                 break;
             case "abbrName":
+                console.log(event.target.value)
                 setAbbrName(event.target.value);
                 break;
             case "address":
@@ -61,7 +64,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps) {
     }
 
     const getBuilding = async (id: number) => {
-        let thisBuilding = (await getBuildingByIdAPI(id)).data;
+        let thisBuilding = (await getBuildingById(id)).data;
         setBuilding(thisBuilding);
     }
 
@@ -132,13 +135,13 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps) {
                                     {editting ?
                                         <>
                                             <div>
-                                                <div className="edit-button" onClick={save}>Save</div>
-                                                <div className="edit-button" onClick={cancel}>Cancel</div>
+                                                <div id="saveButton" className="edit-button" onClick={save}>Save</div>
+                                                <div id="cancelButton" className="edit-button" onClick={cancel}>Cancel</div>
                                             </div>
                                         </>
                                         :
                                         <div>
-                                            <div className="edit-button" onClick={enableEdit}>Edit</div>
+                                            <div id="enableEdittingButton" className="edit-button" onClick={enableEdit}>Edit</div>
                                         </div>
                                     }
                                 </Card>

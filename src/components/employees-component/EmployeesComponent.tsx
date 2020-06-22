@@ -3,7 +3,7 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllEmployeesAPI } from '../../remote/employee-service';
+import { getAllEmployees } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 
@@ -27,45 +27,30 @@ export interface IEmployeesProps {
  * Axios request is needed to complete the table. 
  * details button still needs to be added.
  */
-function EmployeesComponent() {
+export default function EmployeesComponent(props: IEmployeesProps) {
 
     const history = useHistory();
     const [employeeList, setEmployees] = useState([]);
-    useEffect(() => {
+
+    useEffect(() => {  
+        getEmployees();
+    }, []);
+
+    // axios request needs to be made to get all employees
+    // const getEmployees = async()=>{
+    //     employees = await getAllEmployeesAPI();
+    // }
+    const getEmployees = async () => {
+        //await getEmployees
+
         let employees: Array<any> = [];
         let tempEmployees: Array<any> = [];
 
-        // axios request needs to be made to get all employees
-        // const getEmployees = async()=>{
-        //     employees = await getAllEmployeesAPI();
-        // }
+        employees = (await getAllEmployees()).data
+        //@ts-ignore
+        setEmployees(employees)
+    }
 
-        const getEmployees = async () => {
-            //await getEmployees
-
-            employees = [{
-                id: 1,
-                firstName: 'firstTest',
-                lastName: 'lastTest',
-                email: 'emailtest@getMaxListeners.com',
-                title: "Manger of Technology",
-                department: "TRAINING",
-                resourceMetadata: null
-            },
-            {
-                id: 2,
-                firstName: 'firstTest2',
-                lastName: 'lastTest2',
-                email: 'emailtest2@getMaxListeners.com',
-                title: "Lead Trainer",
-                department: "TRAINING",
-                resourceMetadata: null
-            }]
-            //@ts-ignore
-            setEmployees(employees)
-        }
-        getEmployees();
-    }, []);
     return (
         <>
             <div className="display-wrapper">
@@ -92,5 +77,3 @@ function EmployeesComponent() {
         </>
     )
 }
-
-export default EmployeesComponent;

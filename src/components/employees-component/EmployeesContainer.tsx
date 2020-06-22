@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
 import EmployeesComponent from "./EmployeesComponent";
-import {getAllEmployees} from "../../action-mappers/employees-action";
+import {getAllEmployeesAction} from "../../action-mappers/employees-action";
 import {updateId} from "../../action-mappers/employees-action"
 
 const mapStateToProps = (state:IState) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state:IState) => {
 
 const mapDispatchToProps = {
     //getting all employees from employees action mapper
-    getAllEmployees,
+    getAllEmployeesAction,
     updateId
 }
 
