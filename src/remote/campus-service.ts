@@ -2,7 +2,7 @@ import { apiClient } from '.';
 
 /**Function to get all campus from campus microservice.*/
 export const getAllCampus = async () => {
-    return await apiClient.get(`search/v1/campus`);
+    return await apiClient.get(`search/v1/campuses`);
 }
 
 /**Function to get campus by id*/

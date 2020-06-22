@@ -59,9 +59,9 @@ function CampusListComponent(props: ICampusProps) {
                         < MaterialTable
                             columns={[
                                 { title: 'Name', field: 'name'},
-                                { title: 'Training Manager', field: 'trainingManagerId' },
-                                { title: "Staging Manager", field: "stagingManagerId" },
-                                { title: "HR Lead", field: "hrLead" }
+                                { title: 'Training Manager', field: 'trainingManager.firstName' },
+                                { title: "Staging Manager", field: "stagingManager.firstName" },
+                                { title: "HR Lead", field: "hrLead.firstName" }
                             ]}
                             //@ts-ignore
                             onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}

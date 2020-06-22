@@ -31,7 +31,11 @@ export interface ILoginState {
     loggedIn: boolean,
     loginMessage: string
 }
-
+export interface ILogoutState {
+    currentUser: AppUser,
+    loggedIn: boolean,
+    loginMessage: string
+}
 export interface IState {
     employeesState: IEmployeesState,
     userState: ILoginState,
