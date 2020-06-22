@@ -21,8 +21,8 @@ function RoomListComponent(props: IRoomListProps) {
     const history = useHistory();
     let myRooms: Array<Room> = [];
 
-    const getCampuses = async (id: number) => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(id)).data;
+    const getCampuses = async () => {
+        let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
         if(campusList.length > 0){
             campusList.forEach(campus => {
                 campus.buildings.forEach(building => {
@@ -34,8 +34,8 @@ function RoomListComponent(props: IRoomListProps) {
         }
     }
 
-    const getBuildings = async (id: number) => {
-        let buildingList: Array<Building> = (await getBuildingByOwnerId(id)).data;
+    const getBuildings = async () => {
+        let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
         if(buildingList.length > 0){
             buildingList.forEach(building => {
                 building.rooms.forEach(room => {
@@ -45,8 +45,8 @@ function RoomListComponent(props: IRoomListProps) {
         }
     }
     
-    const getRooms = async (id: number) => {
-        let roomList: Array<Room> = (await getRoomByOwnerId(id)).data;
+    const getRooms = async () => {
+        let roomList: Array<Room> = (await getRoomByOwnerId(props.currentUser?.id)).data;
         if(roomList.length > 0) {
             roomList.forEach(room => {
                 myRooms.push(room);
@@ -55,10 +55,9 @@ function RoomListComponent(props: IRoomListProps) {
     }
 
     useEffect(() => {
-
-        getRooms(props.currentUser.id);
-        getBuildings(props.currentUser.id);
-        getCampuses(props.currentUser.id);
+        getRooms();
+        getBuildings();
+        getCampuses();
         setRooms(myRooms);
 
     }, []);
@@ -67,24 +66,24 @@ function RoomListComponent(props: IRoomListProps) {
     return (
         <>
             <div className="display-wrapper">
-            <Card>
-                <div className="table-wrapper">
-                    < MaterialTable
-                        columns={[
-                            { title: 'Room Number', field: 'roomNumber'},
-                            { title: 'Max Occupancy', field: 'maxOccupancy'},
-                            { title: 'Active', field: 'isActive'}
-                        ]}
-                        
-                        onRowClick={(event, rowData) => {
-                            //@ts-ignore
-                            history.push('/rooms/' + rowData.id)
-                        }}
-                        data={rooms}
-                        title="Rooms"
-                    />
-                </div>
-            </Card>
+                <Card>
+                    <div className="table-wrapper">
+                        < MaterialTable
+                            columns={[
+                                { title: 'Room Number', field: 'roomNumber'},
+                                { title: 'Max Occupancy', field: 'maxOccupancy'},
+                                { title: 'Active', field: 'isActive'}
+                            ]}
+                            
+                            onRowClick={(event, rowData) => {
+                                //@ts-ignore
+                                history.push('/rooms/' + rowData.id)
+                            }}
+                            data={rooms}
+                            title="Rooms"
+                        />
+                    </div>
+                </Card>
             </div>
         </>
     )

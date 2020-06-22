@@ -25,8 +25,8 @@ function BuildingListComponent(props: IBuildingListProps) {
     const history = useHistory();
     let myBuildings: Array<Building> = []
 
-    const getCampuses = async (id: number) => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(id)).data;
+    const getCampuses = async () => {
+        let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
         if(campusList.length > 0){
             campusList.forEach(campus => {
                 campus.buildings.forEach(building => {
@@ -36,8 +36,8 @@ function BuildingListComponent(props: IBuildingListProps) {
         }
     }
 
-    const getBuildings = async (id: number) => {
-        let buildingList: Array<Building> = (await getBuildingByOwnerId(id)).data;
+    const getBuildings = async () => {
+        let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
         if(buildingList.length > 0){
             buildingList.forEach(building => {
                 myBuildings.push(building);
@@ -47,8 +47,8 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     useEffect(() => {
 
-        getBuildings(props.currentUser.id);
-        getCampuses(props.currentUser.id);
+        getBuildings();
+        getCampuses();
         setBuildings(myBuildings);
 
     }, []);
