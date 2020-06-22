@@ -6,7 +6,7 @@ import { AppUser } from '../../dtos/appUser';
 
 
 export interface INavbarProps {
-    currentUser: AppUser;
+    currentUser: AppUser | undefined;
     login: (u: string, p: string, action: string) => void // login method that will be passed to login action through container
 }
 /**

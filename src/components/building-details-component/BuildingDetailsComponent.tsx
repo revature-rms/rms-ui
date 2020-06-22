@@ -208,13 +208,13 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                             <br/>
                             {editing?
                             <>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
+                                <Button id="saveButton" style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
+                                <Button id="cancelButton" style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
 
                             </>
                             :
                             <FormControl>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
+                                <Button id="enableEdittingButton" style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
                             </FormControl>}
 
                             </Card>
