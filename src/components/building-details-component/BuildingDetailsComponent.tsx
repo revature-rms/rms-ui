@@ -4,6 +4,7 @@ import { Grid, FormControl, InputLabel, Input, Card, Button, Typography} from '@
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
 import { getBuildingByIdAPI } from '../../remote/building-service';
+import { getCampusByOwnerId } from '../../remote/campus-service';
 
 export interface IBuildingDetailsProps {
 }

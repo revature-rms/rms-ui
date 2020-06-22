@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import { getAllCampus } from '../../remote/campus-service'
+import { getAllCampus, getCampusByOwnerId } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
 import { setThisBuilding } from '../../action-mappers/building-action';
+import { Campus } from '../../dtos/campus';
+import { AppUser } from '../../dtos/appUser';
+import { getBuildingByOwnerId } from '../../remote/building-service';
 
 
 export interface IBuildingListProps {
+    currentUser: AppUser;
 }
 /**
  * Will provide all the buildings that are located on a specific campus (depending on what user is signed in)
@@ -19,18 +23,33 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     const [buildings, setBuildings] = useState<Array<Building>>([]);
     const history = useHistory();
+    let myBuildings: Array<Building> = []
 
-    const getCampuses = async () => {
-
+    const getCampuses = async (id: number) => {
+        let campusList: Array<Campus> = (await getCampusByOwnerId(id)).data;
+        if(campusList.length > 0){
+            campusList.forEach(campus => {
+                campus.buildings.forEach(building => {
+                    myBuildings.push(building);
+                });
+            });
+        }
     }
 
-    const getBuildings = async () => {
-
+    const getBuildings = async (id: number) => {
+        let buildingList: Array<Building> = (await getBuildingByOwnerId(id)).data;
+        if(buildingList.length > 0){
+            buildingList.forEach(building => {
+                myBuildings.push(building);
+            })
+        }
     }
 
     useEffect(() => {
 
-        getBuildings();
+        getBuildings(props.currentUser.id);
+        getCampuses(props.currentUser.id);
+        setBuildings(myBuildings);
 
     }, []);
 

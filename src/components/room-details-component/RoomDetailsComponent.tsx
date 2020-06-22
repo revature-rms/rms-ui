@@ -129,7 +129,7 @@ function RoomDetailsComponent() {
                     {/* Breadcrumbs for parent building and parent campus
                     should only render building for building manager and only current room for trainers 
                     ***NON-FUNCTIONAL*** need to store campus and buildings state in order to render and linnk to correct pages */}
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Breadcrumbs>
                         <Link to="">
                         Campus
@@ -139,7 +139,7 @@ function RoomDetailsComponent() {
                         </Link>
                         <Typography>{room?.roomNumber}</Typography>
                         </Breadcrumbs>
-                    </Grid>
+                    </Grid> */}
 
 
                     {/*Contains the edittable room details (name, abbreviated name, address, building manager)
