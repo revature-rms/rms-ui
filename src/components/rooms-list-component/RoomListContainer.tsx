@@ -5,10 +5,9 @@ import {getAllRooms} from "../../action-mappers/room-list-actions"
 
 const mapStateToProps=(state:IState)=>{
     return {
-        building:state.roomsState.building
+        currentUser: state.userState.currentUser
     }
 }
 const mapDispatchToProps={
-    getAllRooms
 }
 export default connect(mapStateToProps,mapDispatchToProps)(RoomListComponent)
