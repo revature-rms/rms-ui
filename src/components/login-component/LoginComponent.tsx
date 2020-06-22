@@ -8,7 +8,7 @@ import { LoginAnimationComponent } from "../login-animation-component/LoginAnima
 export interface ILoginProps {
     authUser: AppUser,
     loginMessage: string,
-    login: (u: string, p: string) => void // login method that will be passed to login action through container
+    login: (u: string, p: string, action:string) => void // login method that will be passed to login action through container
 }
 
 /**
@@ -39,7 +39,7 @@ export function LoginComponent(props: ILoginProps) {
     }
 
     const signUserIn = async () => {
-        props.login(username, password);
+        props.login(username, password, "login");
     }
 
 
