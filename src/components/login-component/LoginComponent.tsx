@@ -6,7 +6,7 @@ import { AppUser } from '../../dtos/appUser';
 import { LoginAnimationComponent } from "../login-animation-component/LoginAnimationComponent"
 
 export interface ILoginProps {
-    authUser: AppUser,
+    authUser: AppUser | undefined,
     loginMessage: string,
     login: (u: string, p: string, action:string) => void // login method that will be passed to login action through container
 }
@@ -20,7 +20,7 @@ export interface ILoginProps {
  *       in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
  * 
  */
-export function LoginComponent(props: ILoginProps) {
+export default function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -41,8 +41,6 @@ export function LoginComponent(props: ILoginProps) {
     const signUserIn = async () => {
         props.login(username, password, "login");
     }
-
-
 
     return (
         <>
@@ -75,7 +73,7 @@ export function LoginComponent(props: ILoginProps) {
                                     value={password}
                                     onChange={setInfo}
                                 />
-                                <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+                                <button id="loginButton" type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
                             </form>
                             <div>{props.loginMessage}</div>
                         </div>

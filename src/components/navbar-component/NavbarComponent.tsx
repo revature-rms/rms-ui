@@ -52,13 +52,13 @@ export default function NavbarComponent(props: INavbarProps) {
                     <Link to="/campuses">
                         <a><div className="navbar-side-btn">Campuses</div></a>
                     </Link>
-                    : <></>}
+                : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager"]) ?
                     /*link to building list in a campus*/
                     <Link to="/buildings">
                         <a><div className="navbar-side-btn">Buildings</div></a>
                     </Link>
-                    : <></>}
+                : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
                     /*link to employee list*/
                     <Link to="/employees">
