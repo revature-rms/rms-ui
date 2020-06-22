@@ -16,7 +16,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
         const [building, setBuilding] = useState(null as Building);
         const [nameState, setName] = useState(building?.name);
         const [abbrNameState, setAbbrName] = useState(building?.abbrName);
-        const [addressState, setAddress] = useState(building?.physicalAddress);
+        const [addressState, setAddressState] = useState(building?.physicalAddress);
         const [bManagerState, setBManager] = useState(building?.trainingLead);
         const history = useHistory();
            
@@ -47,11 +47,38 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                 case "abbrName":
                     setAbbrName(event.target.value);
                     break;
-                case "address":
-                    setAddress(event.target.value);
-                    break;
                 case "bManager":
                     setBManager(event.target.value);
+                    break;
+                case "street":
+                    setAddressState({
+                        ...addressState,
+                        unitStreet: event.target.value
+                    })
+                    break;
+                case "city":
+                    setAddressState({
+                        ...addressState,
+                        city: event.target.value
+                    })
+                    break;
+                case "state":
+                    setAddressState({
+                        ...addressState,
+                        state: event.target.value
+                    })
+                    break;
+                case "zip":
+                    setAddressState({
+                        ...addressState,
+                        zip: event.target.value
+                    })
+                    break;
+                case "country":
+                    setAddressState({
+                        ...addressState,
+                        country: event.target.value
+                    })
                     break;
             }
         }
@@ -114,8 +141,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     <FormControl style={{margin: 8}}>
                                         <InputLabel shrink={true}>Street</InputLabel>
                                         {editing?
-                                        <Input id="street" defaultValue={building?.physicalAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                        <Input id="street" value={building?.physicalAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                        <Input id="street" defaultValue={building?.physicalAddress.unitStreet} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="street" value={building?.physicalAddress.unitStreet} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                         }          
                                     </FormControl>
                                     </span>
@@ -124,8 +151,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     <FormControl style={{margin: 8}}>
                                         <InputLabel shrink={true}>City</InputLabel>
                                         {editing?
-                                        <Input id="city" defaultValue={building?.physicalAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                        <Input id="city" value={building?.physicalAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                        <Input id="city" defaultValue={building?.physicalAddress.city} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="city" value={building?.physicalAddress.city} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                         }          
                                     </FormControl>
                                     </span>
@@ -134,8 +161,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     <FormControl style={{margin: 8}}>
                                         <InputLabel shrink={true}>State</InputLabel>
                                         {editing?
-                                        <Input id="state" defaultValue={building?.physicalAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                        <Input id="state" value={building?.physicalAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                        <Input id="state" defaultValue={building?.physicalAddress.state} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="state" value={building?.physicalAddress.state} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                         }          
                                     </FormControl>
                                     </span>
@@ -144,8 +171,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     <FormControl style={{margin: 8}}>
                                         <InputLabel shrink={true}>Zipcode</InputLabel>
                                         {editing?
-                                        <Input id="zip" defaultValue={building?.physicalAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                        <Input id="zip" value={building?.physicalAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                        <Input id="zip" defaultValue={building?.physicalAddress.zip} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="zip" value={building?.physicalAddress.zip} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                         }          
                                     </FormControl>
                                     </span>
@@ -154,19 +181,22 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     <FormControl style={{margin: 8}}>
                                         <InputLabel shrink={true}>Country</InputLabel>
                                         {editing?
-                                        <Input id="country" defaultValue={building?.physicalAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                        <Input id="country" value={building?.physicalAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                        <Input id="country" defaultValue={building?.physicalAddress.country} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="country" value={building?.physicalAddress.country} onChange={setInfo} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                         }          
                                     </FormControl>
                                     </span>
                                     </div>
+
+                                    {/* NON-EDITABLE ITEM
+                                    should implement a drop down menu to select a new building manager*/}
                                     
                                     <div style={{ margin: 8 }}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Building Manager: </InputLabel>
                                             {editing?
-                                            <Input id="bManager" defaultValue={building?.trainingLead?.firstName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                            <Input id="bManager" value={building?.trainingLead?.firstName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input id="bManager" defaultValue={building?.trainingLead?.firstName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                            <Input id="bManager" value={building?.trainingLead?.firstName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                             }
                                         </FormControl>
                                     </div>
