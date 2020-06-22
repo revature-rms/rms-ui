@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { getCampusById } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';
-import { AppUser } from '../../dtos/appUser';
 import { Building } from '../../dtos/building';
 import { Grid, Card, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 import { Address } from '../../dtos/address';
@@ -23,9 +21,12 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     const [buildings, setBuildings] = useState<Building[]>([]);
     const [nameState, setNameState] = useState<string>('');
     const [abbrNameState, setAbbrNameState] = useState<string>('');
-    const [tManagerState, setTManagerState] = useState<number>(0);
-    const [sManagerState, setSManagerState] = useState<number>(0);
-    const [hrLeadState, setHrLeadState] = useState<number>(0);
+    //@ts-ignore
+    const [tManagerState, setTManagerState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
+    //@ts-ignore
+    const [sManagerState, setSManagerState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
+    //@ts-ignore
+    const [hrLeadState, setHrLeadState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
     //@ts-ignore
     const [addressState, setAddressState] = useState<Address>(null as Address);
     const history = useHistory();
@@ -43,8 +44,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
             name: nameState,
             abbrName: abbrNameState,
             shippingAddress: addressState,
-            trainingManagerId: tManagerState,
-            stagingManagerId: sManagerState,
+            trainingManager: tManagerState,
+            stagingManager: sManagerState,
             hrLead: hrLeadState
         })
 
@@ -234,36 +235,38 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 </span>
                                 </div>
                                 
-                                <div style={{margin: 8}}>
+                                {/*NON-EDITABLE ITEMS including training manager, staging manager, and hr lead
+                                Implemented a drop down menu for each so a new employee can be selected*/}
                                 
-                                <FormControl>
-                                    <InputLabel shrink={true}>Training Manager: </InputLabel>
-                                    {/*campus.trainingManager.firstName + ' ' + campus.trainingManager.lastName*/}
-                                    {editing?
-                                    <Input id="tManager" value={campus?.trainingManagerId} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="tManager" defaultValue={campus?.trainingManagerId} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                <div style={{margin: 8}}>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Training Manager: </InputLabel>
+                                        {/*campus.trainingManager.firstName + ' ' + campus.trainingManager.lastName*/}
+                                        {editing?
+                                        <Input id="tManager" value={campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="tManager" defaultValue={campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }
+                                    </FormControl>
                                 </div>
 
                                 <div style={{margin: 8}}>
-                                <FormControl>
-                                    <InputLabel shrink={true}>Staging Manager: </InputLabel>
-                                    {editing?
-                                    <Input id="sManager" value={campus?.stagingManagerId} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="sManager" defaultValue={campus?.stagingManagerId} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Staging Manager: </InputLabel>
+                                        {editing?
+                                        <Input id="sManager" value={campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="sManager" defaultValue={campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }                               
+                                    </FormControl>
                                 </div>
 
                                 <div style={{margin: 8}}>
-                                <FormControl>
-                                    <InputLabel shrink={true}>HR Lead: </InputLabel>
-                                    {editing?
-                                    <Input id="hrLead" value={campus?.hrLead} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="hrLead" defaultValue={campus?.hrLead} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Human Resources Lead: </InputLabel>
+                                        {editing?
+                                        <Input id="hrLead" value={campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="hrLead" defaultValue={campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }                                
+                                    </FormControl>
                                 </div>
                             </div>
                             <br/>
@@ -287,10 +290,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
                                     { title: 'Street', field: 'physicalAddress.unitStreet'},
-                                    // { title: 'City', field: 'physicalAddress.city'},
-                                    // { title: 'State', field: 'physicalAddress.state'},
-                                    // { title: 'Zip', field: 'physicalAddress.zip'},
-                                    { title: "Building Manager", field: "trainingLead"}                                
+                                    { title: "Building Manager", field: "trainingLead.firstName"}                                
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
