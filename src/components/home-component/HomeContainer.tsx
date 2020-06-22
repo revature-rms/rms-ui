@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {IState} from "../../reducers";
-import {HomeComponent} from "./HomeComponent";
+import HomeComponent from "./HomeComponent";
 import { AppUser } from "../../dtos/appUser";
 
 const mapStateToProps = (state:IState) => {

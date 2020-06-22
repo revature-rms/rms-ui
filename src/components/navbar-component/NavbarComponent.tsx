@@ -6,7 +6,7 @@ import { AppUser } from '../../dtos/appUser';
 
 
 export interface INavbarProps {
-    currentUser: AppUser;
+    currentUser: AppUser | undefined;
 }
 /**
  * The navigation bar that will show up on the left side of every screen. 
@@ -43,16 +43,16 @@ export default function NavbarComponent(props: INavbarProps) {
             </div>
             <div data-test="navbar-side" className="navbar-side">
                 {isRole(["Admin", "Training Site Manager"]) ?
-                /*link to campus list*/
-                <Link to="/campuses">
-                    <a><div className="navbar-side-btn">Campuses</div></a>
-                </Link>
+                    /*link to campus list*/
+                    <Link to="/campuses">
+                        <a><div className="navbar-side-btn">Campuses</div></a>
+                    </Link>
                 : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager"]) ?
-                /*link to building list in a campus*/
-                <Link to="/buildings">
-                    <a><div className="navbar-side-btn">Buildings</div></a>
-                </Link>
+                    /*link to building list in a campus*/
+                    <Link to="/buildings">
+                        <a><div className="navbar-side-btn">Buildings</div></a>
+                    </Link>
                 : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
                 /*link to room list*/

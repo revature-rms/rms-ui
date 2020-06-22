@@ -5,7 +5,7 @@ import { Card, Grid } from '@material-ui/core';
 import { getAllCampus, getBuildingById } from '../../remote/campus-service';
 
 export interface IHomeProps {
-    authUser: AppUser;
+    authUser: AppUser | undefined;
 }
 
 /**
@@ -20,7 +20,7 @@ export interface IHomeProps {
  * 
  * @param props
  */
-export function HomeComponent(props: IHomeProps) {
+export default function HomeComponent(props: IHomeProps) {
 
     const [campus, setCampus] = useState([]);
     const [associates, setAssociates] = useState([]);
