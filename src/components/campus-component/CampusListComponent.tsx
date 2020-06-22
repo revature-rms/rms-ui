@@ -3,8 +3,9 @@ import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
 import {useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
-import { getCampusByOwnerId} from '../../remote/campus-service';
+import { getCampusByOwnerId, getAllCampus} from '../../remote/campus-service';
 import { AppUser } from '../../dtos/appUser';
+
 
 
 export interface ICampusProps {
@@ -21,16 +22,32 @@ function CampusListComponent(props: ICampusProps) {
     //@ts-ignore
     const [campusList, setCampusList] = useState<Array<Campus>>([]);
     const [table, setTable] = useState<any>(null);
+    let myCampuses: Array<Campus> = [];
     const history = useHistory();
 
     const getCampuses = async () => {
-        let campuses = (await getCampusByOwnerId(props?.currentUser?.id)).data;
-        //@ts-ignore
-        setCampusList(campuses);
+        let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        }) 
+        setCampusList(myCampuses); 
+    }
+
+    const getAllCampuses = async () => {
+        let campusList: Array<Campus> = (await getAllCampus()).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        })
+        setCampusList(myCampuses);
     }
 
     useEffect(() => {  
-        getCampuses();
+        if(props.currentUser?.role.includes("Admin")){
+            getAllCampuses();
+        } else if(props.currentUser?.role.includes("Training Site Manager")) {
+            getCampuses();
+        }
+
     }, []);
 
     return (

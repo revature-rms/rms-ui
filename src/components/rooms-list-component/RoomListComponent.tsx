@@ -7,8 +7,9 @@ import { Campus } from '../../dtos/campus';
 import { getCampusByOwnerId } from '../../remote/campus-service';
 import { Building } from '../../dtos/building';
 import { getBuildingByOwnerId } from '../../remote/building-service';
-import { getRoomByOwnerId } from '../../remote/room-service';
+import { getRoomByOwnerId, getAllRoomsAPI } from '../../remote/room-service';
 import { AppUser } from '../../dtos/appUser';
+
 
 
 export interface IRoomListProps {
@@ -23,43 +24,54 @@ function RoomListComponent(props: IRoomListProps) {
 
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
-        if(campusList.length > 0){
-            campusList.forEach(campus => {
-                campus.buildings.forEach(building => {
-                    building.rooms.forEach(room => {
-                        myRooms.push(room);
-                    });
+        campusList.forEach(campus => {
+            campus.buildings.forEach(building => {
+                building.rooms.forEach(room => {
+                    myRooms.push(room);
                 });
             });
-        }
+        });
+        setRooms(myRooms);
     }
 
     const getBuildings = async () => {
         let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
-        if(buildingList.length > 0){
-            buildingList.forEach(building => {
-                building.rooms.forEach(room => {
-                    myRooms.push(room);
-                });
-            })
-        }
+        buildingList.forEach(building => {
+            building.rooms.forEach(room => {
+                myRooms.push(room);
+            });
+        })
+        setRooms(myRooms);
     }
     
     const getRooms = async () => {
         let roomList: Array<Room> = (await getRoomByOwnerId(props.currentUser?.id)).data;
-        if(roomList.length > 0) {
-            roomList.forEach(room => {
-                myRooms.push(room);
-            })
-        }
+        roomList.forEach(room => {
+            console.log(room)
+            myRooms.push(room);
+        })
+        setRooms(myRooms);
+    }
+
+    const getAllRooms = async () => {
+        let roomList: Array<Room> = (await getAllRoomsAPI()).data;
+        roomList.forEach(room => {
+            myRooms.push(room);
+        })
+
+        setRooms(myRooms);
     }
 
     useEffect(() => {
-        getRooms();
-        getBuildings();
-        getCampuses();
-        setRooms(myRooms);
-
+        if(props.currentUser?.role.includes("Admin")){
+            getAllRooms();
+        } else if(props.currentUser?.role.includes("Training Site Manager")){
+            getCampuses();
+        } else if(props.currentUser?.role.includes("Building Manager")){
+            getBuildings();
+        } else if(props.currentUser?.role.includes("Trainer")){
+            getRooms();
+        }
     }, []);
 
 

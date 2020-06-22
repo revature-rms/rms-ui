@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import { getAllCampus, getCampusByOwnerId } from '../../remote/campus-service'
+import {getCampusByOwnerId } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
-import { setThisBuilding } from '../../action-mappers/building-action';
 import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
-import { getBuildingByOwnerId } from '../../remote/building-service';
+import { getAllBuildingsAPI, getBuildingByOwnerId } from '../../remote/building-service';
 
 
 export interface IBuildingListProps {
@@ -27,29 +26,45 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
-        if(campusList.length > 0){
-            campusList.forEach(campus => {
-                campus.buildings.forEach(building => {
-                    myBuildings.push(building);
-                });
+
+        campusList.forEach(campus => {
+            campus.buildings.forEach(building => {
+                myBuildings.push(building);
             });
-        }
+        });
+
+        setBuildings(myBuildings);
     }
 
     const getBuildings = async () => {
         let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
-        if(buildingList.length > 0){
-            buildingList.forEach(building => {
-                myBuildings.push(building);
-            })
-        }
+
+        buildingList.forEach(building => {
+            myBuildings.push(building);
+        });
+
+        setBuildings(myBuildings);
+    }
+
+    const getAllBuildings = async () => {
+        let buildingsList: Array<Building> =(await getAllBuildingsAPI()).data
+
+        buildingsList.forEach(building => {
+            myBuildings.push(building);
+        });
+
+        setBuildings(myBuildings);
     }
 
     useEffect(() => {
-
-        getBuildings();
-        getCampuses();
-        setBuildings(myBuildings);
+        if(props.currentUser?.role.includes("Admin")){
+            getAllBuildings();
+        } else if(props.currentUser?.role.includes("Training Site Manager")) {
+            getCampuses();
+        }
+        else if(props.currentUser?.role.includes("Building Manager")){
+            getBuildings();
+        }
 
     }, []);
 
@@ -63,7 +78,7 @@ function BuildingListComponent(props: IBuildingListProps) {
                         columns={[
                             { title: 'Id', field: 'id' },
                             { title: 'Name', field: 'name' },
-                            { title: 'Address', field: 'physicalAddress' },
+                            { title: 'Street Address', field: 'physicalAddress.unitStreet' },
                             { title: "Building Manager", field: "trainingLead" }
                         ]}
                         
