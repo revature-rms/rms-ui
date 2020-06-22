@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
 import {useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
-import { getCampusByOwnerId, getAllCampus} from '../../remote/campus-service';
+import { findAllCampusesByOwner, findAllCampuses} from '../../remote/search-service';
 import { AppUser } from '../../dtos/appUser';
 
 
@@ -24,7 +24,7 @@ function CampusListComponent(props: ICampusProps) {
     const history = useHistory();
 
     const getCampuses = async () => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
+        let campusList: Array<Campus> = (await findAllCampusesByOwner(props?.currentUser?.id)).data;
         campusList.forEach(campus => {
             myCampuses.push(campus);
         });
@@ -32,7 +32,7 @@ function CampusListComponent(props: ICampusProps) {
     }
 
     const getAllCampuses = async () => {
-        let campusList: Array<Campus> = (await getAllCampus()).data;
+        let campusList: Array<Campus> = (await findAllCampuses()).data;
         campusList.forEach(campus => {
             myCampuses.push(campus);
         });

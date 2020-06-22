@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import {findAllCampusesByOwner,  } from '../../remote/search-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
 import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
-import { getAllBuildingsAPI, getBuildingByOwnerId } from '../../remote/building-service';
+import { findAllBuilding, findBuildingByOwner, findAllCampusesByOwner } from '../../remote/search-service';
 
 
 export interface IBuildingListProps {
@@ -25,7 +24,7 @@ function BuildingListComponent(props: IBuildingListProps) {
     let myBuildings: Array<Building> = []
 
     const getCampuses = async () => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
+        let campusList: Array<Campus> = (await findAllCampusesByOwner(props.currentUser?.id)).data;
 
         campusList.forEach(campus => {
             campus.buildings.forEach(building => {
@@ -37,7 +36,7 @@ function BuildingListComponent(props: IBuildingListProps) {
     }
 
     const getBuildings = async () => {
-        let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
+        let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
 
         buildingList.forEach(building => {
             myBuildings.push(building);
@@ -47,7 +46,7 @@ function BuildingListComponent(props: IBuildingListProps) {
     }
 
     const getAllBuildings = async () => {
-        let buildingsList: Array<Building> =(await getAllBuildingsAPI()).data
+        let buildingsList: Array<Building> =(await findAllBuilding()).data
 
         buildingsList.forEach(building => {
             myBuildings.push(building);

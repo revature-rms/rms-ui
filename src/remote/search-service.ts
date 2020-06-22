@@ -5,7 +5,7 @@
 import { apiClient } from '.';
 
 /**Returns a list of all campuses including all nested objects*/
-export const findAllCampuses = (id:number) => {
+export const findAllCampuses = () => {
     return apiClient.get(`search/v1/campuses`);
 }
 
@@ -24,6 +24,11 @@ export const findAllCampusesByOwner = (id:number) => {
     return apiClient.get(`search/v1/campus/owner/${id}`);
 }
 
+/**Returns a list of all buildings*/
+export const findAllBuilding = () => {
+    return apiClient.get(`search/v1/building`);
+}
+
 /**Returns a building by id including all nested objects*/
 export const findBuildingById = (id:number) => {
     return apiClient.get(`search/v1/building/${id}`);
@@ -37,6 +42,11 @@ export const findBuildingByTrainingLeadId = (id:number) => {
 /**Returns a list of buildings base on an app user id*/
 export const findBuildingByOwner = (id:number) => {
     return apiClient.get(`search/v1/building/owner/${id}`);
+}
+
+/**Returns a list of all RoomDto objects*/
+export const findAllRooms = () => {
+    return apiClient.get(`search/v1/room`);
 }
 
 /**Returns a room by id including all nested objects*/
