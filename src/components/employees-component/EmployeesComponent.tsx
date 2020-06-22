@@ -35,8 +35,6 @@ function EmployeesComponent(props: IEmployeesProps) {
 
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
-        console.log((await getAllEmployeesAPI()).data);
-        
         employeeList.forEach(employee =>{
             myEmployees.push(employee)
         })
