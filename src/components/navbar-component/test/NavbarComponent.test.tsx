@@ -9,7 +9,8 @@ import { configure, mount, shallow } from 'enzyme';
    be supplied.
 */
 const props: INavbarProps = {
-    currentUser: undefined
+    currentUser: undefined,
+    login: jest.fn()
 }
 
 configure({adapter: new Adapter()});

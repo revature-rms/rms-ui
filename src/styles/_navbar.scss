@@ -4,14 +4,14 @@
 
 .navbar-top {
     z-index: 99;
-    width: 100% !important;
-    height: fit-content(0px) !important;
-    background: $white !important;
-    position: fixed !important;
-    border-bottom: 10px solid !important;
-    border-color: $yellow !important;
-    text-transform: uppercase !important;
-    box-shadow: 2px 2px 5px $grey !important;
+    width: 100%;
+    height: fit-content(0px);
+    background: $white;
+    position: fixed;
+    border-bottom: 10px solid;
+    border-color: $yellow;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 5px $grey;
 }
 
 
@@ -19,9 +19,14 @@
 
 .navbar-top-sub {
     display: inline-block;
-    height: fit-content(0px) !important;
+    height: fit-content(0px);
     user-select: none;
     vertical-align: top;
+}
+
+.navbar-top-sub-right {
+    user-select: none;
+    float: right;
 }
 
 .navbar-top-title {
@@ -36,24 +41,24 @@
 /*revature picture*/
 
 .logo {
-    background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
-    margin: 15px 25px !important;
-    width: 180px !important;
-    height: 56px !important;
-    float: left !important;
+    background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png");
+    margin: 15px 25px;
+    width: 180px;
+    height: 56px;
+    float: left;
 }
 
 
 /*navbar side bar*/
 
 .navbar-side {
-    position: fixed !important;
-    left: 0px !important;
-    top: 110px !important;
-    height: 100% !important;
-    width: fit-content(0px) !important;
-    background: $grey !important;
-    box-shadow: 2px 2px 5px $grey !important;
+    position: fixed;
+    left: 0px;
+    top: 110px;
+    height: 100%;
+    width: fit-content(0px);
+    background: $grey;
+    box-shadow: 2px 2px 5px $grey;
 }
 
 
@@ -63,21 +68,39 @@
     display: block;
     padding: 1.5vw;
     font-size: 1rem;
-    width: 10vw !important;
-    background: $grey !important;
-    color: $white !important;
-    border-bottom: 1px solid $light-grey !important;
-    border-top: 1px solid $dark-grey !important;
-    transition: all 0.5s !important;
+    width: 10vw;
+    background: $grey;
+    color: $white;
+    border-bottom: 1px solid $light-grey;
+    border-top: 1px solid $dark-grey;
+    transition: all 0.5s;
 }
 
 
 /*navbar side bar btn on hover*/
 
 .navbar-side-btn:hover {
-    background: $light-grey !important;
-    color: $white !important;
-    transition: all 0.5s !important;
+    background: $light-grey;
+    color: $white;
+    transition: all 0.5s;
+}
+
+.logout-button {
+    display: block;
+    padding: 1.5vw;
+    font-size: 1rem;
+    width: 10vw;
+    background: $grey;
+    color: $yellow;
+    border-bottom: 1px solid $light-grey;
+    border-top: 1px solid $dark-grey;
+    transition: all 0.5s;
+}
+
+.logout-button:hover {
+    background: $light-grey;
+    color: $white;
+    transition: all 0.5s;
 }
 
 @media only screen and (max-width: 768px) {
@@ -90,19 +113,27 @@
         color: $grey;
     }
     .navbar-side {
-        position: fixed !important;
-        left: 0px !important;
-        top: 110px !important;
-        width: 100vw !important;
-        height: 7vh !important;
+        position: fixed;
+        left: 0px;
+        top: 110px;
+        width: 100vw;
+        height: 7vh;
     }
     .navbar-side-btn {
         display: inline-block;
-        width: 20vw !important;
-        height: 3vh !important;
-        background: $grey !important;
-        color: $yellow !important;
-        transition: all 0.5s !important;
+        width: 15vw;
+        height: 3vh;
+        background: $grey;
+        color: $white;
+        transition: all 0.5s;
+    }
+    .logout-button {
+        display: inline-block;
+        width: 15vw;
+        height: 3vh;
+        background: $grey;
+        color: $yellow;
+        transition: all 0.5s;
     }
 }
 
@@ -117,10 +148,10 @@
         color: $grey;
     }
     .navbar-side {
-        position: fixed !important;
-        left: 0px !important;
-        top: 145px !important;
-        width: 100vw !important;
-        height: 7vh !important;
+        position: fixed;
+        left: 0px;
+        top: 145px;
+        width: 100vw;
+        height: 7vh;
     }
 }

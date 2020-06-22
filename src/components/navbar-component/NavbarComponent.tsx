@@ -7,6 +7,7 @@ import { AppUser } from '../../dtos/appUser';
 
 export interface INavbarProps {
     currentUser: AppUser | undefined;
+    login: (u: string, p: string, action: string) => void // login method that will be passed to login action through container
 }
 /**
  * The navigation bar that will show up on the left side of every screen. 
@@ -27,6 +28,10 @@ export default function NavbarComponent(props: INavbarProps) {
         return false;
     }
 
+    function logout() {
+        props.login("", "", "logout");
+    }
+
     return (
         //boilerplate material ui clipped drawer link: https://material-ui.com/components/drawers/
         <>
@@ -36,7 +41,7 @@ export default function NavbarComponent(props: INavbarProps) {
                     <div className="navbar-top-title">Resource Management System</div>
                 </div>
                 {/* temp remove search functions */}
-                <div className="navbar-top-sub">
+                <div className="navbar-top-sub-right">
                     {/* <Link onClick={logout} to=''>Logout</Link> */}
                     {/* <SearchComponent /> */}
                 </div>
@@ -55,10 +60,16 @@ export default function NavbarComponent(props: INavbarProps) {
                     </Link>
                 : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
-                    /*link to employee list*/
-                    <Link to="/employees">
-                        <a><div className="navbar-side-btn">Employees</div></a>
-                    </Link>
+                /*link to room list*/
+                <Link to="/rooms">
+                    <a><div className="navbar-side-btn">Rooms</div></a>
+                </Link>
+                : <></> }
+                {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
+                /*link to employee list*/
+                <Link to="/employees">
+                    <a><div className="navbar-side-btn">Employees</div></a>
+                </Link>
                 : <></> }
             </div>
         </>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import EmployeesComponent, { IEmployeesProps } from '../EmployeesComponent';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, mount, shallow } from 'enzyme';
+import { AppUser } from '../../../dtos/appUser';
 
 /* Default Properties for rendering EmployeesComponent*/
 /* 
@@ -16,10 +17,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const props: IEmployeesProps = {
-    employees: undefined,
-    employeesMessage: "",
-    getAllEmployees: jest.fn(),
-    updateId: jest.fn()
+    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager'])
 };
 
 configure({adapter: new Adapter()});

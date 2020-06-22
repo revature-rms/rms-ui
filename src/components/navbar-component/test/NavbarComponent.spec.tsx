@@ -16,7 +16,8 @@ const useStateMock: any = (initState: any) => [initState, setState]
 
 
 const props: INavbarProps = {
-    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager'])
+    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager']),
+    login: jest.fn()
 };
 
 const navbarComponent = <NavbarComponent {...props} />
@@ -39,7 +40,8 @@ describe('NavbarComponent', () => {
     it('Should render 6 divs', () => {
         //This is pretty bad, maybe find another way to change roles in the future?
         const testProps: INavbarProps = {
-            currentUser: new AppUser(1, "username", "password", 1, [])
+            currentUser: new AppUser(1, "username", "password", 1, []),
+            login: jest.fn()
         };
         const testNavbarComponent = <NavbarComponent {...testProps}/>
         const wrapper = mount(<BrowserRouter>{testNavbarComponent}</BrowserRouter>);

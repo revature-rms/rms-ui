@@ -34,7 +34,7 @@ export function LoginAnimationComponent() {
                     <div className="building-2 unselect"></div>
                     <div className="building-2 hidden unselect"></div>
                     <div className="building-2 unselect"></div>
-                    <div className="building-2 unselect"></div>
+                    <div className="building-2 hidden unselect"></div>
                 </div>
                 <div className="building-holder-3 unselect">
                     <div className="building-2 unselect"></div>

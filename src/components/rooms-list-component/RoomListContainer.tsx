@@ -1,14 +1,12 @@
 import {connect} from "react-redux";
 import {IState} from "../../reducers";
-import {RoomListComponent} from "./RoomListComponent";
-import {getAllRooms} from "../../action-mappers/room-list-actions"
+import RoomListComponent from "./RoomListComponent";
 
 const mapStateToProps=(state:IState)=>{
     return {
-        building:state.roomsState.building
+        currentUser: state.userState.currentUser
     }
 }
 const mapDispatchToProps={
-    getAllRooms
 }
 export default connect(mapStateToProps,mapDispatchToProps)(RoomListComponent)

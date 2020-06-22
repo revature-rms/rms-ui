@@ -4,6 +4,7 @@ import { shallow, configure, mount } from 'enzyme';
 import MaterialTable from 'material-table';
 import * as mockRemote from '../../../remote/employee-service';
 import { useHistory } from 'react-router-dom';
+import { AppUser } from '../../../dtos/appUser';
 /*
 WHAT WE EXPECT THIS COMPONENT TO DO: 
 - to get employees props and make a table out of employees json.
@@ -29,10 +30,7 @@ jest.mock('react-router-dom', () => ({
 
 // var with initial states
 const props: IEmployeesProps = {
-    employees: undefined,
-    employeesMessage: "",
-    getAllEmployees: jest.fn(),
-    updateId: jest.fn()
+    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager'])
 };
 
 

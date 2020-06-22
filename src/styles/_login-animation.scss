@@ -192,7 +192,7 @@ holds the background building and diagnal movement
 
 .building-holder {
     position: absolute;
-    top: 280px;
+    top: 180px;
     left: -600px;
     height: 1200px;
     width: 200px;
@@ -202,12 +202,12 @@ holds the background building and diagnal movement
     animation: street-move 9s linear infinite;
     @keyframes street-move {
         0% {
-            top: 280px;
+            top: 180px;
             left: -600px;
         }
         100% {
             top: -1070px;
-            left: 1100px;
+            left: 1200px;
         }
     }
 }
@@ -219,7 +219,7 @@ copy of holds the background building and diagnal movement to fill rotation
 
 .building-holder-2 {
     position: absolute;
-    top: 280px;
+    top: 180px;
     left: -600px;
     height: 1200px;
     width: 200px;
@@ -227,15 +227,15 @@ copy of holds the background building and diagnal movement to fill rotation
     transform: rotateX(45deg) rotateZ(45deg);
     transform-style: preserve-3d;
     animation: street-move-2 9s linear infinite;
-    animation-delay: 4.5s;
+    animation-delay: 4.25s;
     @keyframes street-move-2 {
         0% {
-            top: 280px;
+            top: 180px;
             left: -600px;
         }
         100% {
             top: -1070px;
-            left: 1100px;
+            left: 1200px;
         }
     }
 }

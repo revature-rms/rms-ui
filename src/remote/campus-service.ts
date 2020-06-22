@@ -2,12 +2,12 @@ import { apiClient } from '.';
 
 /**Function to get all campus from campus microservice.*/
 export const getAllCampus = async () => {
-    return await apiClient.get(`campus/v2/campus`);
+    return await apiClient.get(`search/v1/campuses`);
 }
 
 /**Function to get campus by id*/
 export const getCampusById = (id:number) => {
-    return apiClient.get(`campus/v2/campus/${id}`);
+    return apiClient.get(`search/v1/campus/${id}`);
 }
 
 /**Function to create an campus*/
@@ -22,4 +22,9 @@ export const updateCampus = (id:number, data: any) => {
 
 export const getBuildingById = async (id: number) => {
     return await apiClient.get(`campus/v2/building/${id}`)
+}
+
+/**Function to get campus by owner id */
+export const getCampusByOwnerId = (id:number) => {
+    return apiClient.get(`search/v1/campus/owner/${id}`);
 }
