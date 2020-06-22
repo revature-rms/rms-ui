@@ -60,13 +60,17 @@ export default function NavbarComponent(props: INavbarProps) {
                     </Link>
                 : <></> }
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
-                    /*link to employee list*/
-                    <Link to="/employees">
-                        <a><div className="navbar-side-btn">Employees</div></a>
-                    </Link>
-                    : <></>}
-                <div className="logout-button" onClick={logout}>Logout</div>
-
+                /*link to room list*/
+                <Link to="/rooms">
+                    <a><div className="navbar-side-btn">Rooms</div></a>
+                </Link>
+                : <></> }
+                {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
+                /*link to employee list*/
+                <Link to="/employees">
+                    <a><div className="navbar-side-btn">Employees</div></a>
+                </Link>
+                : <></> }
             </div>
         </>
     );

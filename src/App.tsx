@@ -15,7 +15,7 @@ import CampusDetailsComponent from './components/campus-details-component/Campus
 import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
 import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent';
-import BuildingListComponent from './components/building-list-component/BuildingListComponent';
+import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 import { store } from './Store';
 import { Provider } from 'react-redux';
 
@@ -50,7 +50,7 @@ class AppComponent extends React.Component<any, any> {
         </Router>
         
       </div>
-    );
+    )
   } else {
     // we show only the login page if the user is not logged in
     return (

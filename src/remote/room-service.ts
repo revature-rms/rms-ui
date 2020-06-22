@@ -1,4 +1,5 @@
 import { apiClient } from '.';
+import axios from 'axios';
 
 /**Function to get room by id*/
 export const getRoomByIdAPI = (id:number) => {
