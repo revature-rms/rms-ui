@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Grid, FormControl, InputLabel, Input, Card, Button, Typography} from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Input, Card, Button, Typography, Select} from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
 import { getBuildingByIdAPI } from '../../remote/building-service';
@@ -87,13 +87,17 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
             let thisBuilding = (await getBuildingByIdAPI(id)).data;
             setBuilding(thisBuilding);
         }
+
+        const updateAmenityStatus = async () => {
+
+        }
         
         useEffect(()=> {
             let buildingId = window.location?.pathname?.match(/\d+/)?.pop();
             //@ts-ignore
             getBuilding(+buildingId)
 
-        }, [building])
+        }, [editing])
             
         return (
             <>
@@ -247,12 +251,12 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                     columns = {[
                                         { title: 'Type', field: 'type'},
                                         { title: 'Status', field: 'status', render: rowData=> (<>
-                                        <select>
+                                        <Select>
                                             <option>Select a value</option>
                                             <option>OK</option>
                                             <option>LOW</option>
                                             <option>OUT</option>
-                                        </select>
+                                        </Select>
                                         </>) },                           
                                     ]}
                                     data = {building?.amenities}
