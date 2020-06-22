@@ -4,7 +4,7 @@ import { shallow, configure, mount } from 'enzyme';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 import * as mockRemote from '../../../remote/campus-service';
 import Adapter from 'enzyme-adapter-react-16';
-import { FormControl, Input } from '@material-ui/core';
+import { FormControl, Input, Button } from '@material-ui/core';
 import { AppUser } from '../../../dtos/appUser';
 
 
@@ -52,16 +52,18 @@ describe('BuildingDetailsComponent', () => {
         expect(wrapper.exists()).toBeTruthy();
     })
 
-    it('Should render 11 FormControls', () => {
+    it('Should render 16 FormControls', () => {
         const wrapper = mount(buildingDetailsComponent);
-        expect(wrapper.find(FormControl)).toHaveLength(11)
+        expect(wrapper.find(FormControl)).toHaveLength(16)
     })
 
     it('Typing into input.name trigger state hook on name', () => {
         let wrapper = mount(buildingDetailsComponent);
 
+        console.log(wrapper.find(Button).html())
+
         // Hit enable editting button
-        wrapper.find(`div#enableEdittingButton`).simulate(`click`, {})
+       // wrapper.find(Button).simulate(`click`, {})
 
         // Edit values
         /* note, since material-UI is a wrapper for basic HTML, you need to
@@ -75,8 +77,9 @@ describe('BuildingDetailsComponent', () => {
         });
         expect(wrapper.find(Input).at(0)).toHaveLength(1);
 
+        console.log(wrapper.find(Button).html())
         // Persist values
-        wrapper.find(`div#saveButton`).simulate(`click`, {});
+        wrapper.find(Button).at(0).simulate(`click`, {});
 
         // Check that values were persisted
         expect(wrapper.find(Input).at(0).find("input#name").prop('value')).toEqual('foo');
