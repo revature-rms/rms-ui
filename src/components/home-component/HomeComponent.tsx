@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
 import { Card, Grid } from '@material-ui/core';
-import { getAllCampus, getBuildingById } from '../../remote/campus-service';
+import { findAllCampuses, findAllRoomByOwner } from '../../remote/search-service';
 
 export interface IHomeProps {
     authUser: AppUser | undefined;
@@ -37,7 +37,7 @@ export default function HomeComponent(props: IHomeProps) {
         // await getCampuses();
         let campuses;
         // mock data
-        campuses = (await getAllCampus()).data;
+        campuses = (await findAllCampuses()).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
@@ -45,7 +45,8 @@ export default function HomeComponent(props: IHomeProps) {
     }
 
     const getRooms = async () => {
-        let rooms = (await getBuildingById(1)).data.rooms;
+        //@ts-ignore
+        let rooms = (await findAllRoomByOwner(props?.authUser?.id)).data.rooms;
         console.log(rooms)
         setRooms(rooms)
     }

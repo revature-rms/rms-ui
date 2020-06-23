@@ -3,8 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Grid, FormControl, InputLabel, Input, Card, Button, Typography, Select} from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
-import { getBuildingByIdAPI } from '../../remote/building-service';
-import { getCampusByOwnerId } from '../../remote/campus-service';
+import { findAllCampusesByOwner, findBuildingById} from '../../remote/search-service';
 
 export interface IBuildingDetailsProps {
 }
@@ -107,7 +106,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
          * @param id - building id number
          */
         const getBuilding = async (id: number) => {
-            let thisBuilding = (await getBuildingByIdAPI(id)).data;
+            let thisBuilding = (await findBuildingById(id)).data;
             setBuilding(thisBuilding);
         }
 
@@ -302,7 +301,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Resource Creator: </InputLabel>
-                                    <Input value={building?.resourceMetadata?.resourceCreator.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.resourceCreator?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
@@ -314,7 +313,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Last Modifier: </InputLabel>
-                                    <Input value={building?.resourceMetadata?.lastModifier.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.lastModifier?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
@@ -326,7 +325,7 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Resource Owner: </InputLabel>
-                                    <Input value={building?.resourceMetadata?.resourceOwner.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={building?.resourceMetadata?.resourceOwner?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                             </Card>  

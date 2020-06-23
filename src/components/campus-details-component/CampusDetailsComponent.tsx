@@ -205,8 +205,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 <FormControl style={{margin: 8}}>
                                     <InputLabel shrink={true}>Street</InputLabel>
                                     {editing?
-                                    <Input id="street" defaultValue={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="street" value={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="street" defaultValue={campus?.shippingAddress?.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="street" value={campus?.shippingAddress?.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
@@ -215,8 +215,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 <FormControl style={{margin: 8}}>
                                     <InputLabel shrink={true}>City</InputLabel>
                                     {editing?
-                                    <Input id="city" defaultValue={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="city" value={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="city" defaultValue={campus?.shippingAddress?.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="city" value={campus?.shippingAddress?.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
@@ -225,8 +225,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 <FormControl style={{margin: 8}}>
                                     <InputLabel shrink={true}>State</InputLabel>
                                     {editing?
-                                    <Input id="state" defaultValue={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="state" value={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="state" defaultValue={campus?.shippingAddress?.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="state" value={campus?.shippingAddress?.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
@@ -235,8 +235,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 <FormControl style={{margin: 8}}>
                                     <InputLabel shrink={true}>Zipcode</InputLabel>
                                     {editing?
-                                    <Input id="zip" defaultValue={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="zip" value={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="zip" defaultValue={campus?.shippingAddress?.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="zip" value={campus?.shippingAddress?.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
@@ -245,8 +245,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 <FormControl style={{margin: 8}}>
                                     <InputLabel shrink={true}>Country</InputLabel>
                                     {editing?
-                                    <Input id="country" defaultValue={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="country" value={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="country" defaultValue={campus?.shippingAddress?.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="country" value={campus?.shippingAddress?.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
