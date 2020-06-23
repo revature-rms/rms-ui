@@ -12,18 +12,19 @@ import { getAllBuildingsAPI, getBuildingByOwnerId } from '../../remote/building-
 export interface IBuildingListProps {
     currentUser: AppUser;
 }
+
 /**
  * Will provide all the buildings that are owned by the current logged in user or on their currently owned campus
  * Each building will be rendered with BuildingDetailsComponent when it is clicked
- * Role needed: Admin or Building Manager
+ * Role needed: Admin or Training Site Manager or Building Manager
  * Endpoint: .../buildings
  */
+
 function BuildingListComponent(props: IBuildingListProps) {
 
     const [buildings, setBuildings] = useState<Array<Building>>([]);
     const history = useHistory();
     let myBuildings: Array<Building> = []
-
 
     /**
      * Gets campuses that are owned by current user if they are a training site manager and extracts buildings from the campus
@@ -66,6 +67,9 @@ function BuildingListComponent(props: IBuildingListProps) {
         setBuildings(myBuildings);
     }
 
+    /**
+     * Renders buildings based on the currently logged in user role
+     */
     useEffect(() => {
         if(props.currentUser?.role.includes("Admin")){
             getAllBuildings();
