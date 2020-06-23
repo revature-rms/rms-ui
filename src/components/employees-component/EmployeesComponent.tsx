@@ -21,9 +21,6 @@ export interface IEmployeesProps {
  * Each employee will be rendered with EmployeeDetailsComponent when it is clicked
  * Role needed: Training Site Manager
  * Endpoint: .../employees
- * 
- * TODO: 
- * Axios request is needed to complete the table. 
  */
 export default function EmployeesComponent(props: IEmployeesProps) {
 
@@ -33,6 +30,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     let myEmployees: Array<Employee> = [];
     const history = useHistory();
 
+     /**
+     * Gets all buildings if the user currently signed in is an admin
+     */
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
         employeeList.forEach(employee =>{
@@ -41,6 +41,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
         setEmployeeList(myEmployees);
     }
 
+    /**
+     * Gets employee that are directly owned by the signed user
+     */
     const getEmployees = async ()=> {
         let employeeList: Array<Employee> = (await getAllEmployeeById(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
@@ -50,7 +53,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     }
 
     
-    
+     /**
+     * Renders employees based on the currently logged in user role
+     */
     useEffect(()=>{
         if(props.currentUser?.role.includes("Admin")){
             getAllEmployees();

@@ -20,8 +20,6 @@ export interface IEmployeeDetailsProps {
  * Once employee details are finished being updated click save to commit the changes.
  * Click Cancel button to cancel any changes made to employee details.
  * 
- * Role needed: Training Site Manager
- * Endpoint: .../employee/id [id of employee]
  * 
  * 
  * TODO: 
@@ -43,11 +41,17 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
     const [deptState, setDept] = useState(employee?.department);
     const history = useHistory();
    
-
+    /**
+     * toggles between editing and non-editing mode
+     */
     const enableEdit = () => {
         setEditing(true);
     }
 
+    /**
+     * persists changes to MSA (Whole object)
+     * ***NOT IMPLEMENTED****
+     */
     const save = () => {
         setEmployee({
             ...employee,
@@ -60,10 +64,16 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
         setEditing(false);
     }
 
+    /**
+     * toggles back to non-editing state upon clicking cancle button without persisting
+     */
     const cancel = () => {
         setEditing(false);
     }
 
+     /**
+     * sets pieces of local info state upon changing in edit mode
+    */
     const setInfo = (event: any) => {
         switch (event.target.id) {
             case "firstName":
@@ -94,6 +104,9 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
         setEmployee(thisEmployee)
     }
 
+    /**
+     * Populates the details page based on the id provided in the URI
+     */
     useEffect(()=>{
         let employeeId = window.location?.pathname?.match(/\d+/)?.pop()
         //@ts-ignore
