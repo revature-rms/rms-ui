@@ -47,7 +47,10 @@ function RoomDetailsComponent() {
         setEditing(true);
     }   
 
-    //saves states upon clicking save button ... ***NEEDS TO PERSIST***
+    /**
+     * saves states upon clicking save button
+     * ***NOT IMPLEMENTED***
+     */
     const save = () => {
         setRoom({...room,
                     
@@ -104,11 +107,18 @@ function RoomDetailsComponent() {
         //Work order logic needed
     }
 
+    /**
+     * Gets the room to poopulate the page depending on rom id provided
+     * @param id - room id number
+     */
     const getRoom = async(id: number) => {
         let thisRoom = (await getRoomByIdAPI(id)).data;
         setRoom(thisRoom);
     }
 
+    /**
+     * Populates the room details page depending on the id provided in the URI
+     */
     useEffect(() => {
         let roomId = window.location?.pathname?.match(/\d+/)?.pop();
         //@ts-ignore
