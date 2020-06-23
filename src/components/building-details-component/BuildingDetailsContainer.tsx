@@ -5,7 +5,7 @@ import BuildingDetailsComponent from "./BuildingDetailsComponent";
 
 const mapStateToProps = (state: IState) => {
     return {
-        thisBuilding: state.thisBuildingState.thisBuilding
+
     }
 }
 

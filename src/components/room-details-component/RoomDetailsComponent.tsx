@@ -5,7 +5,7 @@ import { Grid, Card, FormControl, InputLabel, Input, Button, Switch, Select, For
 import TextField from '@material-ui/core/TextField';
 import { Room } from '../../dtos/room';
 import { RoomStatus } from '../../dtos/roomStatus';
-import { Batch } from '../../dtos/batch';
+
 import { WorkOrder } from '../../dtos/workOrder';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
 import { Employee } from '../../dtos/employee';
@@ -129,7 +129,7 @@ function RoomDetailsComponent() {
                     {/* Breadcrumbs for parent building and parent campus
                     should only render building for building manager and only current room for trainers 
                     ***NON-FUNCTIONAL*** need to store campus and buildings state in order to render and linnk to correct pages */}
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Breadcrumbs>
                         <Link to="">
                         Campus
@@ -139,7 +139,7 @@ function RoomDetailsComponent() {
                         </Link>
                         <Typography>{room?.roomNumber}</Typography>
                         </Breadcrumbs>
-                    </Grid>
+                    </Grid> */}
 
 
                     {/*Contains the edittable room details (name, abbreviated name, address, building manager)
@@ -166,8 +166,8 @@ function RoomDetailsComponent() {
                                 <InputLabel>Max Occupancy: </InputLabel>
                                 <FormControl style={{ margin: 8 }} >
                                     {editing?
-                                    <Input id="maxOccupancy" value={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="maxOccupancy" defaultValue={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="maxOccupancy" defaultValue={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="maxOccupancy" value={room?.maxOccupancy} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
                                 </span>
@@ -284,46 +284,41 @@ function RoomDetailsComponent() {
                         </Grid>
                     </Grid>
 
-                    {/*Contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}                        
                     <Grid item xs={12}>
-                        <Card>
-                            <span style={{margin: 5}}> 
-                            <FormControl>
-                                <InputLabel>Resource Creator: </InputLabel>
-                                <Input value={"room?.resourceMetadata.resourceCreator"} disabled={true}/>
-                            </FormControl>
-                            </span>
-
-                            <span style={{margin: 5}}>
-                            <FormControl>
-                                <InputLabel>Time Created: </InputLabel>
-                                <Input value={"room?.resourceMetadata.resourceCreationTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                            </FormControl>
-                            </span>
-
-                            <span style={{margin: 5}}>
-                            <FormControl>
-                                <InputLabel>Last Modifier: </InputLabel>
-                                <Input value={"room?.resourceMetadata.lastModifier"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                            </FormControl>
-                            </span>
-
-                            <span style={{margin: 5}}>
-                            <FormControl>
-                                <InputLabel>Time Modified: </InputLabel>
-                                <Input value={"room?.resourceMetadata.lastModifiedDateTime"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                            </FormControl>
-                            </span>
-
-                            <span style={{margin: 5}}>
-                            <FormControl>
-                                <InputLabel>Resource Owner: </InputLabel>
-                                <Input value={"room?.resourceMetadata.resourceOwnsdknfklsdnflknsdlknflksdnlfknsder"} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                            </FormControl>
-                            </span>
-
-                        </Card>
-                    </Grid>  
+                            {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
+                            <Card className="full-card">
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel shrink={true}>Resource Creator: </InputLabel>
+                                    <Input value={room?.resourceMetadata?.resourceCreator.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel shrink={true}>Time Created: </InputLabel>
+                                    <Input value={room?.resourceMetadata?.resourceCreationDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel shrink={true}>Last Modifier: </InputLabel>
+                                    <Input value={room?.resourceMetadata?.lastModifier.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel shrink={true}>Time Modified: </InputLabel>
+                                    <Input value={room?.resourceMetadata?.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                                <span style={{margin: 5}}>
+                                <FormControl>
+                                    <InputLabel shrink={true}>Resource Owner: </InputLabel>
+                                    <Input value={room?.resourceMetadata?.resourceOwner.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                </FormControl>
+                                </span>
+                            </Card>  
+                        </Grid>
                     {/*This Span is required to make the last reousrce metadata card full length... not sure why but I cant get it to work any other way */}  
                     <span style={{margin: 5}}> 
                     </span>                             

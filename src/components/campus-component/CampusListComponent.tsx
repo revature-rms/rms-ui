@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
-import { Employee } from "../../dtos/employee"
+import { getCampusByOwnerId, getAllCampus} from '../../remote/campus-service';
+import { AppUser } from '../../dtos/appUser';
 
 
-// for testing, will delete
-import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import { Address } from '../../dtos/address';
 
 export interface ICampusProps {
-
+    currentUser: AppUser;
 }
 /**
  * Will provide all the campuses that a user is in charge of (depending on what user is signed in)
@@ -20,66 +17,35 @@ export interface ICampusProps {
  * Role needed: Training Site Manager
  * Endpoint: .../campuses
  */
-function CampusListComponent() {
+function CampusListComponent(props: ICampusProps) {
 
-    //campuses array
-    //@ts-ignore
-    const [campusList, setCampusList] = useState(null as Campus[])
-
+    const [campusList, setCampusList] = useState<Array<Campus>>([]);
+    let myCampuses: Array<Campus> = [];
     const history = useHistory();
 
-    useEffect(() => {
-        let campuses: Array<Campus> = [];
+    const getCampuses = async () => {
+        let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        });
+        await setCampusList(myCampuses); 
+    }
 
-        const getCampuses = async () => {
-            //campusesList = await getAllCampusAPI();
-            let mockEmployee = new Employee(
-                1,
-                "testFN",
-                "test LN",
-                "test@test.com",
-                "test title",
-                "test dept",
-                //@ts-ignore
-                null as ResourceMetadata
-            )
-            let mockCampuses = [
-                new Campus(
-                    1,
-                    "Campus A",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                ),
-                new Campus(
-                    2,
-                    "Campus B",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                )
+    const getAllCampuses = async () => {
+        let campusList: Array<Campus> = (await getAllCampus()).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        });
+        await setCampusList(myCampuses);
+        
+    }
 
-            ]
-            campuses = mockCampuses;
-            //@ts-ignore
-            setCampusList(campuses)
+    useEffect(() => {  
+        if(props.currentUser?.role.includes("Admin")){
+            getAllCampuses();
+        } else if(props.currentUser?.role.includes("Training Site Manager")) {
+            getCampuses();
         }
-
-        getCampuses();
 
     }, []);
 
@@ -91,8 +57,7 @@ function CampusListComponent() {
                     <div className="table-wrapper">
                         < MaterialTable
                             columns={[
-                                // link to buildings page of each campus
-                                { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
+                                { title: 'Name', field: 'name'},
                                 { title: 'Training Manager', field: 'trainingManager.firstName' },
                                 { title: "Staging Manager", field: "stagingManager.firstName" },
                                 { title: "HR Lead", field: "hrLead.firstName" }
