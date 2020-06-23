@@ -66,7 +66,6 @@ export default function NavbarComponent(props: INavbarProps) {
                     </Link>
                     : <></>}
                 <div className="logout-button" onClick={logout}>Logout</div>
-
             </div>
         </>
     );
