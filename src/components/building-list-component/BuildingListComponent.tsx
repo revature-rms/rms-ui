@@ -79,7 +79,7 @@ function BuildingListComponent(props: IBuildingListProps) {
                             { title: 'Id', field: 'id' },
                             { title: 'Name', field: 'name' },
                             { title: 'Street Address', field: 'physicalAddress.unitStreet' },
-                            { title: "Building Manager", field: "trainingLead.firstName" }
+                            { title: "Building Manager", field: "trainingLead?.firstName" }
                         ]}
                         
                         onRowClick={(event, rowData) => {

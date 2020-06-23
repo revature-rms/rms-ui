@@ -153,7 +153,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 </Grid>
                                 <Grid item xs={12}>
                                     {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
-                             of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
+                                    of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
                                 - need to persist data upon save
                                 - need to save editting authUser for metadata
                              */}
@@ -289,8 +289,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 columns = {[
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
-                                    { title: 'Street', field: 'physicalAddress.unitStreet'},
-                                    { title: "Building Manager", field: "trainingLead.firstName"}                                
+                                    { title: 'Street', field: 'physicalAddress?.unitStreet'},
+                                    { title: "Building Manager", field: "trainingLead?.firstName"}                                
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
@@ -310,7 +310,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Resource Creator: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.resourceCreator.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.resourceCreator?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
@@ -322,7 +322,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Last Modifier: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.lastModifier.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.lastModifier?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
@@ -334,7 +334,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Resource Owner: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.resourceOwner.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.resourceOwner?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                 </Card>  
