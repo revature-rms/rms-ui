@@ -52,25 +52,26 @@ export default function NavbarComponent(props: INavbarProps) {
                     <Link to="/campuses">
                         <a><div className="navbar-side-btn">Campuses</div></a>
                     </Link>
-                : <></> }
+                    : <></>}
                 {isRole(["Admin", "Training Site Manager", "Building Manager"]) ?
                     /*link to building list in a campus*/
                     <Link to="/buildings">
                         <a><div className="navbar-side-btn">Buildings</div></a>
                     </Link>
-                : <></> }
+                    : <></>}
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
-                /*link to room list*/
-                <Link to="/rooms">
-                    <a><div className="navbar-side-btn">Rooms</div></a>
-                </Link>
-                : <></> }
+                    /*link to room list*/
+                    <Link to="/rooms">
+                        <a><div className="navbar-side-btn">Rooms</div></a>
+                    </Link>
+                    : <></>}
                 {isRole(["Admin", "Training Site Manager", "Building Manager", "Trainer"]) ?
-                /*link to employee list*/
-                <Link to="/employees">
-                    <a><div className="navbar-side-btn">Employees</div></a>
-                </Link>
-                : <></> }
+                    /*link to employee list*/
+                    <Link to="/employees">
+                        <a><div className="navbar-side-btn">Employees</div></a>
+                    </Link>
+                    : <></>}
+                <div className="logout-button" onClick={logout}>Logout</div>
             </div>
         </>
     );

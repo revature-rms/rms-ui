@@ -19,9 +19,7 @@ export interface ICampusProps {
  */
 function CampusListComponent(props: ICampusProps) {
 
-    //@ts-ignore
     const [campusList, setCampusList] = useState<Array<Campus>>([]);
-    const [table, setTable] = useState<any>(null);
     let myCampuses: Array<Campus> = [];
     const history = useHistory();
 
@@ -29,16 +27,17 @@ function CampusListComponent(props: ICampusProps) {
         let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
         campusList.forEach(campus => {
             myCampuses.push(campus);
-        }) 
-        setCampusList(myCampuses); 
+        });
+        await setCampusList(myCampuses); 
     }
 
     const getAllCampuses = async () => {
         let campusList: Array<Campus> = (await getAllCampus()).data;
         campusList.forEach(campus => {
             myCampuses.push(campus);
-        })
-        setCampusList(myCampuses);
+        });
+        await setCampusList(myCampuses);
+        
     }
 
     useEffect(() => {  
