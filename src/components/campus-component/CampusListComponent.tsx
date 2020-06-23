@@ -12,9 +12,9 @@ export interface ICampusProps {
     currentUser: AppUser;
 }
 /**
- * Will provide all the campuses that a user is in charge of (depending on what user is signed in)
+ * Will provide all the campuses that the currentlylogged in user owns
  * Each campus will be rendered with CampusDetailsComponent when it is clicked
- * Role needed: Training Site Manager
+ * Role needed: Admin or Training Site Manager
  * Endpoint: .../campuses
  */
 function CampusListComponent(props: ICampusProps) {
@@ -23,6 +23,9 @@ function CampusListComponent(props: ICampusProps) {
     let myCampuses: Array<Campus> = [];
     const history = useHistory();
 
+    /**
+     * Gets the campuses owned by the currently logged in user if they are a training site manager
+     */
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
         campusList.forEach(campus => {
@@ -31,6 +34,9 @@ function CampusListComponent(props: ICampusProps) {
         await setCampusList(myCampuses); 
     }
 
+    /**
+     * Gets all campuses if the currently logged in user is an admin
+     */
     const getAllCampuses = async () => {
         let campusList: Array<Campus> = (await getAllCampus()).data;
         campusList.forEach(campus => {
@@ -40,6 +46,9 @@ function CampusListComponent(props: ICampusProps) {
         
     }
 
+    /**
+     * renders the campuses depending on the role of the currently logged in user
+     */
     useEffect(() => {  
         if(props.currentUser?.role.includes("Admin")){
             getAllCampuses();
@@ -51,6 +60,10 @@ function CampusListComponent(props: ICampusProps) {
 
     return (
         <>
+        {/**
+         * renders a material table including campus name, training manager first name, staging manager first name, and hr lead first name. (These could be clickable and take to employee details page if desired)
+         * each row is clickable and takes you to the endpoint for that campus' detail page
+         */}
             <div className="display-wrapper">
 
                 <Card>
