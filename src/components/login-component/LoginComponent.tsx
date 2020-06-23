@@ -6,25 +6,25 @@ import { AppUser } from '../../dtos/appUser';
 import { LoginAnimationComponent } from "../login-animation-component/LoginAnimationComponent"
 
 export interface ILoginProps {
-    authUser: AppUser,
+    authUser: AppUser | undefined,
     loginMessage: string,
-    login: (u: string, p: string) => void // login method that will be passed to login action through container
+    login: (u: string, p: string, action:string) => void // login method that will be passed to login action through container
 }
 
 /**
- * This function finds a user from an external API and passes their credentials as props
- * to be used by other components.
+ * This is used as a login screen. If correct credentials are used, it will log the user in and redirect to the HomeComponent
+ * Role needed: ANY, no role required to view
+ * Endpoint: .../login
  * 
  * Note: This component has been refactored from a class component. Refactoring is (most likely) still
- *        in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
+ *       in progress due to half of the loginComponent being located in src/utils/login-function/LoginFunction.tsx
  * 
- * @param props 
  */
-
-export function LoginComponent(props: ILoginProps) {
+export default function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     //Set props
     const setInfo = (event: any) => {
@@ -39,52 +39,54 @@ export function LoginComponent(props: ILoginProps) {
     }
 
     const signUserIn = async () => {
-        console.log('clicked');
-        props.login(username, password);
+        props.login(username, password, "login");
     }
-
-
 
     return (
         <>
-            <div className="animation-mask-top"></div>
-            <div className="animation-frame">
-                <div className="login-ribbon unselect">
-                    <div className="login-logo"></div>
+                <div className="animation-mask-top"></div>
+                <div className="animation-frame">
+                    <div className="login-ribbon unselect">
+                        <div className="login-logo"></div>
                     RESOURCE MANAGEMENT SYSTEM
                 <div className="login-holder">
-                        <form className="login-form-holder">
-                            <div className="login-label unselect">Username</div>
-                            <input
-                                className="login-label"
-                                required
-                                type="text"
-                                id="username"
-                                placeholder="Username"
-                                name="username"
-                                value={username}
-                                onChange={setInfo}
-                            />
-                            <div className="login-label unselect">Password</div>
-                            <input
-                                className="login-label"
-                                required
-                                type="password"
-                                id="password"
-                                placeholder="Enter Password"
-                                name="password"
-                                value={password}
-                                onChange={setInfo}
-                            />
-                            <button type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
-                        </form>
+                            <form className="login-form-holder">
+                                <div className="login-label unselect">Username</div>
+                                <input
+                                    className="login-label"
+                                    required
+                                    type="text"
+                                    id="username"
+                                    placeholder="Username"
+                                    name="username"
+                                    value={username}
+                                    onChange={setInfo}
+                                />
+                                <div className="login-label unselect">Password</div>
+                                <input
+                                    className="login-label"
+                                    required
+                                    type="password"
+                                    id="password"
+                                    placeholder="Enter Password"
+                                    name="password"
+                                    value={password}
+                                    onChange={setInfo}
+                                />
+                                <button id="loginButton" type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+                            </form>
+                            <div>{props.loginMessage}</div>
+                        </div>
+                    </div>
+                    <LoginAnimationComponent />
+                </div>
+                <div className="animation-mask-bottom">
+                    <div className="auth-text">
+                        This application is for authorized personel only.
+                <br />
+                For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a>
                     </div>
                 </div>
-                <LoginAnimationComponent />
-            </div>
-            <div className="animation-mask-bottom">
-                <small>This application is for authorized personel only. For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a></small>
-            </div>
         </>
     )
 }

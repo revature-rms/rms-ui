@@ -1,11 +1,11 @@
 import BuildingListComponent from "./BuildingListComponent";
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
-import {getAllCampuses} from "../../action-mappers/campus-action";
 
 
 const mapStateToProps = (state:IState) => {
     return {
+        currentUser: state.userState.currentUser
     }
 }
 

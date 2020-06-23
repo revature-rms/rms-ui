@@ -1,93 +1,76 @@
 import React, { useEffect, useState } from 'react'
-import Wrapper from '../../utils/div-wrapper/Wrapper';
 import Card from '@material-ui/core/Card';
 import MaterialTable from 'material-table';
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { Campus } from "../../dtos/campus"
-import { Employee } from "../../dtos/employee"
+import { getCampusByOwnerId, getAllCampus} from '../../remote/campus-service';
+import { AppUser } from '../../dtos/appUser';
 
 
-// for testing, will delete
-import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import { Address } from '../../dtos/address';
 
 export interface ICampusProps {
-
+    currentUser: AppUser;
 }
+/**
+ * Will provide all the campuses that the currentlylogged in user owns
+ * Each campus will be rendered with CampusDetailsComponent when it is clicked
+ * Role needed: Admin or Training Site Manager
+ * Endpoint: .../campuses
+ */
+function CampusListComponent(props: ICampusProps) {
 
-function CampusListComponent() {
-
-    //campuses array
-    //@ts-ignore
-    const [campusList, setCampusList] = useState(null as Campus[])
-
+    const [campusList, setCampusList] = useState<Array<Campus>>([]);
+    let myCampuses: Array<Campus> = [];
     const history = useHistory();
 
-    useEffect(() => {
-        let campuses: Array<Campus> = [];
+    /**
+     * Gets the campuses owned by the currently logged in user if they are a training site manager
+     */
+    const getCampuses = async () => {
+        let campusList: Array<Campus> = (await getCampusByOwnerId(props?.currentUser?.id)).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        });
+        await setCampusList(myCampuses); 
+    }
 
-        const getCampuses = async () => {
-            //campusesList = await getAllCampusAPI();
-            let mockEmployee = new Employee(
-                1,
-                "testFN",
-                "test LN",
-                "test@test.com",
-                "test title",
-                "test dept",
-                //@ts-ignore
-                null as ResourceMetadata
-            )
-            let mockCampuses = [
-                new Campus(
-                    1,
-                    "Campus A",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                ),
-                new Campus(
-                    2,
-                    "Campus B",
-                    "CA",
-                    //@ts-ignore
-                    null as Address,
-                    mockEmployee,
-                    mockEmployee,
-                    mockEmployee,
-                    [],
-                    [],
-                    //@ts-ignore
-                    null as ResourceMetadata
-                )
+    /**
+     * Gets all campuses if the currently logged in user is an admin
+     */
+    const getAllCampuses = async () => {
+        let campusList: Array<Campus> = (await getAllCampus()).data;
+        campusList.forEach(campus => {
+            myCampuses.push(campus);
+        });
+        await setCampusList(myCampuses);
+        
+    }
 
-            ]
-            campuses = mockCampuses;
-            //@ts-ignore
-            setCampusList(campuses)
+    /**
+     * renders the campuses depending on the role of the currently logged in user
+     */
+    useEffect(() => {  
+        if(props.currentUser?.role.includes("Admin")){
+            getAllCampuses();
+        } else if(props.currentUser?.role.includes("Training Site Manager")) {
+            getCampuses();
         }
-
-        getCampuses();
 
     }, []);
 
     return (
         <>
+        {/**
+         * renders a material table including campus name, training manager first name, staging manager first name, and hr lead first name. (These could be clickable and take to employee details page if desired)
+         * each row is clickable and takes you to the endpoint for that campus' detail page
+         */}
             <div className="display-wrapper">
 
                 <Card>
                     <div className="table-wrapper">
                         < MaterialTable
                             columns={[
-                                // link to buildings page of each campus
-                                { title: 'Name', field: 'name', render: rowData => <Link to={'/campus/' + rowData.id}>{rowData.name}</Link> },
+                                { title: 'Name', field: 'name'},
                                 { title: 'Training Manager', field: 'trainingManager.firstName' },
                                 { title: "Staging Manager", field: "stagingManager.firstName" },
                                 { title: "HR Lead", field: "hrLead.firstName" }

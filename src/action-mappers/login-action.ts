@@ -10,28 +10,55 @@ export const loginTypes = {
     SUCCESSFUL_LOGOUT: 'TRAVEL_APP_SUCCEFUL_LOGOUT'
 }
 
-export const login = (username: string, password: string) => async (dispatch: any) => {
-    
+export const login = (username: string, password: string, action: string) => async (dispatch: any) => {
+
     // Use this commented block to skip login:
 
-    // let currentUser = new AppUser(1, "test", "password", 1, ['Trainer']);
+    // let currentUser = new AppUser(1, "test", "password", 1, ['Admin']);
 
-    // dispatch({
-    //     type: loginTypes.SUCCESSFUL_LOGIN,
-    //     payload: {
-    //         currentUser: currentUser
-    //     }
-    // })
+    // if (action == "login") {
+    //     console.log(currentUser);
+    //     dispatch({
+    //         type: loginTypes.SUCCESSFUL_LOGIN,
+    //         payload: {
+    //             currentUser: currentUser,
+    //             loginMessage: ""
+    //         }
+    //     });
+    // } else if (action = "logout") {
+    //     dispatch({
+    //         type: loginTypes.SUCCESSFUL_LOGOUT,
+    //         payload: {
+    //             currentUser: null,
+    //             loginMessage: ""
+    //         }
+    //     });
+    //     window.location.reload(true);
+    // }
+
 
 
     try {
-
-        let authUser = await userLogin(username, password);
-        console.log(authUser);
-        dispatch({
-            type: loginTypes.SUCCESSFUL_LOGIN,
-            payload: authUser
-        });
+        if (action == "login") {
+            let authUser = await userLogin(username, password);
+            console.log(authUser);
+            dispatch({
+                type: loginTypes.SUCCESSFUL_LOGIN,
+                payload: {
+                    currentUser: authUser,
+                    loginMessage: ""
+                }
+            });
+        } else if (action = "logout") {
+            dispatch({
+                type: loginTypes.SUCCESSFUL_LOGOUT,
+                payload: {
+                    currentUser: null,
+                    loginMessage: ""
+                }
+            });
+            window.location.reload(false);
+        }
 
     } catch (e) {
 

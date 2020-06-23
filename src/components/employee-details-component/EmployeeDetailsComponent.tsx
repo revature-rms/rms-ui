@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
 import { Link } from 'react-router-dom';
-import { updateEmployeeAPI } from '../../remote/employee-service';
+import { updateEmployee } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 
@@ -17,6 +17,9 @@ export interface IEmployeeDetailsProps {
  * Employees details are not editable until EDIT button is clicked. 
  * Once employee details are finished being updated click save to commit the changes.
  * Click Cancel button to cancel any changes made to employee details.
+ * 
+ * Role needed: Training Site Manager
+ * Endpoint: .../employee/id [id of employee]
  * 
  * 
  * TODO: Currently this component has values hard coded into the component. Will need to remove mockEmployee and change up mockEmployee values
@@ -98,7 +101,7 @@ export function EmployeeDetailsComponent() {
                         <Grid container>
                             <Grid item xs={12}>
                                 <Card className="full-card">
-                                    <div id="employee-form">
+                                    <div id="detail-form" className="detail-form">
                                         <FormControl>
                                             <InputLabel>Employee First Name:</InputLabel>
                                             {editing ?
@@ -137,15 +140,18 @@ export function EmployeeDetailsComponent() {
                                     <br></br>
                                     {editing ?
                                         <>
-                                            <FormControl>
-                                                <Button onClick={save}>Save</Button>
-                                                <Button onClick={cancel}>Cancel</Button>
-                                            </FormControl>
+                                            <div>
+                                                <div className="edit-button" onClick={save}>Save</div>
+                                                <div className="edit-button" onClick={cancel}>Cancel</div>
+                                            </div>
                                         </>
                                         :
-                                        <FormControl>
-                                            <Button onClick={enableEdit}>Edit</Button>
-                                        </FormControl>}
+                                        
+                                            <div>
+                                                <div className="edit-button" onClick={enableEdit}>Edit</div>
+                                            </div>
+                                    
+                                    }
                                 </Card>
                             </Grid>
                             <Grid item xs={12}>

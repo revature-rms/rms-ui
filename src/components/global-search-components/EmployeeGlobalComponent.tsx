@@ -2,7 +2,7 @@ import React from 'react';
 import { allData } from '../../remote/allData';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
-import { updateEmployeeAPI } from '../../remote/employee-service';
+import { updateEmployee } from '../../remote/employee-service';
 import { Link } from 'react-router-dom';
 
 
@@ -69,7 +69,7 @@ export class EmployeeGlobalComponent extends React.Component<any, any> {
         let empId = this.state.employee.id
 
         // Calling the API to update employee data
-        updateEmployeeAPI(empId, updatedEmployee).then((res:any) => {
+        updateEmployee(empId, updatedEmployee).then((res:any) => {
             this.setState({updateInfo: 'Employee successfully updated!'});
             console.log(res);   
         }).catch(err => {

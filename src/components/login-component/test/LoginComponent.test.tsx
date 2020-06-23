@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavbarComponent, { INavbarProps } from '../NavbarComponent';
+import LoginComponent, { ILoginProps } from '../LoginComponent';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, mount, shallow } from 'enzyme';
 
@@ -8,18 +8,19 @@ import { configure, mount, shallow } from 'enzyme';
    LoginComponent is dependent on these properties, so they must
    be supplied.
 */
-const props: INavbarProps = {
-    currentUser: undefined,
+const props: ILoginProps = {
+    authUser: undefined,
+    loginMessage: "",
     login: jest.fn()
 }
 
 configure({adapter: new Adapter()});
 
-describe('<HomeComponent />', () => {
+describe('<LoginComponent />', () => {
 
     it('Renders without error', () => {
         // Shallowly render the LoginComponent with properties
-        const wrapper = shallow(<NavbarComponent {...props}/>)
+        const wrapper = shallow(<LoginComponent {...props}/>)
 
         // Expect that the component should render and contain content
         expect(wrapper.exists()).toBeTruthy

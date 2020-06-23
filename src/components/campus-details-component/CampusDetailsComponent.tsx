@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { getCampusById } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';
-import { AppUser } from '../../dtos/appUser';
 import { Building } from '../../dtos/building';
 import { Grid, Card, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 import { Address } from '../../dtos/address';
@@ -24,22 +22,27 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     const [nameState, setNameState] = useState<string>('');
     const [abbrNameState, setAbbrNameState] = useState<string>('');
     //@ts-ignore
-    const [tManagerState, setTManagerState] = useState<Employee>(null as Employee);
+    const [tManagerState, setTManagerState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
     //@ts-ignore
-    const [sManagerState, setSManagerState] = useState<Employee>(null as Employee);
+    const [sManagerState, setSManagerState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
     //@ts-ignore
-    const [hrLeadState, setHrLeadState] = useState<Employee>(null as Employee);
+    const [hrLeadState, setHrLeadState] = useState<Employee>(new Employee(0, "", "", "", "", "", null as ResourceMetadata));
     //@ts-ignore
     const [addressState, setAddressState] = useState<Address>(null as Address);
     const history = useHistory();
 
 
-    //toggles between editing and non-editing mode
+    /**
+     * toggles between editing and non-editing mode
+     */
     const enableEdit = () => {
         setEditing(true);
     }
 
-    //saves states upon clicking save button ... NEEDS TO PERSIST
+    /**
+     * persists changes to MSA (Whole object)
+     * ***NOT IMPLEMENTED****
+     */
     const save = () => {
         setCampus({
             ...campus,
@@ -54,12 +57,16 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         setEditing(false);
     }
 
-    //toggles back to non-editing state upon clicking cancle button
+    /**
+     * toggles back to non-editing state upon clicking cancle button without persisting
+     */
     const cancel = () => {
         setEditing(false);
     }
 
-    //sets pieces of info state upon changing in edit mode
+    /**
+     * sets pieces of local info state upon changing in edit mode
+    */
     const setInfo = (event: any) => {
         switch (event.target.id) {
             case "name":
@@ -70,15 +77,15 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                 break;
             case "tManager":
                 //@ts-ignore
-                setTManagerState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
+                setTManagerState(event.target.value);
                 break;
             case "sManager":
                 //@ts-ignore
-                setSManagerState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
+                setSManagerState(event.target.value);
                 break;
             case "hrLead":
                 //@ts-ignore
-                setHrLeadState(new Employee(event.target.value, '', '', '', '', '', null as ResourceMetadata));
+                setHrLeadState(event.target.value);
                 break;
             case "street":
                 setAddressState({
@@ -114,15 +121,21 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         }
     }
 
-    //makes a request to the API for all campuses and selects user assigned campus
+    /**
+     * gets the campus from MSA using the campus id
+    */
     const getCampus = async(id: number) => {
         //@ts-ignore
-        let campus = (await getCampusById(id)).data;
+        let thisCampus = (await getCampusById(id)).data;
 
-        setCampus(campus)
+        setCampus(thisCampus)
+
     }
 
-    //extracts buildings from the users assigned campus
+    /**
+     * Gets the buildings for the material table based on the campus id, calls getCampus()
+     * @param campusId - ID of populating campus
+     */
     const getBuildings = async (campusId: number) => {
         let tempBuildings: Array<Building> = [];
 
@@ -136,11 +149,14 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         setBuildings(tempBuildings);
     } 
 
+    /**
+     * Populates the details page based on the id provided in the URI
+     */
     useEffect(() => {
         let campusId = window.location?.pathname?.match(/\d+/)?.pop();
         //@ts-ignore
         getBuildings(+campusId);
-    },[campus, buildings])  
+    },[campus])  
 
     return (
         <>
@@ -148,124 +164,138 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
 
                 <Card>
                     <div className="table-wrapper">
-                        <Wrapper data-test="main-content" title={campus?.name} elements={campus?.abbrName}>
-                            <Grid container>
+                            <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Typography variant="h2">{campus?.name}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
-                             of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
+                                    of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
                                 - need to persist data upon save
                                 - need to save editting authUser for metadata
                              */}
                             <Card className="full-card">
+                            <Typography>Campus Details</Typography>
                             <div id="building-form">
 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>Campus Name: </InputLabel>
+                                <div style={{margin: 8}}>
+                                
                                 <FormControl>
+                                    <InputLabel shrink={true}>Campus Name: </InputLabel>
                                     {editing?
                                     <Input id="name" defaultValue={campus?.name} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />:
                                     <Input id="name" value={campus?.name} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                 </FormControl>
                                 </div>
 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>Abbreviated Name: </InputLabel>
+                                <div style={{margin: 8}}>
                                 <FormControl>
+                                    <InputLabel shrink={true}>Abbreviated Name: </InputLabel>
                                     {editing?
-                                    <Input id="abbrName" value={campus?.abbrName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="abbrName" defaultValue={campus?.abbrName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="abbrName" defaultValue={campus?.abbrName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="abbrName" value={campus?.abbrName} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }
                                 </FormControl>
                                 </div>
 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>Shipping Address: </InputLabel>
+                                <div style={{margin: 8}}>
+                                
                                 <span style={{marginBottom: 10}}>
-                                <FormControl>
+                                <InputLabel shrink={true}>Shipping Address:</InputLabel>
+                                <FormControl style={{margin: 8}}>
+                                    <InputLabel shrink={true}>Street</InputLabel>
                                     {editing?
-                                    <Input id="street" value={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="street" defaultValue={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="street" defaultValue={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="street" value={campus?.shippingAddress.unitStreet} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
+
                                 <span style={{marginBottom: 10}}>
-                                <FormControl>
+                                <FormControl style={{margin: 8}}>
+                                    <InputLabel shrink={true}>City</InputLabel>
                                     {editing?
-                                    <Input id="city" value={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="city" defaultValue={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="city" defaultValue={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="city" value={campus?.shippingAddress.city} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
+
                                 <span style={{marginBottom: 10}}>
-                                <FormControl>
+                                <FormControl style={{margin: 8}}>
+                                    <InputLabel shrink={true}>State</InputLabel>
                                     {editing?
-                                    <Input id="state" value={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="state" defaultValue={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="state" defaultValue={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="state" value={campus?.shippingAddress.state} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
+
                                 <span style={{marginBottom: 10}}>
-                                <FormControl>
+                                <FormControl style={{margin: 8}}>
+                                    <InputLabel shrink={true}>Zipcode</InputLabel>
                                     {editing?
-                                    <Input id="zip" value={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="zip" defaultValue={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="zip" defaultValue={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="zip" value={campus?.shippingAddress.zip} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
+
                                 <span style={{marginBottom: 10}}>
-                                <FormControl>
+                                <FormControl style={{margin: 8}}>
+                                    <InputLabel shrink={true}>Country</InputLabel>
                                     {editing?
-                                    <Input id="country" value={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="country" defaultValue={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input id="country" defaultValue={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
+                                    <Input id="country" value={campus?.shippingAddress.country} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
                                     }          
                                 </FormControl>
                                 </span>
                                 </div>
                                 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>Training Manager: </InputLabel>
-                                <FormControl>
-                                    {/*campus.trainingManager.firstName + ' ' + campus.trainingManager.lastName*/}
-                                    {editing?
-                                    <Input id="tManager" value={campus?.trainingManager?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="tManager" defaultValue={campus?.trainingManager?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                {/*NON-EDITABLE ITEMS including training manager, staging manager, and hr lead
+                                Implemented a drop down menu for each so a new employee can be selected*/}
+                                
+                                <div style={{margin: 8}}>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Training Manager: </InputLabel>
+                                        {/*campus.trainingManager.firstName + ' ' + campus.trainingManager.lastName*/}
+                                        {editing?
+                                        <Input id="tManager" defaultValue={campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="tManager" value={campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }
+                                    </FormControl>
                                 </div>
 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>Staging Manager: </InputLabel>
-                                <FormControl>
-                                    {editing?
-                                    <Input id="sManager" value={campus?.stagingManager?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="sManager" defaultValue={campus?.stagingManager?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                <div style={{margin: 8}}>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Staging Manager: </InputLabel>
+                                        {editing?
+                                        <Input id="sManager" defaultValue={campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="sManager" value={campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }                               
+                                    </FormControl>
                                 </div>
 
-                                <div style={{marginBottom: 5}}>
-                                <InputLabel>HR Lead: </InputLabel>
-                                <FormControl>
-                                    {editing?
-                                    <Input id="hrLead" value={campus?.hrLead?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />:
-                                    <Input id="hrLead" defaultValue={campus?.hrLead?.id} disabled={!editing} inputProps={{ 'aria-label': 'description' }} />
-                                    }
-                                </FormControl>
+                                <div style={{margin: 8}}>
+                                    <FormControl>
+                                        <InputLabel shrink={true}>Human Resources Lead: </InputLabel>
+                                        {editing?
+                                        <Input id="hrLead" defaultValue={campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                        <Input id="hrLead" value={campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        }                                
+                                    </FormControl>
                                 </div>
                             </div>
                             <br/>
                             {editing?
                             <>
-                                <Button onClick={save}>Save</Button>
-                                <Button onClick={cancel}>Cancel</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
 
                             </>
                             :
                             <FormControl>
-                                <Button onClick={enableEdit}>Edit</Button>
+                                <Button style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
                             </FormControl>}
 
                             </Card>
@@ -276,11 +306,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 columns = {[
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
-                                    { title: 'Street', field: 'physicalAddress.unitStreet'},
-                                    // { title: 'City', field: 'physicalAddress.city'},
-                                    // { title: 'State', field: 'physicalAddress.state'},
-                                    // { title: 'Zip', field: 'physicalAddress.zip'},
-                                    { title: "Building Manager", field: "trainingLead"}                                
+                                    { title: 'Street', field: 'physicalAddress?.unitStreet'},
+                                    { title: "Building Manager", field: "trainingLead?.firstName"}                                
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
@@ -298,39 +325,38 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 {/*Card contains metadata for the building that is not edittable (resourceCreator, resourceCreationDateTime, lastModifer, lastModifiedDateTime, resourceOwner) */}
                                 <Card className="full-card">
                                     <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Resource Creator: </InputLabel>
-                                        <Input value={campus?.resourceMetadata.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
+                                        <FormControl>
+                                            <InputLabel shrink={true}>Resource Creator: </InputLabel>
+                                            <Input value={campus?.resourceMetadata.resourceCreator?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Time Created: </InputLabel>
-                                        <Input value={campus?.resourceMetadata.resourceCreationTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
+                                        <FormControl>
+                                            <InputLabel shrink={true}>Time Created: </InputLabel>
+                                            <Input value={campus?.resourceMetadata.resourceCreationTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Last Modifier: </InputLabel>
-                                        <Input value={campus?.resourceMetadata.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
+                                        <FormControl>
+                                            <InputLabel shrink={true}>Last Modifier: </InputLabel>
+                                            <Input value={campus?.resourceMetadata.lastModifier?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Time Modified: </InputLabel>
-                                        <Input value={campus?.resourceMetadata.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
+                                        <FormControl>
+                                            <InputLabel shrink={true}>Time Modified: </InputLabel>
+                                            <Input value={campus?.resourceMetadata.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
-                                    <FormControl>
-                                        <InputLabel>Resource Owner: </InputLabel>
-                                        <Input value={campus?.resourceMetadata.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} />
-                                    </FormControl>
+                                        <FormControl>
+                                            <InputLabel shrink={true}>Resource Owner: </InputLabel>
+                                            <Input value={campus?.resourceMetadata.resourceOwner?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                        </FormControl>
                                     </span>
                                 </Card>  
                             </Grid>
                         </Grid>
-                        </Wrapper>
                     </div>
                 </Card>
             </div>

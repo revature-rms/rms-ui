@@ -1,30 +1,26 @@
-import { HomeComponent } from '../HomeComponent';
-import { shallow } from 'enzyme';
-import React from 'react';
-import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
-import { AppUser } from '../../../dtos/appUser';
+import * as React from 'react';
+import HomeComponent, { IHomeProps } from '../HomeComponent';
+import Adapter from 'enzyme-adapter-react-16';
+import { configure, mount, shallow } from 'enzyme';
 
-const setup = (props = {
-    //@ts-ignore
-    authUser: null as AppUser,
-}, state = 0) => {
-    const wrapper = shallow(<HomeComponent {...props}/>)
-    if (state) wrapper.setState(state);
-    return wrapper;
+/* Default Properties for rendering LoginComponent*/
+/* 
+   LoginComponent is dependent on these properties, so they must
+   be supplied.
+*/
+const props: IHomeProps = {
+    authUser: undefined
 }
 
-test('renders without error', () => {
-    const wrapper = setup();
-    //find element with the data-test value
-    const appComponent = FindByTestAttr(wrapper, 'main-content');
-    expect(appComponent.length).toBe(1);
-});
+configure({adapter: new Adapter()});
 
-test('map data functionality, should  return undefined', () => {
-    const wrapper:any = setup();
-    wrapper.setState({
-        currentUser: null
-    })
-    let test = wrapper.instance().mapData();
-    expect(test).toBeUndefined();
+describe('<HomeComponent />', () => {
+
+    it('Renders without error', () => {
+        // Shallowly render the LoginComponent with properties
+        const wrapper = shallow(<HomeComponent {...props}/>)
+
+        // Expect that the component should render and contain content
+        expect(wrapper.exists()).toBeTruthy
+    });
 })

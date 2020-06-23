@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Link } from "react-router-dom";
 import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
-import { prependOnceListener } from 'process';
-import { roomList } from '../../remote/room-list-search';
 import { Card, Grid } from '@material-ui/core';
 import { getAllCampus, getBuildingById } from '../../remote/campus-service';
 
 export interface IHomeProps {
-    authUser: AppUser;
+    authUser: AppUser | undefined;
 }
 
 /**
  * This component is the home page for all users. It will provide some default information to the
  * user depending on their role.
+ * Role needed: ANY, will be different depending on each specific role.
+ * Endpoint: .../
  * 
  * TODO: currently, this component does not render for TSM's. Conditional rendering will need
  *       to be added for this user as well as the actual rendering for those additional roles.
@@ -22,7 +20,7 @@ export interface IHomeProps {
  * 
  * @param props
  */
-export function HomeComponent(props: IHomeProps) {
+export default function HomeComponent(props: IHomeProps) {
 
     const [campus, setCampus] = useState([]);
     const [associates, setAssociates] = useState([]);
