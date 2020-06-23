@@ -7,7 +7,7 @@ import { getAllEmployees as getAllEmployeesAPI, getAllEmployeeById } from '../..
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import CampusListComponent from '../campus-component/CampusListComponent';
+import CampusListComponent from '../campus-list-component/CampusListComponent';
 
 
 
