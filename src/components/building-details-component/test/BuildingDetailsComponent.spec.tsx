@@ -2,7 +2,7 @@ import React from 'react';
 import BuildingDetailsComponent, { IBuildingDetailsProps } from '../BuildingDetailsComponent'
 import { shallow, configure, mount } from 'enzyme';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
-import * as mockRemote from '../../../remote/campus-service';
+import * as mockRemote from '../../../remote/search-service';
 import Adapter from 'enzyme-adapter-react-16';
 import { FormControl, Input, Button } from '@material-ui/core';
 import { AppUser } from '../../../dtos/appUser';
@@ -13,10 +13,10 @@ configure({adapter: new Adapter()});
 const setState = jest.fn();
 const useStateMock: any = (initState: any) => [initState, setState]
 
-jest.mock('../../../remote/campus-service', () => {
+jest.mock('../../../remote/seach-service', () => {
 
     return {
-        getBuildingById: jest.fn()
+        findBuildingById: jest.fn()
     };
 });
 
@@ -27,7 +27,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 beforeEach(() => {
-    (mockRemote.getBuildingById as jest.Mock).mockClear();
+    (mockRemote.findBuildingById as jest.Mock).mockClear();
 })
 
 afterEach(() => {
