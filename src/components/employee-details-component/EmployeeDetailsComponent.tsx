@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
-import { Link } from 'react-router-dom';
-import { updateEmployee } from '../../remote/employee-service';
+
+
+import { Link, useHistory } from 'react-router-dom';
+import { getEmployeeByIdAPI } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
+import { AppUser } from '../../dtos/appUser';
 
 
 export interface IEmployeeDetailsProps {
-    id: any,
-    employees: any
+
 
 }
 /**
@@ -29,27 +31,19 @@ export interface IEmployeeDetailsProps {
  * that is not null. 
  * 
  */
-export function EmployeeDetailsComponent() {
+export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
 
-    let mockEmployee = new Employee(
-        1,
-        "testFN",
-        "test LN",
-        "test@test.com",
-        "test title",
-        "test dept",
-        //@ts-ignore
-        null as ResourceMetadata
-    )
 
+    //@ts-ignore
+    const [employee, setEmployee] = useState<Employee>(null as Employee);
     const [editing, setEditing] = useState(false);
-    const [firstNameState, setFirstName] = useState(mockEmployee.firstName);
-    const [lastNameState, setLastName] = useState(mockEmployee.lastName);
-    const [emailState, setEmail] = useState(mockEmployee.email);
-    const [titleState, setTitle] = useState(mockEmployee.title);
-    const [deptState, setDept] = useState(mockEmployee.department);
-    const [employee, setEmployee] = useState(mockEmployee);
-
+    const [firstNameState, setFirstName] = useState(employee?.firstName);
+    const [lastNameState, setLastName] = useState(employee?.lastName);
+    const [emailState, setEmail] = useState(employee?.email);
+    const [titleState, setTitle] = useState(employee?.title);
+    const [deptState, setDept] = useState(employee?.department);
+    const history = useHistory();
+   
 
     const enableEdit = () => {
         setEditing(true);
@@ -57,7 +51,7 @@ export function EmployeeDetailsComponent() {
 
     const save = () => {
         setEmployee({
-            ...mockEmployee,
+            ...employee,
             firstName: firstNameState,
             lastName: lastNameState,
             email: emailState,
@@ -92,6 +86,21 @@ export function EmployeeDetailsComponent() {
         }
     }
 
+    const getEmployee = async(id: number) =>{
+        let thisEmployee = (await getEmployeeByIdAPI(id)).data;
+        setEmployee(thisEmployee)
+        console.log(thisEmployee + '1');
+        
+    }
+
+    useEffect(()=>{
+        let employeeId = window.location?.pathname?.match(/\d+/)?.pop()
+        //@ts-ignore
+        console.log(employeeId);
+        //@ts-ignore
+        getEmployee(employeeId)
+    }, [])
+
     return (
         <>
             <div className="display-wrapper">
@@ -105,36 +114,36 @@ export function EmployeeDetailsComponent() {
                                         <FormControl>
                                             <InputLabel>Employee First Name:</InputLabel>
                                             {editing ?
-                                                <Input id="firstName" defaultValue={employee.firstName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
-                                                <Input id="firstName" value={employee.firstName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                                <Input id="firstName" defaultValue={employee?.firstName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
+                                                <Input id="firstName" value={employee?.firstName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                         </FormControl>
                                         <br />
                                         <FormControl>
                                             <InputLabel> Employee Last Name:</InputLabel>
                                             {editing ?
-                                                <Input id="lastName" defaultValue={employee.lastName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
-                                                <Input id="lastName" value={employee.lastName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                                <Input id="lastName" defaultValue={employee?.lastName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
+                                                <Input id="lastName" value={employee?.lastName} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                         </FormControl>
                                         <br />
                                         <FormControl>
                                             <InputLabel> Employee Email:</InputLabel>
                                             {editing ?
-                                                <Input id="email" defaultValue={employee.email} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
-                                                <Input id="email" value={employee.email} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                                <Input id="email" defaultValue={employee?.email} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
+                                                <Input id="email" value={employee?.email} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                         </FormControl>
                                         <br />
                                         <FormControl>
                                             <InputLabel>Employee Title:</InputLabel>
                                             {editing ?
-                                                <Input id="title" defaultValue={employee.title} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
-                                                <Input id="title" value={employee.title} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                                <Input id="title" defaultValue={employee?.title} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
+                                                <Input id="title" value={employee?.title} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                         </FormControl>
                                         <br />
                                         <FormControl>
                                             <InputLabel>Employee Department</InputLabel>
                                             {editing ?
-                                                <Input id="department" defaultValue={employee.department} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
-                                                <Input id="department" value={employee.department} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
+                                                <Input id="department" defaultValue={employee?.department} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} /> :
+                                                <Input id="department" value={employee?.department} disabled={!editing} onChange={setInfo} inputProps={{ 'aria-label': 'description' }} />}
                                         </FormControl>
                                     </div>
                                     <br></br>
