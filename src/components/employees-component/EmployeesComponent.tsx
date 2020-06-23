@@ -31,7 +31,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     const history = useHistory();
 
      /**
-     * Gets all buildings if the user currently signed in is an admin
+     * Gets all employees if the user currently signed in is an admin
      */
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
