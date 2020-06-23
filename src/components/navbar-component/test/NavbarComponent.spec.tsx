@@ -32,12 +32,12 @@ describe('NavbarComponent', () => {
         expect(wrapper.exists()).toBeTruthy();
     })
 
-    it('Should render 9 divs', () => {
+    it('Should render 11 divs', () => {
         const wrapper = mount(<BrowserRouter>{navbarComponent}</BrowserRouter>);
-        expect(wrapper.find("div")).toHaveLength(9);
+        expect(wrapper.find("div")).toHaveLength(11);
     })
 
-    it('Should render 6 divs', () => {
+    it('Should render 7 divs', () => {
         //This is pretty bad, maybe find another way to change roles in the future?
         const testProps: INavbarProps = {
             currentUser: new AppUser(1, "username", "password", 1, []),
@@ -45,7 +45,7 @@ describe('NavbarComponent', () => {
         };
         const testNavbarComponent = <NavbarComponent {...testProps}/>
         const wrapper = mount(<BrowserRouter>{testNavbarComponent}</BrowserRouter>);
-        expect(wrapper.find("div")).toHaveLength(6);
+        expect(wrapper.find("div")).toHaveLength(7);
     })
 
 })
