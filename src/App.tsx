@@ -38,7 +38,7 @@ class AppComponent extends React.Component<any, any> {
               <Route path='/login' component={LoginComponent} />
               <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
               <Route path='/employees' component={EmployeesComponent} />
-              <Route path='/employee-details' component={EmployeeDetailsComponent} />
+              <Route path='/employee-details/:id' component={EmployeeDetailsComponent} />
               <Route path='/employee/:id' component={EmployeeGlobalComponent} />
               <Route path='/campuses' component={CampusListComponent} />
               <Route path='/buildings/:id' component={BuildingDetailsComponent} />
