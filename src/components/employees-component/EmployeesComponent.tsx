@@ -3,7 +3,7 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllEmployeesAPI, getAllEmployeeByIdAPI } from '../../remote/employee-service';
+import { getAllEmployees as getAllEmployeesAPI, getAllEmployeeById } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
@@ -25,7 +25,7 @@ export interface IEmployeesProps {
  * TODO: 
  * Axios request is needed to complete the table. 
  */
-function EmployeesComponent(props: IEmployeesProps) {
+export default function EmployeesComponent(props: IEmployeesProps) {
 
     //@ts-ignore
     const [employeeList, setEmployeeList] = useState<Array<Employee>>([]);
@@ -42,7 +42,7 @@ function EmployeesComponent(props: IEmployeesProps) {
     }
 
     const getEmployees = async ()=> {
-        let employeeList: Array<Employee> = (await getAllEmployeeByIdAPI(props?.currentUser?.id)).data;
+        let employeeList: Array<Employee> = (await getAllEmployeeById(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
             myEmployees.push(employee);
         })
@@ -86,7 +86,3 @@ function EmployeesComponent(props: IEmployeesProps) {
         </>
     )
 }
-
-export default EmployeesComponent;
-
-

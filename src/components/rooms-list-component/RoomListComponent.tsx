@@ -14,12 +14,21 @@ export interface IRoomListProps {
     currentUser: AppUser
 }
 
+/**
+ * Will provide all the rooms that are owned by the current logged in user or on their currently owned campus or building
+ * Each room will be rendered with RoomDetailsComponent when it is clicked
+ * Role needed: Admin or Training Site Manager or Building Manager or Trainer
+ * Endpoint: .../rooms
+ */
 function RoomListComponent(props: IRoomListProps) {
 
     const [rooms, setRooms] = useState<Array<Room>>([]);
     const history = useHistory();
     let myRooms: Array<Room> = [];
 
+    /**
+     * Gets any campus owned by the current logged in user and extracts rooms if they are a TSM
+     */
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await findAllCampusesByOwner(props.currentUser?.id)).data;
         campusList.forEach(campus => {
@@ -32,6 +41,9 @@ function RoomListComponent(props: IRoomListProps) {
         setRooms(myRooms);
     }
 
+    /**
+     * Gets any building owned by the current logged in user and extracts rooms if they are a building manager
+     */
     const getBuildings = async () => {
         let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
         buildingList.forEach(building => {
@@ -42,6 +54,9 @@ function RoomListComponent(props: IRoomListProps) {
         setRooms(myRooms);
     }
     
+    /**
+     * Gets any rooms owned by the current logged in user if they are a trainer
+     */
     const getRooms = async () => {
         let roomList: Array<Room> = (await findAllRoomByOwner(props.currentUser?.id)).data;
         roomList.forEach(room => {
@@ -51,6 +66,9 @@ function RoomListComponent(props: IRoomListProps) {
         setRooms(myRooms);
     }
 
+    /**
+     * Gets all rooms if the current logged in user is an admin
+     */
     const getAllRooms = async () => {
         let roomList: Array<Room> = (await findAllRooms()).data;
         roomList.forEach(room => {
@@ -60,6 +78,9 @@ function RoomListComponent(props: IRoomListProps) {
         setRooms(myRooms);
     }
 
+    /**
+     * Renders rooms owned by the current user depending on their role
+     */
     useEffect(() => {
         if(props.currentUser?.role.includes("Admin")){
             getAllRooms();
@@ -75,6 +96,10 @@ function RoomListComponent(props: IRoomListProps) {
 
     return (
         <>
+        {/**
+         * renders a material table including room number, max occupancy, and is active field 
+         * each row is clickable and takes you to the endpoint for that rooms detail page
+         */}
             <div className="display-wrapper">
                 <Card>
                     <div className="table-wrapper">
