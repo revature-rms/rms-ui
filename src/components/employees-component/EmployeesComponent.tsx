@@ -76,7 +76,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
                                 { title: 'Department', field: 'department' },
                             ]}
                             //@ts-ignore
-                            onRowClick={(event, rowData) => history.push(`/employee-details`)}
+                            onRowClick={(event, rowData) => history.push(`/employee-details/` +rowData.id)}
                             data={employeeList}
                             title="Employees"
                         />

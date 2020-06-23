@@ -24,8 +24,7 @@ export interface IEmployeeDetailsProps {
  * Endpoint: .../employee/id [id of employee]
  * 
  * 
- * TODO: Currently this component has values hard coded into the component. Will need to remove mockEmployee and change up mockEmployee values
- * with different values once we can make axios request to the MSA. 
+ * TODO: 
  * Resource meta data table at the bottom styling is off and all the values are squished together. 
  * Input value for each Form Control is commented out to get the page to render. Will need to uncomment out the values when we receive receive resource meta data
  * that is not null. 
@@ -85,18 +84,18 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
 
         }
     }
-
+/**
+ * getEmployee will call getEmployeeByIdAPI to obtain information from the database. 
+ * Once the data has been obtained from the database it will set that data to employee. 
+ * @param id 
+ */
     const getEmployee = async(id: number) =>{
         let thisEmployee = (await getEmployeeByIdAPI(id)).data;
         setEmployee(thisEmployee)
-        console.log(thisEmployee + '1');
-        
     }
 
     useEffect(()=>{
         let employeeId = window.location?.pathname?.match(/\d+/)?.pop()
-        //@ts-ignore
-        console.log(employeeId);
         //@ts-ignore
         getEmployee(employeeId)
     }, [])
@@ -168,32 +167,32 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
                                 <Card className="full-card">
                                     <span style={{ margin: 5 }}>
                                         <FormControl>
-                                            <InputLabel>Resource Creator: </InputLabel>
-                                            {/* <Input value={mockEmployee.resourceMetaData.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                            <InputLabel >Resource Creator: </InputLabel>
+                                            {/* <Input value={employee?.resourceMetaData.resourceCreator} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
                                         </FormControl>
                                     </span>
                                     <span style={{ margin: 5 }}>
                                         <FormControl>
                                             <InputLabel>Time Created: </InputLabel>
-                                            {/* <Input value={mockEmployee.resourceMetaData.resourceCreationTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                            {/* <Input value={employee?.resourceMetaData.resourceCreationTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
                                         </FormControl>
                                     </span>
                                     <span style={{ margin: 5 }}>
                                         <FormControl>
                                             <InputLabel>Last Modifier: </InputLabel>
-                                            {/* <Input value={mockEmployee.resourceMetaData.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                            {/* <Input value={employee?.resourceMetaData.lastModifier} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
                                         </FormControl>
                                     </span>
                                     <span style={{ margin: 5 }}>
                                         <FormControl>
                                             <InputLabel>Time Modified: </InputLabel>
-                                            {/* <Input value={mockEmployee.resourceMetaData.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                            {/* <Input value={employee?.resourceMetaData.lastModifiedDateTime} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
                                         </FormControl>
                                     </span>
                                     <span style={{ margin: 5 }}>
                                         <FormControl>
                                             <InputLabel>Resource Owner: </InputLabel>
-                                            {/* <Input value={mockEmployee.resourceMetaData.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
+                                            {/* <Input value={employee?.resourceMetaData.resourceOwner} disabled={true} inputProps={{ 'aria-label': 'description' }} /> */}
                                         </FormControl>
                                     </span>
                                 </Card>
