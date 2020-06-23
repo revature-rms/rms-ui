@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import {getCampusByOwnerId } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
 import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
-import { getAllBuildingsAPI, getBuildingByOwnerId } from '../../remote/building-service';
+import { findAllBuilding, findBuildingByOwner, findAllCampusesByOwner } from '../../remote/search-service';
 
 
 export interface IBuildingListProps {
@@ -30,7 +29,7 @@ function BuildingListComponent(props: IBuildingListProps) {
      * Gets campuses that are owned by current user if they are a training site manager and extracts buildings from the campus
      */
     const getCampuses = async () => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
+        let campusList: Array<Campus> = (await findAllCampusesByOwner(props.currentUser?.id)).data;
 
         campusList.forEach(campus => {
             campus.buildings.forEach(building => {
@@ -45,7 +44,7 @@ function BuildingListComponent(props: IBuildingListProps) {
      * Gets buildings that are directly owned by the signed in user if they are a building manager
      */
     const getBuildings = async () => {
-        let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
+        let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
 
         buildingList.forEach(building => {
             myBuildings.push(building);
@@ -58,7 +57,7 @@ function BuildingListComponent(props: IBuildingListProps) {
      * Gets all buildings if the user currently signed in is an admin
      */
     const getAllBuildings = async () => {
-        let buildingsList: Array<Building> =(await getAllBuildingsAPI()).data
+        let buildingsList: Array<Building> =(await findAllBuilding()).data
 
         buildingsList.forEach(building => {
             myBuildings.push(building);
