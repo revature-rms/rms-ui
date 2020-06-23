@@ -18,7 +18,8 @@ Also, we should be directed to employee-details component
 jest.mock('../../../remote/employee-service', () => {
 
     return {
-        getAllEmployees: jest.fn()
+        getAllEmployees: jest.fn(),
+        getAllEmployeeById: jest.fn()
     };
 });
 
@@ -66,6 +67,24 @@ describe('EmployeesComponent', () => {
         wrapper.find(MaterialTable).find(`button`).at(2).simulate(`click`, {});
         //Can't figure out how to target push invocation from useHistory
         //expect(useHistory).toHaveBeenCalled()
+    })
+
+    it('Should call getAllEmployees when supplied with an admin role', () => {
+        //Default role is Admin
+        //Anything below the remote API call does not seem to get coverage
+        const wrapper = mount(employeesComponent);
+        expect(mockRemote.getAllEmployees).toHaveBeenCalled()
+    })
+
+    it('Should call getAllEmployeesById', () => {
+        //Need to make new props to simulate a different role
+        //Anything below the remote API call does not seem to get coverage
+        const tempProps: IEmployeesProps = {
+            currentUser: new AppUser(1, "username", "password", 1, ['Trainer', 'Building Manager', 'Training Site Manager'])
+        };
+        const tempEmployeesComponent = <EmployeesComponent {...tempProps} />
+        const wrapper = mount(tempEmployeesComponent);
+        expect(mockRemote.getAllEmployeeById).toHaveBeenCalled()
     })
 
 })
