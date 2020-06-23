@@ -32,12 +32,17 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     const history = useHistory();
 
 
-    //toggles between editing and non-editing mode
+    /**
+     * toggles between editing and non-editing mode
+     */
     const enableEdit = () => {
         setEditing(true);
     }
 
-    //saves states upon clicking save button ... NEEDS TO PERSIST
+    /**
+     * persists changes to MSA (Whole object)
+     * ***NOT IMPLEMENTED****
+     */
     const save = () => {
         setCampus({
             ...campus,
@@ -52,12 +57,16 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         setEditing(false);
     }
 
-    //toggles back to non-editing state upon clicking cancle button
+    /**
+     * toggles back to non-editing state upon clicking cancle button without persisting
+     */
     const cancel = () => {
         setEditing(false);
     }
 
-    //sets pieces of info state upon changing in edit mode
+    /**
+     * sets pieces of local info state upon changing in edit mode
+    */
     const setInfo = (event: any) => {
         switch (event.target.id) {
             case "name":
@@ -112,7 +121,9 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         }
     }
 
-    //makes a request to the API for all campuses and selects user assigned campus
+    /**
+     * gets the campus from MSA using the campus id
+    */
     const getCampus = async(id: number) => {
         //@ts-ignore
         let thisCampus = (await getCampusById(id)).data;
@@ -121,7 +132,10 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     }
 
-    //extracts buildings from the users assigned campus
+    /**
+     * Gets the buildings for the material table based on the campus id, calls getCampus()
+     * @param campusId - ID of populating campus
+     */
     const getBuildings = async (campusId: number) => {
         let tempBuildings: Array<Building> = [];
 
@@ -135,6 +149,9 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         setBuildings(tempBuildings);
     } 
 
+    /**
+     * Populates the details page based on the id provided in the URI
+     */
     useEffect(() => {
         let campusId = window.location?.pathname?.match(/\d+/)?.pop();
         //@ts-ignore
@@ -153,7 +170,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 </Grid>
                                 <Grid item xs={12}>
                                     {/*Below card contains the edittable items (name, abbreviated name, address, building manager)
-                             of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
+                                    of the building which should become edittable upon clicking edit button and should save to local state upon clicking save button 
                                 - need to persist data upon save
                                 - need to save editting authUser for metadata
                              */}
@@ -289,8 +306,8 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 columns = {[
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
-                                    { title: 'Street', field: 'physicalAddress.unitStreet'},
-                                    { title: "Building Manager", field: "trainingLead.firstName"}                                
+                                    { title: 'Street', field: 'physicalAddress?.unitStreet'},
+                                    { title: "Building Manager", field: "trainingLead?.firstName"}                                
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
@@ -310,7 +327,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Resource Creator: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.resourceCreator.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.resourceCreator?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
@@ -322,7 +339,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Last Modifier: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.lastModifier.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.lastModifier?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                     <span style={{margin: 5}}>
@@ -334,7 +351,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     <span style={{margin: 5}}>
                                         <FormControl>
                                             <InputLabel shrink={true}>Resource Owner: </InputLabel>
-                                            <Input value={campus?.resourceMetadata.resourceOwner.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input value={campus?.resourceMetadata.resourceOwner?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                         </FormControl>
                                     </span>
                                 </Card>  

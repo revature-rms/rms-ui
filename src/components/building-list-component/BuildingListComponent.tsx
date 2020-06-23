@@ -12,18 +12,23 @@ import { getAllBuildingsAPI, getBuildingByOwnerId } from '../../remote/building-
 export interface IBuildingListProps {
     currentUser: AppUser;
 }
+
 /**
- * Will provide all the buildings that are located on a specific campus (depending on what user is signed in)
+ * Will provide all the buildings that are owned by the current logged in user or on their currently owned campus
  * Each building will be rendered with BuildingDetailsComponent when it is clicked
- * Role needed: Admin or Building Manager
+ * Role needed: Admin or Training Site Manager or Building Manager
  * Endpoint: .../buildings
  */
+
 function BuildingListComponent(props: IBuildingListProps) {
 
     const [buildings, setBuildings] = useState<Array<Building>>([]);
     const history = useHistory();
     let myBuildings: Array<Building> = []
 
+    /**
+     * Gets campuses that are owned by current user if they are a training site manager and extracts buildings from the campus
+     */
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
 
@@ -36,6 +41,9 @@ function BuildingListComponent(props: IBuildingListProps) {
         setBuildings(myBuildings);
     }
 
+    /**
+     * Gets buildings that are directly owned by the signed in user if they are a building manager
+     */
     const getBuildings = async () => {
         let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
 
@@ -46,6 +54,9 @@ function BuildingListComponent(props: IBuildingListProps) {
         setBuildings(myBuildings);
     }
 
+    /**
+     * Gets all buildings if the user currently signed in is an admin
+     */
     const getAllBuildings = async () => {
         let buildingsList: Array<Building> =(await getAllBuildingsAPI()).data
 
@@ -56,6 +67,9 @@ function BuildingListComponent(props: IBuildingListProps) {
         setBuildings(myBuildings);
     }
 
+    /**
+     * Renders buildings based on the currently logged in user role
+     */
     useEffect(() => {
         if(props.currentUser?.role.includes("Admin")){
             getAllBuildings();
@@ -71,6 +85,10 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     return (
         <>
+            {/**
+             * renders a material table including building id, name, street address, and building manager first name
+             * each row is clickable and takes you to the endpoint for that buildings detail page
+             */}
             <div className="display-wrapper">
             <Card>
                 <div className="table-wrapper">
@@ -78,8 +96,8 @@ function BuildingListComponent(props: IBuildingListProps) {
                         columns={[
                             { title: 'Id', field: 'id' },
                             { title: 'Name', field: 'name' },
-                            { title: 'Street Address', field: 'physicalAddress.unitStreet' },
-                            { title: "Building Manager", field: "trainingLead.firstName" }
+                            { title: 'Street Address', field: 'physicalAddress?.unitStreet' },
+                            { title: "Building Manager", field: "trainingLead?.firstName" }
                         ]}
                         
                         onRowClick={(event, rowData) => {
