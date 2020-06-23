@@ -1,4 +1,4 @@
-  
+
 import { compose, applyMiddleware, Store, createStore } from "redux"
 import logger from "redux-logger"
 import reduxThunk from "redux-thunk"

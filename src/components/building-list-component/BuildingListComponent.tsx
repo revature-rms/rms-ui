@@ -70,12 +70,11 @@ function BuildingListComponent(props: IBuildingListProps) {
      * Renders buildings based on the currently logged in user role
      */
     useEffect(() => {
-        if(props.currentUser?.role.includes("Admin")){
+        if (props.currentUser?.role.includes("Admin")){
             getAllBuildings();
-        } else if(props.currentUser?.role.includes("Training Site Manager")) {
+        } else if (props.currentUser?.role.includes("Training Site Manager")) {
             getCampuses();
-        }
-        else if(props.currentUser?.role.includes("Building Manager")){
+        } else if (props.currentUser?.role.includes("Building Manager")) {
             getBuildings();
         }
 

@@ -4,9 +4,6 @@ import {EmployeeDetailsComponent} from "./EmployeeDetailsComponent";
 
 const mapStateToProps = (state:IState) => {
     return {
-        //states needed for the employeeDetails component
-        employees: state.employeesState.employees,
-        id: state.employeesState.id
 
     }
 }
