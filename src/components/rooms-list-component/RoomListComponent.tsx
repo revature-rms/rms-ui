@@ -4,10 +4,8 @@ import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Room } from '../../dtos/room';
 import { Campus } from '../../dtos/campus';
-import { getCampusByOwnerId } from '../../remote/campus-service';
 import { Building } from '../../dtos/building';
-import { getBuildingByOwnerId } from '../../remote/building-service';
-import { getRoomByOwnerId, getAllRoomsAPI } from '../../remote/room-service';
+import { findAllRoomByOwner, findAllRooms, findAllCampusesByOwner, findBuildingByOwner } from '../../remote/search-service';
 import { AppUser } from '../../dtos/appUser';
 
 
@@ -32,7 +30,7 @@ function RoomListComponent(props: IRoomListProps) {
      * Gets any campus owned by the current logged in user and extracts rooms if they are a TSM
      */
     const getCampuses = async () => {
-        let campusList: Array<Campus> = (await getCampusByOwnerId(props.currentUser?.id)).data;
+        let campusList: Array<Campus> = (await findAllCampusesByOwner(props.currentUser?.id)).data;
         campusList.forEach(campus => {
             campus.buildings.forEach(building => {
                 building.rooms.forEach(room => {
@@ -47,7 +45,7 @@ function RoomListComponent(props: IRoomListProps) {
      * Gets any building owned by the current logged in user and extracts rooms if they are a building manager
      */
     const getBuildings = async () => {
-        let buildingList: Array<Building> = (await getBuildingByOwnerId(props.currentUser?.id)).data;
+        let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
         buildingList.forEach(building => {
             building.rooms.forEach(room => {
                 myRooms.push(room);
@@ -60,7 +58,7 @@ function RoomListComponent(props: IRoomListProps) {
      * Gets any rooms owned by the current logged in user if they are a trainer
      */
     const getRooms = async () => {
-        let roomList: Array<Room> = (await getRoomByOwnerId(props.currentUser?.id)).data;
+        let roomList: Array<Room> = (await findAllRoomByOwner(props.currentUser?.id)).data;
         roomList.forEach(room => {
             console.log(room)
             myRooms.push(room);
@@ -72,7 +70,7 @@ function RoomListComponent(props: IRoomListProps) {
      * Gets all rooms if the current logged in user is an admin
      */
     const getAllRooms = async () => {
-        let roomList: Array<Room> = (await getAllRoomsAPI()).data;
+        let roomList: Array<Room> = (await findAllRooms()).data;
         roomList.forEach(room => {
             myRooms.push(room);
         })
