@@ -25,11 +25,18 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
         const [addressState, setAddressState] = useState(building?.physicalAddress);
         const [bManagerState, setBManager] = useState(building?.trainingLead);
         const history = useHistory();
-           
+         
+        /**
+         * toggles between editable and non editable state for updating fields 
+         */
         const enableEdit = () => {
             setEditing(true);
         }   
 
+        /**
+         * persists edited data to MSA and toggled bakc to non editable state 
+         * *****NOT IMPLEMENTED****
+         */
         const save = () => {
             setBuilding({...building,
                         name: nameState,
@@ -41,10 +48,16 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
             setEditing(false);
         }
 
+        /**
+         * does not persist changes and reverts back to original values
+         */
         const cancel = () => {
             setEditing(false);
         }
 
+        /**
+         * sets pieces of local state on change so they can be persisted
+         */
         const setInfo = (event: any) => {
             switch(event.target.id){
                 case "name":
@@ -89,15 +102,26 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
             }
         }
 
+        /**
+         * Gets the building to populate details page from MSA
+         * @param id - building id number
+         */
         const getBuilding = async (id: number) => {
             let thisBuilding = (await getBuildingByIdAPI(id)).data;
             setBuilding(thisBuilding);
         }
 
+        /**
+         * Will be used to update the status of the amenities 
+         * ***NOT IMPLEMENTED****
+         */
         const updateAmenityStatus = async () => {
 
         }
         
+        /**
+         * Populates the page with building determined by the id in the URI
+         */
         useEffect(()=> {
             let buildingId = window.location?.pathname?.match(/\d+/)?.pop();
             //@ts-ignore
