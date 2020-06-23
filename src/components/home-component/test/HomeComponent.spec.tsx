@@ -2,7 +2,7 @@ import React from 'react';
 import HomeComponent, { IHomeProps } from '../HomeComponent'
 import { shallow, configure, mount } from 'enzyme';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
-import * as mockRemote from '../../../remote/campus-service';
+import * as mockRemote from '../../../remote/search-service';
 import Adapter from 'enzyme-adapter-react-16';
 import { FormControl, Grid } from '@material-ui/core';
 import { AppUser } from '../../../dtos/appUser';
@@ -13,17 +13,17 @@ configure({adapter: new Adapter()});
 const setState = jest.fn();
 const useStateMock: any = (initState: any) => [initState, setState]
 
-jest.mock('../../../remote/campus-service', () => {
+jest.mock('../../../remote/search-service', () => {
 
     return {
-        getAllCampus: jest.fn(),
-        getBuildingById: jest.fn()
+        findAllCampuses: jest.fn(),
+        findAllRoomByOwner: jest.fn()
     };
 });
 
 beforeEach(() => {
-    (mockRemote.getAllCampus as jest.Mock).mockClear();
-    (mockRemote.getBuildingById as jest.Mock).mockClear();
+    (mockRemote.findAllCampuses as jest.Mock).mockClear();
+    (mockRemote.findAllRoomByOwner as jest.Mock).mockClear();
 })
 
 afterEach(() => {
@@ -51,12 +51,12 @@ describe('HomeComponent', () => {
         expect(wrapper.find(Grid)).toHaveLength(5);
     })
 
-    it('Should call getAllCampus and getBuildingById on mount', () => {
+    it('Should call findAllCampuses and findAllRoomByOwner on mount', () => {
         /* For some reason anything after the remote calls in getBuildings and
            getRooms does not get hit in the coverage report. May be worth investigating.
          */
         const wrapper = mount(homeComponent);
-        expect(mockRemote.getAllCampus).toHaveBeenCalled();
-        expect(mockRemote.getBuildingById).toHaveBeenCalled();
+        expect(mockRemote.findAllCampuses).toHaveBeenCalled();
+        expect(mockRemote.findAllRoomByOwner).toHaveBeenCalled();
     })
 })
