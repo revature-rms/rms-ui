@@ -13,7 +13,7 @@ configure({adapter: new Adapter()});
 const setState = jest.fn();
 const useStateMock: any = (initState: any) => [initState, setState]
 
-jest.mock('../../../remote/seach-service', () => {
+jest.mock('../../../remote/search-service', () => {
 
     return {
         findBuildingById: jest.fn()
@@ -35,6 +35,7 @@ afterEach(() => {
 });
 
 const props: IBuildingDetailsProps = {
+    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager'])
 };
 
 const buildingDetailsComponent = <BuildingDetailsComponent {...props} />

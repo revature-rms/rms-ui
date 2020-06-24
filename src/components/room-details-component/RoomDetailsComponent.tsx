@@ -23,7 +23,7 @@ export interface IRoomDetailsProps {
  * Role needed: Trainer
  * Endpoint: .../rooms/id [id of room]
  */
-function RoomDetailsComponent() {
+function RoomDetailsComponent(props: IRoomDetailsProps) {
 
     //@ts-ignore
     const[room, setRoom] = useState<Room>(null as Room);
@@ -70,6 +70,7 @@ function RoomDetailsComponent() {
      * Sets room details state upon changing in edit mode
      */
     const setInfo = (event: any) => {
+        console.log(event.target)
         switch(event.target.id){
             case "roomNumber":
                 setRoomNum(event.target.value);
@@ -186,13 +187,13 @@ function RoomDetailsComponent() {
                             <br/>
                             {editing?
                             <>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
+                                <Button id="saveButton" style={{ margin: 8 }} variant="outlined" onClick={save}>Save</Button>
+                                <Button id="cancelButton" style={{ margin: 8 }} variant="outlined" onClick={cancel}>Cancel</Button>
 
                             </>
                             :
                             <FormControl>
-                                <Button style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
+                                <Button id="editButton" style={{ margin: 8 }} variant="outlined" onClick={enableEdit}>Edit</Button>
                             </FormControl>}
 
                             </Card>

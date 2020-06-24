@@ -17,7 +17,7 @@ export interface ICampusProps {
  * Role needed: Admin or Training Site Manager
  * Endpoint: .../campuses
  */
-function CampusListComponent(props: ICampusProps) {
+export default function CampusListComponent(props: ICampusProps) {
 
     const [campusList, setCampusList] = useState<Array<Campus>>([]);
     let myCampuses: Array<Campus> = [];
@@ -87,5 +87,3 @@ function CampusListComponent(props: ICampusProps) {
     )
 
 }
-
-export default CampusListComponent;
