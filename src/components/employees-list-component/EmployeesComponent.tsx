@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
-import { Link, useHistory } from "react-router-dom";
+import { Card } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
 import {  findAllEmployees, findAllEmployeeByOwner } from '../../remote/search-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
-import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import CampusListComponent from '../campus-list-component/CampusListComponent';
-
-
-
 
 
 export interface IEmployeesProps {

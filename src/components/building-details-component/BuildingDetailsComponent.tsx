@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Grid, FormControl, InputLabel, Input, Card, Button, Typography, Select} from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
-import { findAllCampusesByOwner, findBuildingById} from '../../remote/search-service';
+import { findBuildingById} from '../../remote/search-service';
 import { AppUser } from '../../dtos/appUser';
 
 export interface IBuildingDetailsProps {

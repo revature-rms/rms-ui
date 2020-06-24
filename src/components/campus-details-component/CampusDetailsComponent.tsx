@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getCampusById } from '../../remote/campus-service'
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';

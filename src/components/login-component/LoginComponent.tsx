@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import Card from '@material-ui/core/Card';
-import LoginFunction from '../../utils/login-function/LoginFunction';
 import { AppUser } from '../../dtos/appUser';
 import { LoginAnimationComponent } from "../login-animation-component/LoginAnimationComponent"
 import { Link } from 'react-router-dom';

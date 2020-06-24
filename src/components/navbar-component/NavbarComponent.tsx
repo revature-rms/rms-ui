@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SearchComponent } from '../search-component/SearchComponent';
-import { logout } from '../../utils/LogoutFunction';
 import { AppUser } from '../../dtos/appUser';
 
 
