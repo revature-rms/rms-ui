@@ -32,7 +32,6 @@
   "jest": {
     "collectCoverageFrom": [
       "src/components/**",
-      "src/remote/**",
       "App.test.tsx"
     ]
   },

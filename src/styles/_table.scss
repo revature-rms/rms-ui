@@ -1,9 +1,15 @@
 @import "./color";
+
+/* sets the location of main content and prevents overlapping navbar*/
+
 .display-wrapper {
     position: absolute;
     top: 110px;
     left: 14vw;
 }
+
+
+/* place the table in the correct location withing display-wrapper */
 
 .table-wrapper {
     display: block;
@@ -12,9 +18,15 @@
     border-radius: 1vh;
 }
 
+
+/* overide material UI color*/
+
 .MuiToolbar-regular {
     background-color: $yellow !important;
 }
+
+
+/* overide material UI color*/
 
 table {
     width: 100% !important;
@@ -30,6 +42,7 @@ table {
         background-color: $white !important;
         color: $dark-grey !important;
     }
+    /* sets the background color and style when hover over*/
     tr:hover td.MuiTableCell-alignLeft {
         transition: 0.5s;
         color: $black !important;

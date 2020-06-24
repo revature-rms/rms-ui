@@ -11,6 +11,7 @@ import CampusListComponent from './components/campus-list-component/CampusListCo
 import CampusDetailsComponent from './components/campus-details-component/CampusDetailsContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
+//import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent.tsx.txt';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 
 
