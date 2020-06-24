@@ -27,7 +27,9 @@ export const userReducer = (state = initialState, action: any) => {
         case loginTypes.SUCCESSFUL_LOGOUT:
             return {
                 ...state,
-                authUser: action.payload
+                loggedIn: false,
+                currentUser: action.payload.currentUser,
+                loginMessage: ''
             } 
 
         case loginTypes.INVALID_CREDENTIALS:

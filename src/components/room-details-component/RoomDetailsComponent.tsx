@@ -230,7 +230,7 @@ function RoomDetailsComponent() {
 
                                     <Button style={{ margin: 8 }} variant="outlined" onClick={createWorkOrder}>Submit</Button>
                                 </Card>
-
+                                <br/>
                                 {/* Contains room transfer form, ***NONFUNCTIONAL */}
                                 <Card className="full-card">
                                     <Typography>Room Transfer</Typography> 

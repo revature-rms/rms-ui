@@ -27,7 +27,7 @@ class AppComponent extends React.Component<any, any> {
   // const login = useSelector((state: IState) => state.userState.loggedIn)
   // if loggen, we return most details for the application
   render(){
-  if (this.props.loggedIn) {
+  if (this.props.currentUser) {
     document.body.style.overflow = "auto";
     return (
       <div data-test="main-content">
@@ -35,11 +35,10 @@ class AppComponent extends React.Component<any, any> {
         <Router>
             <NavbarComponent />
             <Switch>
-              <Route path='/login' component={LoginComponent} />
+              {/* <Route path='/login' component={LoginComponent} /> */}
               <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
               <Route path='/employees' component={EmployeesComponent} />
-              <Route path='/employee-details/:id' component={EmployeeDetailsComponent} />
-              <Route path='/employee/:id' component={EmployeeGlobalComponent} />
+              <Route path='/employees/:id' component={EmployeeDetailsComponent} />
               <Route path='/campuses' component={CampusListComponent} />
               <Route path='/buildings/:id' component={BuildingDetailsComponent} />
               <Route path='/buildings' component={BuildingListComponent} />

@@ -78,10 +78,10 @@ export default function EmployeesComponent(props: IEmployeesProps) {
                                 { title: 'Last Name', field: 'lastName' },
                                 { title: 'Email', field: 'email' },
                                 { title: 'Title', field: 'title' },
-                                { title: 'Department', field: 'department' },
+                                { title: 'Department', field: 'department' }
                             ]}
                             //@ts-ignore
-                            onRowClick={(event, rowData) => history.push(`/employee-details/` +rowData.id)}
+                            onRowClick={(event, rowData) => history.push(`/employees/` +rowData.id)}
                             data={employeeList}
                             title="Employees"
                         />
