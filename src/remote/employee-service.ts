@@ -8,8 +8,8 @@ export const getAllEmployees = () => {
 }
 
 /**Function to get employee by id*/
-export const getEmployeeById = (id:number) => {
-    return apiClient.get(`/employee/employee/employees/${id}`);
+export const getEmployeeByIdAPI = (id:number) => {
+    return apiClient.get(`/search/v1/employee/${id}`);
 }
 
 export const getAllEmployeeById = (id: number) =>{

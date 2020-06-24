@@ -7,10 +7,10 @@ import HomeComponent from './components/home-component/HomeContainer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmployeeDetailsComponent from './components/employee-details-component/EmployeeDetailsContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
-import EmployeesComponent from './components/employees-component/EmployeesContainer';
+import EmployeesComponent from './components/employees-list-component/EmployeesContainer';
 import RoomDetailsComponent from './components/room-details-component/RoomDetailsContainer';
 import RoomListComponent from './components/rooms-list-component/RoomListContainer';
-import CampusListComponent from './components/campus-component/CampusListContainer';
+import CampusListComponent from './components/campus-list-component/CampusListContainer';
 import CampusDetailsComponent from './components/campus-details-component/CampusDetailsContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
@@ -38,7 +38,7 @@ class AppComponent extends React.Component<any, any> {
               <Route path='/login' component={LoginComponent} />
               <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
               <Route path='/employees' component={EmployeesComponent} />
-              <Route path='/employee-details' component={EmployeeDetailsComponent} />
+              <Route path='/employee-details/:id' component={EmployeeDetailsComponent} />
               <Route path='/employee/:id' component={EmployeeGlobalComponent} />
               <Route path='/campuses' component={CampusListComponent} />
               <Route path='/buildings/:id' component={BuildingDetailsComponent} />

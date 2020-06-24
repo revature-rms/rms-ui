@@ -7,7 +7,7 @@ import { getAllEmployees as getAllEmployeesAPI, getAllEmployeeById } from '../..
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import CampusListComponent from '../campus-component/CampusListComponent';
+import CampusListComponent from '../campus-list-component/CampusListComponent';
 
 
 
@@ -21,9 +21,6 @@ export interface IEmployeesProps {
  * Each employee will be rendered with EmployeeDetailsComponent when it is clicked
  * Role needed: Training Site Manager
  * Endpoint: .../employees
- * 
- * TODO: 
- * Axios request is needed to complete the table. 
  */
 export default function EmployeesComponent(props: IEmployeesProps) {
 
@@ -33,6 +30,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     let myEmployees: Array<Employee> = [];
     const history = useHistory();
 
+     /**
+     * Gets all employees if the user currently signed in is an admin
+     */
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
         employeeList.forEach(employee =>{
@@ -41,6 +41,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
         setEmployeeList(myEmployees);
     }
 
+    /**
+     * Gets employee that are directly owned by the signed user
+     */
     const getEmployees = async ()=> {
         let employeeList: Array<Employee> = (await getAllEmployeeById(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
@@ -50,7 +53,9 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     }
 
     
-    
+     /**
+     * Renders employees based on the currently logged in user role
+     */
     useEffect(()=>{
         if(props.currentUser?.role.includes("Admin")){
             getAllEmployees();
@@ -76,7 +81,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
                                 { title: 'Department', field: 'department' },
                             ]}
                             //@ts-ignore
-                            onRowClick={(event, rowData) => history.push(`/employee-details`)}
+                            onRowClick={(event, rowData) => history.push(`/employee-details/` +rowData.id)}
                             data={employeeList}
                             title="Employees"
                         />
