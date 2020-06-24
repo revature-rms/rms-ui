@@ -18,54 +18,72 @@ import { EmployeeGlobalComponent } from './components/global-search-components/E
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 import { store } from './Store';
 import { Provider } from 'react-redux';
+import { ReactReduxContext } from 'react-redux';
+import { AppUser } from './dtos/appUser';
+
+import { IState } from "./reducers";
+import { login } from "./action-mappers/login-action"
+import { connect } from "react-redux";
 
 
+export interface IAppProps {
+  currentUser: AppUser | undefined,
+}
 
-class AppComponent extends React.Component<any, any> {
+function AppComponent(props: IAppProps) {
 
   // this check if a user is logged in
   // const login = useSelector((state: IState) => state.userState.loggedIn)
   // if loggen, we return most details for the application
-  render(){
-  if (this.props.currentUser) {
+
+  if (props.currentUser) {
     document.body.style.overflow = "auto";
     return (
       <div data-test="main-content">
-        
+
         <Router>
-            <NavbarComponent />
-            <Switch>
-              {/* <Route path='/login' component={LoginComponent} /> */}
-              <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
-              <Route path='/employees' component={EmployeesComponent} />
-              <Route path='/employees/:id' component={EmployeeDetailsComponent} />
-              <Route path='/campuses' component={CampusListComponent} />
-              <Route path='/buildings/:id' component={BuildingDetailsComponent} />
-              <Route path='/buildings' component={BuildingListComponent} />
-              <Route path='/rooms/:id' component={RoomDetailsComponent} />
-              <Route exact path='/rooms' component={RoomListComponent} />
-              <Route path='/' component={HomeComponent} />
-            </Switch>
+          <NavbarComponent />
+          <Switch>
+            {/* <Route path='/login' component={LoginComponent} /> */}
+            <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
+            <Route path='/employees' component={EmployeesComponent} />
+            <Route path='/employees/:id' component={EmployeeDetailsComponent} />
+            <Route path='/campuses' component={CampusListComponent} />
+            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
+            <Route path='/buildings' component={BuildingListComponent} />
+            <Route path='/rooms/:id' component={RoomDetailsComponent} />
+            <Route exact path='/rooms' component={RoomListComponent} />
+            <Route path='/' component={HomeComponent} />
+          </Switch>
         </Router>
-        
+
       </div>
     )
   } else {
     document.body.style.overflow = "hidden";
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     // we show only the login page if the user is not logged in
     return (
+
+      // do something useful with the store, like passing it to a child
+      // component where it can be used in lifecycle methods
+
+
       <div data-test="login-content">
-      <Router>
-        <Switch>
-          <Route path='/login' component={LoginComponent} />
-          <Route path='/' component={LoginComponent} />
-        </Switch>
-      </Router>
+
+
+        <Router>
+          <Switch>
+            <Route path='/login' component={LoginComponent} />
+            <Route path='/' component={LoginComponent} />
+          </Switch>
+        </Router>
       </div>
+
     )
   }
-  }
 }
+
+
 
 export default AppComponent;
