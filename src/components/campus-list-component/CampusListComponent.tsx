@@ -29,9 +29,9 @@ export default function CampusListComponent(props: ICampusProps) {
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await findAllCampusesByOwner(props?.currentUser?.id)).data;
         campusList.forEach(campus => {
-            campus.hrLead.fullName = campus.hrLead.firstName + ' ' + campus.hrLead.lastName;
-            campus.trainingManager.fullName = campus.trainingManager.firstName + ' ' + campus.trainingManager.lastName;
-            campus.stagingManager.fullName = campus.stagingManager.firstName + ' ' + campus.stagingManager.lastName;
+            campus.hrLead.fullName = campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName;
+            campus.trainingManager.fullName = campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName;
+            campus.stagingManager.fullName = campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName;
             myCampuses.push(campus);
         });
         await setCampusList(myCampuses); 
@@ -43,6 +43,9 @@ export default function CampusListComponent(props: ICampusProps) {
     const getAllCampuses = async () => {
         let campusList: Array<Campus> = (await findAllCampuses()).data;
         campusList.forEach(campus => {
+            campus.hrLead.fullName = campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName;
+            campus.trainingManager.fullName = campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName;
+            campus.stagingManager.fullName = campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName;
             myCampuses.push(campus);
         });
         await setCampusList(myCampuses);

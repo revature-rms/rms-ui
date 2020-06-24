@@ -230,8 +230,8 @@ function BuildingDetailsComponent(props: IBuildingDetailsProps){
                                         <FormControl>
                                             <InputLabel shrink={true}>Building Manager: </InputLabel>
                                             {editing?
-                                            <Input id="bManager" defaultValue={building?.trainingLead?.firstName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
-                                            <Input id="bManager" value={building?.trainingLead?.firstName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                            <Input id="bManager" defaultValue={building?.trainingLead?.firstName + " " + building?.trainingLead?.lastName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />:
+                                            <Input id="bManager" value={building?.trainingLead?.firstName + " " + building?.trainingLead?.lastName} onChange={setInfo} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                             }
                                         </FormControl>
                                     </div>
