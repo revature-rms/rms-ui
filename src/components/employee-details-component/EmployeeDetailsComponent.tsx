@@ -4,7 +4,7 @@ import EditEmpDetails from '../../utils/EditEmpDetailsModal';
 
 
 import { Link, useHistory } from 'react-router-dom';
-import { getEmployeeByIdAPI } from '../../remote/employee-service';
+import { getAllEmployeeById } from '../../remote/employee-service';
 import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 import { AppUser } from '../../dtos/appUser';
@@ -100,7 +100,7 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
  * @param id 
  */
     const getEmployee = async(id: number) =>{
-        let thisEmployee = (await getEmployeeByIdAPI(id)).data;
+        let thisEmployee = (await getAllEmployeeById(id)).data;
         setEmployee(thisEmployee)
     }
 

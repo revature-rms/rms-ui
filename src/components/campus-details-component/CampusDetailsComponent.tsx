@@ -306,8 +306,9 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                 columns = {[
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
-                                    { title: 'Street', field: 'physicalAddress?.unitStreet'},
-                                    { title: "Building Manager", field: "trainingLead?.firstName"}                                
+                                    { title: 'Street', field: 'address.unitStreet'},
+                                    { title: "Building Manager", field: "trainingLead.firstName"},
+                                    { title: "", field: "trainingLead.lastName"}                                
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
