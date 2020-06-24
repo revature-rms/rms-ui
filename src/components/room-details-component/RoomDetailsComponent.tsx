@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { Room } from '../../dtos/room';
 import { RoomStatus } from '../../dtos/roomStatus';
 import { WorkOrder } from '../../dtos/workOrder';
-import { getRoomByIdAPI } from '../../remote/room-service';
+import { findRoomById } from '../../remote/search-service';
 
 
 
@@ -108,7 +108,7 @@ function RoomDetailsComponent(props: IRoomDetailsProps) {
      * @param id - room id number
      */
     const getRoom = async(id: number) => {
-        let thisRoom = (await getRoomByIdAPI(id)).data;
+        let thisRoom = (await findRoomById(id)).data;
         setRoom(thisRoom);
     }
 
