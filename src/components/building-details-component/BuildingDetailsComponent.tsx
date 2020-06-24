@@ -4,8 +4,10 @@ import { Grid, FormControl, InputLabel, Input, Card, Button, Typography, Select}
 import MaterialTable from 'material-table';
 import { Building } from '../../dtos/building';
 import { findAllCampusesByOwner, findBuildingById} from '../../remote/search-service';
+import { AppUser } from '../../dtos/appUser';
 
 export interface IBuildingDetailsProps {
+    currentUser: AppUser;
 }
 
 /**
