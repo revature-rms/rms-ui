@@ -163,14 +163,14 @@ export function EmployeeDetailsComponent(props: IEmployeeDetailsProps) {
                                     {editing ?
                                         <>
                                             <div>
-                                                <div className="edit-button" onClick={save}>Save</div>
-                                                <div className="edit-button" onClick={cancel}>Cancel</div>
+                                                <Button className="edit-button" onClick={save}>Save</Button>
+                                                <Button className="edit-button" onClick={cancel}>Cancel</Button>
                                             </div>
                                         </>
                                         :
                                         
                                             <div>
-                                                <div className="edit-button" onClick={enableEdit}>Edit</div>
+                                                <Button className="edit-button" onClick={enableEdit}>Edit</Button>
                                             </div>
                                     
                                     }
