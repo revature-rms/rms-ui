@@ -1,6 +1,5 @@
 import React from 'react';
 import { filterFunction } from '../../utils/helper-functions/filterFunction';
-import { allData } from '../../remote/allData';
 import { Link } from "react-router-dom";
 
 export class SearchComponent extends React.Component<any, any> {
@@ -14,13 +13,13 @@ export class SearchComponent extends React.Component<any, any> {
     }
 
 
-    async componentDidMount() {
-        this.resources = await this.gatherData();
-    }
-    gatherData = async () => {
-        let apiData = await allData();
-        return apiData;
-    }
+    // async componentDidMount() {
+    //     this.resources = await this.gatherData();
+    // }
+    // gatherData = async () => {
+    //     let apiData = await allData();
+    //     return apiData;
+    // }
 
     onSearchChange = (e: any) => {
         if(e.target.value.length > 0){

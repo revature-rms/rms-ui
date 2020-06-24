@@ -1,5 +1,4 @@
 import React from 'react';
-import { allData } from '../../remote/allData';
 import Wrapper from '../../utils/div-wrapper/Wrapper';
 import EditEmpDetails from '../../utils/EditEmpDetailsModal';
 import { updateEmployee } from '../../remote/employee-service';
