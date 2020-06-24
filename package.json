@@ -29,6 +29,12 @@
     "sass": "^1.26.8",
     "typescript": "^3.7.5"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**",
+      "App.test.tsx"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

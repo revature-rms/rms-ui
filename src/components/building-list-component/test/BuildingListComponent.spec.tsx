@@ -42,7 +42,7 @@ const buildingListComponent = <BuildingListComponent {...props} />
    in our tests.
  */
 
-describe('NavbarComponent', () => {
+describe('BuildingListComponent', () => {
 
     const setState = jest.fn();
     const useStateMock: any = (init: any) => [init, setState];
