@@ -94,8 +94,9 @@ function BuildingListComponent(props: IBuildingListProps) {
                         columns={[
                             { title: 'Id', field: 'id' },
                             { title: 'Name', field: 'name' },
-                            { title: 'Street Address', field: 'physicalAddress?.unitStreet' },
-                            { title: "Building Manager", field: "trainingLead?.firstName" }
+                            { title: 'Street Address', field: 'address.unitStreet' },
+                            { title: "Building Manager", field: "trainingLead.firstName" },
+                            { title: "", field: "trainingLead.lastName" }
                         ]}
                         
                         onRowClick={(event, rowData) => {
