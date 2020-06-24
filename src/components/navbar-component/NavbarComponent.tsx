@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../../utils/LogoutFunction';
 import { AppUser } from '../../dtos/appUser';
 
 

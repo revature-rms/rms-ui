@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory } from "react-router-dom";
-import { getCampusById } from '../../remote/campus-service'
+import { useHistory } from "react-router-dom";
+import { findCampusById } from '../../remote/search-service';
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';
 import { Building } from '../../dtos/building';
@@ -13,6 +13,11 @@ import { ResourceMetadata } from '../../dtos/resourceMetadata';
 export interface ICampusDetailsProps {
 }
 
+/**
+ * Will provide all the details for one specific campus, including all the attributes associated with that campus and a list of buildings in that campus.
+ * Role needed: Admin, TSM
+ * Endpoint: .../campuses/id [id of campus]
+ */
 function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     //@ts-ignore
@@ -127,7 +132,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     */
     const getCampus = async(id: number) => {
         //@ts-ignore
-        let thisCampus = (await getCampusById(id)).data;
+        let thisCampus = (await findCampusById(id)).data;
 
         setCampus(thisCampus)
 
@@ -143,6 +148,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         await getCampus(campusId); 
 
         campus?.buildings.forEach(building => {
+            building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
             tempBuildings.push(building);
         })
 
@@ -308,8 +314,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
                                     { title: 'Street', field: 'address.unitStreet'},
-                                    { title: "Building Manager", field: "trainingLead.firstName"},
-                                    { title: "", field: "trainingLead.lastName"}                                
+                                    { title: "Building Manager", field: "trainingLead.fullName"}                            
                                 ]}
 
                                 onRowClick={(event, rowData)=> {
