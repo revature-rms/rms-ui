@@ -14,7 +14,7 @@ import CampusListComponent from './components/campus-list-component/CampusListCo
 import CampusDetailsComponent from './components/campus-details-component/CampusDetailsContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
-import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent';
+//import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent.tsx.txt';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
 import { store } from './Store';
 import { Provider } from 'react-redux';
@@ -37,7 +37,7 @@ class AppComponent extends React.Component<any, any> {
             <Switch>
               {/* <Route path='/login' component={LoginComponent} /> */}
               <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
-              <Route path='/employees' component={EmployeesComponent} />
+              <Route exact path='/employees' component={EmployeesComponent} />
               <Route path='/employees/:id' component={EmployeeDetailsComponent} />
               <Route path='/campuses' component={CampusListComponent} />
               <Route path='/buildings/:id' component={BuildingDetailsComponent} />

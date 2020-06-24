@@ -4,6 +4,11 @@ import EditEmpDetails from '../../utils/EditEmpDetailsModal';
 import { updateEmployee } from '../../remote/employee-service';
 import { Link } from 'react-router-dom';
 
+/**
+ * This Class component was created in Sprint 1 and was originally to be used
+ * for searching for employees. It was never made to function but it may be useful
+ * in providing a reference point for future sprints.
+ */
 
 export class EmployeeGlobalComponent extends React.Component<any, any> {
     constructor(props: any) {
