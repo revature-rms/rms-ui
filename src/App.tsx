@@ -51,6 +51,8 @@ class AppComponent extends React.Component<any, any> {
       </div>
     )
   } else {
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0,0);
     // we show only the login page if the user is not logged in
     return (
       <div data-test="login-content">
