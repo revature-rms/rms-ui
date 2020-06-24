@@ -42,19 +42,19 @@ function AppComponent(props: IAppProps) {
       <div data-test="main-content">
 
         <Router>
-          <NavbarComponent />
-          <Switch>
-            {/* <Route path='/login' component={LoginComponent} /> */}
-            <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
-            <Route path='/employees' component={EmployeesComponent} />
-            <Route path='/employees/:id' component={EmployeeDetailsComponent} />
-            <Route path='/campuses' component={CampusListComponent} />
-            <Route path='/buildings/:id' component={BuildingDetailsComponent} />
-            <Route path='/buildings' component={BuildingListComponent} />
-            <Route path='/rooms/:id' component={RoomDetailsComponent} />
-            <Route exact path='/rooms' component={RoomListComponent} />
-            <Route path='/' component={HomeComponent} />
-          </Switch>
+            <NavbarComponent />
+            <Switch>
+              {/* <Route path='/login' component={LoginComponent} /> */}
+              <Route exact path='/campuses/:id' component={CampusDetailsComponent} />
+              <Route exact path='/employees' component={EmployeesComponent} />
+              <Route path='/employees/:id' component={EmployeeDetailsComponent} />
+              <Route path='/campuses' component={CampusListComponent} />
+              <Route path='/buildings/:id' component={BuildingDetailsComponent} />
+              <Route path='/buildings' component={BuildingListComponent} />
+              <Route path='/rooms/:id' component={RoomDetailsComponent} />
+              <Route exact path='/rooms' component={RoomListComponent} />
+              <Route path='/' component={HomeComponent} />
+            </Switch>
         </Router>
 
       </div>

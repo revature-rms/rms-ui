@@ -1,8 +1,7 @@
 import * as React from 'react';
-import BuildingDetailsComponent, { IBuildingDetailsProps } from '../BuildingDetailsComponent';
+import CampusDetailsComponent, { ICampusDetailsProps } from '../CampusDetailsComponent';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, mount, shallow } from 'enzyme';
-import { AppUser } from '../../../dtos/appUser';
 
 /* Default Properties for rendering BuildingDetailsComponent*/
 /* 
@@ -16,17 +15,16 @@ jest.mock('react-router-dom', () => ({
     }),
 }));
 
-const props: IBuildingDetailsProps = {
-    currentUser: new AppUser(1, "username", "password", 1, ['Admin', 'Trainer', 'Building Manager', 'Training Site Manager'])
+const props: ICampusDetailsProps = {
 };
 
 configure({adapter: new Adapter()});
 
-describe('<BuildingDetailsComponent />', () => {
+describe('<CampusDetailsComponent />', () => {
 
     it('Renders without error', () => {
-        // Shallowly render the BuildingDetailsComponent with properties
-        const wrapper = shallow(<BuildingDetailsComponent {...props}/>)
+        // Shallowly render the CampusDetailsComponent with properties
+        const wrapper = shallow(<CampusDetailsComponent {...props}/>)
 
         // Expect that the component should render and contain content
         expect(wrapper.exists()).toBeTruthy
