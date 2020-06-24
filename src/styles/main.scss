@@ -4,6 +4,9 @@
 @import "./table";
 @import "./login-animation";
 @import "./detail-form";
+
+/* prevent scrolling by default*/
+
 body {
     overflow: hidden;
 }
@@ -20,9 +23,18 @@ a:visited {
     color: $dark-grey !important;
 }
 
+
+/* util classes*/
+
+
+/*prevent selectling text*/
+
 .unselect {
     user-select: none;
 }
+
+
+/*hide the element visually*/
 
 .hidden {
     opacity: 0;
