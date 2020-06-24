@@ -1,64 +1,80 @@
-import RoomListComponent from '../RoomListComponent'
-import { shallow } from 'enzyme';
+import RoomListComponent, { IRoomListProps} from '../RoomListComponent'
+import { shallow, mount } from 'enzyme';
 import React from 'react';
+import * as mockRemote from'../../../remote/search-service';
 import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
+import { AppUser } from '../../../dtos/appUser';
+import MaterialTable from 'material-table';
 
-let propsData = {
-    getAllProps: () => { },
-    getAllRooms: () => { },
-    building: {
-        resourceMetadata: {
-            resourceCreationDateTime: '',
-            lastModifiedDateTime: '',
-            lastModifier: {
-                username: ''
-            },
-            resourceCreator: {
-                username: ''
-            },
-            resourceOwner: {
-                username: ''
-            }
-        }
+jest.mock('../../../remote/search-service', () => {
+    return {
+       findAllRooms: jest.fn(),
+       findAllRoomByOwner: jest.fn(),
+       findAllCampusesByOwner: jest.fn(),
+       findBuildingByOwner: jest.fn()
     }
+})
+
+jest.mock('react-router-dom', () => ({
+    useHistory: () => ({
+      push: jest.fn(),
+    }),
+}));
+
+const adminProps: IRoomListProps = {
+    currentUser: new AppUser(0, '', '', 0, ['Admin'])
 }
-const setup = (props: any = propsData, state = 0) => {
-    const wrapper = shallow(<RoomListComponent {...props} />)
-    if (state) wrapper.setState(state);
-    return wrapper;
+const tsmProps: IRoomListProps = {
+    currentUser: new AppUser(0, '', '', 0, ['Training Site Manager'])
+}
+const bmProps: IRoomListProps = {
+    currentUser: new AppUser(0, '', '', 0, ['Building Manager'])
+}
+const trainerProps: IRoomListProps = {
+    currentUser: new AppUser(0, '', '', 0, ['Trainer'])
 }
 
-test('renders room without error', () => {
-    const wrapper = setup();
-    //find element with the data-test value
-    const appComponent = FindByTestAttr(wrapper, 'main-content');
-    expect(appComponent.length).toBe(1);
-});
+const adminRoomListComponent = <RoomListComponent {...adminProps}/>
+const tsmRoomListComponent = <RoomListComponent {...tsmProps}/>
+const bmRoomListComponent = <RoomListComponent {...bmProps}/>
+const trainerRoomListComponent = <RoomListComponent {...trainerProps}/>
 
-test('map rooms', () => {
-    const wrapper:any = setup();
-    const FakeFun = jest.spyOn(wrapper.instance(), 'mapRooms');
-    wrapper.instance().render();
-    expect(FakeFun).toHaveBeenCalled();
-});
+describe('RoomListComponent for Admin roll', () => {
+    let wrapper = mount(adminRoomListComponent);
 
-test('map rooms', () => {
-    const wrapper:any = setup();
-    const FakeFun = jest.spyOn(wrapper.instance(), 'makeTable');
-    wrapper.instance().render();
-    expect(FakeFun).toHaveBeenCalled();
-});
+    it('Should render shallowly', () => {
+        expect(wrapper.exists()).toBeTruthy();
+    })
 
-test('map amenities', () => {
-    const wrapper:any = setup();
-    const FakeFun = jest.spyOn(wrapper.instance(), 'mapAmenities');
-    wrapper.instance().render();
-    expect(FakeFun).toHaveBeenCalled();
-});
+    it('Should render 1 material table', () => {
+        expect(wrapper.find(MaterialTable)).toHaveLength(1)
+    })
 
-test('Make lists', () => {
-    const wrapper:any = setup();
-    const FakeFun = jest.spyOn(wrapper.instance(), 'makeList');
-    wrapper.instance().render();
-    expect(FakeFun).toHaveBeenCalled();
-});
+    it('Should call findAllRooms on mount', () => {
+        expect(mockRemote.findAllRooms).toHaveBeenCalled()
+    })
+})
+
+describe('RoomListComponent for TSM role', () => {
+    let wrapper = mount(tsmRoomListComponent);
+
+    it('Should call findAllCampusesByOwner', () => {
+        expect(mockRemote.findAllCampusesByOwner).toHaveBeenCalled()
+    })
+})
+
+describe('RoomListComponent for BM role', () => {
+    let wrapper = mount(bmRoomListComponent);
+
+    it('Should call findBuildingByOwner', () => {
+        expect(mockRemote.findBuildingByOwner).toHaveBeenCalled()
+    })
+})
+
+describe('RoomListComponent for trainer role', () => {
+    let wrapper = mount(trainerRoomListComponent);
+
+    it('Should call findAllRoomByOwner', () => {
+        expect(mockRemote.findAllRoomByOwner).toHaveBeenCalled()
+    })
+})
