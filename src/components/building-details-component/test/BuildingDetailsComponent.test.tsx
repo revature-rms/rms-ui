@@ -29,6 +29,4 @@ describe('<BuildingDetailsComponent />', () => {
         // Expect that the component should render and contain content
         expect(wrapper.exists()).toBeTruthy
     });
-
-    its
 })
