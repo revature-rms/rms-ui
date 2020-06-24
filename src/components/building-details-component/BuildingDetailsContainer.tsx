@@ -4,12 +4,9 @@ import BuildingDetailsComponent from "./BuildingDetailsComponent";
 
 
 const mapStateToProps = (state: IState) => {
-    return {
-
-    }
+    return {}
 }
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuildingDetailsComponent);

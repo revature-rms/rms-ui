@@ -6,6 +6,7 @@ import * as mockRemote from '../../../remote/auth-service';
 import Adapter from 'enzyme-adapter-react-16';
 import { FormControl } from '@material-ui/core';
 import { AppUser } from '../../../dtos/appUser';
+import { BrowserRouter } from 'react-router-dom';
 
 
 configure({adapter: new Adapter()});
@@ -67,12 +68,12 @@ describe('LoginComponent', () => {
     })
 
     it('Should render 2 inputs', () => {
-        const wrapper = mount(loginComponent);
+        const wrapper = mount(<BrowserRouter>{loginComponent}</BrowserRouter>);
         expect(wrapper.find("input")).toHaveLength(2)
     })
 
     it('Typing into input.username trigger state hook on username', () => {
-        let wrapper = mount(loginComponent);
+        let wrapper = mount(<BrowserRouter>{loginComponent}</BrowserRouter>);
         console.log(wrapper.find('input#username'))
         wrapper.find('input#username').simulate('change', {
             target: { 
@@ -85,7 +86,7 @@ describe('LoginComponent', () => {
     });
 
     it('Typing into input.password trigger state hook on password', () => {
-        let wrapper = mount(loginComponent);
+        let wrapper = mount(<BrowserRouter>{loginComponent}</BrowserRouter>);
         console.log(wrapper.find('input#password'))
         wrapper.find('input#password').simulate('change', {
             target: { 
@@ -98,7 +99,7 @@ describe('LoginComponent', () => {
     });
 
     it('Typing into input.username trigger state hook on username', () => {
-        let wrapper = mount(loginComponent);
+        let wrapper = mount(<BrowserRouter>{loginComponent}</BrowserRouter>);
         console.log(wrapper.find('input#username'))
         wrapper.find('input#username').simulate('change', {
             target: { 
