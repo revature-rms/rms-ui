@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { AppUser } from '../../dtos/appUser';
 import { Card, Grid } from '@material-ui/core';
-import { findAllCampuses, findAllRoomByOwner } from '../../remote/search-service';
+import { findAllCampuses, findAllRoomByOwner, findAllCampusesByTrainingManagerId } from '../../remote/search-service';
 
 export interface IHomeProps {
     authUser: AppUser | undefined;
@@ -28,7 +28,7 @@ export default function HomeComponent(props: IHomeProps) {
 
     useEffect(() => {
         if (props.authUser?.role?.includes("Admin")) getBuildings();
-        if (props.authUser?.role?.includes("Training Site Manager")) getBuildings();
+        if (props.authUser?.role?.includes("Training Site Manager")) getBuildingsById();
         if (props.authUser?.role?.includes("Trainer")) getAssociates();
         if (props.authUser?.role?.includes("Building Manager")) getRooms();
     }, []);
@@ -38,6 +38,17 @@ export default function HomeComponent(props: IHomeProps) {
         let campuses;
         // mock data
         campuses = (await findAllCampuses()).data;
+
+        console.log("campuses", campuses)
+        //@ts-ignore
+        setCampus(campuses)
+    }
+
+    const getBuildingsById = async () => {
+        // await getCampuses();
+        let campuses;
+        // mock data
+        campuses = (await findAllCampusesByTrainingManagerId(props?.authUser?.id as number)).data;
 
         console.log("campuses", campuses)
         //@ts-ignore
@@ -78,7 +89,7 @@ export default function HomeComponent(props: IHomeProps) {
                                             { title: 'Number of Buildings', field: 'buildings.length' }
                                         ]}
                                         data={campus}
-                                        title="Campus"
+                                        title="Campuses"
                                     />
                                 </div>
                             </Card>
@@ -128,7 +139,7 @@ export default function HomeComponent(props: IHomeProps) {
                                             { title: 'Number of Buildings', field: 'buildings.length' }
                                         ]}
                                         data={campus}
-                                        title="Placeholder table -- same as admin view"
+                                        title="Campus"
                                     />
                                 </div>
                             </Card>

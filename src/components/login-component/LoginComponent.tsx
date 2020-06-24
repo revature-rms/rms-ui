@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import LoginFunction from '../../utils/login-function/LoginFunction';
 import { AppUser } from '../../dtos/appUser';
 import { LoginAnimationComponent } from "../login-animation-component/LoginAnimationComponent"
+import { Link } from 'react-router-dom';
+
 
 export interface ILoginProps {
     authUser: AppUser | undefined,
@@ -73,7 +75,9 @@ export default function LoginComponent(props: ILoginProps) {
                                     value={password}
                                     onChange={setInfo}
                                 />
-                                <button id="loginButton" type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+                                <Link to="/">
+                                    <button id="loginButton" type="button" onClick={signUserIn} className="login-btn" >Sign in</button>
+                                </Link>
                             </form>
                             <div>{props.loginMessage}</div>
                         </div>
