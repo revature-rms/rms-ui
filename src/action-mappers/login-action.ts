@@ -57,7 +57,6 @@ export const login = (username: string, password: string, action: string) => asy
                     loginMessage: ""
                 }
             });
-            window.location.reload(false);
         }
 
     } catch (e) {
