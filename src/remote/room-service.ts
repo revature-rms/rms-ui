@@ -1,11 +1,13 @@
 import { apiClient } from '.';
 import axios from 'axios';
 
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get room by id*/
 export const getRoomByIdAPI = (id:number) => {
     return apiClient.get(`campus/v2/room/${id}`);
 }
 
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get all rooms from campus microservice.*/
 export const getAllRooms = async () => {
     return await apiClient.get(`campus/v2/room`);
@@ -16,11 +18,13 @@ export const createRoom = (data: any) => {
     return apiClient.post('campus/v2/room', data);
 }
 
+
 /**Function to update an existing room*/
 export const updateRoom = (data: any) => {
     return apiClient.put(`campus/v2/room`, data);
 }
 
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get a room by the resource owner's ID */
 export const getRoomByOwnerId = (id:number) => {
     return apiClient.get(`campus/v2/room/owner/${id}`);

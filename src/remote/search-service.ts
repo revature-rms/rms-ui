@@ -1,6 +1,6 @@
 /**All of the functions from the search-service microservice
  * these are used to grab data from any of the other microservices
- * and provide additional information such as the Metadata
+ * and provides additional information such as the Metadata
 */
 import { apiClient } from '.';
 

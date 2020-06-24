@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useHistory } from "react-router-dom";
-import { getCampusById } from '../../remote/campus-service'
+import { findCampusById } from '../../remote/search-service'
 import MaterialTable from 'material-table';
 import { Campus } from '../../dtos/campus';
 import { Building } from '../../dtos/building';
@@ -126,7 +126,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
     */
     const getCampus = async(id: number) => {
         //@ts-ignore
-        let thisCampus = (await getCampusById(id)).data;
+        let thisCampus = (await findCampusById(id)).data;
 
         setCampus(thisCampus)
 
