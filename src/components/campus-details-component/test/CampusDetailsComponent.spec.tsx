@@ -55,9 +55,9 @@ describe('CampusDetailsComponent', () => {
         expect(wrapper.find(FormControl)).toHaveLength(17)
     })
 
-    it('Should render 73 Divs', () => {
+    it('Should render 74 Divs', () => {
         const wrapper = mount(campusDetailsComponent);
-        expect(wrapper.find("div")).toHaveLength(73)
+        expect(wrapper.find("div")).toHaveLength(74)
     })
 
     it('Should render 1 MaterialTable', () => {
