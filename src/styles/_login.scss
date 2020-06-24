@@ -4,6 +4,9 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
     background-color: $black;
 }
 
+
+/* the revature logo */
+
 .login-logo {
     background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
     margin: auto;
@@ -11,10 +14,16 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
     height: 56px;
 }
 
+
+/* limit the location of view port*/
+
 .animation-frame {
     height: 80vh;
     width: 100%;
 }
+
+
+/* covers the top of the screen in login */
 
 .animation-mask-top {
     height: 9.5vh;
@@ -24,6 +33,9 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
     border-bottom: solid 0.5vh $orange;
 }
 
+
+/* covers the bottom of the screen in login */
+
 .animation-mask-bottom {
     height: 9.5vh;
     width: 100%;
@@ -32,12 +44,18 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
     border-top: solid 0.5vh $orange;
 }
 
+
+/* the small text of 'authorize uses' under login */
+
 .auth-text {
     width: 460px;
     padding: 0px 10px;
     margin-right: 10%;
     margin-left: auto;
 }
+
+
+/* main viewport for the animation */
 
 .login-ribbon {
     background-color: $white;
@@ -53,6 +71,9 @@ $font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
     font-size: map-get($font-size, full);
     line-height: 10vh;
 }
+
+
+/* lock the login form in place */
 
 .login-form-holder {
     font-size: 1rem !important;
