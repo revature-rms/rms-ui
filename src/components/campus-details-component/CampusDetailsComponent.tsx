@@ -148,6 +148,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         await getCampus(campusId); 
 
         campus?.buildings.forEach(building => {
+            building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
             tempBuildings.push(building);
         })
 
@@ -313,8 +314,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
                                     //@ts-ignore
                                     { title: 'Name', field: 'name'},
                                     { title: 'Street', field: 'address.unitStreet'},
-                                    { title: "Building Manager", field: "trainingLead.firstName"},
-                                    { title: "", field: "trainingLead.lastName"}                                
+                                    { title: "Building Manager", field: "trainingLead.fullName"}                            
                                 ]}
 
                                 onRowClick={(event, rowData)=> {

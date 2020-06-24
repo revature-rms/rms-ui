@@ -9,7 +9,6 @@ import { findAllRoomByOwner, findAllRooms, findAllCampusesByOwner, findBuildingB
 import { AppUser } from '../../dtos/appUser';
 
 
-
 export interface IRoomListProps {
     currentUser: AppUser
 }

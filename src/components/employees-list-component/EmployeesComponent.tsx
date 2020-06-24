@@ -30,6 +30,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await findAllEmployees()).data;
         employeeList.forEach(employee =>{
+            employee.fullName = employee.firstName + " " + employee.lastName;
             myEmployees.push(employee)
         })
         setEmployeeList(myEmployees);
@@ -41,6 +42,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     const getEmployees = async ()=> {
         let employeeList: Array<Employee> = (await findAllEmployeeByOwner(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
+            employee.fullName = employee.firstName + " " + employee.lastName;
             myEmployees.push(employee);
         })
         setEmployeeList(myEmployees);

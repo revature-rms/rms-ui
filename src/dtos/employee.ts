@@ -9,6 +9,7 @@ export class Employee {
     title: string;
     department: string;
     resourceMetaData: ResourceMetadata;
+    fullName: string = this.firstName + " " + this.lastName;
 
     constructor(id: number, firstName: string, lastName: string, email: string, title: string, department: string, resourceMetaData: ResourceMetadata) {
         this.id = id;
@@ -18,5 +19,7 @@ export class Employee {
         this.title = title;
         this.department = department;
         this.resourceMetaData = resourceMetaData;
+        this.fullName = firstName + " " + lastName;
     }
+
 }
