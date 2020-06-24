@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Employee } from '../../dtos/employee';
-import { Grid, FormControl, InputLabel, Input, Card } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
 import { findEmployeeById } from '../../remote/search-service';
 
 
