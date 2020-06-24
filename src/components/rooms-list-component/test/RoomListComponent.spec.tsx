@@ -2,7 +2,6 @@ import RoomListComponent, { IRoomListProps} from '../RoomListComponent'
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import * as mockRemote from '../../../remote/search-service';
-import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
 import { AppUser } from '../../../dtos/appUser';
 import MaterialTable from 'material-table';
 
