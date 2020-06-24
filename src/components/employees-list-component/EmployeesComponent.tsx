@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
-import { Link, useHistory } from "react-router-dom";
+import { Card } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
 import {  findAllEmployees, findAllEmployeeByOwner } from '../../remote/search-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
-import { ResourceMetadata } from '../../dtos/resourceMetadata';
-import CampusListComponent from '../campus-list-component/CampusListComponent';
-
-
-
 
 
 export interface IEmployeesProps {
@@ -36,6 +30,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     const getAllEmployees = async() =>{
         let employeeList: Array<Employee> = (await findAllEmployees()).data;
         employeeList.forEach(employee =>{
+            employee.fullName = employee.firstName + " " + employee.lastName;
             myEmployees.push(employee)
         })
         setEmployeeList(myEmployees);
@@ -47,6 +42,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
     const getEmployees = async ()=> {
         let employeeList: Array<Employee> = (await findAllEmployeeByOwner(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
+            employee.fullName = employee.firstName + " " + employee.lastName;
             myEmployees.push(employee);
         })
         setEmployeeList(myEmployees);

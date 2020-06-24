@@ -1,7 +1,4 @@
-
 import React from 'react';
-// import './Rms.css';
-// import './App.css';
 import "./styles/main.scss";
 import HomeComponent from './components/home-component/HomeContainer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -16,8 +13,6 @@ import LoginComponent from './components/login-component/LoginContainer';
 import BuildingDetailsComponent from './components/building-details-component/BuildingDetailsComponent';
 //import { EmployeeGlobalComponent } from './components/global-search-components/EmployeeGlobalComponent.tsx.txt';
 import BuildingListComponent from './components/building-list-component/BuildingListContainer';
-import { store } from './Store';
-import { Provider } from 'react-redux';
 
 
 

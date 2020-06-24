@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Room } from '../../dtos/room';
@@ -7,7 +7,6 @@ import { Campus } from '../../dtos/campus';
 import { Building } from '../../dtos/building';
 import { findAllRoomByOwner, findAllRooms, findAllCampusesByOwner, findBuildingByOwner } from '../../remote/search-service';
 import { AppUser } from '../../dtos/appUser';
-
 
 
 export interface IRoomListProps {

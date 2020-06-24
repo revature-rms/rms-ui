@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
 import Card from '@material-ui/core/Card';
 import { Building } from '../../dtos/building';
 import { Campus } from '../../dtos/campus';
 import { AppUser } from '../../dtos/appUser';
 import { findAllBuilding, findBuildingByOwner, findAllCampusesByOwner } from '../../remote/search-service';
+import { Employee } from '../../dtos/employee';
 
 
 export interface IBuildingListProps {
@@ -23,7 +24,7 @@ function BuildingListComponent(props: IBuildingListProps) {
 
     const [buildings, setBuildings] = useState<Array<Building>>([]);
     const history = useHistory();
-    let myBuildings: Array<Building> = []
+    let myBuildings: Array<Building> = [];
 
     /**
      * Gets campuses that are owned by current user if they are a training site manager and extracts buildings from the campus
@@ -33,6 +34,7 @@ function BuildingListComponent(props: IBuildingListProps) {
 
         campusList.forEach(campus => {
             campus.buildings.forEach(building => {
+                building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
                 myBuildings.push(building);
             });
         });
@@ -47,6 +49,7 @@ function BuildingListComponent(props: IBuildingListProps) {
         let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
 
         buildingList.forEach(building => {
+            building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
             myBuildings.push(building);
         });
 
@@ -60,6 +63,7 @@ function BuildingListComponent(props: IBuildingListProps) {
         let buildingsList: Array<Building> =(await findAllBuilding()).data
 
         buildingsList.forEach(building => {
+            building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
             myBuildings.push(building);
         });
 
@@ -95,8 +99,7 @@ function BuildingListComponent(props: IBuildingListProps) {
                             { title: 'Id', field: 'id' },
                             { title: 'Name', field: 'name' },
                             { title: 'Street Address', field: 'address.unitStreet' },
-                            { title: "Building Manager", field: "trainingLead.firstName" },
-                            { title: "", field: "trainingLead.lastName" }
+                            { title: "Building Manager", field: "trainingLead.fullName" }
                         ]}
                         
                         onRowClick={(event, rowData) => {

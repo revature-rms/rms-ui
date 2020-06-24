@@ -29,6 +29,9 @@ export default function CampusListComponent(props: ICampusProps) {
     const getCampuses = async () => {
         let campusList: Array<Campus> = (await findAllCampusesByOwner(props?.currentUser?.id)).data;
         campusList.forEach(campus => {
+            campus.hrLead.fullName = campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName;
+            campus.trainingManager.fullName = campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName;
+            campus.stagingManager.fullName = campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName;
             myCampuses.push(campus);
         });
         await setCampusList(myCampuses); 
@@ -40,6 +43,9 @@ export default function CampusListComponent(props: ICampusProps) {
     const getAllCampuses = async () => {
         let campusList: Array<Campus> = (await findAllCampuses()).data;
         campusList.forEach(campus => {
+            campus.hrLead.fullName = campus?.hrLead?.firstName + ' ' + campus?.hrLead?.lastName;
+            campus.trainingManager.fullName = campus?.trainingManager?.firstName + ' ' + campus?.trainingManager?.lastName;
+            campus.stagingManager.fullName = campus?.stagingManager?.firstName + ' ' + campus?.stagingManager?.lastName;
             myCampuses.push(campus);
         });
         await setCampusList(myCampuses);
@@ -71,12 +77,9 @@ export default function CampusListComponent(props: ICampusProps) {
                         < MaterialTable
                             columns={[
                                 { title: 'Name', field: 'name'},
-                                { title: 'Training Manager', field: 'trainingManager.firstName' },
-                                { title: '', field: 'trainingManager.lastName' },
-                                { title: "Staging Manager", field: "stagingManager.firstName" },
-                                { title: "", field: "stagingManager.lastName" },
-                                { title: "HR Lead", field: "hrLead.firstName" },
-                                { title: "", field: "hrLead.lastName" }
+                                { title: 'Training Manager', field: 'trainingManager.fullName' },
+                                { title: "Staging Manager", field: "stagingManager.fullName" },
+                                { title: "HR Lead", field: "hrLead.fullName" }
                             ]}
                             //@ts-ignore
                             onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Wrapper from '../../utils/div-wrapper/Wrapper';
-import EditEmpDetails from '../../utils/EditEmpDetailsModal';
-
-
-import { Link, useHistory } from 'react-router-dom';
-import { getAllEmployeeById } from '../../remote/employee-service';
+import { useHistory } from 'react-router-dom';
 import { Employee } from '../../dtos/employee';
 import { Grid, FormControl, InputLabel, Input, Card, Button } from '@material-ui/core';
-import { AppUser } from '../../dtos/appUser';
 import { findEmployeeById } from '../../remote/search-service';
 
 
