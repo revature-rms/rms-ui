@@ -3,7 +3,7 @@ import Wrapper from '../../utils/div-wrapper/Wrapper';
 import { Grid, Card, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import MaterialTable from 'material-table';
-import { getAllEmployees as getAllEmployeesAPI, getAllEmployeeById } from '../../remote/employee-service';
+import {  findAllEmployees, findAllEmployeeByOwner } from '../../remote/search-service';
 import { Employee } from '../../dtos/employee';
 import { AppUser } from '../../dtos/appUser';
 import { ResourceMetadata } from '../../dtos/resourceMetadata';
@@ -34,7 +34,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
      * Gets all employees if the user currently signed in is an admin
      */
     const getAllEmployees = async() =>{
-        let employeeList: Array<Employee> = (await getAllEmployeesAPI()).data;
+        let employeeList: Array<Employee> = (await findAllEmployees()).data;
         employeeList.forEach(employee =>{
             myEmployees.push(employee)
         })
@@ -45,7 +45,7 @@ export default function EmployeesComponent(props: IEmployeesProps) {
      * Gets employee that are directly owned by the signed user
      */
     const getEmployees = async ()=> {
-        let employeeList: Array<Employee> = (await getAllEmployeeById(props?.currentUser?.id)).data;
+        let employeeList: Array<Employee> = (await findAllEmployeeByOwner(props?.currentUser?.id)).data;
         employeeList.forEach(employee =>{
             myEmployees.push(employee);
         })
