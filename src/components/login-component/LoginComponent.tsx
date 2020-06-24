@@ -86,7 +86,7 @@ export default function LoginComponent(props: ILoginProps) {
                 </div>
                 <div className="animation-mask-bottom">
                     <div className="auth-text">
-                        This application is for authorized personel only.
+                        This application is for authorized personnel only.
                 <br />
                 For more information on Revature and what we do, click <a href="https://revature.com" target="_blank">here</a>
                     </div>
