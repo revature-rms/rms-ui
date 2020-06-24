@@ -296,7 +296,7 @@ function RoomDetailsComponent(props: IRoomDetailsProps) {
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Resource Creator: </InputLabel>
-                                    <Input value={room?.resourceMetadata?.resourceCreator.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={room?.resourceMetadata?.resourceCreator?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
@@ -308,7 +308,7 @@ function RoomDetailsComponent(props: IRoomDetailsProps) {
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Last Modifier: </InputLabel>
-                                    <Input value={room?.resourceMetadata?.lastModifier.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={room?.resourceMetadata?.lastModifier?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                                 <span style={{margin: 5}}>
@@ -320,7 +320,7 @@ function RoomDetailsComponent(props: IRoomDetailsProps) {
                                 <span style={{margin: 5}}>
                                 <FormControl>
                                     <InputLabel shrink={true}>Resource Owner: </InputLabel>
-                                    <Input value={room?.resourceMetadata?.resourceOwner.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
+                                    <Input value={room?.resourceMetadata?.resourceOwner?.username} disabled={true} inputProps={{ 'aria-label': 'description' }} />
                                 </FormControl>
                                 </span>
                             </Card>  
