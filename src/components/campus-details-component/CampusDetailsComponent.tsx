@@ -148,7 +148,7 @@ function CampusDetailsComponent(props: ICampusDetailsProps) {
         await getCampus(campusId); 
 
         campus?.buildings.forEach(building => {
-            building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
+            building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
             tempBuildings.push(building);
         })
 

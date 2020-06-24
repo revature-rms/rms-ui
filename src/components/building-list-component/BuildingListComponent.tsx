@@ -34,7 +34,7 @@ function BuildingListComponent(props: IBuildingListProps) {
 
         campusList.forEach(campus => {
             campus.buildings.forEach(building => {
-                building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
+                building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
                 myBuildings.push(building);
             });
         });
@@ -49,7 +49,7 @@ function BuildingListComponent(props: IBuildingListProps) {
         let buildingList: Array<Building> = (await findBuildingByOwner(props.currentUser?.id)).data;
 
         buildingList.forEach(building => {
-            building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
+            building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
             myBuildings.push(building);
         });
 
@@ -63,7 +63,7 @@ function BuildingListComponent(props: IBuildingListProps) {
         let buildingsList: Array<Building> =(await findAllBuilding()).data
 
         buildingsList.forEach(building => {
-            building.trainingLead.fullName = building.trainingLead.firstName + ' ' + building.trainingLead.lastName;
+            building.trainingLead.fullName = building?.trainingLead?.firstName + ' ' + building?.trainingLead?.lastName;
             myBuildings.push(building);
         });
 
