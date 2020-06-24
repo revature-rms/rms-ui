@@ -65,7 +65,7 @@ export const findAllRoomByOwner = (id:number) => {
 }
 
 /**Returns a list of all employees including all nested objects*/
-export const findAllEmployees = (id:number) => {
+export const findAllEmployees = () => {
     return apiClient.get(`search/v1/employees`);
 }
 

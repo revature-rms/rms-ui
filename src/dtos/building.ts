@@ -9,17 +9,17 @@ export class Building {
     id: number;
     name: string;
     abbrName: string;
-    physicalAddress: Address;
+    address: Address;
     trainingLead: Employee;
     amenities: Amenity[];
     rooms: Room[];
     resourceMetadata: ResourceMetadata;
 
-    constructor(id: number, name: string, abbrName: string, physicalAddress: Address, trainingLead: Employee, amenities: Amenity[], rooms: Room[], resourceMetadata: ResourceMetadata) {
+    constructor(id: number, name: string, abbrName: string, address: Address, trainingLead: Employee, amenities: Amenity[], rooms: Room[], resourceMetadata: ResourceMetadata) {
         this.id = id;
         this.name = name;
         this.abbrName = abbrName;
-        this.physicalAddress = physicalAddress;
+        this.address = address;
         this.trainingLead = trainingLead;
         this.amenities = amenities;
         this.rooms = rooms;

@@ -72,8 +72,11 @@ export default function CampusListComponent(props: ICampusProps) {
                             columns={[
                                 { title: 'Name', field: 'name'},
                                 { title: 'Training Manager', field: 'trainingManager.firstName' },
+                                { title: '', field: 'trainingManager.lastName' },
                                 { title: "Staging Manager", field: "stagingManager.firstName" },
-                                { title: "HR Lead", field: "hrLead.firstName" }
+                                { title: "", field: "stagingManager.lastName" },
+                                { title: "HR Lead", field: "hrLead.firstName" },
+                                { title: "", field: "hrLead.lastName" }
                             ]}
                             //@ts-ignore
                             onRowClick={(event, rowData) => history.push('/campuses/' + rowData.id)}
