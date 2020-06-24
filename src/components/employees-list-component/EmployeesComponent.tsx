@@ -61,6 +61,8 @@ export default function EmployeesComponent(props: IEmployeesProps) {
             getAllEmployees();
         } else if(props.currentUser?.role.includes("Training Site Manager")){
             getEmployees();
+        } else if (props.currentUser?.role.includes("Trainer")){
+            getEmployees();
         }
     }, []);
     console.log(employeeList);
