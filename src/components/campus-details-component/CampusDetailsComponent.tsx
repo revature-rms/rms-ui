@@ -13,6 +13,11 @@ import { ResourceMetadata } from '../../dtos/resourceMetadata';
 export interface ICampusDetailsProps {
 }
 
+/**
+ * Will provide all the details for one specific campus, including all the attributes associated with that campus and a list of buildings in that campus.
+ * Role needed: Admin, TSM
+ * Endpoint: .../campuses/id [id of campus]
+ */
 function CampusDetailsComponent(props: ICampusDetailsProps) {
 
     //@ts-ignore

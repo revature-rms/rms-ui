@@ -20,7 +20,7 @@ export interface IRoomDetailsProps {
 
 /**
  * Will provide all the details for one specific room, including all the attributes associated with that room.
- * Role needed: Trainer
+ * Role needed: Admin, TSM, Building Manager, Trainer
  * Endpoint: .../rooms/id [id of room]
  */
 function RoomDetailsComponent(props: IRoomDetailsProps) {

@@ -11,9 +11,9 @@ export interface IBuildingDetailsProps {
 }
 
 /**
- * Will provide all the details for one specific room, including all the attributes associated with that room.
- * Role needed: Trainer
- * Endpoint: .../rooms/id [id of room]
+ * Will provide all the details for one specific buidling, including all the attributes associated with that buidling.
+ * Role needed: Admin, TSM, Building Manager
+ * Endpoint: .../buildings/id [id of building]
  */
 
 function BuildingDetailsComponent(props: IBuildingDetailsProps){
