@@ -9,12 +9,12 @@ export const getAllEmployees = () => {
 /**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get employee by id*/
 export const getEmployeeByIdAPI = (id:number) => {
-    return apiClient.get(`/search/v1/employee/${id}`);
+    return apiClient.get(`/search/v1/employees/${id}`);
 }
 
 /**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 export const getAllEmployeeById = (id: number) =>{
-    return apiClient.get(`/search/v1/employee/owner/${id}`)
+    return apiClient.get(`/search/v1/employees/owner/${id}`)
 }
 
 /**Function to create an employee*/

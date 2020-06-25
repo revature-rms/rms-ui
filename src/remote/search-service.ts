@@ -11,57 +11,57 @@ export const findAllCampuses = () => {
 
 /**Returns a list of all campuses including all nested objects by the respective training manager ID*/
 export const findAllCampusesByTrainingManagerId = (id:number) => {
-    return apiClient.get(`search/v1/campus/training/${id}`);
+    return apiClient.get(`search/v1/campuses/training/${id}`);
 }
 
 /**Returns a campus by id including all nested object*/
 export const findCampusById = (id:number) => {
-    return apiClient.get(`search/v1/campus/${id}`);
+    return apiClient.get(`search/v1/campuses/${id}`);
 }
 
 /**Returns a list of campuses owned by a specified app user*/
 export const findAllCampusesByOwner = (id:number) => {
-    return apiClient.get(`search/v1/campus/owner/${id}`);
+    return apiClient.get(`search/v1/campuses/owner/${id}`);
 }
 
 /**Returns a list of all buildings*/
 export const findAllBuilding = () => {
-    return apiClient.get(`search/v1/building`);
+    return apiClient.get(`search/v1/buildings`);
 }
 
 /**Returns a building by id including all nested objects*/
 export const findBuildingById = (id:number) => {
-    return apiClient.get(`search/v1/building/${id}`);
+    return apiClient.get(`search/v1/buildings/${id}`);
 }
 
 /**Returns a building by the Training Lead/Building Manager ID, including all nested objects*/
 export const findBuildingByTrainingLeadId = (id:number) => {
-    return apiClient.get(`search/v1/building/training/${id}`);
+    return apiClient.get(`search/v1/buildings/training/${id}`);
 }
 
 /**Returns a list of buildings base on an app user id*/
 export const findBuildingByOwner = (id:number) => {
-    return apiClient.get(`search/v1/building/owner/${id}`);
+    return apiClient.get(`search/v1/buildings/owner/${id}`);
 }
 
 /**Returns a list of all RoomDto objects*/
 export const findAllRooms = () => {
-    return apiClient.get(`search/v1/room`);
+    return apiClient.get(`search/v1/rooms`);
 }
 
 /**Returns a room by id including all nested objects*/
 export const findRoomById = (id:number) => {
-    return apiClient.get(`search/v1/room/${id}`);
+    return apiClient.get(`search/v1/rooms/${id}`);
 }
 
 /**Returns a room by Trainer id including all nested objects*/
 export const findRoomByTrainerId = (id:number) => {
-    return apiClient.get(`search/v1/room/trainer/${id}`);
+    return apiClient.get(`search/v1/rooms/trainer/${id}`);
 }
 
 /**Returns a list of rooms base on an app user id*/
 export const findAllRoomByOwner = (id:number) => {
-    return apiClient.get(`search/v1/room/owner/${id}`);
+    return apiClient.get(`search/v1/rooms/owner/${id}`);
 }
 
 /**Returns a list of all employees including all nested objects*/
@@ -71,16 +71,16 @@ export const findAllEmployees = () => {
 
 /**Returns an employee by id including all nested objects*/
 export const findEmployeeById = (id:number) => {
-    return apiClient.get(`search/v1/employee/${id}`);
+    return apiClient.get(`search/v1/employees/${id}`);
 }
 
 /**Returns a list of Employees resources owned by a provided app user*/
 export const findAllEmployeeByOwner = (id:number) => {
-    return apiClient.get(`search/v1/employee/owner/${id}`);
+    return apiClient.get(`search/v1/employees/owner/${id}`);
 }
 
 /**Returns a batch by id including all nested obljects*/
 export const findBatchById = (id:number) => {
-    return apiClient.get(`search/v1/batch/${id}}`);
+    return apiClient.get(`search/v1/batchs/${id}}`);
 }
 
