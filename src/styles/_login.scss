@@ -1,0 +1,158 @@
+@import "./color";
+$font-size:( "full": 1.8rem, "tablet": 1.8rem, "phone": 1.5rem);
+.login-background {
+    background-color: $black;
+}
+
+
+/* the revature logo */
+
+.login-logo {
+    background: url("https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png") !important;
+    margin: auto;
+    width: 180px;
+    height: 56px;
+}
+
+
+/* limit the location of view port*/
+
+.animation-frame {
+    height: 80vh;
+    width: 100%;
+}
+
+
+/* covers the top of the screen in login */
+
+.animation-mask-top {
+    height: 9.5vh;
+    width: 100%;
+    z-index: 99;
+    background-color: $white !important;
+    border-bottom: solid 0.5vh $orange;
+}
+
+
+/* covers the bottom of the screen in login */
+
+.animation-mask-bottom {
+    height: 9.5vh;
+    width: 100%;
+    z-index: 99;
+    background-color: $white !important;
+    border-top: solid 0.5vh $orange;
+}
+
+
+/* the small text of 'authorize uses' under login */
+
+.auth-text {
+    width: 460px;
+    padding: 0px 10px;
+    margin-right: 10%;
+    margin-left: auto;
+}
+
+
+/* main viewport for the animation */
+
+.login-ribbon {
+    background-color: $white;
+    height: 100%;
+    width: 470px;
+    border-left: 5px solid $orange;
+    border-right: 5px solid $orange;
+    margin-right: 10%;
+    margin-left: auto;
+    padding-top: 15px;
+    color: $orange;
+    text-align: center;
+    font-size: map-get($font-size, full);
+    line-height: 10vh;
+}
+
+
+/* lock the login form in place */
+
+.login-form-holder {
+    font-size: 1rem !important;
+    background-color: $grey;
+    margin: auto;
+    width: 450px;
+    padding: 2vh 0;
+    border-radius: 1vh;
+    input {
+        background-color: $grey;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 1vh;
+        font-size: map-get($font-size, full) !important;
+        color: $white;
+        font-weight: 300 !important;
+        border-radius: 1vh;
+    }
+    .login-label {
+        text-align: left;
+        display: block;
+        margin: auto;
+        font-size: map-get($font-size, full) !important;
+        line-height: 3vh;
+        height: 3vh;
+        width: 80%;
+        padding: 1vh 0;
+        margin-bottom: 1vh;
+        font-weight: 300 !important;
+        border-radius: 1vh;
+    }
+    .login-btn {
+        display: block;
+        font-size: 1rem !important;
+        line-height: 3vh;
+        height: 5vh;
+        width: 50%;
+        padding: 1vh 10% 4vh;
+        margin: 2vh 20% 4vh 10%;
+        border-radius: 1vh;
+        color: $grey;
+        font-weight: 600;
+        background-color: $orange;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For general iPad layouts */
+    .login-ribbon {
+        height: 100%;
+        color: $orange;
+        margin: auto;
+        text-align: center;
+        font-size: map-get($font-size, tablet);
+        line-height: 10vh;
+    }
+    .login-form-holder {
+        font-size: 1rem !important;
+        background-color: $grey;
+        margin: auto;
+        width: 95%;
+        padding: 2vh 1vw;
+        input {
+            background-color: $grey;
+            margin-left: 1vw;
+            width: 75vw;
+            padding: 2vh 1vw;
+        }
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    /* For general iphone layouts */
+    .login-ribbon {
+        height: 100%;
+        font-size: map-get($font-size, phone);
+        color: $orange;
+        text-align: center;
+        line-height: 10vh;
+        margin: auto;
+    }
+}
