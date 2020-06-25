@@ -9,7 +9,7 @@ export const getAllCampus = async () => {
 /**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get campus by id*/
 export const getCampusById = (id:number) => {
-    return apiClient.get(`search/v1/campus/${id}`);
+    return apiClient.get(`search/v1/campuses/${id}`);
 }
 
 /**Function to create an campus*/
