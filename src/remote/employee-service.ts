@@ -1,17 +1,18 @@
 import { apiClient } from ".";
 
-// Double check these endpoints!
-
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get all employees from employees microservice.*/
 export const getAllEmployees = () => {
     return apiClient.get("/search/v1/employees");
 }
 
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 /**Function to get employee by id*/
 export const getEmployeeByIdAPI = (id:number) => {
     return apiClient.get(`/search/v1/employee/${id}`);
 }
 
+/**LEGACY REQUEST REFER TO SEARCH SERVICE*/
 export const getAllEmployeeById = (id: number) =>{
     return apiClient.get(`/search/v1/employee/owner/${id}`)
 }
