@@ -2,6 +2,15 @@
 @import "./login";
 @import "./color";
 @import "./table";
+@import "./login-animation";
+@import "./detail-form";
+
+/* prevent scrolling by default*/
+
+body {
+    overflow: hidden;
+}
+
 
 /* Define hyperlink style */
 
@@ -14,6 +23,51 @@ a:visited {
     color: $dark-grey !important;
 }
 
+
+/* util classes*/
+
+
+/*prevent selectling text*/
+
 .unselect {
     user-select: none;
+}
+
+
+/*hide the element visually*/
+
+.hidden {
+    opacity: 0;
+}
+
+
+/*Scroll bar style*/
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background-color: $light-grey;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background-color: $yellow;
+    border-radius: 5px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background-color: $orange;
 }

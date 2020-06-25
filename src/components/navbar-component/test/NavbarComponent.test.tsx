@@ -1,24 +1,27 @@
-import NavbarComponent from '../NavbarComponent'
-import { shallow } from 'enzyme';
-import React from 'react';
-import { FindByTestAttr } from '../../../utils/helper-functions/testUtils';
+import * as React from 'react';
+import NavbarComponent, { INavbarProps } from '../NavbarComponent';
+import Adapter from 'enzyme-adapter-react-16';
+import { configure, mount, shallow } from 'enzyme';
 
-const setup = (props = {}, state = 0) => {
-    const wrapper = shallow(<NavbarComponent {...props} />)
-    if (state) wrapper.setState(state);
-    return wrapper;
+/* Default Properties for rendering LoginComponent*/
+/* 
+   LoginComponent is dependent on these properties, so they must
+   be supplied.
+*/
+const props: INavbarProps = {
+    currentUser: undefined,
+    login: jest.fn()
 }
 
-test('renders top bar without error', () => {
-    const wrapper = setup();
-    //find element with the data-test value
-    const appComponent = FindByTestAttr(wrapper, 'navbar-top');
-    expect(appComponent.length).toBe(1);
-});
+configure({adapter: new Adapter()});
 
-test('renders side navbar without error', () => {
-    const wrapper = setup();
-    //find element with the data-test value
-    const appComponent = FindByTestAttr(wrapper, 'navbar-side');
-    expect(appComponent.length).toBe(1);
-});
+describe('<HomeComponent />', () => {
+
+    it('Renders without error', () => {
+        // Shallowly render the LoginComponent with properties
+        const wrapper = shallow(<NavbarComponent {...props}/>)
+
+        // Expect that the component should render and contain content
+        expect(wrapper.exists()).toBeTruthy
+    });
+})

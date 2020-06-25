@@ -1,0 +1,43 @@
+@import "./color";
+
+/* stying the table when displaying item details */
+
+.detail-form {
+    /* overide Material UI  */
+    label.MuiInputLabel-shrink {
+        color: $black;
+        transform: translate(0) scale(1) !important;
+        transform-origin: top left;
+        margin-top: 3vh;
+    }
+    input {
+        height: 3vh;
+        display: block;
+        margin-top: 3vh !important;
+    }
+    /* overide material UI */
+    input.MuiInputBase-input {
+        color: $grey !important;
+    }
+    Button {
+        background-color: $orange;
+    }
+}
+
+
+/* style the eddit button of the fdetail form*/
+
+.edit-button {
+    display: inline-block;
+    background-color: $grey;
+    color: $white;
+    padding: 1vh 1vw;
+    margin-right: 1vw;
+    margin-bottom: 2vh;
+    border-radius: 0.5vh;
+    user-select: none;
+}
+
+.edit-button:hover {
+    background-color: $orange;
+}

@@ -1,22 +1,37 @@
 @import "./color";
-.table-wrapper {
+
+/* sets the location of main content and prevents overlapping navbar*/
+
+.display-wrapper {
     position: absolute;
     top: 110px;
     left: 14vw;
+}
+
+
+/* place the table in the correct location withing display-wrapper */
+
+.table-wrapper {
+    display: block;
     width: 80vw;
     margin: 4vh 2vw;
     border-radius: 1vh;
-    overflow: hidden;
 }
+
+
+/* overide material UI color*/
 
 .MuiToolbar-regular {
     background-color: $yellow !important;
 }
 
+
+/* overide material UI color*/
+
 table {
     width: 100% !important;
     margin: auto !important;
-    background-color: $light-grey !important;
+    background-color: $white !important;
     th {
         background-color: $white !important;
         .MuiButtonBase-root {
@@ -27,18 +42,19 @@ table {
         background-color: $white !important;
         color: $dark-grey !important;
     }
-    tr:hover td {
+    /* sets the background color and style when hover over*/
+    tr:hover td.MuiTableCell-alignLeft {
         transition: 0.5s;
-        color: $white !important;
-        background-color: $grey !important;
+        color: $black !important;
+        background-color: $beige !important;
     }
-    tr:hover td a {
+    tr:hover td.MuiTableCell-alignLeft a {
         transition: 0.5s;
-        color: $white !important;
+        color: $black !important;
     }
-    tr:hover td a:visited {
+    tr:hover td.MuiTableCell-alignLeft a:visited {
         transition: 0.5s;
-        color: $white !important;
+        color: $black !important;
     }
 }
 
@@ -51,6 +67,11 @@ table {
         width: 96vw;
         margin: 3vh 2vw;
     }
+    .display-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0vw;
+    }
 }
 
 @media only screen and (max-width: 510px) {
@@ -61,5 +82,10 @@ table {
         left: 0;
         width: 96vw;
         margin: 2vh 2vw;
+    }
+    .display-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0vw;
     }
 }
